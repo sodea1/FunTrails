@@ -1,0 +1,13 @@
+@import '../base/font.scss';
+@import '../base/colors.scss';
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: $background_color;
+}
+
+a {
+    font-family: "ProximaNova";
+    text-decoration: none;
+}
