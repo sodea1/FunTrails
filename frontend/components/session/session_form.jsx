@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
     }
 
     update(field) {
-        return e => this.setState({ [field]: e.target.value });
+        return (e) => this.setState({ [field]: e.target.value });
     }    
 
     render() {
@@ -34,13 +34,13 @@ class SessionForm extends React.Component {
                     <input
                         type="text"
                         onChange={this.update('first_name')}
-                        value={this.state.email}
+                        value={this.state.first_name}
                         placeholder="First name"
                     />
                     <input
                         type="text"
                         onChange={this.update('last_name')}
-                        value={this.state.email}
+                        value={this.state.last_name}
                         placeholder="Last name"
                     />
                     <input

@@ -421,12 +421,12 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         onChange: this.update('first_name'),
-        value: this.state.email,
+        value: this.state.first_name,
         placeholder: "First name"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         onChange: this.update('last_name'),
-        value: this.state.email,
+        value: this.state.last_name,
         placeholder: "Last name"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
