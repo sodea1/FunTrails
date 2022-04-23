@@ -1,11 +1,7 @@
 @import '../base/font.scss';
 @import '../base/colors.scss';
 
-header {
-    height: 60px;
-    font-family: $font;
-}
-
+// Mainly Positioning Outer Containers
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -32,34 +28,46 @@ header {
     width: 200px;
 }
 
+// Mainly Styling
+header {
+    height: 60px;
+    font-family: $font;
+}
+
+.nav-title {
+    font-size: 5em;
+}
+
 a {
+    text-decoration: none;
+}
+
+a.signup-button, a.login-button {
     font-size: 14px;
     font-weight: 700;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.36;
-    letter-spacing: normal;
+    // font-stretch: normal;
+    // font-style: normal;
+    // line-height: 1.36;
+    // letter-spacing: normal;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     border: 2px solid #219ad8;
-    
     border-radius: 8px;
-    text-align: center;
     width: 82px;
     text-decoration: none;
 }
 
-.signup-fill {
+.signup-button {
     background: #219ad8;
 }
 
-.login-unfill {
+.login-button {
     margin: 0px 0px 0px 8px;
 }
 
-h1 {
+.nav-title {
     font-size: 2em;
     font-weight: bold;
     margin: 0px 0px 0px 8px;

@@ -14,6 +14,8 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
+
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
@@ -21,14 +23,14 @@ class SessionForm extends React.Component {
     }
 
     update(field) {
-        return e => this.setState({ [field]: e.currentTarget.value });
+        return e => this.setState({ [field]: e.target.value });
     }    
 
     render() {
         const submissionForm = (this.props.formType === 'Sign up') ? (
-            <div>
-                <h3>Create your free account</h3>
-                <form onSubmit={this.handleSubmit}>
+            <div className='session-box'>
+                <h2 className='session-title'>Create your free account</h2>
+                <form onSubmit={this.handleSubmit} className='session-form'>
                     <input
                         type="text"
                         onChange={this.update('first_name')}
@@ -53,32 +55,28 @@ class SessionForm extends React.Component {
                         value={this.state.password}
                         placeholder="Password"
                     />
-                    <button type="submit">{this.props.formType}</button>
-                    <p>Already have an account?<Link to="/login">Log In</Link></p>
+                    <button type="submit" className='session-button'>{this.props.formType}</button>
+                    <p className='bottom-link'>Already have an account?<Link to="/login" className='login-link'> Log in</Link></p>
                 </form>
             </div>
         ) : (
-            <div>
-                <h3>Weeeee your free account</h3>
-                <form onSubmit={this.handleSubmit}>
-
+            <div className='session-box'>
+                <h2 className='session-title'>Log in and let's get going</h2>
+                <form onSubmit={this.handleSubmit} className='session-form'>
                     <input
                         type="text"
                         onChange={this.update('email')}
                         value={this.state.email}
-                    />
-                    <input
-                        type="text"
-                        onChange={this.update('email')}
-                        value={this.state.email}
+                        placeholder='Email address'
                     />
                     <input
                         type="password"
                         onChange={this.update('password')}
                         value={this.state.password}
+                        placeholder='Password'  
                     />
-                    <button type="submit">{this.props.formType}</button>
-                    <p>Already have an account?<Link to="/login">Log In</Link></p>
+                    <button type="submit" className='session-button'>{this.props.formType}</button>
+                    <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'>Sign up for free</Link></p>
                 </form>
             </div>
         )

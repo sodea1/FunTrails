@@ -25,11 +25,11 @@ class Nav extends React.Component {
                 <div className='left-nav'></div>
                 <div className='mid-nav'>
                     <img src="../../../assets/images/logo.png" /> 
-                    <h1>FunTrails</h1>
+                    <Link to='/' className="nav-title">FunTrails</Link>
                 </div>
                 <div className='right-nav'>
-                    <Link to='/signup' className='signup-fill'>Sign Up</Link>
-                    <Link to='/login' className='login-unfill'>Login</Link>
+                    <Link to='/signup' className='signup-button'>Sign Up</Link>
+                    <Link to='/login' className='login-button'>Login</Link>
                 </div>
             </div>
         )
