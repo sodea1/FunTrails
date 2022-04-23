@@ -4,7 +4,6 @@ const sessionErrorsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ERRORS:
-      debugger;
       return action.errors.responseJSON;
     case CLEAR_SESSION_ERRORS:
       return [];

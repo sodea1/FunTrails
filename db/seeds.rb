@@ -12,5 +12,5 @@ ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
-# sample user
-#  { first_name: 'Jay', last_name: 'Wright', email: 'jay@wright.com', password: 'password', bio: 'I am a coach' }
+# sample user DON'T FORGET ID OTHERWISE 'undefined' keys under entities > users
+#  {id: 1, first_name: 'Jay', last_name: 'Wright', email: 'jay@wright.com', password: 'password', bio: 'I am a coach' }
