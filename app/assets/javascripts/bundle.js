@@ -63,7 +63,7 @@ var login = function login(user) {
 var logout = function logout() {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.logout().then(function () {
-      logoutCurrentUser();
+      dispatch(logoutCurrentUser());
     }, function (errors) {
       dispatch(receiveErrors(errors));
     });
@@ -72,7 +72,7 @@ var logout = function logout() {
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (data) {
-      dispatch(receiveCurrentUser(user));
+      dispatch(receiveCurrentUser(data));
     }, function (errors) {
       dispatch(receiveErrors(errors));
     });
@@ -166,6 +166,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login"
       }));
+      return head;
     }
   }]);
 
@@ -345,7 +346,7 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ERRORS:
-      return action.errors.responseJSON;
+      return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_SESSION_ERRORS:
       return [];

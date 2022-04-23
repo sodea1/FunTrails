@@ -19,6 +19,8 @@ class Header extends React.Component {
                 <Link to='/login'></Link>
             </div>
         )
+
+        return head;
     }
 }
 
