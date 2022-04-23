@@ -10,19 +10,26 @@ class Nav extends React.Component {
         const navBar = this.props.currUser ? (
             <div className='navbar'>
                 <div className='left-nav'></div>
-                <h1 className='mid-nav'>FunTrails</h1>
+                <div className='mid-nav'>
+                    <img src='../../../assets/images/mountain-64.jpg'/>
+                    <h1>FunTrails</h1>
+                </div>
                 <div className='right-nav'>
+                    {/* replace below with icon */}
                     <button onClick={this.props.logout}>Logout</button>
                 </div>
-            </div> 
+            </div>
         )
         : (
             <div className='navbar'>
                 <div className='left-nav'></div>
-                <h1 className='mid-nav'>FunTrails</h1>
+                <div className='mid-nav'>
+                    <img src="../../../assets/images/logo.png" /> 
+                    <h1>FunTrails</h1>
+                </div>
                 <div className='right-nav'>
-                    <button><Link to='/signup'>Sign Up</Link></button>
-                    <button><Link to='/login'>Login</Link></button>
+                    <Link to='/signup' className='signup-fill'>Sign Up</Link>
+                    <Link to='/login' className='login-unfill'>Login</Link>
                 </div>
             </div>
         )
