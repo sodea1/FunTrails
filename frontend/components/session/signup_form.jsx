@@ -31,7 +31,7 @@ class SignupForm extends React.Component {
         const { errors } = this.props;
         return (
             <div className='background-image-session'>
-                <div className='session-box'>
+                <div className='session-box-signup'>
                     <h2 className='session-title'>Create your free account</h2>
                     <form className='session-form'>
                         <input

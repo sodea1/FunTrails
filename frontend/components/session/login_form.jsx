@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
         const {errors} = this.props;
         return (
             <div className='background-image-session'>
-                <div className='session-box'>
+                <div className='session-box-login'>
                     <h2 className='session-title'>Log in and let's get going</h2>
                     <form className='session-form'>
                         <input

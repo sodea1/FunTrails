@@ -12,13 +12,26 @@
     justify-content: center;
 }
 
-.session-box {
+.session-box-signup {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     border-radius: 16px;
     max-width: 420px;
     max-height: 400px;
+    margin-top: 60px;
+    background: $background_color;
+    padding: 24px;
+    border: 1px solid $brand_green;
+    align-items: center;
+    width: 420px;
+}
+
+.session-box-login {
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    max-width: 420px;
+    max-height: 280px;
     margin-top: 60px;
     background: $background_color;
     padding: 24px;
