@@ -566,6 +566,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var errors = this.props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
@@ -600,7 +601,9 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login",
         className: "login-link"
-      }, " Log in"))));
+      }, " Log in")), errors.map(function (error) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, error);
+      })));
     }
   }]);
 
@@ -806,7 +809,8 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ERRORS:
-      return action.errors;
+      // action.errors sends back a json object from users controller create action with key of responseJSON
+      return action.errors.responseJSON;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_SESSION_ERRORS:
       return [];
@@ -984,7 +988,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // signup, login, logout
 var signup = function signup(user) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/users',

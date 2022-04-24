@@ -28,6 +28,7 @@ class SignupForm extends React.Component {
     }
 
     render() {
+        const { errors } = this.props;
         return (
             <div className='session-box'>
                 <h2 className='session-title'>Create your free account</h2>
@@ -59,11 +60,7 @@ class SignupForm extends React.Component {
 
                     <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                     <p className='bottom-link'>Already have an account?<Link to="/login" className='login-link'> Log in</Link></p>
-                    {/* render error messages */}
-                    {/* {errors.map((err) =>
-                        <p className='session-error'>{err}</p>
-                    )} */}
-                    {/* redirect user to '/' page if logged in */}
+                    {errors.map((error) => <p>{error}</p>)}
                 </form>
             </div>
         )

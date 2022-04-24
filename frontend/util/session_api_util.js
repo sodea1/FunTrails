@@ -1,7 +1,6 @@
 // signup, login, logout
 
 export const signup = user => {
-  debugger;
   return (
     $.ajax({
       method: 'POST',

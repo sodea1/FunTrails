@@ -4,7 +4,8 @@ const sessionErrorsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ERRORS:
-      return action.errors;
+      // action.errors sends back a json object from users controller create action with key of responseJSON
+      return action.errors.responseJSON;
     case CLEAR_SESSION_ERRORS:
       return [];
     default:
