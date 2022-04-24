@@ -31,7 +31,7 @@
 // Mainly Styling
 header {
     height: 60px;
-    font-family: $font;
+    // font-family: $font;
 }
 
 .nav-title {
@@ -49,7 +49,7 @@ a.signup-button, a.login-button {
     // font-style: normal;
     // line-height: 1.36;
     // letter-spacing: normal;
-    height: 40px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -61,15 +61,18 @@ a.signup-button, a.login-button {
 
 .signup-button {
     background: #219ad8;
+    color: $background_color;
 }
 
 .login-button {
     margin: 0px 0px 0px 8px;
+    color: #219ad8;
+    background: $background_color;
 }
 
 .nav-title {
     font-size: 2em;
-    font-weight: bold;
+    font-weight: 100;
     margin: 0px 0px 0px 8px;
     color: gray;
 }

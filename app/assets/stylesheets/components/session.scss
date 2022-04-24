@@ -12,6 +12,7 @@
     background: $background_color;
     padding: 24px;
     margin: auto;
+    border: 1px solid $brand_green;
 }
 
 .session-form {
@@ -25,12 +26,14 @@
 .session-title {
     font-size: 24px;
     padding-bottom: 24px;
+    color: #414141;
+    font-weight: 600;
 }
 
 .session-form > input {
     color: #414141;
     margin: 10px 0px;
-    font-family: $font;
+    // font-family: ;
     padding: 12px 16px;
     border-radius: 8px;
     border: 1px solid;

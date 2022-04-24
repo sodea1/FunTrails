@@ -16,7 +16,8 @@ class Nav extends React.Component {
                 </div>
                 <div className='right-nav'>
                     {/* replace below with icon */}
-                    <button onClick={this.props.logout}>Logout</button>
+                    {/* <button onClick={this.props.logout} className=''>Logout</button> */}
+                    <Link to='/' className='logout-button'>Logout</Link>
                 </div>
             </div>
         )

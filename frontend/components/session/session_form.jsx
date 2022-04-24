@@ -14,12 +14,15 @@ class SessionForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        debugger;
+        this.props.processForm(user).then(() => 
+        // redirect to '/' or dispatch for errors
+        // <Redirect to="/"/> )
+        this.props.history.replace('/'),
+        (errors) => this.props.receiveErrors(errors.responseJSON));
     }
 
     update(field) {
@@ -27,10 +30,12 @@ class SessionForm extends React.Component {
     }    
 
     render() {
-        const submissionForm = (this.props.formType === 'Sign up') ? (
+        const errors = this.props.errors;
+
+        const signupForm = 
             <div className='session-box'>
                 <h2 className='session-title'>Create your free account</h2>
-                <form onSubmit={this.handleSubmit} className='session-form'>
+                <form className='session-form'>
                     <input
                         type="text"
                         onChange={this.update('first_name')}
@@ -55,14 +60,22 @@ class SessionForm extends React.Component {
                         value={this.state.password}
                         placeholder="Password"
                     />
-                    <button type="submit" className='session-button'>{this.props.formType}</button>
+                    
+
+                    <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                     <p className='bottom-link'>Already have an account?<Link to="/login" className='login-link'> Log in</Link></p>
+                    {/* render error messages */}
+                    {errors.map((err) =>
+                        <p className='session-error'>{err}</p>
+                    )}
+                    {/* redirect user to '/' page if logged in */}
                 </form>
             </div>
-        ) : (
+
+        const loginForm = 
             <div className='session-box'>
                 <h2 className='session-title'>Log in and let's get going</h2>
-                <form onSubmit={this.handleSubmit} className='session-form'>
+                <form className='session-form'>
                     <input
                         type="text"
                         onChange={this.update('email')}
@@ -75,12 +88,16 @@ class SessionForm extends React.Component {
                         value={this.state.password}
                         placeholder='Password'  
                     />
-                    <button type="submit" className='session-button'>{this.props.formType}</button>
-                    <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'>Sign up for free</Link></p>
+                    <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
+                    <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'> Sign up for free</Link></p>
                 </form>
             </div>
-        )
-        return submissionForm;
+        
+        if (this.props.formType === 'Sign up') {
+            return signupForm;
+        } else if (this.props.formType === 'Log in') {
+            return loginForm;
+        }
     }
 }
 
