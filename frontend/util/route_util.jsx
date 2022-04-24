@@ -13,7 +13,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
 );
 
 const mapStateToProps = state => {
-    return { loggedIn: Boolean(state.session.id) };
+    return { loggedIn: Boolean(state.session.currUserId) };
 };
 
 export const AuthRoute = withRouter(

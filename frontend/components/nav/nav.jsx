@@ -22,8 +22,12 @@ class Nav extends React.Component {
                     <Link to='/' className="nav-title">FunTrails</Link>
                 </div>
                 <div className='right-nav'>
-                    <img src={window.logo} />
-                    <Link to='/' className='logout-button' onClick={this.handleLogout}>Logout</Link>
+                    {/* ADD LOGOUT ICON */}
+                    
+                    <Link to='/' className='logout-button' onClick={this.handleLogout}>
+                        <img src={window.user_prof} className='user-prof-icon' />
+                    </Link>
+                    
                 </div>
             </div>
         )

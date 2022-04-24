@@ -16,9 +16,10 @@ class LoginForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
-        debugger
+        debugger;
         this.props.processForm(user).then(() =>
             // redirect to '/' or dispatch for errors
+
             this.props.history.push("/"),
             (errors) => this.props.receiveErrors(errors.responseJSON));
     }

@@ -36,11 +36,12 @@
 // Mainly Styling
 header {
     height: 60px;
-    // font-family: $font;
+    font-family: $font;
 }
 
 .nav-title {
     font-size: 5em;
+    // font-family: $font;
 }
 
 a {
@@ -76,4 +77,9 @@ a.signup-button, a.login-button {
     font-weight: 100;
     margin: 0px 0px 0px 8px;
     color: gray;
+}
+
+.user-prof-icon {
+    width: 40px;
+    height: 40px;
 }
