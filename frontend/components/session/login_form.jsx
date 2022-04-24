@@ -30,25 +30,27 @@ class LoginForm extends React.Component {
     render() {
         const {errors} = this.props;
         return (
-            <div className='session-box'>
-                <h2 className='session-title'>Log in and let's get going</h2>
-                <form className='session-form'>
-                    <input
-                        type="text"
-                        onChange={this.update('email')}
-                        value={this.state.email}
-                        placeholder='Email address'
-                    />
-                    {errors.map((err) => <p>{err}</p>)}
-                    <input
-                        type="password"
-                        onChange={this.update('password')}
-                        value={this.state.password}
-                        placeholder='Password'
-                    />
-                    <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
-                    <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'> Sign up for free</Link></p>
-                </form>
+            <div className='background-image'>
+                <div className='session-box'>
+                    <h2 className='session-title'>Log in and let's get going</h2>
+                    <form className='session-form'>
+                        <input
+                            type="text"
+                            onChange={this.update('email')}
+                            value={this.state.email}
+                            placeholder='Email address'
+                        />
+                        {errors.map((err) => <p>{err}</p>)}
+                        <input
+                            type="password"
+                            onChange={this.update('password')}
+                            value={this.state.password}
+                            placeholder='Password'
+                        />
+                        <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
+                        <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'> Sign up for free</Link></p>
+                    </form>
+                </div>
             </div>
         )
     }

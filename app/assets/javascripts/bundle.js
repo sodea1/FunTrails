@@ -416,6 +416,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errors = this.props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "background-image"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "session-title"
@@ -441,7 +443,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signup",
         className: "signup-link"
-      }, " Sign up for free"))));
+      }, " Sign up for free")))));
     }
   }]);
 
@@ -583,6 +585,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errors = this.props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "background-image"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "session-title"
@@ -620,7 +624,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
           key: i
         }, error);
-      })));
+      }))));
     }
   }]);
 
@@ -723,10 +727,9 @@ var SplashContainer = /*#__PURE__*/function (_React$Component) {
   _createClass(SplashContainer, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.splash_hiker,
-        className: "back-photo"
-      }));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "background-image"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Welcome"));
     }
   }]);
 

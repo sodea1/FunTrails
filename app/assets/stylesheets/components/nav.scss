@@ -28,6 +28,11 @@
     width: 200px;
 }
 
+.logo {
+    width: 56px;
+    height: 56px;
+}
+
 // Mainly Styling
 header {
     height: 60px;
@@ -45,10 +50,6 @@ a {
 a.signup-button, a.login-button {
     font-size: 14px;
     font-weight: 700;
-    // font-stretch: normal;
-    // font-style: normal;
-    // line-height: 1.36;
-    // letter-spacing: normal;
     height: 36px;
     display: flex;
     align-items: center;
