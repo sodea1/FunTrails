@@ -3,7 +3,8 @@ import Nav from "./nav";
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => ({
-    currUser: state.entities.users[state.session.currUserId]
+    // currUser: state.entities.users[state.session.currUserId]
+    currUser: state.session.id
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 class Nav extends React.Component {
     constructor(props) {
         super(props);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.logout();
     }
 
     render() {
@@ -12,12 +18,12 @@ class Nav extends React.Component {
                 <div className='left-nav'></div>
                 <div className='mid-nav'>
                     <img src='../../../assets/images/mountain-64.jpg'/>
-                    <h1>FunTrails</h1>
+                    <Link to='/' className="nav-title">FunTrails</Link>
                 </div>
                 <div className='right-nav'>
                     {/* replace below with icon */}
                     {/* <button onClick={this.props.logout} className=''>Logout</button> */}
-                    <Link to='/' className='logout-button'>Logout</Link>
+                    <Link to='/' className='logout-button' onClick={this.handleLogout}>Logout</Link>
                 </div>
             </div>
         )

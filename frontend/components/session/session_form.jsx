@@ -17,11 +17,9 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        debugger;
         this.props.processForm(user).then(() => 
         // redirect to '/' or dispatch for errors
-        // <Redirect to="/"/> )
-        this.props.history.replace('/'),
+        this.props.history.push("/"),
         (errors) => this.props.receiveErrors(errors.responseJSON));
     }
 
