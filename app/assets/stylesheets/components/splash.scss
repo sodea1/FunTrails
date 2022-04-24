@@ -1,5 +1,7 @@
 
-body {
+div.background-image {
     background:url('splash_hiker.jpg') no-repeat;
     background-size: cover;
+    height: 540px;
+    display: flex;
 }

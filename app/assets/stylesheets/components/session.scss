@@ -12,8 +12,9 @@
     background: $background_color;
     padding: 24px;
     margin: auto;
-    margin-top: 50px;
     border: 1px solid $brand_green;
+    align-items: center;
+    width: 420px;
 }
 
 .session-form {
@@ -57,4 +58,9 @@
 
 .bottom-link {
     text-align: center;
+}
+
+.login-link, .signup-link {
+    color: $brand_green;
+    font-weight: bolder;
 }

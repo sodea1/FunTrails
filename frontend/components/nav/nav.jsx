@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProfDropdown from './prof_dropdown';
 
 class Nav extends React.Component {
     constructor(props) {
@@ -23,11 +24,7 @@ class Nav extends React.Component {
                 </div>
                 <div className='right-nav'>
                     {/* ADD LOGOUT ICON */}
-                    
-                    <Link to='/' className='logout-button' onClick={this.handleLogout}>
-                        <img src={window.user_prof} className='user-prof-icon' />
-                    </Link>
-                    
+                    <ProfDropdown handleLogout={this.handleLogout} />                    
                 </div>
             </div>
         )

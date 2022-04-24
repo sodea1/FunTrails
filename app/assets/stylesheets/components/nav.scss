@@ -79,7 +79,42 @@ a.signup-button, a.login-button {
     color: gray;
 }
 
-.user-prof-icon {
+.prof-icon {
+    margin-top: 10px;
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
+
+// dropdown menu
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: $background_color;
+    min-width: 160px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    top: 50px;
+    right: 6px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  margin: 6px 0px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
