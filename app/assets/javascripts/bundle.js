@@ -477,10 +477,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
 /***/ }),
 
-/***/ "./frontend/components/session/session_form.jsx":
-/*!******************************************************!*\
-  !*** ./frontend/components/session/session_form.jsx ***!
-  \******************************************************/
+/***/ "./frontend/components/session/signup_form.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/session/signup_form.jsx ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -488,9 +488,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -518,15 +518,15 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var SessionForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(SessionForm, _React$Component);
+var SignupForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(SignupForm, _React$Component);
 
-  var _super = _createSuper(SessionForm);
+  var _super = _createSuper(SignupForm);
 
-  function SessionForm(props) {
+  function SignupForm(props) {
     var _this;
 
-    _classCallCheck(this, SessionForm);
+    _classCallCheck(this, SignupForm);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -539,7 +539,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(SessionForm, [{
+  _createClass(SignupForm, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
@@ -566,8 +566,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var errors = this.props.errors;
-      var signupForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
         className: "session-title"
@@ -601,49 +600,14 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login",
         className: "login-link"
-      }, " Log in")), errors.map(function (err) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-          className: "session-error"
-        }, err);
-      })));
-      var loginForm = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "session-box"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
-        className: "session-title"
-      }, "Log in and let's get going"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        className: "session-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text",
-        onChange: this.update('email'),
-        value: this.state.email,
-        placeholder: "Email address"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "password",
-        onChange: this.update('password'),
-        value: this.state.password,
-        placeholder: "Password"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-        onClick: this.handleSubmit,
-        className: "session-button"
-      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-        className: "bottom-link"
-      }, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/signup",
-        className: "signup-link"
-      }, " Sign up for free"))));
-
-      if (this.props.formType === 'Sign up') {
-        return signupForm;
-      } else if (this.props.formType === 'Log in') {
-        return loginForm;
-      }
+      }, " Log in"))));
     }
   }]);
 
-  return SessionForm;
+  return SignupForm;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SessionForm);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SignupForm);
 
 /***/ }),
 
@@ -658,7 +622,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _session_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./session_form */ "./frontend/components/session/session_form.jsx");
+/* harmony import */ var _signup_form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./signup_form */ "./frontend/components/session/signup_form.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 
@@ -683,7 +647,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_session_form__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(_signup_form__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 

@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-class SessionForm extends React.Component {
+class SignupForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,20 +17,18 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.processForm(user).then(() => 
-        // redirect to '/' or dispatch for errors
-        this.props.history.push("/"),
-        (errors) => this.props.receiveErrors(errors.responseJSON));
+        this.props.processForm(user).then(() =>
+            // redirect to '/' or dispatch for errors
+            this.props.history.push("/"),
+            (errors) => this.props.receiveErrors(errors.responseJSON));
     }
 
     update(field) {
         return (e) => this.setState({ [field]: e.target.value });
-    }    
+    }
 
     render() {
-        const errors = this.props.errors;
-
-        const signupForm = 
+        return (
             <div className='session-box'>
                 <h2 className='session-title'>Create your free account</h2>
                 <form className='session-form'>
@@ -58,46 +56,18 @@ class SessionForm extends React.Component {
                         value={this.state.password}
                         placeholder="Password"
                     />
-                    
 
                     <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                     <p className='bottom-link'>Already have an account?<Link to="/login" className='login-link'> Log in</Link></p>
                     {/* render error messages */}
-                    {errors.map((err) =>
+                    {/* {errors.map((err) =>
                         <p className='session-error'>{err}</p>
-                    )}
+                    )} */}
                     {/* redirect user to '/' page if logged in */}
                 </form>
             </div>
-
-        const loginForm = 
-            <div className='session-box'>
-                <h2 className='session-title'>Log in and let's get going</h2>
-                <form className='session-form'>
-                    <input
-                        type="text"
-                        onChange={this.update('email')}
-                        value={this.state.email}
-                        placeholder='Email address'
-                    />
-                    <input
-                        type="password"
-                        onChange={this.update('password')}
-                        value={this.state.password}
-                        placeholder='Password'  
-                    />
-                    <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
-                    <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'> Sign up for free</Link></p>
-                </form>
-            </div>
-        
-        if (this.props.formType === 'Sign up') {
-            return signupForm;
-        } else if (this.props.formType === 'Log in') {
-            return loginForm;
-        }
+        )
     }
 }
 
-
-export default SessionForm;
+export default SignupForm;
