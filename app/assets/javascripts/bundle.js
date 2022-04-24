@@ -467,7 +467,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state); // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
 
-      debugger;
       this.props.processForm(user).then(function () {
         return (// redirect to '/' or dispatch for errors
           _this2.props.history.push("/")
@@ -490,7 +489,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errors = this.props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "background-image"
+        className: "background-image-session"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {
@@ -659,7 +658,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errors = this.props.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "background-image"
+        className: "background-image-session"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "session-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", {

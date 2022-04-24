@@ -3,15 +3,25 @@
 
 
 // Mainly Positioning
+.background-image-session {
+    background:url('splash_hiker.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+}
+
 .session-box {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     border-radius: 16px;
     max-width: 420px;
+    max-height: 400px;
+    margin-top: 60px;
     background: $background_color;
     padding: 24px;
-    margin: auto;
     border: 1px solid $brand_green;
     align-items: center;
     width: 420px;

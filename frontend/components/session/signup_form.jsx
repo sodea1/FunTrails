@@ -30,7 +30,7 @@ class SignupForm extends React.Component {
     render() {
         const { errors } = this.props;
         return (
-            <div className='background-image'>
+            <div className='background-image-session'>
                 <div className='session-box'>
                     <h2 className='session-title'>Create your free account</h2>
                     <form className='session-form'>

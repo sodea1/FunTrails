@@ -16,7 +16,6 @@ class LoginForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
-        debugger;
         this.props.processForm(user).then(() =>
             // redirect to '/' or dispatch for errors
 
@@ -31,7 +30,7 @@ class LoginForm extends React.Component {
     render() {
         const {errors} = this.props;
         return (
-            <div className='background-image'>
+            <div className='background-image-session'>
                 <div className='session-box'>
                     <h2 className='session-title'>Log in and let's get going</h2>
                     <form className='session-form'>
