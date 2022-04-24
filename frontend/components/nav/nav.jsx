@@ -18,11 +18,11 @@ class Nav extends React.Component {
             <div className='navbar'>
                 <div className='left-nav'></div>
                 <div className='mid-nav'>
-                    <img src='../../../assets/images/mountain-64.jpg'/>
+                    <img src={window.logo} width="82px" height="82px" className='logo'/>
                     <Link to='/' className="nav-title">FunTrails</Link>
                 </div>
                 <div className='right-nav'>
-                    {/* replace below with icon */}
+                    <img src={window.logo} />
                     <Link to='/' className='logout-button' onClick={this.handleLogout}>Logout</Link>
                 </div>
             </div>
@@ -31,7 +31,7 @@ class Nav extends React.Component {
             <div className='navbar'>
                 <div className='left-nav'></div>
                 <div className='mid-nav'>
-                    {/* <img src="../../../assets/images/logo.png" />  */}
+                        <img src={window.logo} width="100px" height="100px" className='logo'/>
                     <Link to='/' className="nav-title">FunTrails</Link>
                 </div>
                 <div className='right-nav'>

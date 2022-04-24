@@ -60,7 +60,7 @@ class SignupForm extends React.Component {
 
                     <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                     <p className='bottom-link'>Already have an account?<Link to="/login" className='login-link'> Log in</Link></p>
-                    {errors.map((error) => <p>{error}</p>)}
+                    {errors.map((error, i) => <p key={i}>{error}</p>)}
                 </form>
             </div>
         )

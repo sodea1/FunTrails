@@ -15,6 +15,8 @@ class LoginForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
+        // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
+        debugger
         this.props.processForm(user).then(() =>
             // redirect to '/' or dispatch for errors
             this.props.history.push("/"),
@@ -26,7 +28,7 @@ class LoginForm extends React.Component {
     }   
 
     render() {
-        // const errors = this.props.errors;
+        const {errors} = this.props;
         return (
             <div className='session-box'>
                 <h2 className='session-title'>Log in and let's get going</h2>
@@ -37,6 +39,7 @@ class LoginForm extends React.Component {
                         value={this.state.email}
                         placeholder='Email address'
                     />
+                    {errors.map((err) => <p>{err}</p>)}
                     <input
                         type="password"
                         onChange={this.update('password')}
