@@ -71,6 +71,7 @@ var logout = function logout() {
 };
 var signup = function signup(user) {
   return function (dispatch) {
+    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (data) {
       dispatch(receiveCurrentUser(data));
     }, function (errors) {
@@ -176,7 +177,8 @@ var Nav = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Nav);
 
-    _this = _super.call(this, props);
+    _this = _super.call(this, props); // this.state = this.props.currUser;
+
     _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -254,11 +256,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var mapStateToProps = function mapStateToProps(state) {
+  // CHANGE ID TO CURRUSERID
   return {
-    // currUser: state.entities.users[state.session.currUserId]
-    currUser: state.session.id
+    currUser: state.session.currUserId
   };
 };
 
@@ -899,6 +900,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // signup, login, logout
 var signup = function signup(user) {
+  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/users',
@@ -41980,7 +41982,7 @@ document.addEventListener("DOMContentLoaded", function () {
         users: _defineProperty({}, window.currUser.id, window.currUser)
       },
       session: {
-        id: window.currUser.id
+        currUserId: window.currUser.id
       }
     };
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])(preloadedState);

@@ -42,6 +42,7 @@ export const logout = () => dispatch => {
 };
 
 export const signup = user => dispatch => {
+  debugger;
   return SessionApiUtil.signup(user)
     .then((data) => {
       dispatch(receiveCurrentUser(data));

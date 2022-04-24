@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class Nav extends React.Component {
     constructor(props) {
         super(props);
+        // this.state = this.props.currUser;
         this.handleLogout = this.handleLogout.bind(this);
     }
 
@@ -22,7 +23,6 @@ class Nav extends React.Component {
                 </div>
                 <div className='right-nav'>
                     {/* replace below with icon */}
-                    {/* <button onClick={this.props.logout} className=''>Logout</button> */}
                     <Link to='/' className='logout-button' onClick={this.handleLogout}>Logout</Link>
                 </div>
             </div>
