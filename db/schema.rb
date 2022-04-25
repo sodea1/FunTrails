@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_173156) do
+ActiveRecord::Schema.define(version: 2022_04_25_174619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_04_25_173156) do
     t.string "country", null: false
     t.string "elevation_gain", null: false
     t.string "length", null: false
-    t.index ["park_id"], name: "index_trails_on_park_id", unique: true
+    t.index ["park_id"], name: "index_trails_on_park_id"
     t.index ["t_name"], name: "index_trails_on_t_name", unique: true
   end
 
