@@ -669,11 +669,18 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errors = this.props.errors;
       var errorsPresent = errors.length > 0 ? true : false;
-      var fNameErr = this.state.first_name === '' ? 'Enter your first name' : '';
-      var lNameErr = this.state.last_name === '' ? 'Enter your last name' : '';
-      var emailErr = 'Email is not valid';
-      var passwordErr = 'Password must be 6 characters long';
-      debugger;
+      var fNameErr = this.state.first_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "err"
+      }, 'Enter your first name') : '';
+      var lNameErr = this.state.last_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "err"
+      }, 'Enter your last name') : '';
+      var emailErr = this.state.email === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "err"
+      }, 'Email is not valid') : '';
+      var passwordErr = this.state.password.length < 6 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "err"
+      }, 'Password must be 6 characters long') : '';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "background-image-session"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -683,32 +690,30 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }, "Create your free account"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "session-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: errorsPresent && fNameErr ? 'err-input' : '',
         type: "text",
         onChange: this.update('first_name'),
         value: this.state.first_name,
         placeholder: "First name"
-      }), errorsPresent ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, fNameErr) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent ? fNameErr : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: errorsPresent && lNameErr ? 'err-input' : '',
         type: "text",
         onChange: this.update('last_name'),
         value: this.state.last_name,
         placeholder: "Last name"
-      }), errorsPresent && this.state.last_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        className: "error"
-      }, lNameErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent ? lNameErr : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: errorsPresent && emailErr ? 'err-input' : '',
         type: "text",
         onChange: this.update('email'),
         value: this.state.email,
         placeholder: "Email address"
-      }), errorsPresent && this.state.email === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        className: "error"
-      }, emailErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent ? emailErr : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        className: errorsPresent && passwordErr ? 'err-input' : '',
         type: "password",
         onChange: this.update('password'),
         value: this.state.password,
         placeholder: "Password"
-      }), errorsPresent && this.state.first_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        className: "error"
-      }, passwordErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), errorsPresent ? passwordErr : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit,
         className: "session-button"
       }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
@@ -716,11 +721,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login",
         className: "login-link"
-      }, " Log in")), errors.map(function (error, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-          key: i
-        }, error);
-      }))));
+      }, " Log in")))));
     }
   }]);
 
