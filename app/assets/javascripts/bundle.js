@@ -53,7 +53,6 @@ var clearSessionErrors = function clearSessionErrors() {
 
 var login = function login(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (data) {
       dispatch(receiveCurrentUser(data));
     }, function (errors) {
@@ -478,9 +477,9 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDemo",
     value: function handleDemo() {
-      this.props.processForm({
-        email: 'jay@wright.com',
-        password: 'gotcats'
+      return this.props.processForm({
+        email: 'chefcurry@demo.com',
+        password: 'godubs'
       });
     }
   }, {
@@ -822,15 +821,16 @@ var SplashContainer = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(SplashContainer);
 
-  function SplashContainer() {
+  function SplashContainer(props) {
     _classCallCheck(this, SplashContainer);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(SplashContainer, [{
     key: "render",
     value: function render() {
+      // const { currUserId } = this.props.session.currUserId;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "background-image"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
@@ -1021,7 +1021,6 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
-      debugger;
       return Object.assign({}, state, _defineProperty({}, action.currUser.id, action.currUser));
 
     default:

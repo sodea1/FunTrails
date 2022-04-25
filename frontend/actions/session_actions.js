@@ -24,7 +24,6 @@ const clearSessionErrors = () => ({
 });
 
 export const login = user => dispatch => {
-  debugger;
   return SessionApiUtil.login(user)
     .then((data) => {
       dispatch(receiveCurrentUser(data));

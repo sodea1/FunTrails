@@ -26,9 +26,9 @@ class LoginForm extends React.Component {
     }
 
     handleDemo() {
-        this.props.processForm({
-            email: 'jay@wright.com',
-            password: 'gotcats'
+        return this.props.processForm({
+            email: 'chefcurry@demo.com',
+            password: 'godubs'
         });
      }
 
