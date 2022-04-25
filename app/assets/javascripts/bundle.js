@@ -516,7 +516,10 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signup",
         className: "signup-link"
-      }, " Sign up for free")))));
+      }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "/login",
+        className: "login-link"
+      }, " Demo User"))));
     }
   }]);
 

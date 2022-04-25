@@ -81,9 +81,11 @@
 
 .bottom-link {
     text-align: center;
+    padding-bottom: 15px;
 }
 
 .login-link, .signup-link {
     color: $brand_green;
     font-weight: bolder;
+    text-align: center;
 }

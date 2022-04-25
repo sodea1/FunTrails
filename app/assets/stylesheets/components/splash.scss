@@ -28,3 +28,8 @@ div.background-image {
     width: 400px;
 }
 
+input:focus {
+    outline: none !important;
+    border: 2px solid $brand_green;
+    // box-shadow: 0 0 10px $brand_green;
+}

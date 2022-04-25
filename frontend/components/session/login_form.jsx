@@ -49,6 +49,7 @@ class LoginForm extends React.Component {
                         />
                         <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                         <p className='bottom-link'>Don't have an account?<Link to="/signup" className='signup-link'> Sign up for free</Link></p>
+                        <Link to="/login" className="login-link"> Demo User</Link>
                     </form>
                 </div>
             </div>
