@@ -12,7 +12,16 @@
 }
 
 .left-nav {
+    display: flex;
+    justify-content: space-between;
     width: 200px;
+    margin-left: 10px;
+}
+
+a {color: #414141}
+
+.left-nav > span {
+    cursor: pointer;
 }
 
 .mid-nav {

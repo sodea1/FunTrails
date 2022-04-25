@@ -15,9 +15,22 @@ class Nav extends React.Component {
     }
 
     render() {
+        const leftNavBar = 
+            <div className='left-nav'>
+                <Link>Explore</Link>
+                <div>
+                    <span>Save</span>
+                    <span>^</span>
+                </div>
+                <div>
+                    <span>Shop</span>
+                    <span>^</span>
+                </div>
+            </div>
+
         const navBar = this.props.currUser ? (
             <div className='navbar'>
-                <div className='left-nav'></div>
+                {leftNavBar}
                 <div className='mid-nav'>
                     <img src={window.logo} width="82px" height="82px" className='logo'/>
                     <Link to='/' className="nav-title">FunTrails</Link>
@@ -30,7 +43,7 @@ class Nav extends React.Component {
         )
         : (
             <div className='navbar'>
-                <div className='left-nav'></div>
+                {leftNavBar}
                 <div className='mid-nav'>
                         <img src={window.logo} width="100px" height="100px" className='logo'/>
                     <Link to='/' className="nav-title">FunTrails</Link>
