@@ -37,6 +37,9 @@ class LoginForm extends React.Component {
 
     render() {
         const {errors} = this.props;
+        // const errorsPresent = (errors.length > 0) ? true : false;
+        // const emailErr = (this.state.email === '') ? <span className='err'>{'Email is not valid'}</span> : '';
+        // const passwordErr = (this.state.password.length < 6) ? <span className='err'>{'Password must be 6 characters long'}</span> : '';
         return (
             <div className='background-image-session'>
                 <div className='session-box-login'>
@@ -48,13 +51,15 @@ class LoginForm extends React.Component {
                             value={this.state.email}
                             placeholder='Email address'
                         />
-                        {errors.map((err) => <p>{err}</p>)}
                         <input
                             type="password"
                             onChange={this.update('password')}
                             value={this.state.password}
                             placeholder='Password'
                         />
+
+                        {errors.map((err) => <span className={'login-err'}>{err}</span>)}
+
                         <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                         <div className='bottom-link'>
                             <p>

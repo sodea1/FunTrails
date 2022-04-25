@@ -494,7 +494,10 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var errors = this.props.errors;
+      var errors = this.props.errors; // const errorsPresent = (errors.length > 0) ? true : false;
+      // const emailErr = (this.state.email === '') ? <span className='err'>{'Email is not valid'}</span> : '';
+      // const passwordErr = (this.state.password.length < 6) ? <span className='err'>{'Password must be 6 characters long'}</span> : '';
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "background-image-session"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -508,13 +511,15 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('email'),
         value: this.state.email,
         placeholder: "Email address"
-      }), errors.map(function (err) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, err);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "password",
         onChange: this.update('password'),
         value: this.state.password,
         placeholder: "Password"
+      }), errors.map(function (err) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: 'login-err'
+        }, err);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit,
         className: "session-button"
