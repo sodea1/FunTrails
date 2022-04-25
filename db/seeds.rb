@@ -13,4 +13,4 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 # sample user DON'T FORGET ID OTHERWISE 'undefined' keys under entities > users
- user1 = User.create!({id: 1, first_name: 'Jay', last_name: 'Wright', email: 'jay@wright.com', password: 'password', bio: 'I am a coach' })
+ user1 = User.create!({id: 1, first_name: 'Jay', last_name: 'Wright', email: 'jay@wright.com', password: 'gotcats', bio: 'I am a coach' })

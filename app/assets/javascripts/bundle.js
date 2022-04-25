@@ -40,7 +40,6 @@ var logoutCurrentUser = function logoutCurrentUser() {
 };
 
 var receiveErrors = function receiveErrors(errors) {
-  debugger;
   return {
     type: RECEIVE_ERRORS,
     errors: errors
@@ -73,7 +72,6 @@ var logout = function logout() {
 };
 var signup = function signup(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.signup(user).then(function (data) {
       dispatch(receiveCurrentUser(data));
     }, function (errors) {
@@ -670,6 +668,12 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var errors = this.props.errors;
+      var errorsPresent = errors.length > 0 ? true : false;
+      var fNameErr = this.state.first_name === '' ? 'Enter your first name' : '';
+      var lNameErr = this.state.last_name === '' ? 'Enter your last name' : '';
+      var emailErr = 'Email is not valid';
+      var passwordErr = 'Password must be 6 characters long';
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "background-image-session"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -683,22 +687,28 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('first_name'),
         value: this.state.first_name,
         placeholder: "First name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, fNameErr) : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         onChange: this.update('last_name'),
         value: this.state.last_name,
         placeholder: "Last name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent && this.state.last_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "error"
+      }, lNameErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
         onChange: this.update('email'),
         value: this.state.email,
         placeholder: "Email address"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }), errorsPresent && this.state.email === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "error"
+      }, emailErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "password",
         onChange: this.update('password'),
         value: this.state.password,
         placeholder: "Password"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }), errorsPresent && this.state.first_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "error"
+      }, passwordErr) : "", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit,
         className: "session-button"
       }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
