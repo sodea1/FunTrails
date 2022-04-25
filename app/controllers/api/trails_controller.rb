@@ -7,5 +7,4 @@ class Api::TrailsController < ApplicationController
             render json: ['Trail does not exist'], status: 404
         end
     end
-
 end
