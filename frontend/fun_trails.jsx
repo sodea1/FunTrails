@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import { login, logout, signup } from './actions/session_actions';
+import { fetchTrail } from './util/trails_api_util';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // const store = configureStore();
 
   // testing 
+  window.fetchTrail = fetchTrail;
   window.signup = signup;
   window.login = login;
   window.logout = logout;
