@@ -26,6 +26,7 @@ class LoginForm extends React.Component {
     }
 
     handleDemo() {
+        debugger;
         return this.props.processForm({
             email: 'chefcurry@demo.com',
             password: 'godubs'
