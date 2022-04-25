@@ -17,6 +17,7 @@ class LoginForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
+        debugger;
         this.props.processForm(user).then(() =>
             // redirect to '/' or dispatch for errors
 
@@ -58,7 +59,7 @@ class LoginForm extends React.Component {
                             placeholder='Password'
                         />
 
-                        {errors.map((err) => <span className={'login-err'}>{err}</span>)}
+                        {errors.map((err, idx) => <span key={idx} className={'login-err'}>{err}</span>)}
 
                         <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                         <div className='bottom-link'>
@@ -69,10 +70,10 @@ class LoginForm extends React.Component {
 
                             <p>or</p>
 
-                            <p>
+                            <span>
                                 Log in with
-                                <Link to="/login" className="login-link" onClick={this.handleDemo}> Demo User</Link>
-                            </p>
+                                <Link to="/" className="login-link" onClick={this.handleDemo}> Demo User</Link>
+                            </span>
                         </div>
 
                     </form>

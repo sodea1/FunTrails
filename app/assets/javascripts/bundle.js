@@ -16,7 +16,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout),
-/* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
 /* harmony export */   "signup": () => (/* binding */ signup)
 /* harmony export */ });
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
@@ -54,7 +53,8 @@ var clearSessionErrors = function clearSessionErrors() {
 
 var login = function login(user) {
   return function (dispatch) {
-    _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (data) {
+    debugger;
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (data) {
       dispatch(receiveCurrentUser(data));
     }, function (errors) {
       dispatch(receiveErrors(errors));
@@ -466,6 +466,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state); // processForm = dispatch(login(user)) => returns {currUserId: action.currUser.id}
 
+      debugger;
       this.props.processForm(user).then(function () {
         return (// redirect to '/' or dispatch for errors
           _this2.props.history.push("/")
@@ -516,8 +517,9 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.update('password'),
         value: this.state.password,
         placeholder: "Password"
-      }), errors.map(function (err) {
+      }), errors.map(function (err, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          key: idx,
           className: 'login-err'
         }, err);
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -528,8 +530,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signup",
         className: "signup-link"
-      }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "or"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Log in with", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/login",
+      }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "or"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Log in with", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+        to: "/",
         className: "login-link",
         onClick: this.handleDemo
       }, " Demo User"))))));
@@ -1019,6 +1021,7 @@ var usersReducer = function usersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_CURRENT_USER:
+      debugger;
       return Object.assign({}, state, _defineProperty({}, action.currUser.id, action.currUser));
 
     default:

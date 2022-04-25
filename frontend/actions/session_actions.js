@@ -14,19 +14,18 @@ const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER
 });
 
-export const receiveErrors = errors => {
-  return {
-    type: RECEIVE_ERRORS,
-    errors
-  }
-};
+const receiveErrors = errors => ({
+  type: RECEIVE_ERRORS,
+  errors
+});
 
 const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
 export const login = user => dispatch => {
-  SessionApiUtil.login(user)
+  debugger;
+  return SessionApiUtil.login(user)
     .then((data) => {
       dispatch(receiveCurrentUser(data));
     }, errors => {
