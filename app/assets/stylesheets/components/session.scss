@@ -81,7 +81,10 @@
 
 .bottom-link {
     text-align: center;
-    padding-bottom: 15px;
+}
+
+.bottom-link > p {
+    padding-bottom: 6px;
 }
 
 .login-link, .signup-link {

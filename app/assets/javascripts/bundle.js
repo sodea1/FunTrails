@@ -456,6 +456,7 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       password: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -473,6 +474,14 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         );
       }, function (errors) {
         return _this2.props.receiveErrors(errors.responseJSON);
+      });
+    }
+  }, {
+    key: "handleDemo",
+    value: function handleDemo() {
+      this.props.processForm({
+        email: 'jay@wright.com',
+        password: 'gotcats'
       });
     }
   }, {
@@ -511,15 +520,16 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit,
         className: "session-button"
-      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
+      }, this.props.formType), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "bottom-link"
-      }, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signup",
         className: "signup-link"
-      }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+      }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "or"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Log in with", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login",
-        className: "login-link"
-      }, " Demo User"))));
+        className: "login-link",
+        onClick: this.handleDemo
+      }, " Demo User"))))));
     }
   }]);
 
