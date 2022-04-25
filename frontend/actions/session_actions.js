@@ -19,8 +19,8 @@ export const receiveErrors = errors => ({
   errors
 });
 
-const clearSessionErrors = () => ({
-  type: CLEAR_SESSION_ERRORS,
+export const clearSessionErrors = () => ({
+  type: CLEAR_SESSION_ERRORS
 });
 
 export const login = user => dispatch => {

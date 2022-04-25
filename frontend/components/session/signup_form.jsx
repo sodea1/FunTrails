@@ -10,7 +10,7 @@ class SignupForm extends React.Component {
             email: "",
             password: ""
         };
-
+        
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -29,10 +29,10 @@ class SignupForm extends React.Component {
 
     render() {
         const { errors } = this.props;
-        const errorsPresent = (errors.length > 0) ? true: false;
+        const errorsPresent = (errors.length > 0) ? true : false;
         const fNameErr = (this.state.first_name === '') ? <span className='err'>{'Enter your first name'}</span> : '';
         const lNameErr = (this.state.last_name === '') ? <span className='err'>{'Enter your last name'}</span> : '';
-        const emailErr = (this.state.email === '') ? <span className='err'>{'Email is not valid'}</span> : '';
+        const emailErr = (errors.includes('Email is invalid')) ? <span className='err'>{'Email is not valid'}</span> : '';
         const passwordErr = (this.state.password.length < 6) ? <span className='err'>{'Password must be 6 characters long'}</span> : '';
 
         return (
@@ -75,7 +75,8 @@ class SignupForm extends React.Component {
 
                         <button onClick={this.handleSubmit} className='session-button'>{this.props.formType}</button>
                         <p className='bottom-link'>Already have an account?
-                            <Link to="/login" className='login-link'> Log in</Link>
+                            {/* onClick to clear errors before rendering the login page */}
+                            <Link to="/login" className='login-link' onClick={this.props.clearSessionErrors}> Log in</Link>
                         </p>
 
                         {/* {errors.map((error, i) => <p key={i}>{error}</p>)} */}

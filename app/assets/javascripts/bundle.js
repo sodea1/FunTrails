@@ -14,6 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "LOGOUT_CURRENT_USER": () => (/* binding */ LOGOUT_CURRENT_USER),
 /* harmony export */   "RECEIVE_CURRENT_USER": () => (/* binding */ RECEIVE_CURRENT_USER),
 /* harmony export */   "RECEIVE_ERRORS": () => (/* binding */ RECEIVE_ERRORS),
+/* harmony export */   "clearSessionErrors": () => (/* binding */ clearSessionErrors),
 /* harmony export */   "login": () => (/* binding */ login),
 /* harmony export */   "logout": () => (/* binding */ logout),
 /* harmony export */   "receiveErrors": () => (/* binding */ receiveErrors),
@@ -45,13 +46,11 @@ var receiveErrors = function receiveErrors(errors) {
     errors: errors
   };
 };
-
 var clearSessionErrors = function clearSessionErrors() {
   return {
     type: CLEAR_SESSION_ERRORS
   };
 };
-
 var login = function login(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__.login(user).then(function (data) {
@@ -477,7 +476,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDemo",
     value: function handleDemo() {
-      debugger;
       return this.props.processForm({
         email: 'chefcurry@demo.com',
         password: 'godubs'
@@ -529,7 +527,8 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         className: "bottom-link"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Don't have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/signup",
-        className: "signup-link"
+        className: "signup-link",
+        onClick: this.props.clearSessionErrors
       }, " Sign up for free")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "or"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Log in with", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/",
         className: "login-link",
@@ -577,6 +576,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     receiveErrors: function receiveErrors(errors) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveErrors)(errors));
+    },
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearSessionErrors)());
     }
   };
 };
@@ -682,7 +684,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
       var lNameErr = this.state.last_name === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "err"
       }, 'Enter your last name') : '';
-      var emailErr = this.state.email === '' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      var emailErr = errors.includes('Email is invalid') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "err"
       }, 'Email is not valid') : '';
       var passwordErr = this.state.password.length < 6 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -727,7 +729,8 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "bottom-link"
       }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: "/login",
-        className: "login-link"
+        className: "login-link",
+        onClick: this.props.clearSessionErrors
       }, " Log in")))));
     }
   }]);
@@ -772,6 +775,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     // returns errors
     receiveErrors: function receiveErrors(errors) {
       return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.receiveErrors)(errors));
+    },
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__.clearSessionErrors)());
     }
   };
 };

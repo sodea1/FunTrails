@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             email: '',
             password: ''
@@ -26,7 +27,6 @@ class LoginForm extends React.Component {
     }
 
     handleDemo() {
-        debugger;
         return this.props.processForm({
             email: 'chefcurry@demo.com',
             password: 'godubs'
@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
                         <div className='bottom-link'>
                             <p>
                                 Don't have an account?
-                                <Link to="/signup" className='signup-link'> Sign up for free</Link>
+                                <Link to="/signup" className='signup-link' onClick={this.props.clearSessionErrors}> Sign up for free</Link>
                             </p>
 
                             <p>or</p>
