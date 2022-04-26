@@ -63,16 +63,19 @@
 // Mainly Styling
 header {
     height: 60px;
-    font-family: $font;
 }
 
 .nav-title {
-    font-size: 5em;
-    // font-family: $font;
+    font-size: 28px;
+    font-weight: 100;
+    margin: 0px 0px 0px 8px;
+    color: grey;
+    letter-spacing: -1.5px;
+    font-weight: 900;
 }
 
-a {
-    text-decoration: none;
+.nav-title:hover {
+    opacity: 100%;
 }
 
 a.signup-button, a.login-button {
@@ -97,13 +100,6 @@ a.signup-button, a.login-button {
     margin: 0px 0px 0px 8px;
     color: #219ad8;
     background: $background_color;
-}
-
-.nav-title {
-    font-size: 2em;
-    font-weight: 100;
-    margin: 0px 0px 0px 8px;
-    color: gray;
 }
 
 .prof-icon {
