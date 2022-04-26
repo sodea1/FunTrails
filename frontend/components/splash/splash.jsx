@@ -4,6 +4,8 @@ import SplashSearch from "./search";
 import Favorites from "./favorites";
 import Descriptors from "./descriptors";
 import Confidence from "./confidence";
+import MobileDemo from "./mobile";
+import Stats from "./stats";
 
 class Splash extends React.Component {
     constructor(props) {
@@ -24,11 +26,10 @@ class Splash extends React.Component {
                 </div>
 
                 <div>
-                    <Descriptors />        
-                </div>
-
-                <div>
+                    <Descriptors />
                     <Confidence />
+                    <MobileDemo />
+                    <Stats />
                 </div>
             </div>
         )

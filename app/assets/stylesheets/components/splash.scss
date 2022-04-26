@@ -23,7 +23,7 @@ div.background-image {
     font-size: 4em;
     color: $background_color;
     margin-bottom: 24px;
-    font-weight: 999;
+    font-weight: 900;
 }
 
 // search
@@ -209,6 +209,7 @@ div.background-image {
 
 .inner-confidence {
     width: 70%;
+    margin: 128px 95.5px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -259,6 +260,7 @@ div.background-image {
 // confidence component > mobile preview
 
 .mobile-preview {
+    display: flex;
     margin: -55px auto 0px;
     width: 80%;
     height: 640px;
@@ -266,6 +268,42 @@ div.background-image {
     border-radius: 20px;
 }
 
+.mobile-left, .mobile-center, .mobile-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mobile-title {
+    font-size: 44px;
+    color: #414141;
+    font-weight: 900;
+}
+
+.mobile-center img {
+    height: 100%;
+    width: 414px;
+}
+
+.mobile-containers > a {
+    font-size: 14px;
+    font-weight: 900;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid $brand_green;
+    background-color: #F1F1F1;
+    border-radius: 8px;
+    width: 82px;
+    text-decoration: none;
+    color: $brand_green;
+}
+
+.mobile-containers > a:hover {
+    background-color: $brand_green;
+    color: #F1F1F1;
+}
 
 // confidence component > stats
 
@@ -300,5 +338,4 @@ div.background-image {
     text-align: center;
     color: #414141;
     font-size: 18px;
-    font-weight: 400;
 }
