@@ -44,6 +44,33 @@ class Footer extends React.Component {
                     </div>
                 </div>
 
+                <div className='footer-icons'>
+                    <div>
+                        <div className='foot-left'>
+                            <p>An app for the outdoors</p>
+                            <img src={window.app_foot} width="105px" height="35px" />
+                            <img src={window.google_play} width="118px" height="34px" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <p>Members for the planet</p>
+                        <div className='foot-mid'>
+                            <img src={window.planet} width="86px" height="36px" />
+                            <img src={window.leave_no_trace} width="76px" height="36px" />
+                            <img src={window.one_tree} width="155px" height="36px" />
+                        </div>
+                    </div>
+                    <div>
+                        <p>Connect with Sean O'Dea</p>
+                        <div className='foot-right'>
+                            <img src={window.linkedin} width="42px" height="38px" />
+                            <img src={window.linkedin} width="42px" height="38px" />
+                            <span>icon 2</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }
