@@ -201,7 +201,9 @@ div.background-image {
     justify-content: center;
     height: 725px;
     width: 100%;
-    background-image: ;
+    background-image: url('hikers.jpg');
+    background-position: center;
+    box-shadow: inset 0px 0px 20em 100px rgba(0, 0, 0, 0.9);
 }
 
 .inner-confidence {
@@ -209,12 +211,8 @@ div.background-image {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // align-items: left;
     float: left;
-    
 }
-
-
 
 .rating {
     color: #fff;
