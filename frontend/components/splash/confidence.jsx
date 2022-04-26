@@ -8,7 +8,7 @@ class Confidence extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="outer-confidence">
                 <div className="confidence">
                     <div className="inner-confidence">
                         <h1>Explore with</h1>

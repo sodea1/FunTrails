@@ -13,30 +13,30 @@ class Descriptors extends React.Component {
                     {/*  two photospositoin relative */}
                     <div className="photo-container">
                         {/* position aboslution */}
-                        <div className="photo-card">
+                        <div className="photo-card" id="hiking">
                             <span>Hiking</span>
                         </div>
-                        <div className="photo-card">
+                        <div className="photo-card" id="mtn-biking">
                             <span>Mountain Biking</span>
                         </div>
                     </div>
 
                     <div className="photo-container">
                         {/* position aboslution */}
-                        <div className="photo-card">
+                        <div className="photo-card" id="trail-running">
                             <span>Trail Running</span>
                         </div>
-                        <div className="photo-card">
+                        <div className="photo-card" id="dogs">
                             <span>Dogs</span>
                         </div>
                     </div>
 
                     <div className="photo-container">
                         {/* position aboslution */}
-                        <div className="photo-card">
+                        <div className="photo-card" id="wheelchair">
                             <span>Wheelchair friendly</span>
                         </div>
-                        <div className="photo-card">
+                        <div className="photo-card" id="road-biking">
                             <span>Road Biking</span>
                         </div>
                     </div>

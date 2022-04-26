@@ -108,7 +108,7 @@ div.background-image {
 
 .third-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
     margin: 96px 16px 60px;
 }
@@ -130,7 +130,7 @@ div.background-image {
 .photo-container div:nth-child(-n + 2) {
     width: 194px;
     height: 162px;
-    border: 2px solid $brand_green;
+    border: none;
     border-radius: 8px;
     text-align: center;
     align-items: center;
@@ -139,7 +139,6 @@ div.background-image {
 .photo-card {
     display: flex;
     justify-content: center;
-    background-color: $brand_green;
 }
 
 .photo-card span {
@@ -155,6 +154,8 @@ div.background-image {
     flex-direction: column;
     flex-wrap: wrap;
     width: 480px;
+    margin-left: 100px;
+    padding-right: 20px;
 }
 
 .go-wild div:nth-child(-n + 2) {
@@ -195,16 +196,61 @@ div.background-image {
     margin-bottom: 18px;
 }
 
+
+// styling for descriptor image cards/tiles
+#hiking {
+    // background-image: url('hiking_card.png');
+    background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('hiking_card.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+#mtn-biking {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('mtn_biking.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+#trail-running {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('running_card.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+#dogs {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('dogs_card.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+#wheelchair {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('wheelchair_card.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
+#road-biking {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('biking_card.png');
+    background-size: 200px;
+    background-repeat: no-repeat;
+}
+
 // CONFIDENCE component
+
+.outer-confidence {
+    background-color: black;
+}
 
 .confidence {
     display: flex;
     justify-content: center;
     height: 725px;
     width: 100%;
-    background-image: url('hikers.jpg');
+    background-image: url('confidence.png');
+    background-size: 1680px;
+    background-repeat: no-repeat;
     background-position: center;
-    box-shadow: inset 0px 0px 20em 100px rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0px 0px 20em 200px rgba(0, 0, 0, 1);
 }
 
 .inner-confidence {
