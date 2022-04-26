@@ -10,28 +10,36 @@ class Footer extends React.Component {
                     <p>Fun Trails</p>
                 </div>
 
-                <div className=''>
+                <div className='footer-sections'>
                     <div className='footer-explore'>
-                        <ul>Explore
+                        <ul>
+                            <li>Explore</li>
                             <li>Parks</li>
                             <li>Trails</li>
                         </ul>
                     </div>
                     <div className='footer-maps'>
-                        <ul>Maps
-                            <li></li>
+                        <ul>
+                            <li>Maps</li>
+                            <li>My Maps</li>
+                            <li>Create Map</li>
                         </ul>
                     </div>
                     <div className='footer-company'>
-                        <ul>Company
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                        <ul>
+                            <li>Company</li>
+                            <li>About</li>
+                            <li>Jobs</li>
+                            <li>Press</li>
                         </ul>
                     </div>
                     <div className='footer-community'>
-                        <ul>Community
-                            <li></li>
+                        <ul>
+                            <li>Community</li>
+                            <li>Support</li>
+                            <li>Members</li>
+                            <li>Give Pro</li>
+                            <li>AllTrails Gear</li>
                         </ul>
                     </div>
                 </div>
