@@ -21,7 +21,7 @@ class SplashContainer extends React.Component {
                             placeholder="Search by park or trail name"
                         />
                         <div className="green-arrow">
-                            <img src={window.green_arrow} width="40px" height="40px"/>
+                            <img src={window.green_arrow} width="40px" height="40px" className="green-arrow"/>
                         </div>
                     </form>
                     <div className="splash-explore">
@@ -42,33 +42,46 @@ class SplashContainer extends React.Component {
                     </div>
                 </div>
 
-                <div>
+                <div className="third-container">
                     <div className="photo-cards">
                         {/*  two photospositoin relative */}
-                        <div className="container">
+                        <div className="photo-container">
                             {/* position aboslution */}
-                            <div>photo</div>
-                            <div>Descipriotn</div> 
+                            <div className="photo-card">
+                                <span>Hiking</span>
+                            </div>
+                            <div className="photo-card">
+                                <span>Mountain Biking</span>
+                            </div>
                         </div>
                     
-                        <div className="container">
+                        <div className="photo-container">
                             {/* position aboslution */}
-                            <div>photo</div>
-                            <div>Descipriotn</div>
+                            <div className="photo-card">
+                                <span>Trail Running</span>
+                            </div>
+                            <div className="photo-card">
+                                <span>Dogs</span>
+                            </div>
                         </div>
 
-                        <div className="container">
+                        <div className="photo-container">
                             {/* position aboslution */}
-                            <div>photo</div>
-                            <div>Descipriotn</div>
+                            <div className="photo-card">
+                                <span>Wheelchair friendly</span>
+                            </div>
+                            <div className="photo-card">
+                                <span>Road Biking</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div className="go-wild">
                         {/* flex-column */}
-                        <div>Built to go wild</div>
-                        <span>Descipriotn</span>
-                        <button>Signup</button>
+                        <div>Built (for everyone)</div>
+                        <div>to go wild</div>
+                        <span>Whether you want a casual stroll or a trek to the summit, we've got you covered.</span>
+                        <Link to='/signup'>Sign up</Link>
                     </div>                    
                 </div>
             </div>

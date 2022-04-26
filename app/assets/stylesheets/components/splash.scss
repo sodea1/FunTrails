@@ -24,6 +24,8 @@ div.background-image {
     margin-bottom: 24px;
 }
 
+// search
+
 .splash-search {
     display: flex;
     border-radius: 40px;
@@ -66,6 +68,12 @@ div.background-image {
     font-weight: 700;
 }
 
+.green-arrow:hover {
+    opacity: 90%;
+}
+
+// trail tiles
+
 .splash-trails {
     width: 100%;
     background-color: #F2F2F2;
@@ -92,4 +100,94 @@ div.background-image {
     border: 2px solid $brand_green;
     margin: 0 12px;
     border-radius: 20px;
+}
+
+// third container with photo cards and go-wild signup button
+
+.third-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 96px 16px 60px;
+}
+
+.photo-cards {
+    display: flex;
+}
+
+.photo-container {
+    position: relative;
+    width: 209px;
+    height: 364px;
+}
+
+.photo-container div:first-child {
+    margin-bottom: 16px;
+}
+
+.photo-container div:nth-child(-n + 2) {
+    width: 194px;
+    height: 162px;
+    border: 2px solid $brand_green;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+}
+
+.photo-card {
+    display: flex;
+    justify-content: center;
+    background-color: $brand_green;
+}
+
+.photo-card span {
+    color: #fff;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    font-weight: 700;
+}
+
+.go-wild {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 480px;
+}
+
+.go-wild div:nth-child(-n + 2) {
+    font-size: 44px;
+    font-weight: 700;
+    color: #414141;
+}
+
+.go-wild span {
+    color: #414141;
+    font-size: 18px;
+    margin: 0px 0px 32px;
+}
+
+.go-wild a {
+    font-size: 16px;
+    font-weight: 700;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid $brand_green;
+    border-radius: 8px;
+    width: 82px;
+    background-color: #FFFFFF;
+    text-decoration: none;
+    color: $brand_green;
+}
+
+.go-wild a:hover {
+    background-color: $brand_green;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.go-wild div:nth-child(2), 
+.go-wild div:nth-child(3) {
+    margin-bottom: 18px;
 }
