@@ -193,3 +193,34 @@ div.background-image {
 .go-wild div:nth-child(3) {
     margin-bottom: 18px;
 }
+
+// CONFIDENCE component
+
+.confidence {
+    display: flex;
+    justify-content: center;
+    height: 725px;
+    width: 100%;
+    background-image: ;
+}
+
+.inner-confidence {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: left;
+    float: left;
+    
+}
+
+
+
+.rating {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+

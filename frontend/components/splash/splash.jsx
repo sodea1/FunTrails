@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SplashSearch from "./search";
 import Favorites from "./favorites";
 import Descriptors from "./descriptors";
+import Confidence from "./confidence";
 
 class Splash extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Splash extends React.Component {
                 </div>
 
                 <div>
-                    
+                    <Confidence />
                 </div>
             </div>
         )
