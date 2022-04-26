@@ -73,7 +73,12 @@ div.background-image {
 }
 
 .tiles-title {
-    
+    font-size: 24px;
+    font-weight: 700;
+    color: #414141;
+    max-width: 1240px;
+    margin: 0 auto 12px;
+    width: calc(100% - 32px);
 }
 
 .splash-tiles {
@@ -85,6 +90,6 @@ div.background-image {
     height: 236px;
     width: 298px;
     border: 2px solid $brand_green;
-    margin: 0 16px;
+    margin: 0 12px;
     border-radius: 20px;
 }

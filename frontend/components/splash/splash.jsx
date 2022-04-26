@@ -35,11 +35,41 @@ class SplashContainer extends React.Component {
                     </div>
 
                     <div className="splash-tiles">
-                        <div className="tile">Tile 1</div>
-                        <div className="tile">Tile 2</div>
-                        <div className="tile">Tile 3</div>
-                        <div className="tile">Tile 4</div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
+                        <div className="tile"></div>
                     </div>
+                </div>
+
+                <div>
+                    <div className="photo-cards">
+                        {/*  two photospositoin relative */}
+                        <div className="container">
+                            {/* position aboslution */}
+                            <div>photo</div>
+                            <div>Descipriotn</div> 
+                        </div>
+                    
+                        <div className="container">
+                            {/* position aboslution */}
+                            <div>photo</div>
+                            <div>Descipriotn</div>
+                        </div>
+
+                        <div className="container">
+                            {/* position aboslution */}
+                            <div>photo</div>
+                            <div>Descipriotn</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        {/* flex-column */}
+                        <div>Built to go wild</div>
+                        <span>Descipriotn</span>
+                        <button>Signup</button>
+                    </div>                    
                 </div>
             </div>
         )
