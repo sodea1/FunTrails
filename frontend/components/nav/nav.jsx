@@ -17,14 +17,14 @@ class Nav extends React.Component {
     render() {
         const leftNavBar = 
             <div className='left-nav'>
-                <Link>Explore</Link>
+                <Link className='explore-link'>Explore</Link>
                 <div>
-                    <span>Save</span>
-                    <span>^</span>
+                    <span className='nav-dropdown'>Save</span>
+                    <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' />
                 </div>
                 <div>
-                    <span>Shop</span>
-                    <span>^</span>
+                    <span className='nav-dropdown'>Shop</span>
+                    <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' />
                 </div>
             </div>
 

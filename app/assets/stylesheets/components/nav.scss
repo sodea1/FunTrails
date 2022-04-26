@@ -16,9 +16,27 @@
     justify-content: space-between;
     width: 200px;
     margin-left: 10px;
+    color: #414141;
+    font-size: 14px;
+    font-weight: 700;
 }
 
-a {color: #414141}
+.left-nav:first-child {
+    margin: 0px 32px;
+}
+
+.explore-link {
+    color: #414141;
+}
+
+.explore-link:hover {
+    color: $brand-green;
+}
+
+.nav-dropdown:hover {
+    cursor: pointer;
+    color: $brand-green;
+}
 
 .left-nav > span {
     cursor: pointer;
