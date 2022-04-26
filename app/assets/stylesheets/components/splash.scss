@@ -214,11 +214,46 @@ div.background-image {
     float: left;
 }
 
+.inner-confidence h1:first-child {
+    color: #fff;
+    font-weight: 700;
+    font-size: 96px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.inner-confidence h1:nth-child(2) {
+    color: #f5d24b;
+    font-weight: 700;
+    font-size: 96px;
+    letter-spacing: 2px;
+}
+
+.inner-confidence > span {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 18px;
+    max-width: 280px;
+}
+
+.inner-confidence > div {
+    display: flex;
+    align-items: center;
+}
+
+.confidence-icons > * {
+    margin-right: 10px;
+}
+
+
 .rating {
     color: #fff;
     font-size: 24px;
     font-weight: 700;
     margin-right: 15px;
 }
+
 
 
