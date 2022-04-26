@@ -14,11 +14,21 @@
 .left-nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 200px;
     margin-left: 10px;
     color: #414141;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 999;
+}
+
+.left-nav > div {
+    display: flex;
+    align-items: center;
+}
+
+.nav-dropdown {
+    margin: 0.4px;
 }
 
 .left-nav:first-child {
@@ -80,7 +90,7 @@ header {
 
 a.signup-button, a.login-button {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 999;
     height: 36px;
     display: flex;
     align-items: center;
