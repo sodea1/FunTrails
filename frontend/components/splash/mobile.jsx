@@ -10,9 +10,9 @@ class MobileDemo extends React.Component {
         return (
             <div className="mobile-preview">
                 <div className="mobile-left">
-                    <span>Search {'&'} discover</span>
-                    <span>Navigate {'&'} track</span>
-                    <span>Remember {'&'} inspire</span>
+                    <button>Search {'&'} discover</button>
+                    <button>Navigate {'&'} track</button>
+                    <button>Remember {'&'} inspire</button>
                 </div>
 
                 <div className="mobile-center">

@@ -262,7 +262,7 @@ div.background-image {
 .mobile-preview {
     display: flex;
     margin: -55px auto 0px;
-    width: 80%;
+    width: calc(100% - 200px);
     height: 640px;
     background-color: #f2f2f2;
     border-radius: 20px;
@@ -280,29 +280,63 @@ div.background-image {
     font-weight: 900;
 }
 
+.mobile-left {
+    width: 20%;
+    padding-left: 40px;
+    margin-top: 16px;
+    text-decoration: none;
+}
+
+.mobile-left > * {
+    margin-bottom: 24px;
+    color: #414141;
+    text-align: left;
+    font-size: 22px;
+    font-weight: 900;
+    border: none;
+    background-color: #f2f2f2;
+}
+
+.mobile-left > button:hover {
+    color: $brand_green;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
 .mobile-center img {
     height: 100%;
     width: 414px;
 }
 
-.mobile-containers > a {
-    font-size: 14px;
-    font-weight: 900;
+.mobile-right {
+    width: 42%;
+    max-width: 400px;
+    padding-left: 16px;
+}
+
+.mobile-right > * {
+    margin-top: 24px;
+}
+
+.mobile-right > a {
+    font-size: 16px;
+    font-weight: 700;
     height: 36px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     border: 2px solid $brand_green;
-    background-color: #F1F1F1;
     border-radius: 8px;
     width: 82px;
+    background-color: #f2f2f2;
     text-decoration: none;
     color: $brand_green;
 }
 
-.mobile-containers > a:hover {
+.mobile-right > a:hover {
     background-color: $brand_green;
-    color: #F1F1F1;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 
 // confidence component > stats
