@@ -7,13 +7,17 @@ import LoginFormContainer from "./session/login_form_container";
 import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 
-const App = () => (
-  <div>
-    <NavContainer />
 
-    <AuthRoute path="/signup" component={SignupFormContainer} />
-    <AuthRoute path="/login" component={LoginFormContainer} />
-    <Route exact path="/" component={Splash} />
+
+const App = () => ( 
+  <div>
+    
+    <NavContainer />
+    <Switch>
+      <Route exact path="/" component={Splash} />
+      <AuthRoute path="/signup" component={SignupFormContainer} />
+      <AuthRoute path="/login" component={LoginFormContainer} />
+    </Switch>
 
     <Footer />
   </div>
