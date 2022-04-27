@@ -81,6 +81,39 @@ var signup = function signup(user) {
 
 /***/ }),
 
+/***/ "./frontend/actions/trail_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/trail_actions.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_TRAIL": () => (/* binding */ RECEIVE_TRAIL),
+/* harmony export */   "fetchTrail": () => (/* binding */ fetchTrail)
+/* harmony export */ });
+/* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/trails_api_util */ "./frontend/util/trails_api_util.js");
+
+var RECEIVE_TRAIL = 'RECEIVE_TRAIL';
+
+var receiveTrail = function receiveTrail(trail) {
+  return {
+    type: RECEIVE_TRAIL,
+    trail: trail
+  };
+};
+
+var fetchTrail = function fetchTrail(trailId) {
+  return function (dispatch) {
+    return _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrail(trailId).then(function (trail) {
+      return dispatch(receiveTrail(trail));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -1513,12 +1546,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _trails_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./trails_reducer */ "./frontend/reducers/trails_reducer.js");
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  trails: _trails_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -1647,6 +1683,40 @@ var sessionReducer = function sessionReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sessionReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/trails_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/trails_reducer.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/trail_actions */ "./frontend/actions/trail_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var trailsReducer = function trailsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TRAIL:
+      return Object.assign({}, state, _defineProperty({}, action.trail.id, action.trail));
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (trailsReducer);
 
 /***/ }),
 
@@ -42859,7 +42929,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/store */ "./frontend/store/store.js");
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/trails_api_util */ "./frontend/util/trails_api_util.js");
+/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/trail_actions */ "./frontend/actions/trail_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
@@ -42888,7 +42958,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // testing 
 
 
-  window.fetchTrail = _util_trails_api_util__WEBPACK_IMPORTED_MODULE_5__.fetchTrail;
+  window.fetchTrail = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrail;
   window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.signup;
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.login;
   window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.logout;
