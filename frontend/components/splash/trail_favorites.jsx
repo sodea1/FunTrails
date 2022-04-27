@@ -34,7 +34,6 @@ class TrailFavorites extends React.Component {
                         </Link>
                     ))}
                 </div>
-
             </div>
         );
     }
