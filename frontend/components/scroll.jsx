@@ -5,6 +5,8 @@ export default function ScrollToTop() {
     // useLocation returns location object holding url
     const path = useLocation();
 
+    // side effect
+    // [path] is array of dependenceies - dictates when the funciton takes action / like an event listener
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [path])

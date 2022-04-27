@@ -495,7 +495,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function ScrollToTop() {
   // useLocation returns location object holding url
-  var path = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useLocation)();
+  var path = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useLocation)(); // side effect
+  // [path] is array of dependenceies - dictates when the funciton takes action / like an event listener
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.scrollTo(0, 0);
   }, [path]);
@@ -566,11 +568,6 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(LoginForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      window.scrollTo(0, 0);
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
@@ -763,11 +760,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SignupForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      window.scrollTo(0, 0);
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
@@ -1485,7 +1477,6 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrails();
-      window.scrollTo(0, 0);
     }
   }, {
     key: "render",
@@ -1756,18 +1747,13 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Trail);
 
-  function Trail(props) {
+  function Trail() {
     _classCallCheck(this, Trail);
 
-    return _super.call(this, props);
+    return _super.apply(this, arguments);
   }
 
   _createClass(Trail, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      window.scrollTo(0, 0);
-    }
-  }, {
     key: "render",
     value: function render() {
       // const {trail} = this.props.trail;
