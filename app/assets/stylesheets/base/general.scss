@@ -1,3 +1,6 @@
+@import './font.scss';
+@import './colors.scss';
+
 a:hover, button:hover {
     opacity: 90%;
     transition: 0.2s;
@@ -13,4 +16,51 @@ a {
 
 html {
     overflow-x: hidden;
+}
+
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 236px;
+    width: 298px;
+    border: 2px solid $brand_green;
+    margin: 0 12px;
+    border-radius: 20px;
+}
+
+.detail {
+    color: #767676!important;
+    font-size: 14px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    height: 21px;
+    line-height: 21px;
+    letter-spacing: normal
+}
+
+.descriptor {
+    background-color: #69a041;
+    color: #fff;
+    width: 72px;
+    height: 18px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    line-height: 1.42
+}
+
+.flex {
+    display: flex;
+}
+
+.review-stars {
+
 }

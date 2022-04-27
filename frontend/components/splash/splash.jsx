@@ -1,28 +1,29 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import SplashSearch from "./search";
-import Favorites from "./favorites";
+import TrailFavorites from "./trail_favorites";
 import Descriptors from "./descriptors";
 import Confidence from "./confidence";
 import MobileDemo from "./mobile";
 import Stats from "./stats";
 
 class Splash extends React.Component {
-    constructor(props) {
-        super(props);
+    componentDidMount() {
+        this.props.fetchTrails();
+        
     }
 
     render() {
-        // const welcomeMessage = this.props.session.currUserId;
-        // const { currUserId } = this.props.session.currUserId;
-        return (
+        const { trails } = this.props;
+        debugger;
+        return ( 
             <div>
                 <div>
                     <SplashSearch />
                 </div>
 
                 <div className="splash-trails">
-                    <Favorites /> 
+                    {trails.length > 0 && <TrailFavorites trails={trails}/>}
                 </div>
 
                 <div>

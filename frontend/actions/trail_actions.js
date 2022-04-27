@@ -8,7 +8,7 @@ const receiveTrail = trail => ({
     trail
 });
 
-const receiveTrails = trails => ({
+const receiveTrails = (trails) => ({
     type: RECEIVE_TRAILS,
     trails
 });

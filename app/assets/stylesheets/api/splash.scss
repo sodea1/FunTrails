@@ -89,6 +89,9 @@ div.background-image {
     max-width: 1240px;
     margin: 0 auto 12px;
     width: calc(100% - 32px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .splash-tiles {
@@ -96,13 +99,6 @@ div.background-image {
     justify-content: center;
 }
 
-.tile {
-    height: 236px;
-    width: 298px;
-    border: 2px solid $brand_green;
-    margin: 0 12px;
-    border-radius: 20px;
-}
 
 // third container with photo cards and go-wild signup button
 
