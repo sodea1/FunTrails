@@ -1296,42 +1296,91 @@ var SplashSearch = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(SplashSearch);
 
   function SplashSearch(props) {
+    var _this;
+
     _classCallCheck(this, SplashSearch);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    var images = ['/splash_hiker.jpg', '/splash_hiker2-min.jpg', '/splash_hiker3-min.jpg', '/splash_hiker4-min.jpg'];
+    _this.state = {
+      images: images,
+      currImg: 0
+    };
+    _this.changeImage = _this.changeImage.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(SplashSearch, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.interval = setInterval(function () {
+        return _this2.changeImage();
+      }, 5000);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      // clear the interval before component removed from DOM
+      if (this.interval) {
+        clearInterval(this.interval);
+      }
+    }
+  }, {
+    key: "changeImage",
+    value: function changeImage() {
+      var _this$state = this.state,
+          images = _this$state.images,
+          currImg = _this$state.currImg;
+      var nextImg = currImg + 1;
+      if (nextImg === images.length) nextImg = 0;
+      this.setState({
+        currImg: nextImg
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "background-image"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-        className: "welcome"
-      }, "Find your next trail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        className: "splash-search"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.search,
-        width: "16px",
-        height: "16px",
-        className: "search-icon"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text",
-        className: "search-bar",
-        placeholder: "Search by park or trail name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "green-arrow"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.green_arrow,
-        width: "40px",
-        height: "40px",
-        className: "green-arrow"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "splash-explore"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        to: "/",
-        className: "splash-explore-link bold"
-      }, "Explore nearby trails")));
+      var _this$state2 = this.state,
+          images = _this$state2.images,
+          currImg = _this$state2.currImg;
+      var urlString = "url('".concat(images[currImg], "')");
+      return (
+        /*#__PURE__*/
+        // repeating images styling
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "background-image",
+          style: {
+            backgroundImage: urlString
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+          className: "welcome"
+        }, "Find your next trail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+          className: "splash-search"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: window.search,
+          width: "16px",
+          height: "16px",
+          className: "search-icon"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+          type: "text",
+          className: "search-bar",
+          placeholder: "Search by park or trail name"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "green-arrow"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: window.green_arrow,
+          width: "40px",
+          height: "40px",
+          className: "green-arrow"
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "splash-explore"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          to: "/",
+          className: "splash-explore-link bold"
+        }, "Explore nearby trails")))
+      );
     }
   }]);
 
@@ -1413,7 +1462,6 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var trails = this.props.trails;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "splash-trails"
       }, trails.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_trail_favorites__WEBPACK_IMPORTED_MODULE_2__["default"], {

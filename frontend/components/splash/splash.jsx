@@ -15,7 +15,6 @@ class Splash extends React.Component {
 
     render() {
         const { trails } = this.props;
-        debugger;
         return ( 
             <div>
                 <div>
