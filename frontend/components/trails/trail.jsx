@@ -3,22 +3,16 @@ import React from 'react';
 class Trail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            trails: {}
-        }
-    }
-
-    componentDidMount() {
-        this.setState(this.props.fetchTrails());
     }
 
     render() {
+        // const {trail} = this.props.trail;
         return (
             <div className='trail-pic'>
-                {/* <span>{this.state}</span> */}
+                <p>hello</p>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default Trail;

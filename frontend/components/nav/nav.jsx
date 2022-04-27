@@ -9,6 +9,10 @@ class Nav extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
+    componentDidMount() {
+        this.setState(this.props.fetchTrails());
+    }
+
     handleLogout(e) {
         e.preventDefault();
         this.props.logout();

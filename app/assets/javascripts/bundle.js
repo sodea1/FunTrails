@@ -168,7 +168,7 @@ var App = function App() {
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_2__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-    path: "/trails/trailId",
+    path: "/trails/:trailId",
     component: _trails_trail_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__.AuthRoute, {
     path: "/signup",
@@ -241,6 +241,11 @@ var Nav = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Nav, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState(this.props.fetchTrails());
+    }
+  }, {
     key: "handleLogout",
     value: function handleLogout(e) {
       e.preventDefault();
@@ -330,6 +335,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nav */ "./frontend/components/nav/nav.jsx");
+/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
+
 
 
 
@@ -354,7 +361,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return logout;
     }(function () {
       return dispatch(logout());
-    })
+    }),
+    // MUST FIGURE OUT HOW TO POPULATE STATE SO I HAVE ACCESS
+    fetchTrails: function fetchTrails() {
+      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
+    }
   };
 };
 
@@ -1593,34 +1604,25 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Trail);
 
   function Trail(props) {
-    var _this;
-
     _classCallCheck(this, Trail);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      trails: {}
-    };
-    return _this;
+    return _super.call(this, props);
   }
 
   _createClass(Trail, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState(this.props.fetchTrails());
-    }
-  }, {
     key: "render",
     value: function render() {
+      // const {trail} = this.props.trail;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-pic"
-      });
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "hello"));
     }
   }]);
 
   return Trail;
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
+;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trail);
 
 /***/ }),
@@ -1643,9 +1645,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    trails: state.entities.trails
+    trail: state.entities.trails[ownProps.match.params.id]
   };
 };
 

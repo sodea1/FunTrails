@@ -8,14 +8,12 @@ import TrailContainer from "./trails/trail_container";
 import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 
-
-
 const App = () => ( 
   <div>    
     <NavContainer />
     <Switch>
       <Route exact path="/" component={Splash} />
-      <Route path="/trails/trailId" component={TrailContainer} />
+      <Route path="/trails/:trailId" component={TrailContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <AuthRoute path="/login" component={LoginFormContainer} />
     </Switch>

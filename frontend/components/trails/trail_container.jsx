@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { fetchTrails, fetchTrail } from "../../actions/trail_actions";
 import Trail from "./trail";
 
-const mapStateToProps = state => ({
-    trails: state.entities.trails
+const mapStateToProps = (state, ownProps) => ({
+    trail: state.entities.trails[ownProps.match.params.id]
 });
 
 const mapDispatchToProps = dispatch => ({
