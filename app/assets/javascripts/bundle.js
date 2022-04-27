@@ -167,6 +167,9 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+    path: "/trails/:id",
+    component: _trails_trail_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__.AuthRoute, {
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -235,10 +238,7 @@ var Nav = /*#__PURE__*/function (_React$Component) {
 
     _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //     this.setState(this.props.fetchTrails());
-  // }
-
+  }
 
   _createClass(Nav, [{
     key: "handleLogout",
@@ -537,6 +537,11 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(LoginForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
@@ -729,6 +734,11 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(SignupForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       var _this2 = this;
@@ -1397,11 +1407,13 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrails();
+      window.scrollTo(0, 0);
     }
   }, {
     key: "render",
     value: function render() {
       var trails = this.props.trails;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "splash-trails"
       }, trails.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_trail_favorites__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1583,7 +1595,7 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
         className: "splash-tiles"
       }, this.props.trails.map(function (trail) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          to: "/trials/:trailId",
+          to: "/trails/".concat(trail.id),
           className: "tile"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "tile-image"
@@ -1673,6 +1685,11 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Trail, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: "render",
     value: function render() {
       // const {trail} = this.props.trail;

@@ -10,11 +10,11 @@ import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 
 const App = () => ( 
-  <div>    
+  <div>
     <NavContainer />
     <Switch>
       <Route exact path="/" component={SplashContainer} />
-      {/* <Route path="/trails/:trailId" component={TrailContainer} /> */}
+      <Route path="/trails/:id" component={TrailContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <AuthRoute path="/login" component={LoginFormContainer} />
     </Switch>

@@ -13,7 +13,7 @@ class TrailFavorites extends React.Component {
                 <div className="splash-tiles">
                     {this.props.trails.map((trail) => (
 
-                        <Link to="/trials/:trailId" className="tile">
+                        <Link to={`/trails/${trail.id}`} className="tile">
                             <div className="tile-image">Image</div>
 
                             <div className="tile-content">

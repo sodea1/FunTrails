@@ -13,6 +13,10 @@ class LoginForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDemo = this.handleDemo.bind(this);
     }
+    
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
     handleSubmit(e) {
         e.preventDefault();
