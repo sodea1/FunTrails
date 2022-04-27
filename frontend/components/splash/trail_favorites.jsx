@@ -6,18 +6,18 @@ class TrailFavorites extends React.Component {
         return (
             <div>
                 {/* <h1>{this.props.trails['1'].length}</h1> */}
-                <div className="tiles-title bold">
+                <div className="splash-favorites bold">
                     Local Favorites Near San Francisco
                 </div>
 
-                <div className="splash-tiles">
+                <div className="tiles-container">
                     {this.props.trails.map((trail) => (
 
                         <Link to={`/trails/${trail.id}`} className="tile">
-                            <div className="tile-image">Image</div>
+                            <img className="tile-image" src={window.hiking_card}></img>
 
                             <div className="tile-content">
-                                <span className="overflow">{trail.t_name}</span>
+                                <span className="tile-title bold overflow">{trail.t_name}</span>
                                 <span className="detail">Park Name</span>
                                 <div className="flex">
                                     <span className="descriptor">{trail.difficulty_level}</span>

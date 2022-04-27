@@ -82,34 +82,13 @@ div.background-image {
     padding: 48px 0px;
 }
 
-.tiles-title {
+.splash-favorites {
     font-size: 24px;
     color: #414141;
     max-width: 1240px;
     margin: 0 auto 12px;
     width: calc(100% - 32px);
     font-family: 'Proxima-Nova-Bold';
-}
-
-.tile-content {
-    background-color: #fff;
-    margin: 0px 8px 10px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    width: 298px;
-}
-
-.splash-tiles {
-    display: flex;
-    justify-content: center;
-}
-
-.tile-image {
-    background-image: url('splash_hiker.jpg');
-    height: 70%;
-    width: 100%;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 }
 
 
@@ -119,7 +98,7 @@ div.background-image {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 96px 16px 60px;
+    margin: 96px 0px 60px;
 }
 
 .photo-cards {

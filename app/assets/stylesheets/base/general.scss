@@ -31,6 +31,11 @@ html {
     width: 298px;
     margin: 0 12px;
     border-radius: 20px;
+    transition: 0.3s;
+}
+
+.tile:hover {
+    transform: scale(1.05);
 }
 
 .detail {
@@ -63,7 +68,6 @@ html {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-    margin: 4px 4px;
 }
 
 .flex {
