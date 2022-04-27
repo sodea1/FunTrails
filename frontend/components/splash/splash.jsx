@@ -10,12 +10,10 @@ import Stats from "./stats";
 class Splash extends React.Component {
     componentDidMount() {
         this.props.fetchTrails();
-        
     }
 
     render() {
         const { trails } = this.props;
-        debugger;
         return ( 
             <div>
                 <div>

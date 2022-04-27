@@ -20,7 +20,7 @@ class Nav extends React.Component {
 
     render() {
         const leftNavBar = 
-            <div className='left-nav'>
+            <div className='left-nav bold'>
                 <Link to='/' className='explore-link'>Explore</Link>
                 <div>
                     <span className='nav-dropdown'>Save</span>

@@ -20,10 +20,10 @@ div.background-image {
 }
 
 .welcome {
-    font-size: 60px;
+    font-size: 64px;
     color: $background_color;
     margin-bottom: 24px;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 // search
@@ -84,19 +84,32 @@ div.background-image {
 
 .tiles-title {
     font-size: 24px;
-    font-weight: 700;
     color: #414141;
     max-width: 1240px;
     margin: 0 auto 12px;
     width: calc(100% - 32px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-family: 'Proxima-Nova-Bold';
+}
+
+.tile-content {
+    background-color: #fff;
+    margin: 0px 8px 10px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    width: 298px;
 }
 
 .splash-tiles {
     display: flex;
     justify-content: center;
+}
+
+.tile-image {
+    background-image: url('splash_hiker.jpg');
+    height: 70%;
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 

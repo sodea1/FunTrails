@@ -22,7 +22,7 @@ class SplashSearch extends React.Component {
                     </div>
                 </form>
                 <div className="splash-explore">
-                    <Link to='/' className="splash-explore-link">Explore nearby trails</Link>
+                    <Link to='/' className="splash-explore-link bold">Explore nearby trails</Link>
                 </div>
             </div>
         )
