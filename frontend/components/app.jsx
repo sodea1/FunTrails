@@ -13,7 +13,7 @@ const App = () => (
     <NavContainer />
     <Switch>
       <Route exact path="/" component={Splash} />
-      <Route path="/trails/:trailId" component={TrailContainer} />
+      {/* <Route path="/trails/:trailId" component={TrailContainer} /> */}
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <AuthRoute path="/login" component={LoginFormContainer} />
     </Switch>

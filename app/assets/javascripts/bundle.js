@@ -167,9 +167,6 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _splash_splash__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
-    path: "/trails/:trailId",
-    component: _trails_trail_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_7__.AuthRoute, {
     path: "/signup",
     component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -238,14 +235,12 @@ var Nav = /*#__PURE__*/function (_React$Component) {
 
     _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidMount() {
+  //     this.setState(this.props.fetchTrails());
+  // }
+
 
   _createClass(Nav, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState(this.props.fetchTrails());
-    }
-  }, {
     key: "handleLogout",
     value: function handleLogout(e) {
       e.preventDefault();

@@ -1,6 +1,6 @@
 class Api::TrailsController < ApplicationController
     def show
-        @trail = Trail.find(params[:id])
+        @trail = Trail.find_by(id: params[:id])
         if @trail 
             render :show
         else
