@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TrailHome extends React.Component {
+class Trail extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -14,4 +14,4 @@ class TrailHome extends React.Component {
     }
 }
 
-export default TrailHome;
+export default Trail;

@@ -91,11 +91,14 @@ var signup = function signup(user) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_TRAIL": () => (/* binding */ RECEIVE_TRAIL),
-/* harmony export */   "fetchTrail": () => (/* binding */ fetchTrail)
+/* harmony export */   "RECEIVE_TRAILS": () => (/* binding */ RECEIVE_TRAILS),
+/* harmony export */   "fetchTrail": () => (/* binding */ fetchTrail),
+/* harmony export */   "fetchTrails": () => (/* binding */ fetchTrails)
 /* harmony export */ });
 /* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/trails_api_util */ "./frontend/util/trails_api_util.js");
 
 var RECEIVE_TRAIL = 'RECEIVE_TRAIL';
+var RECEIVE_TRAILS = 'RECEIVE_TRAILS';
 
 var receiveTrail = function receiveTrail(trail) {
   return {
@@ -104,10 +107,24 @@ var receiveTrail = function receiveTrail(trail) {
   };
 };
 
+var receiveTrails = function receiveTrails(trails) {
+  return {
+    type: RECEIVE_TRAILS,
+    trails: trails
+  };
+};
+
 var fetchTrail = function fetchTrail(trailId) {
   return function (dispatch) {
     return _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrail(trailId).then(function (trail) {
       return dispatch(receiveTrail(trail));
+    });
+  };
+};
+var fetchTrails = function fetchTrails() {
+  return function (dispatch) {
+    return _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrails().then(function (trails) {
+      return dispatch(receiveTrails(trails));
     });
   };
 };
@@ -1711,6 +1728,9 @@ var trailsReducer = function trailsReducer() {
     case _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TRAIL:
       return Object.assign({}, state, _defineProperty({}, action.trail.id, action.trail));
 
+    case _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TRAILS:
+      return Object.assign({}, state, action.trails);
+
     default:
       return state;
   }
@@ -1879,12 +1899,19 @@ var logout = function logout() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchTrail": () => (/* binding */ fetchTrail)
+/* harmony export */   "fetchTrail": () => (/* binding */ fetchTrail),
+/* harmony export */   "fetchTrails": () => (/* binding */ fetchTrails)
 /* harmony export */ });
 var fetchTrail = function fetchTrail(trailId) {
   return $.ajax({
     method: 'GET',
     url: "/api/trails/".concat(trailId)
+  });
+};
+var fetchTrails = function fetchTrails() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/trails'
   });
 };
 
@@ -42958,6 +42985,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // testing 
 
 
+  window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails;
   window.fetchTrail = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrail;
   window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.signup;
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.login;

@@ -7,4 +7,9 @@ class Api::TrailsController < ApplicationController
             render json: ['Trail does not exist'], status: 404
         end
     end
+
+    def index
+        @trails = Trail.all
+        render :index
+    end
 end
