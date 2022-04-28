@@ -496,7 +496,7 @@ __webpack_require__.r(__webpack_exports__);
 function ScrollToTop() {
   // useLocation returns location object holding url
   var path = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_1__.useLocation)(); // side effect
-  // [path] is array of dependenceies - dictates when the funciton takes action / like an event listener
+  // [path] is array of dependenceies - dictates when the function's called / like an event listener
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.scrollTo(0, 0);
@@ -1680,18 +1680,23 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
           className: "descriptor"
         }, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "review-stars",
+          key: "1",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "review-stars",
+          key: "2",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "review-stars",
+          key: "3",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "review-stars",
+          key: "4",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "review-stars",
+          key: "5",
           src: window.star
         })))));
       })));
@@ -1747,19 +1752,43 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Trail);
 
-  function Trail() {
+  function Trail(props) {
     _classCallCheck(this, Trail);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Trail, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // 2. called after 1st render; fetchTrails populates the store with trails
+      this.props.fetchTrails();
+    }
+  }, {
     key: "render",
     value: function render() {
-      // const {trail} = this.props.trail;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "trail-pic"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "hello"));
+      // 1. trails null first render
+      // 3. this.props now contains all trails which can be decomposed
+      var trails = this.props.trails;
+      var trail = this.props.trail;
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
+        className: "trail-head"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "flex"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "show-search"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        type: "text",
+        className: "search-bar",
+        placeholder: "Search by park or trail name"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "green-search"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.search,
+        width: "16px",
+        height: "16px"
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
     }
   }]);
 
@@ -1791,6 +1820,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id]
   };
 };

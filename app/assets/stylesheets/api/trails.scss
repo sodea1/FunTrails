@@ -1,8 +1,36 @@
 // Place all the styles related to the api/trails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import '../base/font.scss';
+@import '../base/colors.scss';
 
 .trail-pic {
     background-image: url('dipsea_main.jpg');
     height: 600px;
+}
+
+.show-search {
+    border-radius: 40px;
+    padding: 0px 16px;
+    align-items: center;
+    height: 72px;
+    width: 644px;
+    background-color: $background_color;
+    z-index: 1;
+}
+
+.green-search {
+    background-color: $brand_green;
+}
+
+.trail-head {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;   
+    padding-bottom: 8px;
+    color: #000000;
+}
+
+.show-search {
+    display: flex;
 }

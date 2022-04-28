@@ -28,6 +28,11 @@ div.background-image {
 
 // search
 
+.search-container {
+    position: relative;
+    display: none;
+}
+
 .splash-search {
     display: flex;
     border-radius: 40px;

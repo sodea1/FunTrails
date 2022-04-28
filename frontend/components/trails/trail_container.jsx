@@ -3,6 +3,7 @@ import { fetchTrails, fetchTrail } from "../../actions/trail_actions";
 import Trail from "./trail";
 
 const mapStateToProps = (state, ownProps) => ({
+    trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id]
 });
 

@@ -23,11 +23,11 @@ class TrailFavorites extends React.Component {
                                     <span className="descriptor">{trail.difficulty_level}</span>
 
                                     <div>
-                                        <img className="review-stars" src={window.star} />
-                                        <img className="review-stars" src={window.star} />
-                                        <img className="review-stars" src={window.star} />
-                                        <img className="review-stars" src={window.star} />
-                                        <img className="review-stars" src={window.star} />
+                                        <img className="review-stars" key='1' src={window.star} />
+                                        <img className="review-stars" key='2' src={window.star} />
+                                        <img className="review-stars" key='3' src={window.star} />
+                                        <img className="review-stars" key='4' src={window.star} />
+                                        <img className="review-stars" key='5' src={window.star} />
                                     </div>
                                 </div>
                             </div>
