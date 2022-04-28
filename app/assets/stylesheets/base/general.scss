@@ -63,23 +63,69 @@ html {
     line-height: 1.42
 }
 
+.descriptor-blue {
+    background-color: #4BAFE1;
+    color: #f1f1f1;
+    width: 72px;
+    height: 18px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    line-height: 1.42;
+    margin-right: 10px;
+}
+
 .overflow {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
+    // display: block;
 }
 
 .flex {
     display: flex;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .review-stars {
     height: 16px;
     width: 16px;
+    padding: 0px 2px;
 }
 
 .hidden {
     display: none;
     position: absolute;
+}
+
+.content-width {
+    width: 1024px;
+    margin: auto;
+}
+
+.border-outer {
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.border-right-inner {
+    border-right: 1px solid #eaeaea;
+}
+
+.border-left-inner {
+    border-left: 1px solid #eaeaea;
 }

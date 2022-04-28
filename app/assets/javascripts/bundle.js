@@ -1329,13 +1329,15 @@ var SplashSearch = /*#__PURE__*/function (_React$Component) {
     };
     _this.changeImage = _this.changeImage.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // async
+
 
   _createClass(SplashSearch, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
+      // async function to fetch photo
       this.interval = setInterval(function () {
         return _this2.changeImage();
       }, 5000);
@@ -1765,22 +1767,74 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       this.props.fetchTrails();
     }
   }, {
+    key: "header",
+    value: function header() {
+      return this.props.trail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+        className: "head-loc"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.park_id ? this.props.trail.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "overflow"
+      }, this.props.trail.t_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
+    }
+  }, {
+    key: "trailHeadInfo",
+    value: function trailHeadInfo() {
+      // const { trail } = this.props.trail;
+      var urlString = 'url(' + splash_hiker1 + ')';
+      return this.props.trail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "flex-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "content-width trail-img",
+        style: {
+          backgroundImage: urlString
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+        className: "trail-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        className: "bold"
+      }, this.props.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        className: "flex"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "descriptor-blue"
+      }, this.props.trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "flex trail-stars"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "review-stars",
+        key: "1",
+        src: window.star
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "review-stars",
+        key: "2",
+        src: window.star
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "review-stars",
+        key: "3",
+        src: window.star
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "review-stars",
+        key: "4",
+        src: window.star
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "review-stars",
+        key: "5",
+        src: window.star
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "reviews-agg"
+      }, "(# Reviews)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, this.props.trail.park_id, " (Park Name)")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
+    }
+  }, {
     key: "render",
     value: function render() {
       // 1. trails null first render
       // 3. this.props now contains all trails which can be decomposed
-      var trails = this.props.trails;
-      var trail = this.props.trail;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
         className: "trail-head"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "flex"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "flex-between"
+      }, this.header(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
-        className: "search-bar",
+        className: "show-search",
         placeholder: "Search by park or trail name"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-search"
@@ -1788,7 +1842,15 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         src: window.search,
         width: "16px",
         height: "16px"
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
+      }))))), this.trailHeadInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "green-bar content-width"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "content-width flex border-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "trail-body"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "side-panel border-left-inner"
+      })));
     }
   }]);
 

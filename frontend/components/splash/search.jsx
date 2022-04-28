@@ -20,7 +20,9 @@ class SplashSearch extends React.Component {
         this.changeImage = this.changeImage.bind(this);
     }
 
+    // async
     componentDidMount() {
+        // async function to fetch photo
         this.interval = setInterval(() => this.changeImage(), 5000);
     }
 
