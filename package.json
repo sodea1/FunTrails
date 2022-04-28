@@ -44,5 +44,8 @@
   "bugs": {
     "url": "https://github.com/sodea1/FunTrails/issues"
   },
-  "homepage": "https://github.com/sodea1/FunTrails#readme"
+  "homepage": "https://github.com/sodea1/FunTrails#readme",
+  "devDependencies": {
+    "css-loader": "^6.7.1"
+  }
 }

@@ -13,4 +13,11 @@
  *= require_tree .
  *= require_self
  */
-
+ 
+#map-container {
+  height: 243px;
+  width: 291px;
+  border-radius: 10px;
+  margin: auto;
+  margin-top: 40px;
+}

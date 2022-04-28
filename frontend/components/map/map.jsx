@@ -1,10 +1,24 @@
-// import { MapContainer, TileLayer } from 'react-leaflet';
-// import React from 'react';
+import React from 'react';
 
-// <MapContainer center={[40.505, -100.09]} zoom={13} >
+class Map extends React.Component {
+    componentDidMount() {
+        const { latitude, longitude } = this.props.trail;
+        debugger;
+        const mapOptions = {
+            center: { lat: latitude, lng: longitude }, 
+            zoom: 13
+        };
 
-//     <TileLayer
-//         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//     />
-// </MapContainer>
+        this.map = new google.maps.Map(this.mapNode, mapOptions);
+    }
+
+    render() {
+       return(
+           <div id='map-container' ref={map => this.mapNode = map}> 
+                    
+            </div>
+       )
+    }
+}
+
+export default Map;

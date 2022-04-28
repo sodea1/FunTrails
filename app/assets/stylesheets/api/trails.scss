@@ -6,23 +6,45 @@
 
 //header
 
+.grey {
+    background-color: #e6e6e6;
+}
+
 .trail-pic {
     background-image: url('dipsea_main.jpg');
     height: 600px;
 }
 
 .show-search {
-    border-radius: 10px;
-    padding: 0px 6px;
+    display: flex;
     align-items: center;
+    border-radius: 10px;
     height: 36px;
     width: 326px;
     background-color: $background_color;
-    z-index: 1;
+    z-index: 1; 
+}
+
+.show-input {
+    border-radius: inherit;
+    width: 90%;
+    height: 93%;
+    padding: 0px 8px;
+}
+
+.show-input:focus {
+    border: none;
 }
 
 .green-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
     background-color: $brand_green;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    height: 100%;
 }
 
 .trail-head {
@@ -52,8 +74,15 @@
     color: #FFFFFF; 
 }
 
-.show-search {
-    display: flex;
+.trail-title li:last-child {
+    margin: 6px 0px 0px;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.trail-title li:last-child:hover {
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .head-loc {

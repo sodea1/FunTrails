@@ -22,6 +22,9 @@ html {
     overflow-x: hidden;
 }
 
+input {
+    border: none;
+}
 
 .tile {
     display: flex;
@@ -67,7 +70,7 @@ html {
     background-color: #4BAFE1;
     color: #f1f1f1;
     width: 72px;
-    height: 18px;
+    height: 16px;
     border-radius: 6px;
     font-size: 10px;
     font-stretch: normal;
