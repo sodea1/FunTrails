@@ -1,4 +1,5 @@
 import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 class Trail extends React.Component {
     constructor(props) {
@@ -55,6 +56,28 @@ class Trail extends React.Component {
             <div></div>
         )
     }
+
+    map() {
+        return (
+            this.props.trail ?
+                <MapContainer center={[this.props.trail.latitude, this.props.trail.longitude]} zoom={13} scrollWheelZoom={false} >
+
+                    <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+
+                    <Marker position={[this.props.trail.latitude, this.props.trail.longitude]}>
+                        <Popup>
+                            I am a pop-up!
+                        </Popup>
+                    </Marker>
+
+                </MapContainer>
+                :
+                <div></div>
+        )
+    }
  
     render() {
         // 1. trails null first render
@@ -84,11 +107,11 @@ class Trail extends React.Component {
 
                 <div className='content-width flex border-outer'>
                     <div className='trail-body'>
-
+                        
                     </div>
 
                     <div className='side-panel border-left-inner'>
-
+                        {this.map()}
                     </div>
                 </div>
             </div>
