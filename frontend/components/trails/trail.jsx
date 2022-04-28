@@ -90,7 +90,7 @@ class Trail extends React.Component {
                     </div>
 
                     <div className='side-panel border-left-inner'>
-                        {this.props.trail && <Map trail={this.props.trail}/>}
+                        {this.props.trail && <Map trail={this.props.trail} trails={this.props.trails}/>}
                         
                     </div>
                 </div>

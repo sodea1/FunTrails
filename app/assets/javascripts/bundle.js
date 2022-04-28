@@ -196,6 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/marker_manager */ "./frontend/util/marker_manager.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -220,6 +221,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Map = /*#__PURE__*/function (_React$Component) {
   _inherits(Map, _React$Component);
 
@@ -237,7 +239,6 @@ var Map = /*#__PURE__*/function (_React$Component) {
       var _this$props$trail = this.props.trail,
           latitude = _this$props$trail.latitude,
           longitude = _this$props$trail.longitude;
-      debugger;
       var mapOptions = {
         center: {
           lat: latitude,
@@ -246,6 +247,13 @@ var Map = /*#__PURE__*/function (_React$Component) {
         zoom: 13
       };
       this.map = new google.maps.Map(this.mapNode, mapOptions);
+      this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
+      this.markerMgr.updateMarkers(this.props.trails);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.markerMgr.updateMarkers(this.props.trails);
     }
   }, {
     key: "render",
@@ -1941,7 +1949,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, this.props.trail && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        trail: this.props.trail
+        trail: this.props.trail,
+        trails: this.props.trails
       }))));
     }
   }]);
@@ -2260,6 +2269,63 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/marker_manager.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/marker_manager.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MarkerManager)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var MarkerManager = /*#__PURE__*/function () {
+  function MarkerManager(map) {
+    _classCallCheck(this, MarkerManager);
+
+    this.map = map;
+    this.markers = {};
+  }
+
+  _createClass(MarkerManager, [{
+    key: "updateMarkers",
+    value: function updateMarkers(trails) {
+      var _this = this;
+
+      trails.forEach(function (trail) {
+        if (_this.markers[trail.id] === undefined) {
+          _this.markers[trail.id] = _this.createMarker(trail);
+        }
+      });
+    }
+  }, {
+    key: "createMarker",
+    value: function createMarker(trail) {
+      var map = this.map;
+      return new google.maps.Marker({
+        position: {
+          lat: trail.latitude,
+          lng: trail.longitude
+        },
+        map: map
+      });
+    }
+  }]);
+
+  return MarkerManager;
+}();
+
+
 
 /***/ }),
 
