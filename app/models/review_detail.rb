@@ -3,5 +3,5 @@ class ReviewDetail < ApplicationRecord
     validates :review_id, uniqueness: { scope: :condition_id }
 
     belongs_to :review
-    has_many :conditions
+    belongs_to :condition
 end

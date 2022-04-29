@@ -5,10 +5,11 @@ class Review < ApplicationRecord
     validates :rating, inclusion: { in: 1..5 }
 
     belongs_to :user
-
+    belongs_to :activity
     belongs_to :trail
 
-    has_one :activity
+    # has_one :activity
+    has_many :review_details
 
     has_many :conditions,
         through: :review_details,
