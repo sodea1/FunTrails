@@ -10,30 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_195619) do
+ActiveRecord::Schema.define(version: 2022_04_29_212405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "activities", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "conditions", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "review_details", force: :cascade do |t|
-    t.integer "review_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "condition_id", null: false
-    t.index ["condition_id", "review_id"], name: "index_review_details_on_condition_id_and_review_id", unique: true
-  end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -44,8 +24,8 @@ ActiveRecord::Schema.define(version: 2022_04_29_195619) do
     t.date "date_hiked", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "activity_id", null: false
-    t.index ["activity_id"], name: "index_reviews_on_activity_id"
+    t.string "activity", null: false
+    t.string "conditions", default: [], array: true
     t.index ["photo_id"], name: "index_reviews_on_photo_id"
     t.index ["trail_id"], name: "index_reviews_on_trail_id"
     t.index ["user_id", "trail_id"], name: "index_reviews_on_user_id_and_trail_id", unique: true
