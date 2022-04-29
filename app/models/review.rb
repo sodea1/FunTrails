@@ -3,9 +3,10 @@ class Review < ApplicationRecord
     validates :photo_id, presence: true, uniqueness: { scope: :trail_id }
     validates :trail_id, :rating, :date_hiked, presence: true
     validates :rating, inclusion: { in: 1..5 }
+    validates :activity_id, presence: true
 
     belongs_to :user
-    belongs_to :activity
+    has_many :activies
     belongs_to :trail
 
     # has_one :activity

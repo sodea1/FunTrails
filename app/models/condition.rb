@@ -1,5 +1,5 @@
 class Condition < ApplicationRecord
     validates :name, presence: true
 
-    has_many :review_details
+    belongs_to :review_detail, optional: true
 end

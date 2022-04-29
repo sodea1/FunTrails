@@ -1956,9 +1956,10 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "bold"
       }, trail.route_type))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "tags-section"
-      }, trail.tags.map(function (tag) {
+      }, trail.tags.map(function (tag, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "tag"
+          className: "tag",
+          key: idx
         }, tag.description);
       })));
     }
@@ -2360,6 +2361,37 @@ var MarkerManager = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./frontend/util/reviews_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/reviews_api_util.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "fetchReview": () => (/* binding */ fetchReview)
+/* harmony export */ });
+var fetchReview = function fetchReview(reviewId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/reviews/".concat(reviewId)
+  });
+};
+var createReview = function createReview(review) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/reviews/',
+    data: {
+      review: review
+    }
+  });
+}; // test
+// $.ajax({ method: 'POST', url: '/api/reviews', data: { id: 50, rating: 4, description: 'love it', date_hiked: '2022-11-11', user_id: 5, trail_id: 3, activity_id: 4 } }).then(review => console.log(review.description));
 
 /***/ }),
 
@@ -43698,7 +43730,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_root__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/root */ "./frontend/components/root.jsx");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/trail_actions */ "./frontend/actions/trail_actions.js");
+/* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -43726,6 +43760,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // testing 
 
 
+  window.fetchReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.fetchReview;
   window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails;
   window.fetchTrail = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrail;
   window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.signup;

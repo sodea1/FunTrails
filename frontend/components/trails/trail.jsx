@@ -75,9 +75,9 @@ class Trail extends React.Component {
                 </section>
 
                 <section className='tags-section'>
-                    {trail.tags.map((tag) => {
+                    {trail.tags.map((tag, idx) => {
                         return(
-                            <span className='tag'>{tag.description}</span>
+                            <span className='tag' key={idx}>{tag.description}</span>
                         )
                     })}
                 </section>
