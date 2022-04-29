@@ -114,14 +114,43 @@
 .trail-body {
     width: 63%;
     height: 2000px;
-    // background-color: grey;
+    background-color: #f3f3f3;
 }
 
 .side-panel {
     width: 37%;
     height: 2000px;
     position: relative;
-    // background-color: #f3f3f3;
+    background-color: #f3f3f3;
 }
 
+.trail-description {
+    display: block;
+    font-size: 18px;
+    white-space: pre-wrap;
+    color: $text;
+    margin: 0px 24px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 24px 0px;
+    overflow-wrap: break-word;
+    line-height: 1.44;
+    opacity: 0.8;
+}
 
+.characteristics {
+    display: flex;
+    align-items: center;
+    // justify-content: left;
+    margin: 20px 20px 0px;
+}
+
+.characteristics > div > * {
+    width: 200px;
+    padding-bottom: 6px;
+}
+
+.characteristics > span {
+    font-size: 16px;
+    line-height: 1.38;
+    color: #414141;
+}

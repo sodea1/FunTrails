@@ -247,7 +247,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
           lng: longitude
         },
         zoom: 13,
-        mapTypeId: 'terrain'
+        mapTypeId: 'terrain',
+        disableDefaultUI: true,
+        zoomControl: true
       }; // create path referencing json coords
 
       var path = new google.maps.Polyline({
@@ -1884,18 +1886,18 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "header",
     value: function header() {
-      return this.props.trail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "head-loc"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.park_id ? this.props.trail.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "overflow"
-      }, this.props.trail.t_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
+      }, this.props.trail.t_name));
     }
   }, {
     key: "trailHeadInfo",
     value: function trailHeadInfo() {
       // const { trail } = this.props.trail;
       var urlString = 'url(' + splash_hiker1 + ')';
-      return this.props.trail ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width trail-img",
@@ -1934,20 +1936,39 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         src: window.star
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "reviews-agg"
-      }, "(# Reviews)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, this.props.trail.park_id, " (Park Name)")))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
+      }, "(# Reviews)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, this.props.trail.park_id, " (Park Name)"))));
+    }
+  }, {
+    key: "trailBodyInfo",
+    value: function trailBodyInfo() {
+      var trail = this.props.trail;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "trail-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "trail-description"
+      }, this.props.trail && this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "characteristics"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Length"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "bold"
+      }, trail.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Elevation gain"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "bold"
+      }, trail.elevation_gain)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Route Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "bold"
+      }, trail.route_type))));
     }
   }, {
     key: "render",
     value: function render() {
       // 1. trails null first render
       // 3. this.props now contains all trails which can be decomposed
+      // const { trail, trails } = this.props.trail ? this.props : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
         className: "trail-head"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex-between"
-      }, this.header(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      }, this.props.trail && this.header(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",
@@ -1959,13 +1980,11 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         src: window.search,
         width: "16px",
         height: "16px"
-      }))))), this.trailHeadInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }))))), this.props.trail && this.trailHeadInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar content-width"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "trail-body"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, this.props.trail && this.trailBodyInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, this.props.trail && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
         trail: this.props.trail,
@@ -1978,24 +1997,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 ;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trail); // map() {
-//     return (
-//         this.props.trail ?
-//             <MapContainer center={[this.props.trail.latitude, this.props.trail.longitude]} zoom={13} scrollWheelZoom={false} >
-//                 <TileLayer
-//                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-//                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//                 />
-//                 <Marker position={[this.props.trail.latitude, this.props.trail.longitude]}>
-//                     <Popup>
-//                         I am a pop-up!
-//                     </Popup>
-//                 </Marker>
-//             </MapContainer>
-//             :
-//             <div></div>
-//     )
-// }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trail);
 
 /***/ }),
 

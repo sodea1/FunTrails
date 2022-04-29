@@ -6,9 +6,11 @@ class Map extends React.Component {
     componentDidMount() {
         const { latitude, longitude } = this.props.trail;
         const mapOptions = {
-            center: { lat: latitude, lng: longitude }, 
+            center: { lat: latitude, lng: longitude },
             zoom: 13,
-            mapTypeId: 'terrain'
+            mapTypeId: 'terrain',
+            disableDefaultUI: true,
+            zoomControl: true
         };
 
         // create path referencing json coords
@@ -18,7 +20,7 @@ class Map extends React.Component {
             strokeColor: "#FF0000",
             strokeOpacity: 1.0,
             strokeWeight: 3
-        })
+        });
 
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.markerMgr = new MarkerManager(this.map);

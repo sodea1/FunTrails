@@ -8,6 +8,7 @@
 
 User.destroy_all
 Trail.destroy_all
+Tag.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -26,5 +27,25 @@ ten_valley = Trail.create!(t_name: 'Tennessee Beach and Pirates Cove via Coastal
 
 # park 1 = Mount Tamalpais
 # park 2 = marin headlands
+
+dogs = Tag.create!(description: 'Dogs on leash')
+wheelchair = Tag.create!(description: 'Wheelchair friendly')
+kids = Tag.create!(description: 'Kid friendly')
+stroller = Tag.create!(description: 'Stroller friendly')
+road_biking = Tag.create!(description: 'Road biking')
+walking = Tag.create!(description: 'Walking')
+running = Tag.create!(description: 'Running')
+paved = Tag.create!(description: 'Paved')
+river = Tag.create!(description: 'River')
+views = Tag.create!(description: 'Views')
+forest = Tag.create!(description: 'Forest')
+wildflowers = Tag.create!(description: 'Wildflowers')
+wildlife = Tag.create!(description: 'Wildlife')
+waterfall = Tag.create!(description: 'waterfall')
+birds = Tag.create!(description: 'Bird watching')
+trails = Tag.create!(description: 'Rails trails')
+camping = Tag.create!(description: 'camping')
+backpacking = Tag.create!(description: 'Backpacking')
+beach = Tag.create!(description: 'Beach')
 
 

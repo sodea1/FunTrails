@@ -14,7 +14,6 @@ class Trail extends React.Component {
 
     header() {
         return (
-            this.props.trail ?
                 <ul className='head-loc'>
                     <span>{this.props.trail.country}</span>
                     <span>›</span>
@@ -24,7 +23,6 @@ class Trail extends React.Component {
                     <span>›</span>
                     <span className='overflow'>{this.props.trail.t_name}</span>
                 </ul>
-            : <div></div>
         )
     }
 
@@ -32,40 +30,63 @@ class Trail extends React.Component {
         // const { trail } = this.props.trail;
         const urlString = 'url(' + splash_hiker1 + ')';
         return (
-            this.props.trail ?
-                <div className='flex-center'>
-                    <div className='content-width trail-img' style={{ backgroundImage: urlString }} >
-                        {/* <img src={window.splash_hiker1} className='content-width trail-img'/> */}
-                        <ul className='trail-title'>
-                            <li className='bold'>{this.props.trail.t_name}</li>
-                            <li className='flex'>
-                                <span className='descriptor-blue'>{this.props.trail.difficulty_level}</span>
-                                <div className='flex trail-stars'>
-                                    <img className="review-stars" key='1' src={window.star} />
-                                    <img className="review-stars" key='2' src={window.star} />
-                                    <img className="review-stars" key='3' src={window.star} />
-                                    <img className="review-stars" key='4' src={window.star} />
-                                    <img className="review-stars" key='5' src={window.star} />
-                                </div>
-                                <span className='reviews-agg'>(# Reviews)</span>
-                            </li>
-                            <li>{this.props.trail.park_id} (Park Name)</li>
-                        </ul>
+            <div className='flex-center'>
+                <div className='content-width trail-img' style={{ backgroundImage: urlString }} >
+                    {/* <img src={window.splash_hiker1} className='content-width trail-img'/> */}
+                    <ul className='trail-title'>
+                        <li className='bold'>{this.props.trail.t_name}</li>
+                        <li className='flex'>
+                            <span className='descriptor-blue'>{this.props.trail.difficulty_level}</span>
+                            <div className='flex trail-stars'>
+                                <img className="review-stars" key='1' src={window.star} />
+                                <img className="review-stars" key='2' src={window.star} />
+                                <img className="review-stars" key='3' src={window.star} />
+                                <img className="review-stars" key='4' src={window.star} />
+                                <img className="review-stars" key='5' src={window.star} />
+                            </div>
+                            <span className='reviews-agg'>(# Reviews)</span>
+                        </li>
+                        <li>{this.props.trail.park_id} (Park Name)</li>
+                    </ul>
+                </div>
+            </div>
+        )
+    }
+
+    trailBodyInfo() {
+
+        const { trail } = this.props;
+        return (
+            <div className='trail-body'>
+                <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
+                <div className='characteristics'>
+                    <div>
+                        <p>Length</p>
+                        <span className='bold'>{trail.length}</span>
                     </div>
-                </div>            
-            :
-            <div></div>
+                    <div>
+                        <p>Elevation gain</p>
+                        <span className='bold'>{trail.elevation_gain}</span>
+                    </div>
+                    <div>
+                        <p>Route Type</p>
+                        <span className='bold'>{trail.route_type}</span>
+                    </div>
+                </div>
+
+            </div>
         )
     }
  
     render() {
         // 1. trails null first render
         // 3. this.props now contains all trails which can be decomposed
+        // const { trail, trails } = this.props.trail ? this.props : null;
         return (
             <div className='grey'>
                 <header className='trail-head'>
                     <div className='flex-between'>
-                        {this.header()}
+                        {this.props.trail && this.header()}
                         <form className="show-search">
                             
                             <input
@@ -80,18 +101,16 @@ class Trail extends React.Component {
                     </div>
                 </header>
 
-                {this.trailHeadInfo()}
+                {this.props.trail && this.trailHeadInfo()}
                 <div className='green-bar content-width'>
                 </div>
 
                 <div className='content-width flex border-outer'>
-                    <div className='trail-body'>
-                        
-                    </div>
+                  
+                    {this.props.trail && this.trailBodyInfo()}
 
                     <div className='side-panel border-left-inner'>
                         {this.props.trail && <Map trail={this.props.trail} trails={this.props.trails}/>}
-                        
                     </div>
                 </div>
             </div>
@@ -100,31 +119,3 @@ class Trail extends React.Component {
 };
 
 export default Trail;
-
-
-
-
-
-
-
-    // map() {
-    //     return (
-    //         this.props.trail ?
-    //             <MapContainer center={[this.props.trail.latitude, this.props.trail.longitude]} zoom={13} scrollWheelZoom={false} >
-
-    //                 <TileLayer
-    //                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    //                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    //                 />
-
-    //                 <Marker position={[this.props.trail.latitude, this.props.trail.longitude]}>
-    //                     <Popup>
-    //                         I am a pop-up!
-    //                     </Popup>
-    //                 </Marker>
-
-    //             </MapContainer>
-    //             :
-    //             <div></div>
-    //     )
-    // }

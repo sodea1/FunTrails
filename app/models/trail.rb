@@ -3,5 +3,12 @@ class Trail < ApplicationRecord
     validates :t_name, presence: true, uniqueness: true
 
     
-    
+    has_many :trail_tags
+        # primary_key: :id,
+        # foreign_key: :trail_id,
+        # class_name: :TrailTag
+
+    has_many :tags,
+        through: :trail_tags,
+        source: :tag
 end

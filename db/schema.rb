@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_25_174619) do
+ActiveRecord::Schema.define(version: 2022_04_29_010047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "tags", force: :cascade do |t|
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trail_tags", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "trail_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "trails", force: :cascade do |t|
     t.string "t_name", null: false
