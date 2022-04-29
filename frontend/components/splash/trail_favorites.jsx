@@ -13,7 +13,7 @@ class TrailFavorites extends React.Component {
                 <div className="tiles-container">
                     {this.props.trails.map((trail) => (
 
-                        <Link to={`/trails/${trail.id}`} className="tile">
+                        <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
                             <img className="tile-image" src={window.hiking_card}></img>
 
                             <div className="tile-content">

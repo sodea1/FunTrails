@@ -1780,7 +1780,8 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
       }, this.props.trails.map(function (trail) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
           to: "/trails/".concat(trail.id),
-          className: "tile"
+          className: "tile",
+          key: trail.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           className: "tile-image",
           src: window.hiking_card

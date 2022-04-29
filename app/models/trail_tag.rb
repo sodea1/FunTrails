@@ -6,6 +6,6 @@ class TrailTag < ApplicationRecord
         class_name: :Trail
 
     belongs_to :tag,
-        foreign_key: :trail_id,
+        foreign_key: :tag_id,
         class_name: :Tag
 end
