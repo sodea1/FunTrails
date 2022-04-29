@@ -1866,7 +1866,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Trail = /*#__PURE__*/function (_React$Component) {
   _inherits(Trail, _React$Component);
 
@@ -1947,7 +1946,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "trail-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "trail-description"
-      }, this.props.trail && this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, this.props.trail && this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "characteristics"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Length"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "bold"
@@ -1955,7 +1954,13 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "bold"
       }, trail.elevation_gain)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Route Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "bold"
-      }, trail.route_type))));
+      }, trail.route_type))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        className: "tags-section"
+      }, trail.tags.map(function (tag) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "tag"
+        }, tag.description);
+      })));
     }
   }, {
     key: "render",

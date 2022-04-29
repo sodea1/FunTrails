@@ -9,6 +9,7 @@ class Api::TrailsController < ApplicationController
     end
 
     def index
+        # include associations with .includes
         @trails = Trail.all.includes(:tags)
         render :index
     end

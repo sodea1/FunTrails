@@ -1,6 +1,5 @@
 import React from 'react';
 import Map from '../map/map';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 class Trail extends React.Component {
     constructor(props) {
@@ -59,7 +58,8 @@ class Trail extends React.Component {
         return (
             <div className='trail-body'>
                 <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
-                <div className='characteristics'>
+
+                <section className='characteristics'>
                     <div>
                         <p>Length</p>
                         <span className='bold'>{trail.length}</span>
@@ -72,7 +72,15 @@ class Trail extends React.Component {
                         <p>Route Type</p>
                         <span className='bold'>{trail.route_type}</span>
                     </div>
-                </div>
+                </section>
+
+                <section className='tags-section'>
+                    {trail.tags.map((tag) => {
+                        return(
+                            <span className='tag'>{tag.description}</span>
+                        )
+                    })}
+                </section>
 
             </div>
         )
@@ -105,13 +113,17 @@ class Trail extends React.Component {
                 <div className='green-bar content-width'>
                 </div>
 
+                {/* Page Container */}
                 <div className='content-width flex border-outer'>
-                  
+
+                    {/* Page Left */}
                     {this.props.trail && this.trailBodyInfo()}
 
+                    {/* Right Side Panel */}
                     <div className='side-panel border-left-inner'>
                         {this.props.trail && <Map trail={this.props.trail} trails={this.props.trails}/>}
                     </div>
+
                 </div>
             </div>
         );
