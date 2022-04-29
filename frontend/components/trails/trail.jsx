@@ -85,6 +85,19 @@ class Trail extends React.Component {
             </div>
         )
     }
+
+    sidePanel() {
+        return (
+            <div className='side-panel border-left-inner'>
+
+                <Map trail={this.props.trail} trails={this.props.trails} />
+
+                <h3 className='nearby bold'>Nearby Trails</h3>
+
+            </div>
+            
+        )
+    }
  
     render() {
         // 1. trails null first render
@@ -120,9 +133,7 @@ class Trail extends React.Component {
                     {this.props.trail && this.trailBodyInfo()}
 
                     {/* Right Side Panel */}
-                    <div className='side-panel border-left-inner'>
-                        {this.props.trail && <Map trail={this.props.trail} trails={this.props.trails}/>}
-                    </div>
+                    {this.props.trail && this.sidePanel()}
 
                 </div>
             </div>

@@ -5,11 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 User.destroy_all
 Trail.destroy_all
 Tag.destroy_all
 TrailTag.destroy_all
+Review.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -17,6 +19,11 @@ end
 
 # sample user DON'T FORGET ID OTHERWISE 'undefined' keys under entities > users
 demo = User.create(first_name: 'Steph', last_name: 'Curry', email: 'chefcurry@demo.com', password: 'godubs', bio: 'I am the demo user!')
+fake_user_1 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I love long walks')
+fake_user_2 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I run like the wind')
+fake_user_3 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'My dog loves hiking with me!!')
+fake_user_4 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'Looking for my next trail!')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I\'m from California and love the outdoors')
 
 dipsea = Trail.create!(t_name: 'Dipsea Trail, Steep Ravine Trail, and Matt Davis Loop', longitude: -122.63602, latitude: 37.89665, length: "7.5 mi", difficulty_level: 'moderate', elevation_gain: "1,689 ft", route_type: 'Loop', estimated_time: 'Est. 3h 40m', description: 'Discover this 7.5-mile loop trail near Mill Valley, California. Generally considered a moderately challenging route, it takes an average of 3 h 40 min to complete. This is a very popular area for hiking and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
 
@@ -96,3 +103,9 @@ tag104 = TrailTag.create!(tag_id: 11, trail_id: 4)
 tag114 = TrailTag.create!(tag_id: 17, trail_id: 4)
 tag124 = TrailTag.create!(tag_id: 18, trail_id: 4)
 tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
+
+review_1 = Review.create!(user_id: 1, trail_id: 1, photo_id: 1, rating: 4, description: 'So fantastic', date_hiked: '2022-11-11')
+review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, rating: 4, description: 'My dog loved this hike', date_hiked: '2022-11-11')
+review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
+review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, rating: 4, description: 'So beautiful!', date_hiked: '2022-11-11')
+review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')

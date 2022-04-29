@@ -8,4 +8,6 @@ class Trail < ApplicationRecord
     has_many :tags,
         through: :trail_tags,
         source: :tag
+
+    has_many :reviews
 end

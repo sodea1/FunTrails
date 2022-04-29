@@ -1963,6 +1963,18 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       })));
     }
   }, {
+    key: "sidePanel",
+    value: function sidePanel() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "side-panel border-left-inner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        trail: this.props.trail,
+        trails: this.props.trails
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
+        className: "nearby bold"
+      }, "Nearby Trails"));
+    }
+  }, {
     key: "render",
     value: function render() {
       // 1. trails null first render
@@ -1990,12 +2002,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "green-bar content-width"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
-      }, this.props.trail && this.trailBodyInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "side-panel border-left-inner"
-      }, this.props.trail && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        trail: this.props.trail,
-        trails: this.props.trails
-      }))));
+      }, this.props.trail && this.trailBodyInfo(), this.props.trail && this.sidePanel()));
     }
   }]);
 
