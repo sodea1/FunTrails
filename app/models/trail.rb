@@ -4,9 +4,6 @@ class Trail < ApplicationRecord
 
     
     has_many :trail_tags
-        # primary_key: :id,
-        # foreign_key: :trail_id,
-        # class_name: :TrailTag
 
     has_many :tags,
         through: :trail_tags,

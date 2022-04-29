@@ -9,6 +9,7 @@
 User.destroy_all
 Trail.destroy_all
 Tag.destroy_all
+TrailTag.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -48,4 +49,15 @@ camping = Tag.create!(description: 'camping')
 backpacking = Tag.create!(description: 'Backpacking')
 beach = Tag.create!(description: 'Beach')
 
-
+tag1 = Tag.create!(tag_id: 1, trail_id: 1)
+tag1 = Tag.create!(tag_id: 3, trail_id: 1)
+tag1 = Tag.create!(tag_id: 4, trail_id: 1)
+tag1 = Tag.create!(tag_id: 2, trail_id: 1)
+tag1 = Tag.create!(tag_id: 5, trail_id: 1)
+tag1 = Tag.create!(tag_id: 6, trail_id: 1)
+tag1 = Tag.create!(tag_id: 1, trail_id: 1)
+tag1 = Tag.create!(tag_id: 7, trail_id: 1)
+tag1 = Tag.create!(tag_id: 19, trail_id: 1)
+tag1 = Tag.create!(tag_id: 11, trail_id: 1)
+tag1 = Tag.create!(tag_id: 26, trail_id: 1)
+tag1 = Tag.create!(tag_id: 18, trail_id: 1)

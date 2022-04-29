@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_010047) do
+ActiveRecord::Schema.define(version: 2022_04_29_012743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_04_29_010047) do
     t.integer "trail_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["trail_id", "tag_id"], name: "index_trail_tags_on_trail_id_and_tag_id", unique: true
   end
 
   create_table "trails", force: :cascade do |t|
