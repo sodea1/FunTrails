@@ -8,9 +8,7 @@ class Review < ApplicationRecord
 
     belongs_to :trail
 
-    has_many :activities,
-        through: :review_details,
-        source: :activity
+    has_one :activity
 
     has_many :conditions,
         through: :review_details,

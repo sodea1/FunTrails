@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_160453) do
+ActiveRecord::Schema.define(version: 2022_04_29_180706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,10 @@ ActiveRecord::Schema.define(version: 2022_04_29_160453) do
 
   create_table "review_details", force: :cascade do |t|
     t.integer "review_id", null: false
-    t.integer "activity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "condition_id", null: false
     t.index ["condition_id", "review_id"], name: "index_review_details_on_condition_id_and_review_id", unique: true
-    t.index ["review_id", "activity_id"], name: "index_review_details_on_review_id_and_activity_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -46,6 +44,8 @@ ActiveRecord::Schema.define(version: 2022_04_29_160453) do
     t.date "date_hiked", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "activity_id", null: false
+    t.index ["activity_id"], name: "index_reviews_on_activity_id"
     t.index ["photo_id", "trail_id"], name: "index_reviews_on_photo_id_and_trail_id", unique: true
     t.index ["photo_id"], name: "index_reviews_on_photo_id"
     t.index ["trail_id"], name: "index_reviews_on_trail_id"
