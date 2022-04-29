@@ -1,13 +1,16 @@
 class Api::ReviewsController < ApplicationController
     def show
-        # debugger
         @review = Review.find_by(id: params[:id])
-        render :show
+        debugger
+        if @review
+            render :show
+        else
+            render json: @review.errors.full_messages, status: 404
+        end
     end
 
     def create
         @review = Review.new(review_params)
-        debugger
         if @review.save
             render :show
         else
@@ -30,6 +33,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:id, :rating, :description, :date_hiked, :user_id, :activity_id, :trail_id)
+        params.require(:review).permit(:id, :user_id, :trail_id, :photo_id, :rating, :description, :date_hiked, :activity_id)
     end
 end

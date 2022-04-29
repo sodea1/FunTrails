@@ -264,12 +264,11 @@ var Map = /*#__PURE__*/function (_React$Component) {
       this.markerMgr.updateMarkers(this.props.trails); // add trail to map
 
       path.setMap(this.map); // elevation
-
-      var elevation = new google.maps.ElevationService();
-      elevation.getElevationAlongPath({
-        path: path,
-        samples: 200
-      });
+      // const elevation = new google.maps.ElevationService();
+      // elevation.getElevationAlongPath({
+      //     path: path,
+      //     samples: 200
+      // })
     }
   }, {
     key: "componentDidUpdate",
@@ -2373,15 +2372,8 @@ var MarkerManager = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createReview": () => (/* binding */ createReview),
-/* harmony export */   "fetchReview": () => (/* binding */ fetchReview)
+/* harmony export */   "createReview": () => (/* binding */ createReview)
 /* harmony export */ });
-var fetchReview = function fetchReview(reviewId) {
-  return $.ajax({
-    method: 'GET',
-    url: "/api/reviews/".concat(reviewId)
-  });
-};
 var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
@@ -43731,7 +43723,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/trail_actions */ "./frontend/actions/trail_actions.js");
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
+/* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/trails_api_util */ "./frontend/util/trails_api_util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -43761,8 +43755,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   window.fetchReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.fetchReview;
-  window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails;
-  window.fetchTrail = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrail;
+  window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails; // window.fetchTrail = fetchTrail;
+
+  window.fetchTrail = _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__.fetchTrail;
   window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.signup;
   window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.login;
   window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__.logout;

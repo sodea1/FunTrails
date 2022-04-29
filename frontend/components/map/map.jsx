@@ -31,12 +31,12 @@ class Map extends React.Component {
 
 
         // elevation
-        const elevation = new google.maps.ElevationService();
+        // const elevation = new google.maps.ElevationService();
 
-        elevation.getElevationAlongPath({
-            path: path,
-            samples: 200
-        })
+        // elevation.getElevationAlongPath({
+        //     path: path,
+        //     samples: 200
+        // })
 
 
 
