@@ -12,6 +12,9 @@ Trail.destroy_all
 Tag.destroy_all
 TrailTag.destroy_all
 Review.destroy_all
+ReviewDetail.destroy_all
+Activity.destroy_all
+Condition.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -109,3 +112,53 @@ review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, rating: 4, descr
 review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
 review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, rating: 4, description: 'So beautiful!', date_hiked: '2022-11-11')
 review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')
+
+review_detail1 = ReviewDetail.create!(review_id: 1, condition_id: 2, activity_id: 2)
+review_detail2 = ReviewDetail.create!(review_id: 1, condition_id: 3, activity_id: 3)
+review_detail3 = ReviewDetail.create!(review_id: 1, condition_id: 4, activity_id: 4)
+review_detail4 = ReviewDetail.create!(review_id: 1, condition_id: 5, activity_id: 5)
+review_detail5 = ReviewDetail.create!(review_id: 1, condition_id: 6, activity_id: 6)
+review_detail6 = ReviewDetail.create!(review_id: 1, condition_id: 7, activity_id: 7)
+review_detail7 = ReviewDetail.create!(review_id: 1, condition_id: 8, activity_id: 8)
+review_detail8 = ReviewDetail.create!(review_id: 1, condition_id: 9, activity_id: 9)
+review_detail9 = ReviewDetail.create!(review_id: 1, condition_id: 11, activity_id: 10)
+
+act1 = Activity.create!(name: 'Backpacking')
+act2 = Activity.create!(name: 'Bird watching')
+act3 = Activity.create!(name: 'Bike touring')
+act4 = Activity.create!(name: 'Camping')
+act5 = Activity.create!(name: 'Cross-country skiing')
+act6 = Activity.create!(name: 'Fishing')
+act7 = Activity.create!(name: 'Hiking')
+act8 = Activity.create!(name: 'Horseback riding')
+act9 = Activity.create!(name: 'Mountain biking')
+act10 = Activity.create!(name: 'OVH/Off-road driving')
+act11 = Activity.create!(name: 'Paddle sports')
+act12 = Activity.create!(name: 'Road biking')
+act13 = Activity.create!(name: 'Rock climbing')
+act14 = Activity.create!(name: 'Scenic driving')
+act15 = Activity.create!(name: 'Snowshoeing')
+act16 = Activity.create!(name: 'Skiing')
+act17 = Activity.create!(name: 'Running')
+act18 = Activity.create!(name: 'Via ferrata')
+act19 = Activity.create!(name: 'Walking')
+
+condition1 = Condition.create!(name: 'Great!')
+condition2 = Condition.create!(name: 'Blowdown')
+condition3 = Condition.create!(name: 'Bridge out')
+condition4 = Condition.create!(name: 'Bugs')
+condition5 = Condition.create!(name: 'Closed')
+condition6 = Condition.create!(name: 'Fee')
+condition7 = Condition.create!(name: 'Flooded')
+condition8 = Condition.create!(name: 'Icy')
+condition9 = Condition.create!(name: 'Muddy')
+condition10 = Condition.create!(name: 'No shade')
+condition12 = Condition.create!(name: 'Off trail')
+condition13 = Condition.create!(name: 'Overgrown')
+condition14 = Condition.create!(name: 'Private property')
+condition15 = Condition.create!(name: 'Rocky')
+condition16 = Condition.create!(name: 'Scramble')
+condition17 = Condition.create!(name: 'Washed out')
+condition18 = Condition.create!(name: 'Snow')
+
+
