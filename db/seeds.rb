@@ -12,6 +12,8 @@ Trail.destroy_all
 Tag.destroy_all
 TrailTag.destroy_all
 Review.destroy_all
+Condition.destroy_all  
+ReviewCondition.destroy_all
 
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
@@ -124,29 +126,46 @@ tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
 # activity_18 = 'Via ferrata'
 # activity_19 = 'Walking'
 
-review_1 = Review.create!(user_id: 1, trail_id: 1, photo_id: 1, activity: 'Hiking', conditions: [], rating: 4, description: 'So fantastic', date_hiked: '2022-11-11')
-review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, activity: 'Hiking', conditions: [], rating: 4, description: 'My dog loved this hike', date_hiked: '2022-11-11')
-review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, activity: 'Hiking', conditions: [], rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
-review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, activity: 'Hiking', conditions: [], rating: 4, description: 'So beautiful!', date_hiked: '2022-11-11')
-review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, activity: 'Hiking', conditions: [], rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')
+review_1 = Review.create!(user_id: 1, trail_id: 1, photo_id: 1, activity: 'Hiking', rating: 4, description: 'So fantastic', date_hiked: '2022-11-11')
+review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, activity: 'Hiking', rating: 4, description: 'My dog loved this hike', date_hiked: '2022-11-11')
+review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, activity: 'Hiking', rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
+review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, activity: 'Hiking', rating: 4, description: 'So beautiful!', date_hiked: '2022-11-11')
+review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, activity: 'Hiking', rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')
 
 
-# condition1 = Condition.create!(name: 'Great!')
-# condition2 = Condition.create!(name: 'Blowdown')
-# condition3 = Condition.create!(name: 'Bridge out')
-# condition4 = Condition.create!(name: 'Bugs')
-# condition5 = Condition.create!(name: 'Closed')
-# condition6 = Condition.create!(name: 'Fee')
-# condition7 = Condition.create!(name: 'Flooded')
-# condition8 = Condition.create!(name: 'Icy')
-# condition9 = Condition.create!(name: 'Muddy')
-# condition10 = Condition.create!(name: 'No shade')
-# condition12 = Condition.create!(name: 'Off trail')
-# condition13 = Condition.create!(name: 'Overgrown')
-# condition14 = Condition.create!(name: 'Private property')
-# condition15 = Condition.create!(name: 'Rocky')
-# condition16 = Condition.create!(name: 'Scramble')
-# condition17 = Condition.create!(name: 'Washed out')
-# condition18 = Condition.create!(name: 'Snow')
+condition1 = Condition.create!(name: 'Great!')
+condition2 = Condition.create!(name: 'Blowdown')
+condition3 = Condition.create!(name: 'Bridge out')
+condition4 = Condition.create!(name: 'Bugs')
+condition5 = Condition.create!(name: 'Closed')
+condition6 = Condition.create!(name: 'Fee')
+condition7 = Condition.create!(name: 'Flooded')
+condition8 = Condition.create!(name: 'Icy')
+condition9 = Condition.create!(name: 'Muddy')
+condition10 = Condition.create!(name: 'No shade')
+condition12 = Condition.create!(name: 'Off trail')
+condition13 = Condition.create!(name: 'Overgrown')
+condition14 = Condition.create!(name: 'Private property')
+condition15 = Condition.create!(name: 'Rocky')
+condition16 = Condition.create!(name: 'Scramble')
+condition17 = Condition.create!(name: 'Washed out')
+condition18 = Condition.create!(name: 'Snow')
 
-
+rc_1 = ReviewCondition.create!(review_id: 1, condition_id: 10)
+rc_2 = ReviewCondition.create!(review_id: 1, condition_id: 15)
+rc_3 = ReviewCondition.create!(review_id: 1, condition_id: 1)
+rc_4 = ReviewCondition.create!(review_id: 2, condition_id: 12)
+rc_5 = ReviewCondition.create!(review_id: 2, condition_id: 13)
+rc_6 = ReviewCondition.create!(review_id: 3, condition_id: 9)
+rc_7 = ReviewCondition.create!(review_id: 4, condition_id: 1)
+rc_8 = ReviewCondition.create!(review_id: 5, condition_id: 1)
+rc_9 = ReviewCondition.create!(review_id: 5, condition_id: 4)
+# rc_10 = 
+# rc_11 = 
+# rc_12 = 
+# rc_13 = 
+# rc_14 = 
+# rc_15 = 
+# rc_16 = 
+# rc_17 = 
+# rc_18 = 

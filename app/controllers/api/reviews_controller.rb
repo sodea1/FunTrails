@@ -10,11 +10,11 @@ class Api::ReviewsController < ApplicationController
     # end
     def create
         @review = Review.new(review_params)
-        debugger
         if @review.save
             render :show
         else
-            render json: ['Invalid review'], status: 401
+
+            render json: 'Invalid review', status: 401
         end
     end
 
@@ -33,6 +33,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:id, :user_id, :trail_id, :photo_id, :rating, :description, :date_hiked, :activity, :conditions)
+        params.require(:review).permit(:id, :user_id, :trail_id, :photo_id, :rating, :description, :date_hiked, :activity)
     end
 end
