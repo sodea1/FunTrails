@@ -1,8 +1,7 @@
 class Api::TrailsController < ApplicationController
     def show
         @trail = Trail.find_by(id: params[:id])
-        if @trail 
-            # debugger
+        if @trail
             render :show
         else
             render json: ['Trail does not exist'], status: 404

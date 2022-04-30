@@ -36,7 +36,6 @@ var getTrailReviews = function getTrailReviews(reviews) {
 
 var fetchTrailReviews = function fetchTrailReviews(trailId) {
   return function (dispatch) {
-    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrailReviews(trailId).then(function (reviews) {
       return dispatch(getTrailReviews(reviews));
     });
@@ -653,41 +652,48 @@ var Review = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Review);
 
-  function Review(props) {
+  function Review() {
     _classCallCheck(this, Review);
 
-    return _super.call(this, props);
+    return _super.apply(this, arguments);
   }
 
   _createClass(Review, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrailReviews(this.props.trailId);
-      debugger;
+    }
+  }, {
+    key: "displayStars",
+    value: function displayStars(review) {
+      var numYellow = review.rating;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-stars"
+      }, [1, 2, 3, 4, 5].map(function (num) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          className: "star",
+          key: num,
+          src: num <= numYellow ? window.star : window.grey_star
+        });
+      }));
     }
   }, {
     key: "reviewContainer",
     value: function reviewContainer() {
+      var _this = this;
+
       var reviews = this.props.reviews;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-container"
       }, reviews.map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          key: rev.id,
           className: "review-block"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-header"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "flex"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "rev-name"
-        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "rev-stars"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "rev-stars"
-        }, rev.date_hiked))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "flex"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "rev-name bold"
+        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _this.displayStars(rev), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, rev.date_hiked))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-activity"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rev.conditions.map(function (condition) {
           /*#__PURE__*/
@@ -702,7 +708,6 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       return this.props.reviews && this.reviewContainer();
     }
   }]);
@@ -1953,23 +1958,23 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "descriptor"
         }, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-stars",
+          className: "star",
           key: "1",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-stars",
+          className: "star",
           key: "2",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-stars",
+          className: "star",
           key: "3",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-stars",
+          className: "star",
           key: "4",
           src: window.star
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-stars",
+          className: "star",
           key: "5",
           src: window.star
         })))));
@@ -2041,7 +2046,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
-      debugger;
     }
   }, {
     key: "header",
@@ -2055,7 +2059,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailTitle",
     value: function trailTitle() {
-      // const { trail } = this.props.trail;
+      var trail = this.props.trail.trail;
       var urlString = 'url(' + splash_hiker1 + ')';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex-center"
@@ -2075,23 +2079,23 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, this.props.trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex trail-stars"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "review-stars",
+        className: "star",
         key: "1",
         src: window.star
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "review-stars",
+        className: "star",
         key: "2",
         src: window.star
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "review-stars",
+        className: "star",
         key: "3",
         src: window.star
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "review-stars",
+        className: "star",
         key: "4",
         src: window.star
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "review-stars",
+        className: "star",
         key: "5",
         src: window.star
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -2103,7 +2107,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function trailBody() {
       var trail = this.props.trail;
       var trailId = parseInt(this.props.match.params.id);
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2143,7 +2146,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       // 1. trails null first render
       // 3. this.props now contains all trails which can be decomposed
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
@@ -2296,7 +2298,6 @@ var reviewsReducer = function reviewsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.review.id, action.review));
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.GET_TRAIL_REVIEWS:
-      debugger;
       return Object.assign({}, state, action.reviews);
 
     default:

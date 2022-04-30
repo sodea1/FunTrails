@@ -7,7 +7,6 @@ const reviewsReducer = (state = {}, action) => {
         case RECEIVE_REVIEW:
             return Object.assign({}, state, {[action.review.id]: action.review} );
         case GET_TRAIL_REVIEWS:
-            debugger;
             return Object.assign({}, state, action.reviews);
         default:
             return state;

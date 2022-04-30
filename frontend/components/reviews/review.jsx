@@ -1,32 +1,37 @@
 import React from 'react';
 
 class Review extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         this.props.fetchTrailReviews(this.props.trailId);
-        debugger;
+    }
+
+    displayStars(review) {
+        const numYellow = review.rating;
+        return (
+            <div className='rev-stars'>
+                {[1, 2, 3, 4, 5].map(num => <img className="star" key={num} src={num <= numYellow ? window.star : window.grey_star} />)}
+            </div>
+        )
     }
 
     reviewContainer() {
         const { reviews } = this.props;
-        debugger;
+
         return (
             <div className='review-container'>
                 {reviews.map((rev) => {
                     return (
-                        <div className='review-block'>
+                        <div key={rev.id} className='review-block'>
                             <section className='review-header'>
-                                <div className='flex'>
-                                    <span className='rev-name'>{rev.user.first_name} {rev.user.last_name}</span>
+                                <div>
+                                    <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
                                     <div>
-                                        <span className='rev-stars'></span>
-                                        <span className='rev-stars'>{rev.date_hiked}</span>
+                                        {this.displayStars(rev)}
+                                        <span>{rev.date_hiked}</span>
                                     </div>
                                 </div>
 
-                                <div className='flex'>
+                                <div>
                                     <span className='rev-activity'></span>
                                     <div>
                                         {rev.conditions.map((condition) => {
@@ -49,7 +54,6 @@ class Review extends React.Component {
     }
 
     render() {
-        debugger;
         return (
             this.props.reviews && this.reviewContainer()
         )

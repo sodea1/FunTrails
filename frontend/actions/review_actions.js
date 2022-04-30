@@ -20,7 +20,6 @@ const getTrailReviews = reviews => {
 }
 
 export const fetchTrailReviews = (trailId) => dispatch => {
-    debugger;
     return (
         ReviewApiUtil.fetchTrailReviews(trailId)
             .then((reviews) => dispatch(getTrailReviews(reviews)))

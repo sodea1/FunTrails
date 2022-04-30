@@ -10,7 +10,6 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
-        debugger;
     }
 
     header() {
@@ -28,7 +27,7 @@ class Trail extends React.Component {
     }
 
     trailTitle() {
-        // const { trail } = this.props.trail;
+        const { trail } = this.props.trail;
         const urlString = 'url(' + splash_hiker1 + ')';
         return (
             <div className='flex-center'>
@@ -39,11 +38,11 @@ class Trail extends React.Component {
                         <li className='flex'>
                             <span className='descriptor-blue'>{this.props.trail.difficulty_level}</span>
                             <div className='flex trail-stars'>
-                                <img className="review-stars" key='1' src={window.star} />
-                                <img className="review-stars" key='2' src={window.star} />
-                                <img className="review-stars" key='3' src={window.star} />
-                                <img className="review-stars" key='4' src={window.star} />
-                                <img className="review-stars" key='5' src={window.star} />
+                                <img className="star" key='1' src={window.star} />
+                                <img className="star" key='2' src={window.star} />
+                                <img className="star" key='3' src={window.star} />
+                                <img className="star" key='4' src={window.star} />
+                                <img className="star" key='5' src={window.star} />
                             </div>
                             <span className='reviews-agg'>(# Reviews)</span>
                         </li>
@@ -57,7 +56,6 @@ class Trail extends React.Component {
     trailBody() {
         const { trail } = this.props;
         const trailId = parseInt(this.props.match.params.id);
-        debugger;
         return (
             <div className='content-width flex border-outer'>
                 <div className='trail-body'>
@@ -104,7 +102,6 @@ class Trail extends React.Component {
     render() {
         // 1. trails null first render
         // 3. this.props now contains all trails which can be decomposed
-        debugger;
         return (
             <div className='grey'>
 
