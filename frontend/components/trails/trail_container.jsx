@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchTrails: () => dispatch(fetchTrails()),
-    fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
+    // fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
     fetchTrailReviews: (trailId) => dispatch(fetchTrailReviews(trailId))
 });
 

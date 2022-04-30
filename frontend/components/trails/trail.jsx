@@ -1,5 +1,6 @@
 import React from 'react';
 import Map from '../map/map';
+import Review from '../reviews/review';
 
 class Trail extends React.Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
-        this.props.fetchTrailReviews();
+        this.props.fetchTrailReviews(this.props.match.params.id);
     }
 
     header() {
@@ -136,7 +137,7 @@ class Trail extends React.Component {
 
 {/* REVIEWS HERE */}
                     {this.props.reviews && <Review reviews={this.props.reviews}/>}
-                    
+
 {/* MAP & NEARBY TRAILS HERE */}
                     {/* Right Side Panel */}
                     {this.props.trail && this.sidePanel()}
