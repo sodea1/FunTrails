@@ -8,9 +8,26 @@ class Review extends React.Component {
     displayStars(review) {
         const numYellow = review.rating;
         return (
-            <div className='rev-stars'>
+            <span className='rev-stars'>
                 {[1, 2, 3, 4, 5].map(num => <img className="star" key={num} src={num <= numYellow ? window.star : window.grey_star} />)}
-            </div>
+            </span>
+        )
+    }
+
+    displayConditions(review) {
+        const count = review.conditions.length;
+        debugger
+        // if (count === 0) return <div></div>;
+        return (
+                <div className='rev-conditions'>
+                    {[...Array(count - 1).keys()].map(num => {
+                        debugger;
+                        return (
+                            <span key={num} className='tag'>{review.conditions[num + 1].name}</span>
+                        )
+                    })}
+                </div>
+                
         )
     }
 
@@ -24,29 +41,31 @@ class Review extends React.Component {
                         <div key={rev.id} className='review-block'>
                             <section className='review-header'>
                                 <div>
-                                    <div>
+                                    <div className='flex'>
                                         <img src={window.user_default}  className='default-image'/>
-                                        <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
+                                        <div className='rev-info'>
+                                            <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
+                                            <div>
+                                                {this.displayStars(rev)}
+                                                <span className='date-hiked'>{rev.date_hiked}</span>
+                                            </div>
+                                                
+                                        </div>
                                     </div>
-                                    <div>
-                                        {this.displayStars(rev)}
-                                        <span>{rev.date_hiked}</span>
-                                    </div>
+                                    
+                                   
                                 </div>
 
-                                <div>
-                                    <span className='rev-activity'></span>
-                                    <div>
-                                        {rev.conditions.map((condition) => {
-                                            <span className='tag'>{condition.name}</span>
-                                        })}
-                                    </div>
+                                <div className='rev-tags'>
+                                    <span className='tag'>{rev.activity}</span>
+                                    {this.displayConditions(rev)}
+                                    
                                 </div>
 
                             </section>
 
                             <section className='review-body'>
-                                <p>{rev.description}</p>
+                                <span className='rev-description'>{rev.description}</span>
                             </section>
                         </div>
                     )
