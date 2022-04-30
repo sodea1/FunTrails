@@ -24,7 +24,10 @@ class Review extends React.Component {
                         <div key={rev.id} className='review-block'>
                             <section className='review-header'>
                                 <div>
-                                    <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
+                                    <div>
+                                        <img src={window.user_default}  className='default-image'/>
+                                        <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
+                                    </div>
                                     <div>
                                         {this.displayStars(rev)}
                                         <span>{rev.date_hiked}</span>
