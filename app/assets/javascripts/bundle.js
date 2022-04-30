@@ -661,9 +661,35 @@ var Review = /*#__PURE__*/function (_React$Component) {
   _createClass(Review, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-        className: "bold"
-      }, "WE DID IT BABY");
+      debugger;
+      var reviews = this.props.reviews;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, reviews.map(function (rev) {
+        /*#__PURE__*/
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "review-block"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+          className: "review-header"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "flex"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "rev-name"
+        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "rev-stars"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "rev-stars"
+        }, rev.date_hiked))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "flex"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "rev-activity"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rev.conditions.map(function (conditon) {
+          /*#__PURE__*/
+          react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+            className: "tag"
+          }, condition.name);
+        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+          className: "review-body"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, rev.description)));
+      }));
     }
   }]);
 
@@ -2059,14 +2085,18 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, "(# Reviews)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, this.props.trail.park_id, " (Park Name)"))));
     }
   }, {
-    key: "trailBodyInfo",
-    value: function trailBodyInfo() {
-      var trail = this.props.trail;
+    key: "trailBody",
+    value: function trailBody() {
+      var _this$props = this.props,
+          trail = _this$props.trail,
+          reviews = _this$props.reviews;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "content-width flex border-outer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "trail-description"
-      }, this.props.trail && this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+      }, this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "characteristics"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Length"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "bold"
@@ -2081,26 +2111,65 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      })));
-    }
-  }, {
-    key: "sidePanel",
-    value: function sidePanel() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
         trail: this.props.trail,
         trails: this.props.trails
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "nearby bold"
-      }, "Nearby Trails"));
+      }, "Nearby Trails")));
+    } // trailBodyInfo() {
+    //     const { trail } = this.props;
+    //     return (
+    //         <div className='trail-body'>
+    //             <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
+    //             <section className='characteristics'>
+    //                 <div>
+    //                     <p>Length</p>
+    //                     <span className='bold'>{trail.length}</span>
+    //                 </div>
+    //                 <div>
+    //                     <p>Elevation gain</p>
+    //                     <span className='bold'>{trail.elevation_gain}</span>
+    //                 </div>
+    //                 <div>
+    //                     <p>Route Type</p>
+    //                     <span className='bold'>{trail.route_type}</span>
+    //                 </div>
+    //             </section>
+    //             <section className='tags-section'>
+    //                 {trail.tags.map((tag, idx) => {
+    //                     return(
+    //                         <span className='tag' key={idx}>{tag.description}</span>
+    //                     )
+    //                 })}
+    //             </section>
+    //         </div>
+    //     )
+    // }
+    // sidePanel() {
+    //     return (
+    //         <div className='side-panel border-left-inner'>
+    //             <Map trail={this.props.trail} trails={this.props.trails} />
+    //             <h3 className='nearby bold'>Nearby Trails</h3>
+    //         </div>
+    //     )
+    // }
+
+  }, {
+    key: "reviews",
+    value: function reviews() {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        reviews: this.props.reviews
+      });
     }
   }, {
     key: "render",
     value: function render() {
       // 1. trails null first render
       // 3. this.props now contains all trails which can be decomposed
-      // const { trail, trails } = this.props.trail ? this.props : null;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
@@ -2121,11 +2190,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         height: "16px"
       }))))), this.props.trail && this.trailHeadInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar content-width"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "content-width flex border-outer"
-      }, this.props.trail && this.trailBodyInfo(), this.props.reviews && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        reviews: this.props.reviews
-      }), this.props.trail && this.sidePanel()));
+      }), this.props.trail && this.props.reviews && this.trailBody());
     }
   }]);
 
@@ -2134,6 +2199,12 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trail);
+{
+  /* <div className='content-width flex border-outer'>
+     {this.props.trail && this.trailBodyInfo()}
+     {this.props.trail && this.sidePanel()}
+  </div> */
+}
 
 /***/ }),
 
@@ -2161,7 +2232,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id],
-    reviews: state.entities.reviews
+    reviews: Object.values(state.entities.reviews)
   };
 };
 

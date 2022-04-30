@@ -54,59 +54,109 @@ class Trail extends React.Component {
         )
     }
 
-    trailBodyInfo() {
-
-        const { trail } = this.props;
+    trailBody() {
+        const { trail, reviews } = this.props;
         return (
-            <div className='trail-body'>
-                <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
+            <div className='content-width flex border-outer'>
+                <div className='trail-body'>
+                    <span className='trail-description'>{this.props.trail.description}</span>
 
-                <section className='characteristics'>
-                    <div>
-                        <p>Length</p>
-                        <span className='bold'>{trail.length}</span>
-                    </div>
-                    <div>
-                        <p>Elevation gain</p>
-                        <span className='bold'>{trail.elevation_gain}</span>
-                    </div>
-                    <div>
-                        <p>Route Type</p>
-                        <span className='bold'>{trail.route_type}</span>
-                    </div>
-                </section>
+                    <section className='characteristics'>
+                        <div>
+                            <p>Length</p>
+                            <span className='bold'>{trail.length}</span>
+                        </div>
+                        <div>
+                            <p>Elevation gain</p>
+                            <span className='bold'>{trail.elevation_gain}</span>
+                        </div>
+                        <div>
+                            <p>Route Type</p>
+                            <span className='bold'>{trail.route_type}</span>
+                        </div>
+                    </section>
 
-                <section className='tags-section'>
-                    {trail.tags.map((tag, idx) => {
-                        return(
-                            <span className='tag' key={idx}>{tag.description}</span>
-                        )
-                    })}
-                </section>
+                    <section className='tags-section'>
+                        {trail.tags.map((tag, idx) => {
+                            return (
+                                <span className='tag' key={idx}>{tag.description}</span>
+                            )
+                        })}
+                    </section>
 
+                </div>
+
+                <div className='side-panel border-left-inner'>
+
+                    <Map trail={this.props.trail} trails={this.props.trails} />
+
+                    <h3 className='nearby bold'>Nearby Trails</h3>
+
+                </div>
             </div>
         )
     }
 
-    sidePanel() {
-        return (
-            <div className='side-panel border-left-inner'>
+    // trailBodyInfo() {
 
-                <Map trail={this.props.trail} trails={this.props.trails} />
+    //     const { trail } = this.props;
+    //     return (
+    //         <div className='trail-body'>
+    //             <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
 
-                <h3 className='nearby bold'>Nearby Trails</h3>
+    //             <section className='characteristics'>
+    //                 <div>
+    //                     <p>Length</p>
+    //                     <span className='bold'>{trail.length}</span>
+    //                 </div>
+    //                 <div>
+    //                     <p>Elevation gain</p>
+    //                     <span className='bold'>{trail.elevation_gain}</span>
+    //                 </div>
+    //                 <div>
+    //                     <p>Route Type</p>
+    //                     <span className='bold'>{trail.route_type}</span>
+    //                 </div>
+    //             </section>
 
-            </div>
+    //             <section className='tags-section'>
+    //                 {trail.tags.map((tag, idx) => {
+    //                     return(
+    //                         <span className='tag' key={idx}>{tag.description}</span>
+    //                     )
+    //                 })}
+    //             </section>
+
+    //         </div>
+    //     )
+    // }
+
+    // sidePanel() {
+    //     return (
+    //         <div className='side-panel border-left-inner'>
+
+    //             <Map trail={this.props.trail} trails={this.props.trails} />
+
+    //             <h3 className='nearby bold'>Nearby Trails</h3>
+
+    //         </div>
             
+    //     )
+    // }
+
+    reviews() {
+        debugger
+        return (
+            <Review reviews={this.props.reviews} />
         )
     }
  
     render() {
         // 1. trails null first render
         // 3. this.props now contains all trails which can be decomposed
-        // const { trail, trails } = this.props.trail ? this.props : null;
         return (
             <div className='grey'>
+
                 <header className='trail-head'>
                     <div className='flex-between'>
                         {this.props.trail && this.header()}
@@ -125,27 +175,19 @@ class Trail extends React.Component {
                 </header>
 
                 {this.props.trail && this.trailHeadInfo()}
-                <div className='green-bar content-width'>
-                </div>
+                <div className='green-bar content-width'></div>
 
-                {/* Page Container */}
-                <div className='content-width flex border-outer'>
-
-{/* TRAIL DESCRIPTION HERE */}
-                    {/* Page Left */}
-                    {this.props.trail && this.trailBodyInfo()}
-
-{/* REVIEWS HERE */}
-                    {this.props.reviews && <Review reviews={this.props.reviews}/>}
-
-{/* MAP & NEARBY TRAILS HERE */}
-                    {/* Right Side Panel */}
-                    {this.props.trail && this.sidePanel()}
-
-                </div>
+                {this.props.trail && this.props.reviews && this.trailBody()}
+             
             </div>
         );
     };
 };
 
 export default Trail;
+
+{/* <div className='content-width flex border-outer'>
+    {this.props.trail && this.trailBodyInfo()}
+    {this.props.trail && this.sidePanel()}
+
+</div> */}

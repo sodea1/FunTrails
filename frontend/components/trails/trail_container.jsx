@@ -6,7 +6,7 @@ import Trail from "./trail";
 const mapStateToProps = (state, ownProps) => ({
     trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id],
-    reviews: state.entities.reviews
+    reviews: Object.values(state.entities.reviews)
 });
 
 const mapDispatchToProps = dispatch => ({
