@@ -36,6 +36,7 @@ var getTrailReviews = function getTrailReviews(reviews) {
 
 var fetchTrailReviews = function fetchTrailReviews(trailId) {
   return function (dispatch) {
+    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrailReviews(trailId).then(function (reviews) {
       return dispatch(getTrailReviews(reviews));
     });
@@ -652,20 +653,27 @@ var Review = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Review);
 
-  function Review() {
+  function Review(props) {
     _classCallCheck(this, Review);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Review, [{
-    key: "render",
-    value: function render() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchTrailReviews(this.props.trailId);
       debugger;
+    }
+  }, {
+    key: "reviewContainer",
+    value: function reviewContainer() {
       var reviews = this.props.reviews;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, reviews.map(function (rev) {
-        /*#__PURE__*/
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "review-container"
+      }, reviews.map(function (rev) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "review-block"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-header"
@@ -681,7 +689,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "flex"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-activity"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rev.conditions.map(function (conditon) {
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, rev.conditions.map(function (condition) {
           /*#__PURE__*/
           react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "tag"
@@ -690,6 +698,12 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, rev.description)));
       }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      return this.props.reviews && this.reviewContainer();
     }
   }]);
 
@@ -2027,7 +2041,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
-      this.props.fetchTrailReviews(this.props.match.params.id);
+      debugger;
     }
   }, {
     key: "header",
@@ -2039,8 +2053,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, this.props.trail.t_name));
     }
   }, {
-    key: "trailHeadInfo",
-    value: function trailHeadInfo() {
+    key: "trailTitle",
+    value: function trailTitle() {
       // const { trail } = this.props.trail;
       var urlString = 'url(' + splash_hiker1 + ')';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2087,9 +2101,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailBody",
     value: function trailBody() {
-      var _this$props = this.props,
-          trail = _this$props.trail,
-          reviews = _this$props.reviews;
+      var trail = this.props.trail;
+      var trailId = parseInt(this.props.match.params.id);
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2111,7 +2125,11 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        reviews: this.props.reviews,
+        fetchTrailReviews: this.props.fetchTrailReviews,
+        trailId: trailId
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
         trail: this.props.trail,
@@ -2119,57 +2137,13 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "nearby bold"
       }, "Nearby Trails")));
-    } // trailBodyInfo() {
-    //     const { trail } = this.props;
-    //     return (
-    //         <div className='trail-body'>
-    //             <span className='trail-description'>{this.props.trail && this.props.trail.description}</span>
-    //             <section className='characteristics'>
-    //                 <div>
-    //                     <p>Length</p>
-    //                     <span className='bold'>{trail.length}</span>
-    //                 </div>
-    //                 <div>
-    //                     <p>Elevation gain</p>
-    //                     <span className='bold'>{trail.elevation_gain}</span>
-    //                 </div>
-    //                 <div>
-    //                     <p>Route Type</p>
-    //                     <span className='bold'>{trail.route_type}</span>
-    //                 </div>
-    //             </section>
-    //             <section className='tags-section'>
-    //                 {trail.tags.map((tag, idx) => {
-    //                     return(
-    //                         <span className='tag' key={idx}>{tag.description}</span>
-    //                     )
-    //                 })}
-    //             </section>
-    //         </div>
-    //     )
-    // }
-    // sidePanel() {
-    //     return (
-    //         <div className='side-panel border-left-inner'>
-    //             <Map trail={this.props.trail} trails={this.props.trails} />
-    //             <h3 className='nearby bold'>Nearby Trails</h3>
-    //         </div>
-    //     )
-    // }
-
-  }, {
-    key: "reviews",
-    value: function reviews() {
-      debugger;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        reviews: this.props.reviews
-      });
     }
   }, {
     key: "render",
     value: function render() {
       // 1. trails null first render
       // 3. this.props now contains all trails which can be decomposed
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
@@ -2188,9 +2162,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         src: window.search,
         width: "16px",
         height: "16px"
-      }))))), this.props.trail && this.trailHeadInfo(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }))))), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar content-width"
-      }), this.props.trail && this.props.reviews && this.trailBody());
+      }), this.props.trail && this.trailBody());
     }
   }]);
 
@@ -2199,12 +2173,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
 ;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trail);
-{
-  /* <div className='content-width flex border-outer'>
-     {this.props.trail && this.trailBodyInfo()}
-     {this.props.trail && this.sidePanel()}
-  </div> */
-}
 
 /***/ }),
 
