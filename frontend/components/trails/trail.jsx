@@ -9,6 +9,7 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
+        this.props.fetchTrailReviews();
     }
 
     header() {
@@ -129,9 +130,14 @@ class Trail extends React.Component {
                 {/* Page Container */}
                 <div className='content-width flex border-outer'>
 
+{/* TRAIL DESCRIPTION HERE */}
                     {/* Page Left */}
                     {this.props.trail && this.trailBodyInfo()}
 
+{/* REVIEWS HERE */}
+                    {this.props.reviews && <Review reviews={this.props.reviews}/>}
+                    
+{/* MAP & NEARBY TRAILS HERE */}
                     {/* Right Side Panel */}
                     {this.props.trail && this.sidePanel()}
 

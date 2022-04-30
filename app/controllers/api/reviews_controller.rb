@@ -1,19 +1,15 @@
 class Api::ReviewsController < ApplicationController
-    # def show
-    #     @review = Review.find_by(id: params[:id])
-    #     debugger
-    #     if @review
-    #         render :show
-    #     else
-    #         render json: @review.errors.full_messages, status: 404
-    #     end
-    # end
+
+    def index
+        @reviews = Review.where(trail_id: params[:trail_id])
+        render :index
+    end
+
     def create
         @review = Review.new(review_params)
-        if @review.save
+        if @review.save!
             render :show
         else
-
             render json: 'Invalid review', status: 401
         end
     end

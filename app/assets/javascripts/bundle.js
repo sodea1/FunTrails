@@ -10,23 +10,39 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GET_TRAIL_REVIEWS": () => (/* binding */ GET_TRAIL_REVIEWS),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
-/* harmony export */   "receiveReview": () => (/* binding */ receiveReview)
+/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
+
 var receiveReview = function receiveReview(review) {
-  debugger;
   return {
     type: RECEIVE_REVIEW,
     review: review
   };
 };
+
+var getTrailReviews = function getTrailReviews(reviews) {
+  return {
+    type: GET_TRAIL_REVIEWS,
+    reviews: reviews
+  };
+};
+
+var fetchTrailReviews = function fetchTrailReviews(trailId) {
+  return function (dispatch) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrailReviews(trailId).then(function (reviews) {
+      return dispatch(getTrailReviews(reviews));
+    });
+  };
+};
 var createReview = function createReview(review) {
   return function (dispatch) {
-    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
       return dispatch(receiveReview(data));
     });
@@ -1919,6 +1935,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
+      this.props.fetchTrailReviews();
     }
   }, {
     key: "header",
@@ -2040,7 +2057,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "green-bar content-width"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
-      }, this.props.trail && this.trailBodyInfo(), this.props.trail && this.sidePanel()));
+      }, this.props.trail && this.trailBodyInfo(), this.props.reviews && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Review, {
+        reviews: this.props.reviews
+      }), this.props.trail && this.sidePanel()));
     }
   }]);
 
@@ -2064,8 +2083,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var _trail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./trail */ "./frontend/components/trails/trail.jsx");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
+/* harmony import */ var _trail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./trail */ "./frontend/components/trails/trail.jsx");
+
 
 
 
@@ -2073,22 +2094,26 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: Object.values(state.entities.trails),
-    trail: state.entities.trails[ownProps.match.params.id]
+    trail: state.entities.trails[ownProps.match.params.id],
+    reviews: state.entities.reviews
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchTrails: function fetchTrails() {
-      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrails)());
+      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
     },
     fetchTrail: function fetchTrail(trailId) {
-      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrail)(trailId));
+      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrail)(trailId));
+    },
+    fetchTrailReviews: function fetchTrailReviews(trailId) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrailReviews)(trailId));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -2103,15 +2128,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _trails_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./trails_reducer */ "./frontend/reducers/trails_reducer.js");
+/* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
-  trails: _trails_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  trails: _trails_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entitiesReducer);
 
@@ -2136,6 +2164,44 @@ var errorsReducer = (0,redux__WEBPACK_IMPORTED_MODULE_1__.combineReducers)({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/reviews_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/reviews_reducer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var reviewsReducer = function reviewsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_REVIEW:
+      return Object.assign({}, state, _defineProperty({}, action.review.id, action.review));
+
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.GET_TRAIL_REVIEWS:
+      debugger;
+      return Object.assign({}, state, action.reviews);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (reviewsReducer);
 
 /***/ }),
 
@@ -2410,8 +2476,15 @@ var MarkerManager = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createReview": () => (/* binding */ createReview)
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
+var fetchTrailReviews = function fetchTrailReviews(trailId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/trails/".concat(trailId, "/reviews/")
+  });
+};
 var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
@@ -43793,6 +43866,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
+  window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;
   window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.createReview;
   window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails; // window.fetchTrail = fetchTrail;
 

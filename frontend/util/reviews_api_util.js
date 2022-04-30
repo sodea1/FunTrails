@@ -1,4 +1,13 @@
 
+export const fetchTrailReviews = trailId => {
+    return (
+        $.ajax({
+            method: 'GET',
+            url: `/api/trails/${trailId}/reviews/`
+        })
+    )
+}
+
 export const createReview = review => {
     return (
         $.ajax({
