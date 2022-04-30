@@ -6,6 +6,7 @@ import { login, logout, signup } from './actions/session_actions';
 import { fetchTrails } from './actions/trail_actions';
 import { fetchReview } from './util/reviews_api_util';
 import { fetchTrail } from './util/trails_api_util';
+import { createReview } from './actions/review_actions';
 
 
 
@@ -23,10 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore();
   }
-  // const store = configureStore();
-
   // testing 
-  window.fetchReview = fetchReview;
+  window.createReview = createReview;
   window.fetchTrails = fetchTrails;
   // window.fetchTrail = fetchTrail;
   window.fetchTrail = fetchTrail;

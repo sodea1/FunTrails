@@ -1,6 +1,44 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/actions/review_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/review_actions.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "receiveReview": () => (/* binding */ receiveReview)
+/* harmony export */ });
+/* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
+
+var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var receiveReview = function receiveReview(review) {
+  debugger;
+  return {
+    type: RECEIVE_REVIEW,
+    review: review
+  };
+};
+var createReview = function createReview(review) {
+  return function (dispatch) {
+    debugger;
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
+      return dispatch(receiveReview(data));
+    });
+  };
+}; // test: { review: {id: 20, user_id: 2, trail_id: 4, rating: 1, description: 'TERRIBLE', date_hiked: '2022-11-20', activity: 'hiking', conditions: ['fresh']} }
+// ({
+//     type: RECEIVE_REVIEW,
+//     review
+// })
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -2383,7 +2421,7 @@ var createReview = function createReview(review) {
     }
   });
 }; // test
-// $.ajax({ method: 'POST', url: '/api/reviews', data: { id: 50, rating: 4, description: 'love it', date_hiked: '2022-11-11', user_id: 5, trail_id: 3, activity_id: 4 } }).then(review => console.log(review.description));
+// $.ajax({ method: 'POST', url: '/api/reviews', data: {review: { id: 50, rating: 4, description: 'love it', date_hiked: '2022-11-11', user_id: 5, trail_id: 3, activity: 'hiking', conditions: ['sick'] }} }).then(review => console.log(review.description));
 
 /***/ }),
 
@@ -43724,7 +43762,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/trail_actions */ "./frontend/actions/trail_actions.js");
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
 /* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/trails_api_util */ "./frontend/util/trails_api_util.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/review_actions */ "./frontend/actions/review_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -43750,11 +43790,10 @@ document.addEventListener("DOMContentLoaded", function () {
     delete window.currUser;
   } else {
     store = (0,_store_store__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  } // const store = configureStore();
-  // testing 
+  } // testing 
 
 
-  window.fetchReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.fetchReview;
+  window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.createReview;
   window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails; // window.fetchTrail = fetchTrail;
 
   window.fetchTrail = _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__.fetchTrail;
