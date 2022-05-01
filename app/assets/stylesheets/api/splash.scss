@@ -12,7 +12,7 @@ div.background-image {
     width: 100%;
     background-size: cover;
     background-position: center;
-    height: 540px;
+    height: 540px; // 312px if logged in
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -1,9 +1,21 @@
 import React from 'react';
 
 class Review extends React.Component {
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         1: 0,
+    //         2: 0,
+    //         3: 0,
+    //         4: 0,
+    //         5: 0
+    //     }
+    // }
+
     componentDidMount() {
         this.props.fetchTrailReviews(this.props.trailId);
     }
+
 
     displayStars(review) {
         const numYellow = review.rating;
@@ -17,34 +29,122 @@ class Review extends React.Component {
     displayConditions(review) {
         const count = review.conditions.length;
         return (
-                <div className='rev-conditions'>
-                    {[...Array(count - 1).keys()].map(num => {
+            <div className='rev-conditions'>
+                {[...Array(count - 1).keys()].map(num => {
+                    return (
+                        <span key={num} className='tag'>{review.conditions[num + 1].name}</span>
+                    )
+                })}
+            </div>
+        )
+    }
+
+    avgPerStar(reviews) {
+        const total = reviews.length;
+        let averages = {
+            1: 0,
+            2: 0,
+            3: 0,
+            4: 0,
+            5: 0
+        }
+
+        for (let i = 0; i < reviews.length; i++) {
+            averages[reviews[i].rating] += 1;
+        }
+
+        for (let j = 1; j < 6; j++) {
+            averages[j] = ((averages[j] / total) * 100).toFixed(1);
+            if (averages[j] === '0.0') {
+                averages[j] = 1;
+                
+            } 
+            
+        }
+
+        return (
+            <table className='rev-table'>
+                <tbody>
+                    {[5, 4, 3, 2, 1].map(num => {
+                        const pct = averages[num];
+                        const width = {
+                            width: pct + '%'
+                        };
+
                         return (
-                            <span key={num} className='tag'>{review.conditions[num + 1].name}</span>
+                            <tr key={num} className='table-row'>
+                                <td><div>{num}</div></td>
+                                <td><img src={window.grey_star} /></td>
+                                <td className='rev-bar'>
+                                    <div className='yellow-bar' style={width}></div>
+                                </td>
+                            </tr>
                         )
                     })}
-                </div>
-                
+                </tbody>
+            </table>
+        )
+    }
+
+    avgRating(reviews, avgRating) {
+        let rounded = Math.round(avgRating);
+        
+        return (
+            <div>
+                <div className='avg'>{avgRating}</div>
+                <span>
+                    {[1, 2, 3, 4, 5].map(num => {
+                        let star = window.star;
+                        let klass = 'star';
+
+                        if (num > rounded && num < rounded + 1) {
+                            star = window.half_star;
+                        } else if (num >= rounded + 1) {
+                            star = window.grey_star;
+                        }
+                        return (
+                            <img src={star} className={klass} key={num}/>
+                        )
+                    })}
+                </span>
+                <div className='rev-total'>{reviews.length} Reviews</div>
+            </div>
         )
     }
 
     reviewContainer() {
         const { reviews } = this.props;
 
+        let sum = 0;
+        for (let i = 0; i < reviews.length; i++) {
+            sum += reviews[i].rating
+        }
+        let avgRating = (sum / reviews.length).toFixed(1);
+
+        // this.avgPerStar(reviews);
         return (
             <div className='review-container'>
                 <div className='rev-banner bold'>
-                    <span className='rev-count'>Reviews ({reviews.length})</span>
+                    <div className='tab-container'>
+                        <span className='rev-count'>Reviews ({reviews.length})</span>
+                    </div>
                 </div>
 
                 <div className='rev-summary'>
                     <div className='rev-stats'>
                         {/* pick back up here */}
-                        <div className='flex'>
-                            <p>FIGUERS</p>
-                            <p>4.0</p>
+                        <div className='avg-rating'>
+                            <div className='bars-container'>
+                                {this.avgPerStar(reviews)}
+                            </div>
+
+                            <div>
+                                {this.avgRating(reviews, avgRating)}
+                            </div>
+
                         </div>
                     </div>
+                    <button className='rev-button'>Write Review</button>
                 </div>
                 {reviews.map((rev) => {
                     return (
@@ -87,7 +187,7 @@ class Review extends React.Component {
 
     render() {
         return (
-            this.props.reviews && this.reviewContainer()
+            this.props.reviews.length > 0 && this.reviewContainer()
         )
     }
 }

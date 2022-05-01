@@ -672,7 +672,17 @@ var Review = /*#__PURE__*/function (_React$Component) {
 
   _createClass(Review, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value: // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         1: 0,
+    //         2: 0,
+    //         3: 0,
+    //         4: 0,
+    //         5: 0
+    //     }
+    // }
+    function componentDidMount() {
       this.props.fetchTrailReviews(this.props.trailId);
     }
   }, {
@@ -703,24 +713,107 @@ var Review = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "avgPerStar",
+    value: function avgPerStar(reviews) {
+      var total = reviews.length;
+      var averages = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+      };
+
+      for (var i = 0; i < reviews.length; i++) {
+        averages[reviews[i].rating] += 1;
+      }
+
+      for (var j = 1; j < 6; j++) {
+        averages[j] = (averages[j] / total * 100).toFixed(1);
+
+        if (averages[j] === '0.0') {
+          averages[j] = 1;
+        }
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+        className: "rev-table"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, [5, 4, 3, 2, 1].map(function (num) {
+        var pct = averages[num];
+        var width = {
+          width: pct + '%'
+        };
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+          key: num,
+          className: "table-row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, num)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: window.grey_star
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+          className: "rev-bar"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "yellow-bar",
+          style: width
+        })));
+      })));
+    }
+  }, {
+    key: "avgRating",
+    value: function avgRating(reviews, _avgRating) {
+      var rounded = Math.round(_avgRating);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "avg"
+      }, _avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
+        var star = window.star;
+        var klass = 'star';
+
+        if (num > rounded && num < rounded + 1) {
+          star = window.half_star;
+        } else if (num >= rounded + 1) {
+          star = window.grey_star;
+        }
+
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          src: star,
+          className: klass,
+          key: num
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-total"
+      }, reviews.length, " Reviews"));
+    }
+  }, {
     key: "reviewContainer",
     value: function reviewContainer() {
       var _this = this;
 
       var reviews = this.props.reviews;
+      var sum = 0;
+
+      for (var i = 0; i < reviews.length; i++) {
+        sum += reviews[i].rating;
+      }
+
+      var avgRating = (sum / reviews.length).toFixed(1); // this.avgPerStar(reviews);
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-banner bold"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "tab-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "rev-count"
-      }, "Reviews (", reviews.length, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Reviews (", reviews.length, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-summary"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-stats"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "flex"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "FIGUERS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "4.0")))), reviews.map(function (rev) {
+        className: "avg-rating"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "bars-container"
+      }, this.avgPerStar(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.avgRating(reviews, avgRating)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        className: "rev-button"
+      }, "Write Review")), reviews.map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: rev.id,
           className: "review-block"
@@ -751,7 +844,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return this.props.reviews && this.reviewContainer();
+      return this.props.reviews.length > 0 && this.reviewContainer();
     }
   }]);
 

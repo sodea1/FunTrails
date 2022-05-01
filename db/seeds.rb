@@ -129,7 +129,7 @@ tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
 review_1 = Review.create!(user_id: 1, trail_id: 1, photo_id: 1, activity: 'Hiking', rating: 4, description: 'So fantastic', date_hiked: '2022-11-11')
 review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, activity: 'Hiking', rating: 4, description: 'My dog loved this hike', date_hiked: '2022-11-11')
 review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, activity: 'Hiking', rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
-review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, activity: 'Hiking', rating: 4, description: 'So beautiful!', date_hiked: '2022-11-11')
+review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, activity: 'Hiking', rating: 4, description: 'The trail was stunning, with incredibly unique and varying landscapes. I chose to go clockwise, which meant a good majority of the trail was incline. It was moderately strenuous and if you’re looking for something more casual I would suggest following the advice of others and going counterclockwise.', date_hiked: '2022-11-11')
 review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, activity: 'Hiking', rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')
 
 
