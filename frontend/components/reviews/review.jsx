@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from './modal';
 
 class Review extends React.Component {
     // constructor(props) {
@@ -28,6 +29,7 @@ class Review extends React.Component {
 
     displayConditions(review) {
         const count = review.conditions.length;
+        if (!count) return <div></div>;
         return (
             <div className='rev-conditions'>
                 {[...Array(count - 1).keys()].map(num => {
@@ -112,6 +114,11 @@ class Review extends React.Component {
         )
     }
 
+    // openReview() {
+    //     const revButton = document.getElementById('modal');
+    //     revButton.style.display = "block"
+    // }
+
     reviewContainer() {
         const { reviews } = this.props;
 
@@ -144,7 +151,8 @@ class Review extends React.Component {
 
                         </div>
                     </div>
-                    <button className='rev-button'>Write Review</button>
+                    <Modal />
+                    <button onClick={() => document.getElementById('modal').style.display = "block"} className='rev-button'>Write Review</button>
                 </div>
                 {reviews.map((rev) => {
                     return (
@@ -159,10 +167,8 @@ class Review extends React.Component {
                                                 {this.displayStars(rev)}
                                                 <span className='date-hiked'>{rev.date_hiked}</span>
                                             </div>
-                                                
                                         </div>
                                     </div>
-                                    
                                    
                                 </div>
 

@@ -26,6 +26,32 @@ fake_user_2 = User.create!(first_name: Faker::Name.first_name, last_name: Faker:
 fake_user_3 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'My dog loves hiking with me!!')
 fake_user_4 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'Looking for my next trail!')
 fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I\'m from California and love the outdoors')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
 
 dipsea = Trail.create!(t_name: 'Dipsea Trail, Steep Ravine Trail, and Matt Davis Loop', longitude: -122.63602, latitude: 37.89665, length: "7.5 mi", difficulty_level: 'moderate', elevation_gain: "1,689 ft", route_type: 'Loop', estimated_time: 'Est. 3h 40m', description: 'Discover this 7.5-mile loop trail near Mill Valley, California. Generally considered a moderately challenging route, it takes an average of 3 h 40 min to complete. This is a very popular area for hiking and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
 
@@ -126,12 +152,15 @@ tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
 # activity_18 = 'Via ferrata'
 # activity_19 = 'Walking'
 
-review_1 = Review.create!(user_id: 1, trail_id: 1, photo_id: 1, activity: 'Hiking', rating: 4, description: 'So fantastic', date_hiked: '2022-11-11')
-review_2 = Review.create!(user_id: 4, trail_id: 4, photo_id: 4, activity: 'Hiking', rating: 4, description: 'My dog loved this hike', date_hiked: '2022-11-11')
-review_3 = Review.create!(user_id: 3, trail_id: 1, photo_id: 5, activity: 'Hiking', rating: 5, description: 'Great for the family', date_hiked: '2022-11-11')
-review_4 = Review.create!(user_id: 2, trail_id: 1, photo_id: 7, activity: 'Hiking', rating: 4, description: 'The trail was stunning, with incredibly unique and varying landscapes. I chose to go clockwise, which meant a good majority of the trail was incline. It was moderately strenuous and if you’re looking for something more casual I would suggest following the advice of others and going counterclockwise.', date_hiked: '2022-11-11')
-review_5 = Review.create!(user_id: 2, trail_id: 2, photo_id: 8, activity: 'Hiking', rating: 5, description: 'I bring my kids here all the time', date_hiked: '2022-11-11')
 
+descriptions = ['Love this hike!!', 'This trail was so gorgeous!', 'Went with my dog and had a great time', 'Great for someone looking for adventure', 'Go off the path!', 'The weather was a bit overcast but this hike was still so beautiful. The views!!', 'I missed the warriors game to take a walk on this trail with my wife and while I would have rather watched the game, I was shocked by the beauty on display.', 'My favorite trail in the area', 'Breath of fresh air :)', 'Check out the off-trail path about halfway...you\'re in for a surprise!', 'Definitely recommend taking a stroll in the mornings when it\'s a little less muggy. It can get quite hot midday.', 'Excellent trail for mountain biking. I saw plenty of bikers', 'love this trail!!!!', 'Don\'t forget to bring sunscreen. Don\'t forget like I did...:(', 'If I could live on the top of the viewpoint in a little shack I would', 'Viewpoint is to die for', 'I went on a recommendation from a friend and man I do not regret it', 'A wise man once said, get a breath of fresh air', 'This hike is top 1', 'Unreal views.', 'That satisfying mometn when you finish this monster trail. Tough but rewarding!', 'Took my mom and dad on this trail (they\'re old) and they loved it. Not too bad on the knees', 'My legs hurt so good', 'I might take my bike back here', 'Saw some gorgeous wildlife', 'Do yourself a favor and block off your Saturday morning', 'Best time to go is before 9am. Otherwise, you might get a crowd', 'Beat the crowd and go early!', 'Sunset hike, woot woot!', 'Fresh air, long walks on the beach, and good vibes all day', 'Not easy, but not too hard', 'Really enjoyed this trail', 'I\'ll be back for sure', 'Highly recommend for bikers and/or runners']
+activity = ['Hiking', 'Running']
+
+(1..4).each do |trail_id|
+  (1..30).each do |user_id|
+    Review.create!(user_id: user_id, trail_id: trail_id, photo_id: nil, activity: activity.sample, rating: 4, description: descriptions.sample, date_hiked: '2022-11-11')
+  end
+end
 
 condition1 = Condition.create!(name: 'Great!')
 condition2 = Condition.create!(name: 'Blowdown')
@@ -151,21 +180,24 @@ condition16 = Condition.create!(name: 'Scramble')
 condition17 = Condition.create!(name: 'Washed out')
 condition18 = Condition.create!(name: 'Snow')
 
-rc_1 = ReviewCondition.create!(review_id: 1, condition_id: 10)
-rc_2 = ReviewCondition.create!(review_id: 1, condition_id: 15)
-rc_3 = ReviewCondition.create!(review_id: 1, condition_id: 1)
-rc_4 = ReviewCondition.create!(review_id: 2, condition_id: 12)
-rc_5 = ReviewCondition.create!(review_id: 2, condition_id: 13)
-rc_6 = ReviewCondition.create!(review_id: 3, condition_id: 9)
-rc_7 = ReviewCondition.create!(review_id: 4, condition_id: 1)
-rc_8 = ReviewCondition.create!(review_id: 5, condition_id: 1)
-rc_9 = ReviewCondition.create!(review_id: 5, condition_id: 4)
-# rc_10 = 
-# rc_11 = 
-# rc_12 = 
-# rc_13 = 
-# rc_14 = 
-# rc_15 = 
-# rc_16 = 
-# rc_17 = 
-# rc_18 = 
+rand_conditions_1 = [1, 3, 4, 11, 12, 14]
+rand_conditions_x = [1, 3]
+rand_conditions_2 = [11, 12]
+rand_conditions_3 = [4, 14]
+
+nums = (1..120).to_a
+nums.each do |num|
+  num_conditions = [1, 2, 3].sample
+
+  if num_conditions == 1
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_1.sample)
+  elsif num_conditions == 2
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_x.sample)
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_2.sample)
+  else
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_x.sample)
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_2.sample)
+    rc_9 = ReviewCondition.create!(review_id: num, condition_id: rand_conditions_3.sample)
+  end
+
+end
