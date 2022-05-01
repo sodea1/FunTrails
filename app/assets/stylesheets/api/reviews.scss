@@ -6,16 +6,44 @@
 
 .review-container {
     display: block;
-    width: 90%;
-    margin: 0px 24px;
+    width: 100%;
+}
+
+.rev-banner {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    width: 100%;
+    height: 60px;
+    color: #414141;
+    top: 50%;
+}
+
+.rev-summary {
+    display: block;
+    color: #414141;
+    margin: 24px 0;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e6e6e6;
+    height: 189px;
+}
+
+.rev-stats {
+    padding-right: 204px;
+    height: 164px;
 }
 
 .review-header {
     min-height: 48px;
 }
 
+.rev-count {
+    color: $brand_green;
+}
+
 .review-block {
     display: block;
+    margin: 0px 24px 0px;
     padding-bottom: 16px;
     margin-bottom: 32px;
     border-bottom: 1px solid #e6e6e6

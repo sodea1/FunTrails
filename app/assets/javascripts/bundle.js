@@ -693,12 +693,9 @@ var Review = /*#__PURE__*/function (_React$Component) {
     key: "displayConditions",
     value: function displayConditions(review) {
       var count = review.conditions.length;
-      debugger; // if (count === 0) return <div></div>;
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions"
       }, _toConsumableArray(Array(count - 1).keys()).map(function (num) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           key: num,
           className: "tag"
@@ -713,7 +710,17 @@ var Review = /*#__PURE__*/function (_React$Component) {
       var reviews = this.props.reviews;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-container"
-      }, reviews.map(function (rev) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-banner bold"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "rev-count"
+      }, "Reviews (", reviews.length, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-summary"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-stats"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "flex"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "FIGUERS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "4.0")))), reviews.map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: rev.id,
           className: "review-block"

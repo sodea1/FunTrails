@@ -16,12 +16,9 @@ class Review extends React.Component {
 
     displayConditions(review) {
         const count = review.conditions.length;
-        debugger
-        // if (count === 0) return <div></div>;
         return (
                 <div className='rev-conditions'>
                     {[...Array(count - 1).keys()].map(num => {
-                        debugger;
                         return (
                             <span key={num} className='tag'>{review.conditions[num + 1].name}</span>
                         )
@@ -36,6 +33,19 @@ class Review extends React.Component {
 
         return (
             <div className='review-container'>
+                <div className='rev-banner bold'>
+                    <span className='rev-count'>Reviews ({reviews.length})</span>
+                </div>
+
+                <div className='rev-summary'>
+                    <div className='rev-stats'>
+                        {/* pick back up here */}
+                        <div className='flex'>
+                            <p>FIGUERS</p>
+                            <p>4.0</p>
+                        </div>
+                    </div>
+                </div>
                 {reviews.map((rev) => {
                     return (
                         <div key={rev.id} className='review-block'>
