@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { createReview } from "../../actions/review_actions";
 import Review from "./review";
 
 const mapStateToProps = state => ({
@@ -6,7 +7,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    
+    createReview: (review) => dispatch(createReview(review))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Review);

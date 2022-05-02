@@ -82,4 +82,14 @@ export const yellowBars = (reviews) => {
     )
 }
 
+export const stars = (color) => {
+    const source = color === 'grey' ? window.grey_star : window.star;
+    return (
+        [1, 2, 3, 4, 5].map((num) =>
+            <img src={source} key={num} />
+        )
+    )
+}
+
+
 

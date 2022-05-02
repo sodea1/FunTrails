@@ -1,4 +1,5 @@
 import React from "react";
+import * as Stars from '../stars/stars';
 
 class ReviewForm extends React.Component {
     constructor(props) {
@@ -6,9 +7,30 @@ class ReviewForm extends React.Component {
         this.state = {
             review: this.props.review,
             trail: this.props.trail,
-            conditions: this.props.conditions
+            conditions: this.props.conditions,
+            step: 1
         }
+
+        this.toggleStep = this.toggleStep.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
+
+    handleSubmit() {
+
+    }
+
+    toggleStep(e) {
+        (e.target.value === "next") ? this.setState({step: 2}) : this.setState({step: 1});
+    }
+
+    handleChange(e) {
+        debugger;
+        this.setState({review: {description: e.target.value}})
+        debugger;
+    }
+
+    // onChange
 
     render() {
         const activities = ['Backpacking',
@@ -30,24 +52,20 @@ class ReviewForm extends React.Component {
             'Running',
             'Via ferrata',
             'Walking']
-
-        return (
-            <div className="rev-form-container">
+        
+        const reviewStep = (this.state.step === 1) ?
                 <div className="step1-container">
                     <div className="x-out"></div>
                     <div className="step1-body">
                         <h1>{this.state.review.trail}</h1>
                         <span>Step 1 of 2</span>
-                        {[1, 2, 3, 4, 5].map((num) => 
-                            <img src={window.grey_star} key={num}/>
-                        )}
-                        <textarea placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
-                            
+                        {Stars.stars('grey')}
+                        <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
-                    
+                    <button onClick={this.toggleStep} value="next" className="session-button">Next</button>
                 </div>
-
+            :
                 <div className="step2-container">
                     <div className="top-div">
                         <h1>{this.state.review.trail}</h1>
@@ -55,8 +73,8 @@ class ReviewForm extends React.Component {
                         <label htmlFor="activity">
                             Activity Type
                             <select id="activity" >
-                                {activities.map(act => 
-                                    <option value={act}>{act}</option>
+                                {activities.map((act, idx) => 
+                                    <option value={act} key={idx}>{act}</option>
                                 )}
                             </select>
                         </label>
@@ -68,15 +86,18 @@ class ReviewForm extends React.Component {
                     </div>
                     <div className="bottom-div">
                         <div>
-                            <button className="session-button">Back</button>
-                            <button className="session-button">Post</button>
+                            <button onClick={this.toggleStep} value="back" className="session-button">Back</button>
+                            <button onClick={this.handleSubmit} className="session-button">Post</button>
                         </div>
                     </div>
-
                 </div>
-            </div>
 
+        return (
+            <div className="rev-form-container">
+                {reviewStep}
+            </div>
         )
+        
     }
 }
 
