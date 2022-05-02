@@ -5,16 +5,17 @@ import ReviewForm from "./review_form";
 
 const mapStateToProps = (state, ownProps) => ({
     review: {
-        user_id: null,
-        trail_id: null,
+        user_id: state.session.currUserId,
+        trail_id: parseInt(ownProps.location.pathname.substring(8)),
         rating: 0,
         description: '',
         date_hiked: new Date,
         activity: 'Hiking'
     },
-    trail: state.entities.trails[ownProps.match.params.id],
+    trail: state.entities.trails[ownProps.location.pathname.substring(8)],
     conditions: [],
-    formType: 'Create Review'
+    formType: 'create',
+    user: state.session.currUserId
 })
 
 const mapDispatchToProps = dispatch => ({

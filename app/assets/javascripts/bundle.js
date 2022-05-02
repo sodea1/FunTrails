@@ -410,26 +410,21 @@ __webpack_require__.r(__webpack_exports__);
 function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal;
-  debugger;
 
   if (!modal) {
     return null;
-  }
+  } // let component;
+  // switch(modal.formType) {
+  //     case 'create':
+  //         component = <CreateRevContainer />
+  //     case 'edit':
+  //         component = <EditRevContainer />
+  //     default:
+  //         break;
+  // }
 
-  var component;
 
-  switch (modal.formType) {
-    case 'create':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-
-    case 'edit':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], null);
-
-    default:
-      break;
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, component);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -733,16 +728,17 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     review: {
-      user_id: null,
-      trail_id: null,
+      user_id: state.session.currUserId,
+      trail_id: parseInt(ownProps.location.pathname.substring(8)),
       rating: 0,
       description: '',
       date_hiked: new Date(),
       activity: 'Hiking'
     },
-    trail: state.entities.trails[ownProps.match.params.id],
+    trail: state.entities.trails[ownProps.location.pathname.substring(8)],
     conditions: [],
-    formType: 'Create Review'
+    formType: 'create',
+    user: state.session.currUserId
   };
 };
 
@@ -2854,7 +2850,6 @@ var modalReducer = function modalReducer() {
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.OPEN_MODAL:
-      debugger;
       return action.modal;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.CLOSE_MODAL:
