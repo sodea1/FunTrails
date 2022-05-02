@@ -4,13 +4,12 @@ import * as Stars from '../stars/stars';
 class Review extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
     }
     
     componentDidMount() {
         this.props.fetchTrailReviews(this.props.trailId);
     }
-    
+
     displayConditions(review) {
         const count = review.conditions.length;
         if (!count) return <div></div>;
@@ -23,10 +22,6 @@ class Review extends React.Component {
                 })}
             </div>
         )
-    }
-
-    handleClick() {
-
     }
 
     reviewContainer() {
@@ -61,7 +56,7 @@ class Review extends React.Component {
                     </div>
 
                     {/*  CREATE REVIEW HERE */}
-                    <button onClick={this.handleClick()} className='rev-button'>Write Review</button>
+                    <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
                 {reviews.map((rev) => {
                     return (

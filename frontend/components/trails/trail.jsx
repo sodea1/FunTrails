@@ -1,15 +1,24 @@
 import React from 'react';
 import Map from '../map/map';
-import Review from '../reviews/review';
+import ReviewContainer from '../reviews/review_container';
 
 class Trail extends React.Component {
     constructor(props) {
         super(props);
+        this.openModal = this.openModal.bind(this);
     }
 
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
+    }
+
+    openModal(formType) {
+        if (this.props.currUserId) {
+            this.props.openModal(formType)
+        } else {
+            this.props.history.push('/login')
+        }
     }
 
     header() {
@@ -84,7 +93,7 @@ class Trail extends React.Component {
                         })}
                     </section>
 
-                    <Review reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
+                    <ReviewContainer openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
 
                 </div>
 
