@@ -4,12 +4,22 @@ import { closeModal } from "../../actions/modal_actions";
 import CreateRevContainer from '../reviews/create_rev_container';
 
 function Modal ({ modal, closeModal }) {
-    // if (!modal) {
-    //     return null;
-    // }
+    if (!modal) {
+        return null;
+    }
 
-    let component = <CreateRevContainer />
-    debugger;
+    let component;
+
+    switch(modal) {
+        case 'create':
+            component = <CreateRevContainer />
+        case 'edit':
+            component = <EditRevContainer />
+        default:
+            break;
+    }
+
+    
     return (
         <div>
             {component}

@@ -34,15 +34,18 @@ class ReviewForm extends React.Component {
         return (
             <div className="rev-form-container">
                 <div className="step1-container">
-                    <h1>{this.state.review.trail}</h1>
-                    <span>Step 1 of 2</span>
-                    {[1, 2, 3, 4, 5].map((num) => 
-                        <img src={window.grey_star} key={num}/>
-                    )}
-                    <textarea placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
-                        
-                    </textarea>
-
+                    <div className="x-out"></div>
+                    <div className="step1-body">
+                        <h1>{this.state.review.trail}</h1>
+                        <span>Step 1 of 2</span>
+                        {[1, 2, 3, 4, 5].map((num) => 
+                            <img src={window.grey_star} key={num}/>
+                        )}
+                        <textarea placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
+                            
+                        </textarea>
+                    </div>
+                    
                 </div>
 
                 <div className="step2-container">

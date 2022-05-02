@@ -1,23 +1,16 @@
 import React from 'react';
+import * as Stars from '../stars/stars';
 
 class Review extends React.Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
     
     componentDidMount() {
         this.props.fetchTrailReviews(this.props.trailId);
     }
-
-    displayStars(review) {
-        const numYellow = review.rating;
-        return (
-            <span className='rev-stars'>
-                {[1, 2, 3, 4, 5].map(num => <img className="star" key={num} src={num <= numYellow ? window.star : window.grey_star} />)}
-            </span>
-        )
-    }
-
+    
     displayConditions(review) {
         const count = review.conditions.length;
         if (!count) return <div></div>;
@@ -32,77 +25,8 @@ class Review extends React.Component {
         )
     }
 
-    avgPerStar(reviews) {
-        const total = reviews.length;
-        let averages = {
-            1: 0,
-            2: 0,
-            3: 0,
-            4: 0,
-            5: 0
-        }
+    handleClick() {
 
-        for (let i = 0; i < reviews.length; i++) {
-            averages[reviews[i].rating] += 1;
-        }
-
-        for (let j = 1; j < 6; j++) {
-            averages[j] = ((averages[j] / total) * 100).toFixed(1);
-            if (averages[j] === '0.0') {
-                averages[j] = 1;
-                
-            } 
-            
-        }
-
-        return (
-            <table className='rev-table'>
-                <tbody>
-                    {[5, 4, 3, 2, 1].map(num => {
-                        const pct = averages[num];
-                        const width = {
-                            width: pct + '%'
-                        };
-
-                        return (
-                            <tr key={num} className='table-row'>
-                                <td><div>{num}</div></td>
-                                <td><img src={window.grey_star} /></td>
-                                <td className='rev-bar'>
-                                    <div className='yellow-bar' style={width}></div>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-        )
-    }
-
-    avgRating(reviews, avgRating) {
-        let rounded = Math.round(avgRating);
-        
-        return (
-            <div>
-                <div className='avg'>{avgRating}</div>
-                <span>
-                    {[1, 2, 3, 4, 5].map(num => {
-                        let star = window.star;
-                        let klass = 'star';
-
-                        if (num > rounded && num < rounded + 1) {
-                            star = window.half_star;
-                        } else if (num >= rounded + 1) {
-                            star = window.grey_star;
-                        }
-                        return (
-                            <img src={star} className={klass} key={num}/>
-                        )
-                    })}
-                </span>
-                <div className='rev-total'>{reviews.length} Reviews</div>
-            </div>
-        )
     }
 
     reviewContainer() {
@@ -126,18 +50,18 @@ class Review extends React.Component {
                     <div className='rev-stats'>
                         <div className='avg-rating'>
                             <div className='bars-container'>
-                                {this.avgPerStar(reviews)}
+                                {Stars.yellowBars(reviews)}
                             </div>
 
                             <div>
-                                {this.avgRating(reviews, avgRating)}
+                                {Stars.allReviewsAvg(reviews, avgRating)}
                             </div>
 
                         </div>
                     </div>
 
                     {/*  CREATE REVIEW HERE */}
-                    <button className='rev-button'>Write Review</button>
+                    <button onClick={this.handleClick()} className='rev-button'>Write Review</button>
                 </div>
                 {reviews.map((rev) => {
                     return (
@@ -149,7 +73,7 @@ class Review extends React.Component {
                                         <div className='rev-info'>
                                             <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
                                             <div>
-                                                {this.displayStars(rev)}
+                                                {Stars.singleReview(rev)}
                                                 <span className='date-hiked'>{rev.date_hiked}</span>
                                             </div>
                                         </div>

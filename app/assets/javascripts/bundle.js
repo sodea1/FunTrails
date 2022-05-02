@@ -408,11 +408,24 @@ __webpack_require__.r(__webpack_exports__);
 function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal;
-  // if (!modal) {
-  //     return null;
-  // }
-  var component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
-  debugger;
+
+  if (!modal) {
+    return null;
+  }
+
+  var component;
+
+  switch (modal) {
+    case 'create':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+
+    case 'edit':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(EditRevContainer, null);
+
+    default:
+      break;
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, component);
 }
 
@@ -755,6 +768,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -791,35 +805,26 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Review = /*#__PURE__*/function (_React$Component) {
   _inherits(Review, _React$Component);
 
   var _super = _createSuper(Review);
 
   function Review(props) {
+    var _this;
+
     _classCallCheck(this, Review);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Review, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrailReviews(this.props.trailId);
-    }
-  }, {
-    key: "displayStars",
-    value: function displayStars(review) {
-      var numYellow = review.rating;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        className: "rev-stars"
-      }, [1, 2, 3, 4, 5].map(function (num) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: num,
-          src: num <= numYellow ? window.star : window.grey_star
-        });
-      }));
     }
   }, {
     key: "displayConditions",
@@ -836,78 +841,12 @@ var Review = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
-    key: "avgPerStar",
-    value: function avgPerStar(reviews) {
-      var total = reviews.length;
-      var averages = {
-        1: 0,
-        2: 0,
-        3: 0,
-        4: 0,
-        5: 0
-      };
-
-      for (var i = 0; i < reviews.length; i++) {
-        averages[reviews[i].rating] += 1;
-      }
-
-      for (var j = 1; j < 6; j++) {
-        averages[j] = (averages[j] / total * 100).toFixed(1);
-
-        if (averages[j] === '0.0') {
-          averages[j] = 1;
-        }
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
-        className: "rev-table"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, [5, 4, 3, 2, 1].map(function (num) {
-        var pct = averages[num];
-        var width = {
-          width: pct + '%'
-        };
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
-          key: num,
-          className: "table-row"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, num)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: window.grey_star
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
-          className: "rev-bar"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "yellow-bar",
-          style: width
-        })));
-      })));
-    }
-  }, {
-    key: "avgRating",
-    value: function avgRating(reviews, _avgRating) {
-      var rounded = Math.round(_avgRating);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "avg"
-      }, _avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
-        var star = window.star;
-        var klass = 'star';
-
-        if (num > rounded && num < rounded + 1) {
-          star = window.half_star;
-        } else if (num >= rounded + 1) {
-          star = window.grey_star;
-        }
-
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: star,
-          className: klass,
-          key: num
-        });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "rev-total"
-      }, reviews.length, " Reviews"));
-    }
+    key: "handleClick",
+    value: function handleClick() {}
   }, {
     key: "reviewContainer",
     value: function reviewContainer() {
-      var _this = this;
+      var _this2 = this;
 
       var reviews = this.props.reviews;
       var sum = 0;
@@ -933,7 +872,8 @@ var Review = /*#__PURE__*/function (_React$Component) {
         className: "avg-rating"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "bars-container"
-      }, this.avgPerStar(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.avgRating(reviews, avgRating)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.yellowBars(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg(reviews, avgRating)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.handleClick(),
         className: "rev-button"
       }, "Write Review")), reviews.map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -950,13 +890,13 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-name bold"
-        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _this.displayStars(rev), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "date-hiked"
         }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "rev-tags"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "tag"
-        }, rev.activity), _this.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        }, rev.activity), _this2.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
@@ -1041,6 +981,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "rev-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step1-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "x-out"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "step1-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, this.state.review.trail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Step 1 of 2"), [1, 2, 3, 4, 5].map(function (num) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           src: window.grey_star,
@@ -1048,7 +992,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         });
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         placeholder: "Give back to the community. Share your thoughts about the trail so others know what to expect."
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step2-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "top-div"
@@ -2356,6 +2300,102 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TrailFavorites);
+
+/***/ }),
+
+/***/ "./frontend/components/stars/stars.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/stars/stars.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "allReviewsAvg": () => (/* binding */ allReviewsAvg),
+/* harmony export */   "singleReview": () => (/* binding */ singleReview),
+/* harmony export */   "yellowBars": () => (/* binding */ yellowBars)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var singleReview = function singleReview(review) {
+  var numYellow = review.rating;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "rev-stars"
+  }, [1, 2, 3, 4, 5].map(function (num) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      className: "star",
+      key: num,
+      src: num <= numYellow ? window.star : window.grey_star
+    });
+  }));
+};
+var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
+  var rounded = Math.round(avgRating);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "avg"
+  }, avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
+    var star = window.star;
+    var klass = 'star';
+
+    if (num > rounded && num < rounded + 1) {
+      star = window.half_star;
+    } else if (num >= rounded + 1) {
+      star = window.grey_star;
+    }
+
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: star,
+      className: klass,
+      key: num
+    });
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "rev-total"
+  }, reviews.length, " Reviews"));
+};
+var yellowBars = function yellowBars(reviews) {
+  var total = reviews.length;
+  var averages = {
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0
+  };
+
+  for (var i = 0; i < reviews.length; i++) {
+    averages[reviews[i].rating] += 1;
+  }
+
+  for (var j = 1; j < 6; j++) {
+    averages[j] = (averages[j] / total * 100).toFixed(1);
+
+    if (averages[j] === '0.0') {
+      averages[j] = 1;
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    className: "rev-table"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, [5, 4, 3, 2, 1].map(function (num) {
+    var pct = averages[num];
+    var width = {
+      width: pct + '%'
+    };
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+      key: num,
+      className: "table-row"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, num)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      src: window.grey_star
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      className: "rev-bar"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      className: "yellow-bar",
+      style: width
+    })));
+  })));
+};
 
 /***/ }),
 
