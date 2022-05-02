@@ -410,6 +410,7 @@ __webpack_require__.r(__webpack_exports__);
 function Modal(_ref) {
   var modal = _ref.modal,
       closeModal = _ref.closeModal;
+  debugger;
 
   if (!modal) {
     return null;
@@ -417,7 +418,7 @@ function Modal(_ref) {
 
   var component;
 
-  switch (modal) {
+  switch (modal.formType) {
     case 'create':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
 
@@ -2629,6 +2630,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           key: idx
         }, tag.description);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        currUserId: this.props.currUserId,
         openModal: this.openModal,
         reviews: this.props.reviews,
         fetchTrailReviews: this.props.fetchTrailReviews,
@@ -2800,6 +2802,7 @@ var modalReducer = function modalReducer() {
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.OPEN_MODAL:
+      debugger;
       return action.modal;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__.CLOSE_MODAL:

@@ -5,13 +5,14 @@ import CreateRevContainer from '../reviews/create_rev_container';
 import EditRevContainer from '../reviews/edit_rev_container';
 
 function Modal ({ modal, closeModal }) {
+    debugger;
     if (!modal) {
         return null;
     }
 
     let component;
 
-    switch(modal) {
+    switch(modal.formType) {
         case 'create':
             component = <CreateRevContainer />
         case 'edit':

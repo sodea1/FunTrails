@@ -93,7 +93,7 @@ class Trail extends React.Component {
                         })}
                     </section>
 
-                    <ReviewContainer openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
+                    <ReviewContainer currUserId={this.props.currUserId} openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
 
                 </div>
 
