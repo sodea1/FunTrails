@@ -1,22 +1,13 @@
 import React from 'react';
-import Modal from './modal';
 
 class Review extends React.Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         1: 0,
-    //         2: 0,
-    //         3: 0,
-    //         4: 0,
-    //         5: 0
-    //     }
-    // }
-
+    constructor(props) {
+        super(props);
+    }
+    
     componentDidMount() {
         this.props.fetchTrailReviews(this.props.trailId);
     }
-
 
     displayStars(review) {
         const numYellow = review.rating;
@@ -114,11 +105,6 @@ class Review extends React.Component {
         )
     }
 
-    // openReview() {
-    //     const revButton = document.getElementById('modal');
-    //     revButton.style.display = "block"
-    // }
-
     reviewContainer() {
         const { reviews } = this.props;
 
@@ -128,7 +114,6 @@ class Review extends React.Component {
         }
         let avgRating = (sum / reviews.length).toFixed(1);
 
-        // this.avgPerStar(reviews);
         return (
             <div className='review-container'>
                 <div className='rev-banner bold'>
@@ -139,7 +124,6 @@ class Review extends React.Component {
 
                 <div className='rev-summary'>
                     <div className='rev-stats'>
-                        {/* pick back up here */}
                         <div className='avg-rating'>
                             <div className='bars-container'>
                                 {this.avgPerStar(reviews)}
@@ -151,8 +135,9 @@ class Review extends React.Component {
 
                         </div>
                     </div>
-                    <Modal />
-                    <button onClick={() => document.getElementById('modal').style.display = "block"} className='rev-button'>Write Review</button>
+
+                    {/*  CREATE REVIEW HERE */}
+                    <button className='rev-button'>Write Review</button>
                 </div>
                 {reviews.map((rev) => {
                     return (

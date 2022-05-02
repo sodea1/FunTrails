@@ -1,6 +1,18 @@
 @import './font.scss';
 @import './colors.scss';
 
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: auto;
+    position: relative;
+}
+
+// html {
+//     overflow: auto;
+// }
+
 a:hover, button:hover {
     opacity: 90%;
     transition: 0.2s;

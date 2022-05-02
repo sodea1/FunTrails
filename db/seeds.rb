@@ -26,40 +26,51 @@ fake_user_2 = User.create!(first_name: Faker::Name.first_name, last_name: Faker:
 fake_user_3 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'My dog loves hiking with me!!')
 fake_user_4 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'Looking for my next trail!')
 fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I\'m from California and love the outdoors')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
-fake_user_5 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_6 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_7 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_8 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_9 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_10 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_11 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_12 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_13 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_14= User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_15= User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_16 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_17 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_18 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_19 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_20 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_21 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_22 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_23 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_24 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_25 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_26 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_27 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_28 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_29 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_30 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
+fake_user_31 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
 
+# mount tamalpais
 dipsea = Trail.create!(t_name: 'Dipsea Trail, Steep Ravine Trail, and Matt Davis Loop', longitude: -122.63602, latitude: 37.89665, length: "7.5 mi", difficulty_level: 'moderate', elevation_gain: "1,689 ft", route_type: 'Loop', estimated_time: 'Est. 3h 40m', description: 'Discover this 7.5-mile loop trail near Mill Valley, California. Generally considered a moderately challenging route, it takes an average of 3 h 40 min to complete. This is a very popular area for hiking and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
-
 stinson = Trail.create!(t_name: 'Stinson Beach to Mount Tamalpais via Matt Davis Trail', longitude: -122.63742, latitude: 37.89978, length: "15.2 mi", difficulty_level: 'hard', elevation_gain: "3,513 ft", route_type: 'Loop', estimated_time: 'Est. 7h 28m', description: 'Experience this 15.2-mile loop trail near Stinson Beach, California. Generally considered a challenging route, it takes an average of 7 h 28 min to complete. This is a very popular area for backpacking, birding, and camping, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
-
 muir_woods = Trail.create!(t_name: 'Muir Woods via the Bootjack Trail', longitude: -122.63742, latitude: 37.89978, length: "7.1 mi", difficulty_level: 'moderate', elevation_gain: "1,496 ft", route_type: 'Loop', estimated_time: 'Est. 3h 24m', description: 'Experience this 7.1-mile loop trail near Mill Valley, California. Generally considered a moderately challenging route, it takes an average of 3 h 24 min to complete. This is a popular trail for birding, hiking, and trail running, but you can still enjoy some solitude during quieter times of day. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
-
+# marin headlands
 ten_valley = Trail.create!(t_name: 'Tennessee Beach and Pirates Cove via Coastal, Middle Green Gulch, Coyote Ridge, Fox, and Tennessee Valley Trail Loop', longitude: -122.57553, latitude: 37.86123, length: "9.1 mi", difficulty_level: 'moderate', elevation_gain: "1,833 ft", route_type: 'Loop', estimated_time: 'Est. 4h 18m', description: 'Head out on this 9.1-mile loop trail near Muir Beach, California. Generally considered a moderately challenging route, it takes an average of 4 h 18 min to complete. This is a popular trail for birding, hiking, and trail running, but you can still enjoy some solitude during quieter times of day. The best times to visit this trail are April through September. Dogs are welcome, but must be on a leash.', state: 'California', country: 'United States of America', park_id: 2)
+rodeo_beach = Trail.create!(t_name: 'Rodeo Beach, Miwok Trail, and Coastal Trail', longitude: -122.53972, latitude: 37.83202, length: "5.3 mi", difficulty_level: 'moderate', elevation_gain: "1,076 ft", route_type: 'Loop', estimated_time: 'Est. 2h 31m', description: 'Enjoy this 5.3-mile loop trail near Muir Beach, California. Generally considered a moderately challenging route, it takes an average of 2 h 31 min to complete. This is a very popular area for birding, hiking, and horseback riding, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime. Dogs are welcome and may be off-leash in some areas.', state: 'California', country: 'United States of America', park_id: 2)
+
+# Yosemite National Park
+mist_trail = Trail.create!(t_name: 'Vernal and Nevada Falls via Mist Trail', longitude: -119.55782, latitude: 37.73279, length: "6.0 mi", difficulty_level: 'hard', elevation_gain: "2,621 ft", route_type: 'Loop', estimated_time: 'Est. 3h 27m', description: 'Check out this 6.0-mile loop trail near Yosemite Valley, California. Generally considered a challenging route, it takes an average of 3 h 27 min to complete. This is a very popular area for hiking, so you\'ll likely encounter other people while exploring. The best times to visit this trail are May through October.', state: 'California', country: 'United States of America', park_id: 3)
+half_dome = Trail.create!(t_name: 'Half Dome via the John Muir Trail (JMT)', longitude: -119.55159, latitude: 37.73275, length: "15.0 mi", difficulty_level: 'hard', elevation_gain: "5,193 ft", route_type: 'Out & back', estimated_time: 'Est. 8h 30m', description: 'Check out this 6.0-mile loop trail near Yosemite Valley, California. Generally considered a challenging route, it takes an average of 3 h 27 min to complete. This is a very popular area for hiking, so you\'ll likely encounter other people while exploring. The best times to visit this trail are May through October.', state: 'California', country: 'United States of America', park_id: 3)
+panum_crater = Trail.create!(t_name: 'Panum Crater Trail', longitude: -119.04874, latitude: 37.92572, length: "2.1 mi", difficulty_level: 'easy', elevation_gain: "416 ft", route_type: 'Loop', estimated_time: 'Est. 59m', description: 'Head out on this 2.1-mile loop trail near Lee Vining, California. Generally considered a moderately challenging route, it takes an average of 59 min to complete. This is a popular trail for birding, hiking, and walking, but you can still enjoy some solitude during quieter times of day. The trail is open year-round and is beautiful to visit anytime. Dogs are welcome, but must be on a leash.', state: 'California', country: 'United States of America', park_id: 3)
+
+# zion National Park
+
+angels_landing = Trail.create!(t_name: 'Angels Landing Trail', longitude: -119.95142, latitude: 37.25976, length: "4.4 mi", difficulty_level: 'hard', elevation_gain: "1,604 ft", route_type: 'Out & back', estimated_time: 'Est. 2h 33m', description: 'Get to know this 4.4-mile out-and-back trail near Springdale, Utah. Generally considered a challenging route, it takes an average of 2 h 33 min to complete. This is a very popular area for hiking, so you\'ll likely encounter other people while exploring. The best times to visit this trail are February through October.', state: 'Utah', country: 'United States of America', park_id: 4)
+watchman_trail = Trail.create!(t_name: 'Watchman Trail', longitude: -119.98652, latitude: 37.20134, length: "3.1 mi", difficulty_level: 'moderate', elevation_gain: "636 ft", route_type: 'Out & back', estimated_time: 'Est. 1h 28m', description: 'Try this 3.1-mile out-and-back trail near Springdale, Utah. Generally considered a moderately challenging route, it takes an average of 1 h 28 min to complete. This is a very popular area for camping, hiking, and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'Utah', country: 'United States of America', park_id: 4)
+
 
 # park 1 = Mount Tamalpais
 # park 2 = marin headlands
@@ -132,33 +143,39 @@ tag114 = TrailTag.create!(tag_id: 17, trail_id: 4)
 tag124 = TrailTag.create!(tag_id: 18, trail_id: 4)
 tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
 
-# activity_1 = 'Backpacking'
-# activity_2 = 'Bird watching'
-# activity_3 = 'Bike touring'
-# activity_4 = 'Camping'
-# activity_5 = 'Cross-country skiing'
-# activity_6 = 'Fishing'
-# activity_7 = 'Hiking'
-# activity_8 = 'Horseback riding'
-# activity_9 = 'Mountain biking'
-# activity_10 = 'OVH/Off-road driving'
-# activity_11 = 'Paddle sports'
-# activity_12 = 'Road biking'
-# activity_13 = 'Rock climbing'
-# activity_14 = 'Scenic driving'
-# activity_15 = 'Snowshoeing'
-# activity_16 = 'Skiing'
-# activity_17 = 'Running'
-# activity_18 = 'Via ferrata'
-# activity_19 = 'Walking'
+['Backpacking', 
+'Bird watching', 
+'Bike touring', 
+'Camping', 
+'Cross-country skiing', 
+'Fishing', 
+'Hiking', 
+'Horseback riding', 
+'Mountain biking', 
+'OVH/Off-road driving', 
+'Paddle sports', 
+'Road biking', 
+'Rock climbing', 
+'Scenic driving', 
+'Snowshoeing', 
+'Skiing', 
+'Running', 
+'Via ferrata', 
+'Walking']
 
 
 descriptions = ['Love this hike!!', 'This trail was so gorgeous!', 'Went with my dog and had a great time', 'Great for someone looking for adventure', 'Go off the path!', 'The weather was a bit overcast but this hike was still so beautiful. The views!!', 'I missed the warriors game to take a walk on this trail with my wife and while I would have rather watched the game, I was shocked by the beauty on display.', 'My favorite trail in the area', 'Breath of fresh air :)', 'Check out the off-trail path about halfway...you\'re in for a surprise!', 'Definitely recommend taking a stroll in the mornings when it\'s a little less muggy. It can get quite hot midday.', 'Excellent trail for mountain biking. I saw plenty of bikers', 'love this trail!!!!', 'Don\'t forget to bring sunscreen. Don\'t forget like I did...:(', 'If I could live on the top of the viewpoint in a little shack I would', 'Viewpoint is to die for', 'I went on a recommendation from a friend and man I do not regret it', 'A wise man once said, get a breath of fresh air', 'This hike is top 1', 'Unreal views.', 'That satisfying mometn when you finish this monster trail. Tough but rewarding!', 'Took my mom and dad on this trail (they\'re old) and they loved it. Not too bad on the knees', 'My legs hurt so good', 'I might take my bike back here', 'Saw some gorgeous wildlife', 'Do yourself a favor and block off your Saturday morning', 'Best time to go is before 9am. Otherwise, you might get a crowd', 'Beat the crowd and go early!', 'Sunset hike, woot woot!', 'Fresh air, long walks on the beach, and good vibes all day', 'Not easy, but not too hard', 'Really enjoyed this trail', 'I\'ll be back for sure', 'Highly recommend for bikers and/or runners']
 activity = ['Hiking', 'Running']
 
-(1..4).each do |trail_id|
+
+(1..10).each do |trail_id|
   (1..30).each do |user_id|
-    Review.create!(user_id: user_id, trail_id: trail_id, photo_id: nil, activity: activity.sample, rating: 4, description: descriptions.sample, date_hiked: '2022-11-11')
+    if [5, 8, 25].include?(user_id)
+      rating = [3]
+    else
+      rating = [4, 5]
+    end
+    Review.create!(user_id: user_id, trail_id: trail_id, photo_id: nil, activity: activity.sample, rating: rating.sample, description: descriptions.sample, date_hiked: '2022-11-11')
   end
 end
 
@@ -185,7 +202,7 @@ rand_conditions_x = [1, 3]
 rand_conditions_2 = [11, 12]
 rand_conditions_3 = [4, 14]
 
-nums = (1..120).to_a
+nums = (1..300).to_a
 nums.each do |num|
   num_conditions = [1, 2, 3].sample
 

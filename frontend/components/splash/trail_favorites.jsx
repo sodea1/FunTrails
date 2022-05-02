@@ -4,35 +4,37 @@ import { Link } from "react-router-dom";
 class TrailFavorites extends React.Component {
     render() {
         return (
-            <div>
-                {/* <h1>{this.props.trails['1'].length}</h1> */}
-                <div className="splash-favorites bold">
-                    Local Favorites Near San Francisco
-                </div>
+            <div className="splash-trails">
+                <div className="tiles-outer-container">
+                    {/* <h1>{this.props.trails['1'].length}</h1> */}
+                    <div className="splash-favorites bold">
+                        Local Favorites Near San Francisco
+                    </div>
 
-                <div className="tiles-container">
-                    {this.props.trails.map((trail) => (
+                    <div className="tiles-container">
+                        {this.props.trails.map((trail) => (
 
-                        <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
-                            <img className="tile-image" src={window.hiking_card}></img>
+                            <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
+                                <img className="tile-image" src={window.hiking_card}></img>
 
-                            <div className="tile-content">
-                                <span className="tile-title bold overflow">{trail.t_name}</span>
-                                <span className="detail">Park Name</span>
-                                <div className="flex">
-                                    <span className="descriptor">{trail.difficulty_level}</span>
+                                <div className="tile-content">
+                                    <span className="tile-title bold overflow">{trail.t_name}</span>
+                                    <span className="detail">Park Name</span>
+                                    <div className="flex">
+                                        <span className="descriptor">{trail.difficulty_level}</span>
 
-                                    <div>
-                                        <img className="star" key='1' src={window.star} />
-                                        <img className="star" key='2' src={window.star} />
-                                        <img className="star" key='3' src={window.star} />
-                                        <img className="star" key='4' src={window.star} />
-                                        <img className="star" key='5' src={window.star} />
+                                        <div>
+                                            <img className="star" key='1' src={window.star} />
+                                            <img className="star" key='2' src={window.star} />
+                                            <img className="star" key='3' src={window.star} />
+                                            <img className="star" key='4' src={window.star} />
+                                            <img className="star" key='5' src={window.star} />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
         );

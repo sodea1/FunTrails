@@ -5,12 +5,14 @@ import Footer from "./splash/footer";
 import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
 import TrailContainer from "./trails/trail_container";
+import Modal from './modal/modal';
 
 import { Route, Switch } from "react-router-dom";
 import { AuthRoute } from "../util/route_util";
 
 const App = () => ( 
-  <div>
+  <div id="container">
+    <Modal />
     <NavContainer />
     <Switch>
       <Route exact path="/" component={SplashContainer} />

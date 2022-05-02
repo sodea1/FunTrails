@@ -19,11 +19,7 @@ class Splash extends React.Component {
                 <div>
                     <SplashSearch />
                 </div>
-
-                <div className="splash-trails">
-                    {trails.length > 0 && <TrailFavorites trails={trails}/>}
-                </div>
-
+                {trails.length > 0 && <TrailFavorites trails={trails}/>}
                 <div>
                     <Descriptors />
                     <Confidence />

@@ -1,9 +1,23 @@
 @import '../base/font.scss';
 @import './base/colors.scss';
 
+.splash-trails {
+    width: 100%;
+    background-color: #F2F2F2;
+    padding: 48px 0px;
+}
+
 .tile-title {
     font-size: 18px;
     color: #414141;
+}
+
+.tiles-container {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 0px 200px;
+    max-width: 1312px;
 }
 
 .tile-content {
@@ -20,10 +34,6 @@
     padding: 10px 10px;
 }
 
-.tiles-container {
-    display: flex;
-    justify-content: center;
-}
 
 .tile-image {
     object-fit: cover;
@@ -31,4 +41,13 @@
     width: 100%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+}
+
+.splash-favorites {
+    font-size: 24px;
+    color: #414141;
+    max-width: 1240px;
+    margin: 0 auto 12px;
+    width: calc(100% - 32px);
+    font-family: 'Proxima-Nova-Bold';
 }
