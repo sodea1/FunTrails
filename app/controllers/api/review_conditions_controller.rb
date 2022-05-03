@@ -14,6 +14,6 @@ class Api::ReviewConditionsController < ApplicationController
     end
 
     def review_condition_params
-        params.require(:reviewConditions).permit([:condition_id, :review_id])
+        params.require(:reviewConditions).permit(:condition_id, :review_id)
     end
 end

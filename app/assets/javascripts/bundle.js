@@ -73,6 +73,7 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
 };
 var createReview = function createReview(review) {
   return function (dispatch) {
+    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
       return dispatch(receiveReview(data));
     });
@@ -718,9 +719,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+
 
 
 
@@ -734,13 +737,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       trail_id: parseInt(ownProps.location.pathname.substring(8)),
       rating: 0,
       description: '',
-      date_hiked: new Date(),
+      date_hiked: new Date().toString().slice(4, 15),
       activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
-    // conditions: [],
     formType: 'create',
-    user: state.session.currUserId
+    user: state.session.currUserId,
+    conditions: [] // going to have to fetch conditions by review_id for EDIT
+
   };
 };
 
@@ -751,11 +755,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    createReview: function createReview(review) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__.createReview)(review));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -1039,6 +1046,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
+
  // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
 
@@ -1060,16 +1068,57 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       step: 1
     };
     _this.toggleStep = _this.toggleStep.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_this));
     _this.clickStar = _this.clickStar.bind(_assertThisInitialized(_this));
+    _this.handleEsc = _this.handleEsc.bind(_assertThisInitialized(_this));
+    _this.changeDate = _this.changeDate.bind(_assertThisInitialized(_this));
+    _this.updateActivity = _this.updateActivity.bind(_assertThisInitialized(_this));
+    _this.addCondition = _this.addCondition.bind(_assertThisInitialized(_this));
+    _this.todaysDate = _this.todaysDate.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ReviewForm, [{
-    key: "handleSubmit",
-    value: function handleSubmit() {}
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.addEventListener("keydown", this.handleEsc, false);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener("keydown", this.handleEsc, false);
+    }
+  }, {
+    key: "handleEsc",
+    value: function handleEsc(e) {
+      if (e.key === "Escape") {
+        this.props.closeModal();
+      }
+    }
+  }, {
+    key: "updateActivity",
+    value: function updateActivity(e) {
+      var newState = this.state;
+      newState.review.activity = e.target.value;
+      this.setState(newState);
+    }
+  }, {
+    key: "addCondition",
+    value: function addCondition(e) {
+      e.target.className = "select-condition";
+      var newState = this.state;
+      newState.conditions.push(e.target.value);
+      this.setState(newState);
+    }
+  }, {
+    key: "changeDate",
+    value: function changeDate(e) {
+      var newState = this.state;
+      newState.review.date_hiked = e.target.value;
+      this.setState(newState);
+    }
   }, {
     key: "toggleStar",
     value: function toggleStar(e) {
@@ -1087,10 +1136,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "clickStar",
-    value: function clickStar() {
-      this.setState({
-        rating: numStars
-      });
+    value: function clickStar(e) {
+      var newState = Object.assign({}, this.state);
+      newState.review.rating = e.target.id;
+      this.setState(newState);
+      document.getElementById("next-button").className = "review-button";
     }
   }, {
     key: "closeModal",
@@ -1100,6 +1150,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleStep",
     value: function toggleStep(e) {
+      debugger;
       e.target.value === "next" ? this.setState({
         step: 2
       }) : this.setState({
@@ -1109,11 +1160,24 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleChange",
     value: function handleChange(e) {
-      this.setState({
-        review: {
-          description: e.target.value
-        }
-      });
+      var newState = this.state;
+      newState.review.description = e.target.value;
+      this.setState(newState);
+    }
+  }, {
+    key: "todaysDate",
+    value: function todaysDate() {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1;
+      var yyyy = today.getFullYear();
+      return dd + '-' + mm + '-' + yyyy;
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit() {
+      debugger;
+      this.props.createReview(this.state.review);
     } // onChange
 
   }, {
@@ -1140,6 +1204,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "step"
       }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, [1, 2, 3, 4, 5].map(function (num) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          className: "review-star",
           src: window.grey_star,
           key: num,
           id: num,
@@ -1156,6 +1221,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.toggleStep,
         value: "next",
+        id: "next-button",
         className: "review-button" + (this.state.review.rating === 0) ? 'disabled-button' : 0,
         disabled: this.state.review.rating === 0 ? true : false
       }, "Next"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1177,24 +1243,24 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "activity"
       }, "Activity Type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
-        id: "activity"
+        id: "activity",
+        defaultValue: "Hiking",
+        onChange: this.updateActivity
       }, activities.map(function (act, idx) {
-        var selected = act === 'Hiking' ? selected : '';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
           value: act,
-          key: idx,
-          selected: act === 'Hiking' ? true : false
+          key: idx
         }, act);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "date",
-        id: "date",
-        value: this.state.review.date_hiked
+        onChange: this.changeDate
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Trail Conditions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions-container"
       }, conditions.map(function (condition, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: _this2.addCondition,
           key: idx,
-          className: "tag",
+          className: "rev-condition-tag",
           value: condition
         }, condition);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1208,7 +1274,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "review-button"
       }, "Post")));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "modal-background"
+        className: "modal-background",
+        onKeyDown: this.handleKeyDown
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-form-container"
       }, reviewStep));
@@ -3287,7 +3354,9 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
   return $.ajax({
     method: 'POST',
     url: '/api/review_conditions',
-    data: [reviewConditions]
+    data: {
+      reviewConditions: reviewConditions
+    }
   });
 };
 
@@ -3311,12 +3380,13 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
     url: "/api/trails/".concat(trailId, "/reviews/")
   });
 };
-var createReview = function createReview(review) {
+var createReview = function createReview(data) {
+  debugger;
   return $.ajax({
     method: 'POST',
-    url: '/api/reviews/',
+    url: '/api/trails/:trail_id/reviews',
     data: {
-      review: review
+      data: data
     }
   });
 }; // test
@@ -44694,7 +44764,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
-  window.postReviewConditions = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
+  window.postReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
   window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;
   window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.createReview;
   window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails; // window.fetchTrail = fetchTrail;

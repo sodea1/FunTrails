@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
-  window.postReviewConditions = postReviewCondition;
+  window.postReviewCondition = postReviewCondition;
   window.fetchTrailReviews = fetchTrailReviews;
   window.createReview = createReview;
   window.fetchTrails = fetchTrails;

@@ -1,5 +1,6 @@
 import React from "react";
 import * as Stars from '../stars/stars';
+import Calendar from 'react-calendar'
 
 // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -11,19 +12,52 @@ class ReviewForm extends React.Component {
             review: this.props.review,
             trail: this.props.trail,
             conditions: this.props.conditions,
-            step: 1,
-            
+            step: 1
         }
 
         this.toggleStep = this.toggleStep.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.clickStar = this.clickStar.bind(this);
+        this.handleEsc = this.handleEsc.bind(this);
+        this.changeDate = this.changeDate.bind(this);
+        this.updateActivity = this.updateActivity.bind(this);
+        this.addCondition = this.addCondition.bind(this);
+        this.todaysDate = this.todaysDate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit() {
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleEsc, false)
+    }
 
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleEsc, false)
+    }
+
+    handleEsc(e) {
+        if (e.key === "Escape") {
+            this.props.closeModal();
+        }
+    }
+
+    updateActivity(e) {
+        let newState = this.state;
+        newState.review.activity = e.target.value;
+        this.setState(newState);
+    }
+
+    addCondition(e) {
+        e.target.className = "select-condition";
+        let newState = this.state;
+        newState.conditions.push(e.target.value);
+        this.setState(newState);
+    }
+
+    changeDate(e) {
+        let newState = this.state;
+        newState.review.date_hiked = e.target.value;
+        this.setState(newState);
     }
 
     toggleStar(e) {
@@ -39,8 +73,11 @@ class ReviewForm extends React.Component {
         }
     }
 
-    clickStar() {
-        this.setState({rating: numStars});
+    clickStar(e) {
+        let newState = Object.assign({}, this.state);
+        newState.review.rating = e.target.id;
+        this.setState(newState);
+        document.getElementById("next-button").className = "review-button";
     }
 
     closeModal() {
@@ -48,11 +85,27 @@ class ReviewForm extends React.Component {
     }
 
     toggleStep(e) {
+        debugger;
         (e.target.value === "next") ? this.setState({step: 2}) : this.setState({step: 1});
     }
 
     handleChange(e) {
-        this.setState({review: {description: e.target.value}})
+        let newState = this.state;
+        newState.review.description = e.target.value;
+        this.setState(newState);
+    }
+
+    todaysDate() {
+        const today = new Date;
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+        let yyyy = today.getFullYear(); 
+        return dd + '-' + mm + '-' + yyyy;
+    }
+
+    handleSubmit() {
+        debugger;
+        this.props.createReview(this.state.review);
     }
 
     // onChange
@@ -72,14 +125,14 @@ class ReviewForm extends React.Component {
                         <span className="step">Step 1 of 2</span>
                         <div>
                             {[1, 2, 3, 4, 5].map((num) =>
-                                <img src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
+                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
                             )}
                         </div>
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
                     <div className="review-button-container">
-                    <button onClick={this.toggleStep} value="next" className={"review-button" + (this.state.review.rating === 0) ? 'disabled-button' : ''} disabled={this.state.review.rating === 0 ? true : false}>Next</button>
+                    <button onClick={this.toggleStep} value="next" id="next-button" className={"review-button" + (this.state.review.rating === 0) ? 'disabled-button' : ''} disabled={this.state.review.rating === 0 ? true : false}>Next</button>
                     </div>
                 </div>
             :
@@ -93,33 +146,34 @@ class ReviewForm extends React.Component {
                         <div className="rev-date-act">
                             <label htmlFor="activity">
                                 Activity Type
-                                <select id="activity" >
+                                <select id="activity" defaultValue="Hiking" onChange={this.updateActivity}>
                                     {activities.map((act, idx) => {
-                                        const selected = (act === 'Hiking') ? selected : '';
                                         return (
-                                            <option value={act} key={idx} selected={act === 'Hiking' ? true : false}>{act}</option>
+                                            <option value={act} key={idx}>{act}</option>
                                         )
                                     }
                                         
                                     )}
                                 </select>
                             </label>
-                            <input type="date" id="date" value={this.state.review.date_hiked} />
+                        {/* <Calendar onChange={this.changeDate} value={this.state.review.date_hiked} className=/> */}
+                        
+                        <input type="date" onChange={this.changeDate} />
                         </div>
                         <h2>Trail Conditions</h2>
                         <div className="rev-conditions-container">
-                            {conditions.map((condition, idx) => <button key={idx} className="tag" value={condition}>{condition}</button>)}
+                        {conditions.map((condition, idx) => <button onClick={this.addCondition} key={idx} className="rev-condition-tag" value={condition}>{condition}</button>)}
                         </div>
                     </div>
                     <div className="review-buttons-container-2">
                         <button onClick={this.toggleStep} value="back" className="review-button-back">Back</button>
                         <button onClick={this.handleSubmit} className="review-button">Post</button>
                     </div>
-                
+            
                 </div>
 
         return (
-            <div className="modal-background">
+            <div className="modal-background" onKeyDown={this.handleKeyDown}>
                 <div className="rev-form-container">
                     {reviewStep}
                 </div>

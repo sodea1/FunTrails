@@ -8,12 +8,13 @@ export const fetchTrailReviews = trailId => {
     )
 }
 
-export const createReview = review => {
+export const createReview = data => {
+    debugger;
     return (
         $.ajax({
             method: 'POST',
-            url: '/api/reviews/',
-            data: { review }
+            url: '/api/trails/:trail_id/reviews',
+            data: {data }
         })
     )
 }

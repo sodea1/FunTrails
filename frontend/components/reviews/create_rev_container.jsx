@@ -3,6 +3,7 @@ import { fetchTrail } from "../../actions/trail_actions";
 import { withRouter } from "react-router-dom";
 import ReviewForm from "./review_form";
 import { closeModal } from '../../actions/modal_actions';
+import { createReview } from '../../actions/review_actions';
 
 const mapStateToProps = (state, ownProps) => ({
     review: {
@@ -10,18 +11,19 @@ const mapStateToProps = (state, ownProps) => ({
         trail_id: parseInt(ownProps.location.pathname.substring(8)),
         rating: 0,
         description: '',
-        date_hiked: new Date,
+        date_hiked: (new Date).toString().slice(4, 15),
         activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
-    // conditions: [],
     formType: 'create',
-    user: state.session.currUserId
+    user: state.session.currUserId,
+    conditions: [] // going to have to fetch conditions by review_id for EDIT
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    createReview: (review) => dispatch(createReview(review))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewForm));
