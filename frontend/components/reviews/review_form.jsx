@@ -25,9 +25,7 @@ class ReviewForm extends React.Component {
     }
 
     handleChange(e) {
-        debugger;
         this.setState({review: {description: e.target.value}})
-        debugger;
     }
 
     // onChange

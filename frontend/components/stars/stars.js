@@ -10,24 +10,31 @@ export const singleReview = (review) => {
 }
 
 export const allReviewsAvg =(reviews, avgRating) => {
-    let rounded = Math.round(avgRating);
-
+    let rounded = Math.floor(avgRating);
+    debugger;
+    const rating = parseFloat(avgRating); // 4.4 ; 
     return (
         <div>
             <div className='avg'>{avgRating}</div>
             <span>
                 {[1, 2, 3, 4, 5].map(num => {
-                    let star = window.star;
                     let klass = 'star';
-
-                    if (num > rounded && num < rounded + 1) {
-                        star = window.half_star;
-                    } else if (num >= rounded + 1) {
-                        star = window.grey_star;
+                    if (rating >= num) {
+                        debugger;
+                        return (
+                            <img src={window.star} className={klass} key={num} />
+                        )
+                    } else if (num - rating < 1) {
+                        debugger;
+                        return (
+                            <img src={window.half_star} className={klass} key={num} />
+                        )
+                    } else if (num - rating >= 1) {
+                        debugger;
+                        return (
+                            <img src={window.grey_star} className={klass} key={num} />
+                        )
                     }
-                    return (
-                        <img src={star} className={klass} key={num} />
-                    )
                 })}
             </span>
             <div className='rev-total'>{reviews.length} Reviews</div>

@@ -1074,13 +1074,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleChange",
     value: function handleChange(e) {
-      debugger;
       this.setState({
         review: {
           description: e.target.value
         }
       });
-      debugger;
     } // onChange
 
   }, {
@@ -2449,24 +2447,37 @@ var singleReview = function singleReview(review) {
   }));
 };
 var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
-  var rounded = Math.round(avgRating);
+  var rounded = Math.floor(avgRating);
+  debugger;
+  var rating = parseFloat(avgRating); // 4.4 ; 
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "avg"
   }, avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
-    var star = window.star;
     var klass = 'star';
 
-    if (num > rounded && num < rounded + 1) {
-      star = window.half_star;
-    } else if (num >= rounded + 1) {
-      star = window.grey_star;
+    if (rating >= num) {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.star,
+        className: klass,
+        key: num
+      });
+    } else if (num - rating < 1) {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.half_star,
+        className: klass,
+        key: num
+      });
+    } else if (num - rating >= 1) {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.grey_star,
+        className: klass,
+        key: num
+      });
     }
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      src: star,
-      className: klass,
-      key: num
-    });
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "rev-total"
   }, reviews.length, " Reviews"));
