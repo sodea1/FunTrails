@@ -7,6 +7,7 @@ import { fetchTrails } from './actions/trail_actions';
 import { fetchReview } from './util/reviews_api_util';
 import { fetchTrail } from './util/trails_api_util';
 import { createReview, fetchTrailReviews } from './actions/review_actions';
+import { postReviewCondition } from './util/review_condition_api_util';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
+  window.postReviewConditions = postReviewCondition;
   window.fetchTrailReviews = fetchTrailReviews;
   window.createReview = createReview;
   window.fetchTrails = fetchTrails;

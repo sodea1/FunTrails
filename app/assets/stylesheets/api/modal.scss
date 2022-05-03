@@ -1,26 +1,113 @@
 @import './base/font.scss';
 @import './base/colors.scss';
 
-.modal-hidden {
-    display: none;
+
+.modal-background {
+    height: 100vh;
     position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 50%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    background-color: rgba(0,0,0,.7);
+    z-index: 20;
+    transition: 0.2s;
 }
 
 .rev-form-container {
-    // display: none;
-    position: fixed;
+    position: absolute;
+    overflow: hidden;
     z-index: 1;
-    left: 50%;
-    top: 50%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.1);
+    width: 534px;
+    height: 525px;
+    // margin: auto;
+    // overflow: auto;
+    background-color: #fff;
+    border-radius: 12px;
+    transition: 0.2s;
+    top: 10%;
+    left: 30%;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.x-out {
+    height: 80px;
+    float: left;
+    img {
+        height: 26px;
+        width: 26px;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    a {
+        cursor: pointer;
+    }
+}
+
+#activity {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 14px 42px 14px 15px;
+    width: 170px;
+    margin-left: 20px;
+}
+
+#date {
+    border: 1px solid #e6e6e6;
+    border-radius: 8px;
+    padding: 7px 7px 7px 15px;
+    margin: 0;
+    color: #414141;
+    background: #fff;
+    width: 130px;
+}
+
+.step-body {
+    display: block;
+    height: 75%;
+    margin: 0px 32px;
+    border-bottom: 1px solid #e6e6e6;
+    
+    textarea {
+        font-size: 16px;
+        font-weight: 400;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        border-radius: 8px;
+        border: 1px solid #e6e6e6;
+        width: calc(100% - 32px);
+        height: 100px;
+        padding: 12px 16px;
+        color: #414141;
+        min-height: 113px
+    }
+
+    .step {
+        margin: 8px 0px 28px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    div {
+        margin-top: 26px;
+        margin-bottom: 16px;
+    }
 }
 
 .modal-content {
@@ -31,3 +118,67 @@
     width: 40%;
 }
 
+.review-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100px;
+    
+}
+
+.review-button {
+    background: $brand_green;
+    border: none;
+    width: 82px;
+    height: 40px;
+    margin-right: 22px;
+    border-radius: 8px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+// step2 container 
+
+.step2-container {
+
+}
+
+.rev-conditions-container {
+    display: inline-block;
+}
+
+.rev-date-act {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    label {
+        margin-right: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: $text;
+    }
+}
+
+.review-buttons-container-2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100px;
+}
+
+.review-button-back {
+    background: #fff;
+    border: none;
+    width: 82px;
+    height: 40px;
+    margin-right: 22px;
+    border-radius: 8px;
+    height: 40px;
+    color: $brand_green;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+}

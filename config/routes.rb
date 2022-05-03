@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :trails, only: [:show] do
       resources :reviews, only: [:create, :destroy, :update, :index]
     end
+    resources :review_conditions, only: [:create]
   end
 end

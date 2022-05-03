@@ -718,8 +718,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -736,7 +738,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
-    conditions: [],
+    // conditions: [],
     formType: 'create',
     user: state.session.currUserId
   };
@@ -746,11 +748,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchTrail: function fetchTrail(trailId) {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrail)(trailId));
+    },
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -1034,7 +1039,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
-
+ // post a ReviewCondition to rails each click of a 
+// ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
 
 var ReviewForm = /*#__PURE__*/function (_React$Component) {
   _inherits(ReviewForm, _React$Component);
@@ -1056,12 +1062,18 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.toggleStep = _this.toggleStep.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.closeModal = _this.closeModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ReviewForm, [{
     key: "handleSubmit",
     value: function handleSubmit() {}
+  }, {
+    key: "closeModal",
+    value: function closeModal() {
+      this.props.closeModal();
+    }
   }, {
     key: "toggleStep",
     value: function toggleStep(e) {
@@ -1084,57 +1096,87 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking'];
+      var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
+
+      var conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy', 'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow'];
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "step1-container"
+        className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "x-out"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "step1-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, this.state.review.trail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Step 1 of 2"), _stars_stars__WEBPACK_IMPORTED_MODULE_1__.stars('grey'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        onClick: this.closeModal
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.x
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "step-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "bold"
+      }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "step"
+      }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.stars('grey')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.review.description,
         placeholder: "Give back to the community. Share your thoughts about the trail so others know what to expect."
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "review-button-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.toggleStep,
         value: "next",
-        className: "session-button"
-      }, "Next")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "step2-container"
+        className: "review-button"
+      }, "Next"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "top-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, this.state.review.trail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Step 2 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
+        className: "x-out"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
+        onClick: this.closeModal
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.x
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "step-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "bold"
+      }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "step"
+      }, "Step 2 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-date-act"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
         htmlFor: "activity"
       }, "Activity Type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         id: "activity"
       }, activities.map(function (act, idx) {
+        var selected = act === 'Hiking' ? selected : '';
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
           value: act,
-          key: idx
+          key: idx,
+          selected: act === 'Hiking' ? true : false
         }, act);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "date",
         id: "date",
         value: this.state.review.date_hiked
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "middle-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Trail Conditions"), this.state.conditions.map(function (condition) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "tag"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Trail Conditions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-conditions-container"
+      }, conditions.map(function (condition, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          key: idx,
+          className: "tag",
+          value: condition
         }, condition);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "bottom-div"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "review-buttons-container-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.toggleStep,
         value: "back",
-        className: "session-button"
+        className: "review-button-back"
       }, "Back"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSubmit,
-        className: "session-button"
-      }, "Post"))));
+        className: "review-button"
+      }, "Post")));
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "modal-background"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-form-container"
-      }, reviewStep);
+      }, reviewStep));
     }
   }]);
 
@@ -2448,7 +2490,6 @@ var singleReview = function singleReview(review) {
 };
 var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
   var rounded = Math.floor(avgRating);
-  debugger;
   var rating = parseFloat(avgRating); // 4.4 ; 
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2457,21 +2498,18 @@ var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
     var klass = 'star';
 
     if (rating >= num) {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: window.star,
         className: klass,
         key: num
       });
     } else if (num - rating < 1) {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: window.half_star,
         className: klass,
         key: num
       });
     } else if (num - rating >= 1) {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: window.grey_star,
         className: klass,
@@ -3196,6 +3234,27 @@ var MarkerManager = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./frontend/util/review_condition_api_util.js":
+/*!****************************************************!*\
+  !*** ./frontend/util/review_condition_api_util.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition)
+/* harmony export */ });
+var postReviewCondition = function postReviewCondition(reviewConditions) {
+  return $.ajax({
+    method: 'POST',
+    url: '/api/review_conditions',
+    data: [reviewConditions]
+  });
+};
 
 /***/ }),
 
@@ -44568,7 +44627,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
 /* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/trails_api_util */ "./frontend/util/trails_api_util.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -44598,6 +44659,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
+  window.postReviewConditions = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
   window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;
   window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.createReview;
   window.fetchTrails = _actions_trail_actions__WEBPACK_IMPORTED_MODULE_5__.fetchTrails; // window.fetchTrail = fetchTrail;
