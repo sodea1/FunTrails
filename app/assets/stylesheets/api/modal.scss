@@ -19,17 +19,14 @@
 
 .rev-form-container {
     position: absolute;
-    overflow: hidden;
     z-index: 1;
     width: 534px;
     height: 525px;
-    // margin: auto;
-    // overflow: auto;
     background-color: #fff;
     border-radius: 12px;
     transition: 0.2s;
     top: 10%;
-    left: 30%;
+    left: 37%;
 }
 
 .step-container {
@@ -45,8 +42,8 @@
     img {
         height: 26px;
         width: 26px;
-        margin-top: 10px;
-        margin-left: 10px;
+        margin-top: 22px;
+        margin-left: 22px;
     }
 
     a {
@@ -97,10 +94,12 @@
 
     .step {
         margin: 8px 0px 28px;
+        font-size: 14px;
+        opacity: 0.8;
     }
 
     h1 {
-        font-size: 28px;
+        font-size: 30px;
         margin-bottom: 10px;
     }
 
@@ -138,6 +137,22 @@
     font-weight: bold;
     cursor: pointer;
     font-size: 16px;
+}
+
+.disabled-button {
+    background: $brand_green;
+    border: none;
+    width: 82px;
+    height: 40px;
+    margin-right: 22px;
+    border-radius: 8px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 // step2 container 

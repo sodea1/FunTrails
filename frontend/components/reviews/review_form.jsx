@@ -11,17 +11,36 @@ class ReviewForm extends React.Component {
             review: this.props.review,
             trail: this.props.trail,
             conditions: this.props.conditions,
-            step: 1
+            step: 1,
+            
         }
 
         this.toggleStep = this.toggleStep.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.clickStar = this.clickStar.bind(this);
     }
 
     handleSubmit() {
 
+    }
+
+    toggleStar(e) {
+        const numStars = e.target.id;
+        for (let j = parseInt(numStars) + 1; j < 6; j++) {
+            
+            let star = document.getElementById(j);
+            star.src = window.grey_star;
+        }
+        for (let i = numStars; i > 0; i--) {
+            let currStar = document.getElementById(i);
+            currStar.src = window.star;
+        }
+    }
+
+    clickStar() {
+        this.setState({rating: numStars});
     }
 
     closeModal() {
@@ -52,13 +71,15 @@ class ReviewForm extends React.Component {
                         <h1 className="bold">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
                         <div>
-                            {Stars.stars('grey')}
+                            {[1, 2, 3, 4, 5].map((num) =>
+                                <img src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
+                            )}
                         </div>
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
                     <div className="review-button-container">
-                        <button onClick={this.toggleStep} value="next" className="review-button">Next</button>
+                    <button onClick={this.toggleStep} value="next" className={"review-button" + (this.state.review.rating === 0) ? 'disabled-button' : ''} disabled={this.state.review.rating === 0 ? true : false}>Next</button>
                     </div>
                 </div>
             :
