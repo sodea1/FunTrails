@@ -10,9 +10,13 @@ class Review extends React.Component {
         this.props.fetchTrailReviews(this.props.trailId);
     }
 
+    componentWillUnmount() {
+        this.props.clearReviews();
+    }
+
     displayConditions(review) {
+        // if (!review.conditions.length) return <div></div>;
         const count = review.conditions.length;
-        if (!count) return <div></div>;
         return (
             <div className='rev-conditions'>
                 {[...Array(count - 1).keys()].map(num => {
@@ -58,7 +62,7 @@ class Review extends React.Component {
                     {/*  CREATE REVIEW HERE */}
                     <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
-                {reviews.map((rev) => {
+                {reviews.slice().reverse().map((rev) => {
                     return (
                         <div key={rev.id} className='review-block'>
                             <section className='review-header'>
@@ -78,7 +82,7 @@ class Review extends React.Component {
 
                                 <div className='rev-tags'>
                                     <span className='tag'>{rev.activity}</span>
-                                    {this.displayConditions(rev)}
+                                    {rev.conditions && this.displayConditions(rev)}
                                     
                                 </div>
 

@@ -40,8 +40,10 @@ var openModal = function openModal(modal) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CLEAR_REVIEWS": () => (/* binding */ CLEAR_REVIEWS),
 /* harmony export */   "GET_TRAIL_REVIEWS": () => (/* binding */ GET_TRAIL_REVIEWS),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "clearReviews": () => (/* binding */ clearReviews),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
@@ -49,11 +51,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
+var CLEAR_REVIEWS = 'CLEAR_REVIEWS';
 
 var receiveReview = function receiveReview(review) {
   return {
     type: RECEIVE_REVIEW,
     review: review
+  };
+};
+
+var clearReviews = function clearReviews() {
+  return {
+    type: CLEAR_REVIEWS
   };
 };
 
@@ -73,7 +82,6 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
 };
 var createReview = function createReview(review) {
   return function (dispatch) {
-    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
       return dispatch(receiveReview(data));
     });
@@ -882,10 +890,15 @@ var Review = /*#__PURE__*/function (_React$Component) {
       this.props.fetchTrailReviews(this.props.trailId);
     }
   }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearReviews();
+    }
+  }, {
     key: "displayConditions",
     value: function displayConditions(review) {
+      // if (!review.conditions.length) return <div></div>;
       var count = review.conditions.length;
-      if (!count) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions"
       }, _toConsumableArray(Array(count - 1).keys()).map(function (num) {
@@ -931,7 +944,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           });
         },
         className: "rev-button"
-      }, "Write Review")), reviews.map(function (rev) {
+      }, "Write Review")), reviews.slice().reverse().map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: rev.id,
           className: "review-block"
@@ -952,7 +965,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-tags"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "tag"
-        }, rev.activity), _this.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        }, rev.activity), rev.conditions && _this.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
@@ -991,9 +1004,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    trails: state.entities.trails
+    trails: state.entities.trails,
+    trailId: ownProps.trailId
   };
 };
 
@@ -1001,6 +1015,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     createReview: function createReview(review) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.createReview)(review));
+    },
+    clearReviews: function clearReviews() {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.clearReviews)());
     }
   };
 };
@@ -1065,6 +1082,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       review: _this.props.review,
       trail: _this.props.trail,
       conditions: _this.props.conditions,
+      // [{condition_id: 25, review_id: 23}, {condition_id: 21, review_id: 29}]
       step: 1
     };
     _this.toggleStep = _this.toggleStep.bind(_assertThisInitialized(_this));
@@ -1150,7 +1168,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleStep",
     value: function toggleStep(e) {
-      debugger;
       e.target.value === "next" ? this.setState({
         step: 2
       }) : this.setState({
@@ -1176,8 +1193,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      debugger;
       this.props.createReview(this.state.review);
+      this.props.closeModal();
     } // onChange
 
   }, {
@@ -3043,6 +3060,9 @@ var reviewsReducer = function reviewsReducer() {
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.GET_TRAIL_REVIEWS:
       return Object.assign({}, state, action.reviews);
 
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_REVIEWS:
+      return {};
+
     default:
       return state;
   }
@@ -3380,13 +3400,12 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
     url: "/api/trails/".concat(trailId, "/reviews/")
   });
 };
-var createReview = function createReview(data) {
-  debugger;
+var createReview = function createReview(review) {
   return $.ajax({
     method: 'POST',
-    url: '/api/trails/:trail_id/reviews',
+    url: "/api/trails/".concat(review.trail_id, "/reviews"),
     data: {
-      data: data
+      review: review
     }
   });
 }; // test

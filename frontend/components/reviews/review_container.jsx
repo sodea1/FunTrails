@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
-import { createReview } from "../../actions/review_actions";
+import { createReview, clearReviews } from "../../actions/review_actions";
 import Review from "./review";
 
-const mapStateToProps = state => ({
-    trails: state.entities.trails
+const mapStateToProps = (state, ownProps) => ({
+    trails: state.entities.trails,
+    trailId: ownProps.trailId
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    createReview: (review) => dispatch(createReview(review))
+    createReview: (review) => dispatch(createReview(review)),
+    clearReviews: () => dispatch(clearReviews())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Review);

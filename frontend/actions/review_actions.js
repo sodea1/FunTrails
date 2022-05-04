@@ -2,6 +2,7 @@ import * as ReviewApiUtil from '../util/reviews_api_util';
 
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
+export const CLEAR_REVIEWS = 'CLEAR_REVIEWS';
 
 const receiveReview = review => {
     return (
@@ -10,6 +11,12 @@ const receiveReview = review => {
             review
         }
     )
+}
+
+export const clearReviews = () => {
+    return ({
+        type: CLEAR_REVIEWS
+    })
 }
 
 const getTrailReviews = reviews => {
@@ -27,7 +34,6 @@ export const fetchTrailReviews = (trailId) => dispatch => {
 }
 
 export const createReview = (review) => dispatch => {
-    debugger;
     return (
         ReviewApiUtil.createReview(review)
             .then(data => dispatch(receiveReview(data)))

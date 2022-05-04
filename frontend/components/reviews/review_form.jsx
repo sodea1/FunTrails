@@ -11,7 +11,7 @@ class ReviewForm extends React.Component {
         this.state = {
             review: this.props.review,
             trail: this.props.trail,
-            conditions: this.props.conditions,
+            conditions: this.props.conditions, // [{condition_id: 25, review_id: 23}, {condition_id: 21, review_id: 29}]
             step: 1
         }
 
@@ -85,7 +85,6 @@ class ReviewForm extends React.Component {
     }
 
     toggleStep(e) {
-        debugger;
         (e.target.value === "next") ? this.setState({step: 2}) : this.setState({step: 1});
     }
 
@@ -104,8 +103,8 @@ class ReviewForm extends React.Component {
     }
 
     handleSubmit() {
-        debugger;
         this.props.createReview(this.state.review);
+        this.props.closeModal();
     }
 
     // onChange

@@ -1,4 +1,5 @@
 class Api::ReviewsController < ApplicationController
+    # after_create :send_review_id
 
     def index
         @reviews = Review.where(trail_id: params[:trail_id])
@@ -6,9 +7,9 @@ class Api::ReviewsController < ApplicationController
     end
 
     def create
-        debugger
         @review = Review.new(review_params)
         if @review.save!
+
             render :show
         else
             render json: 'Invalid review', status: 401
@@ -29,7 +30,14 @@ class Api::ReviewsController < ApplicationController
         end
     end
 
+    private
+    
     def review_params
         params.require(:review).permit(:id, :user_id, :trail_id, :photo_id, :rating, :description, :date_hiked, :activity)
     end
+
+    # def send_review_id
+    #     render :create
+    # end
+
 end
