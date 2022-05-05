@@ -1,6 +1,5 @@
 class Api::ReviewConditionsController < ApplicationController
     def create
-        debugger
         review_id = Review.last.id
         @review = Review.where(id: review_id).first
         #  params[:reviewConditions]['0']['condition_id'] = '25'

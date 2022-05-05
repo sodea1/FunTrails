@@ -12,7 +12,6 @@ const reviewsReducer = (state = {}, action) => {
             return {};
         case REMOVE_REVIEW:
             let newState = Object.assign({}, state);
-            debugger
             delete newState[action.reviewId];
             return newState;
         default:

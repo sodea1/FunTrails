@@ -80,7 +80,6 @@ var getTrailReviews = function getTrailReviews(reviews) {
 };
 
 var removeReview = function removeReview(reviewId) {
-  debugger;
   return {
     type: REMOVE_REVIEW,
     reviewId: reviewId
@@ -144,7 +143,6 @@ var updateConditions = function updateConditions(review) {
 
 var postReviewCondition = function postReviewCondition(reviewConditions) {
   return function (dispatch) {
-    debugger;
     return _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__.postReviewCondition(reviewConditions) // update conditions PAUSE
     .then(function (review) {
       return dispatch(updateConditions(review));
@@ -975,8 +973,9 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(e) {
-      debugger;
-      this.props.deleteReview(e.target.value);
+      if (this.props.currUserId === e.target.getAttribute('data-value')) {
+        this.props.deleteReview(e.target.value);
+      }
     }
   }, {
     key: "displayConditions",
@@ -1055,7 +1054,8 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-description"
         }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: _this2.handleDelete,
-          value: rev.id
+          value: rev.id,
+          "data-value": rev.user_id
         }, "Delete")));
       }));
     }
@@ -1299,14 +1299,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "postReview",
     value: function postReview(postReviewCondition) {
-      debugger; // createReview(this.state.review)
-      //     .then(() => postReviewCondition(this.state.review));
       // createReview(this.state.review)
-
-      debugger;
+      //     .then(() => postReviewCondition(this.state.review));
+      // createReview(this.state.review);
       this.props.postReviewCondition(this.state.review); // create Review
-
-      debugger; // creates ReviewCondition Entries
+      // creates ReviewCondition Entries
       // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
       //     .then(() => console.log("success"));
       // create review api - chain .then(make callback) - then dispatch everuthing
@@ -1314,11 +1311,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      debugger;
       this.props.createReview(this.state.review);
-      debugger;
-      this.props.postReviewCondition(this.state.conditions);
-      debugger; // this.postReview(postReviewCondition);
+      this.props.postReviewCondition(this.state.conditions); // this.postReview(postReviewCondition);
       // need to call this once review has been saved
       // this.updateTrailShow(fetchTrailReviews)
 
@@ -3193,7 +3187,6 @@ var reviewsReducer = function reviewsReducer() {
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
       var newState = Object.assign({}, state);
-      debugger;
       delete newState[action.reviewId];
       return newState;
 
@@ -3562,7 +3555,6 @@ var updateReview = function updateReview(review) {
   });
 };
 var deleteReview = function deleteReview(reviewId) {
-  debugger;
   return $.ajax({
     method: 'DELETE',
     url: "/api/trails/:trailId/reviews/".concat(reviewId)

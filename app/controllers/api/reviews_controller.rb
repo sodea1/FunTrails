@@ -1,5 +1,6 @@
 class Api::ReviewsController < ApplicationController
-    # after_create :send_review_id
+
+    before_action :require_logged_in!, only: [:create, :destroy, :update]
 
     def index
         @reviews = Review.where(trail_id: params[:trail_id])
@@ -16,10 +17,12 @@ class Api::ReviewsController < ApplicationController
     end
 
     def destroy
-        debugger
         @review = Review.find(params[:id])
         debugger
-        @review.destroy
+        if @review && current_user.id === @review.user_id
+            @review.destroy
+        else
+        end
     end
 
     def update
@@ -41,9 +44,4 @@ class Api::ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(:id, :user_id, :trail_id, :photo_id, :rating, :description, :date_hiked, :activity)
     end
-
-    # def send_review_id
-    #     render :create
-    # end
-
 end

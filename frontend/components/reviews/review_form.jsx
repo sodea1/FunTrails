@@ -110,13 +110,10 @@ class ReviewForm extends React.Component {
     }
 
     postReview(postReviewCondition) {
-        debugger
         // createReview(this.state.review)
         //     .then(() => postReviewCondition(this.state.review));
-        // createReview(this.state.review)
-        debugger;
+        // createReview(this.state.review);
         this.props.postReviewCondition(this.state.review) // create Review
-        debugger
          // creates ReviewCondition Entries
         
         // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
@@ -126,11 +123,8 @@ class ReviewForm extends React.Component {
 
     handleSubmit() {
         
-        debugger
-        this.props.createReview(this.state.review)
-        debugger;
+        this.props.createReview(this.state.review);
         this.props.postReviewCondition(this.state.conditions)
-        debugger
         // this.postReview(postReviewCondition);
         // need to call this once review has been saved
         // this.updateTrailShow(fetchTrailReviews)

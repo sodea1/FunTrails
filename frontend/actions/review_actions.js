@@ -27,7 +27,6 @@ const getTrailReviews = reviews => {
 }
 
 const removeReview = (reviewId) => {
-    debugger;
     return ({
         type: REMOVE_REVIEW,
         reviewId

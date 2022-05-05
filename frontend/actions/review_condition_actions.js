@@ -10,7 +10,6 @@ const updateConditions = review => {
 }
 
 export const postReviewCondition = (reviewConditions) => dispatch => {
-    debugger
     return (
         ReviewConditionApiUtil.postReviewCondition(reviewConditions)
             // update conditions PAUSE
