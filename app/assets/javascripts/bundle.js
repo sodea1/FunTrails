@@ -987,14 +987,16 @@ var Review = /*#__PURE__*/function (_React$Component) {
     key: "displayConditions",
     value: function displayConditions(review) {
       if (review.conditions.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
+      debugger;
       var count = review.conditions.length;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions"
-      }, _toConsumableArray(Array(count - 1).keys()).map(function (num) {
+      }, _toConsumableArray(Array(count).keys()).map(function (num) {
+        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           key: num,
           className: "tag"
-        }, review.conditions[num + 1].name);
+        }, review.conditions[num].name);
       }));
     }
   }, {
@@ -1324,7 +1326,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
       var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
 
       var conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy', 'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow'];

@@ -110,14 +110,12 @@ class ReviewForm extends React.Component {
         // must wait for review to be created so review_id is accessible in ReviewConditionsController
         this.props.createReview(this.state.review)
             .then(() => this.props.postReviewCondition(this.state.conditions));
-        
         this.props.closeModal();
     }
 
     // onChange
 
     render() {
-        debugger;
         const activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']  
         // consider adding conditions api?
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
