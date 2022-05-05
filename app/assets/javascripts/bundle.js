@@ -80,6 +80,7 @@ var getTrailReviews = function getTrailReviews(reviews) {
 };
 
 var removeReview = function removeReview(reviewId) {
+  debugger;
   return {
     type: REMOVE_REVIEW,
     reviewId: reviewId
@@ -88,6 +89,7 @@ var removeReview = function removeReview(reviewId) {
 
 var deleteReview = function deleteReview(reviewId) {
   return function (dispatch) {
+    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteReview(reviewId).then(function () {
       return dispatch(removeReview(reviewId));
     });
@@ -1052,11 +1054,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
-        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: _this2.handleDelete,
-          value: rev.id,
-          "data-value": rev.user_id
-        }, "Delete")));
+        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null));
       }));
     }
   }, {
@@ -1130,9 +1128,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_condition_actions */ "./frontend/actions/review_condition_actions.js");
-/* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
-/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1154,9 +1149,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
 
  // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -1297,25 +1289,12 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       return dd + '-' + mm + '-' + yyyy;
     }
   }, {
-    key: "postReview",
-    value: function postReview(postReviewCondition) {
-      // createReview(this.state.review)
-      //     .then(() => postReviewCondition(this.state.review));
-      // createReview(this.state.review);
-      this.props.postReviewCondition(this.state.review); // create Review
-      // creates ReviewCondition Entries
-      // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
-      //     .then(() => console.log("success"));
-      // create review api - chain .then(make callback) - then dispatch everuthing
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit() {
+      debugger;
       this.props.createReview(this.state.review);
-      this.props.postReviewCondition(this.state.conditions); // this.postReview(postReviewCondition);
-      // need to call this once review has been saved
-      // this.updateTrailShow(fetchTrailReviews)
-
+      debugger;
+      this.props.postReviewCondition(this.state.conditions);
       this.props.closeModal();
     } // onChange
 
@@ -3186,6 +3165,7 @@ var reviewsReducer = function reviewsReducer() {
       return {};
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
+      debugger;
       var newState = Object.assign({}, state);
       delete newState[action.reviewId];
       return newState;

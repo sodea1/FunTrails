@@ -1,7 +1,5 @@
 class Api::ReviewsController < ApplicationController
 
-    before_action :require_logged_in!, only: [:create, :destroy, :update]
-
     def index
         @reviews = Review.where(trail_id: params[:trail_id])
         render :index
@@ -18,10 +16,10 @@ class Api::ReviewsController < ApplicationController
 
     def destroy
         @review = Review.find(params[:id])
-        debugger
-        if @review && current_user.id === @review.user_id
+        if @review
             @review.destroy
         else
+            render json: @review.errors.full_messages, status: 401
         end
     end
 

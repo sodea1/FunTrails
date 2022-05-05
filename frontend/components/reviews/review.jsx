@@ -109,7 +109,7 @@ class Review extends React.Component {
                                 <span className='rev-description'>{rev.description}</span>
                             </section>
                             <section>
-                                <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id}>Delete</button>
+                                {/* <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id}>Delete</button> */}
                             </section>
                         </div>
                     )

@@ -1,7 +1,4 @@
 import React from "react";
-import { postReviewCondition } from "../../actions/review_condition_actions";
-import { createReview } from "../../util/reviews_api_util";
-import { fetchTrailReviews } from "../../actions/review_actions";
 
 // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -109,25 +106,11 @@ class ReviewForm extends React.Component {
         return dd + '-' + mm + '-' + yyyy;
     }
 
-    postReview(postReviewCondition) {
-        // createReview(this.state.review)
-        //     .then(() => postReviewCondition(this.state.review));
-        // createReview(this.state.review);
-        this.props.postReviewCondition(this.state.review) // create Review
-         // creates ReviewCondition Entries
-        
-        // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
-        //     .then(() => console.log("success"));
-        // create review api - chain .then(make callback) - then dispatch everuthing
-    }
-
     handleSubmit() {
-        
+        debugger;
         this.props.createReview(this.state.review);
+        debugger;
         this.props.postReviewCondition(this.state.conditions)
-        // this.postReview(postReviewCondition);
-        // need to call this once review has been saved
-        // this.updateTrailShow(fetchTrailReviews)
         this.props.closeModal();
     }
 

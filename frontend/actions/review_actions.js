@@ -27,6 +27,7 @@ const getTrailReviews = reviews => {
 }
 
 const removeReview = (reviewId) => {
+    debugger;
     return ({
         type: REMOVE_REVIEW,
         reviewId
@@ -34,6 +35,7 @@ const removeReview = (reviewId) => {
 }
 
 export const deleteReview = reviewId => dispatch => {
+    debugger;
     return (
         ReviewApiUtil.deleteReview(reviewId)
             .then(() => dispatch(removeReview(reviewId)))
