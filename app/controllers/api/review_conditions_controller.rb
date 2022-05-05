@@ -19,7 +19,6 @@ class Api::ReviewConditionsController < ApplicationController
 
         end
         render '/api/reviews/show'
-        # @review_conditions = ReviewCondition.
 
     end
 

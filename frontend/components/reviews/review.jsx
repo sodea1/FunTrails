@@ -1,11 +1,13 @@
 import React from 'react';
 import * as Stars from '../stars/stars';
+import { deleteReviewCondition } from '../../util/review_condition_api_util';
 
 class Review extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            reviews: this.props.reviews
+            reviews: this.props.reviews,
+            currUserId: this.props.currUserId
         }
 
         this.handleDelete = this.handleDelete.bind(this);
@@ -24,9 +26,8 @@ class Review extends React.Component {
     }
 
     handleDelete(e) {
-        if (this.props.currUserId === e.target.getAttribute('data-value')) {
-            this.props.deleteReview(e.target.value);
-        }
+        this.props.deleteReview(e.target.value);
+        
     }
 
     displayConditions(review) {
@@ -109,7 +110,11 @@ class Review extends React.Component {
                                 <span className='rev-description'>{rev.description}</span>
                             </section>
                             <section>
-                                {/* <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id}>Delete</button> */}
+                                {this.props.currUserId === parseInt(rev.user_id) ? 
+                                    <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id}>Delete</button>
+                                :
+                                    <div></div>
+                                }
                             </section>
                         </div>
                     )

@@ -27,7 +27,6 @@ const getTrailReviews = reviews => {
 }
 
 const removeReview = (reviewId) => {
-    debugger;
     return ({
         type: REMOVE_REVIEW,
         reviewId
@@ -35,7 +34,6 @@ const removeReview = (reviewId) => {
 }
 
 export const deleteReview = reviewId => dispatch => {
-    debugger;
     return (
         ReviewApiUtil.deleteReview(reviewId)
             .then(() => dispatch(removeReview(reviewId)))
@@ -59,7 +57,6 @@ export const fetchTrailReviews = (trailId) => dispatch => {
 export const createReview = (review) => dispatch => {
     return (
         ReviewApiUtil.createReview(review)
-            // update conditions PAUSE
             .then(data => dispatch(receiveReview(data)))
     )
 }

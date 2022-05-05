@@ -107,10 +107,10 @@ class ReviewForm extends React.Component {
     }
 
     handleSubmit() {
-        debugger;
-        this.props.createReview(this.state.review);
-        debugger;
-        this.props.postReviewCondition(this.state.conditions)
+        // must wait for review to be created so review_id is accessible in ReviewConditionsController
+        this.props.createReview(this.state.review)
+            .then(() => this.props.postReviewCondition(this.state.conditions));
+        
         this.props.closeModal();
     }
 

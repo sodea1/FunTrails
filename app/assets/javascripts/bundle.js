@@ -80,7 +80,6 @@ var getTrailReviews = function getTrailReviews(reviews) {
 };
 
 var removeReview = function removeReview(reviewId) {
-  debugger;
   return {
     type: REMOVE_REVIEW,
     reviewId: reviewId
@@ -89,7 +88,6 @@ var removeReview = function removeReview(reviewId) {
 
 var deleteReview = function deleteReview(reviewId) {
   return function (dispatch) {
-    debugger;
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteReview(reviewId).then(function () {
       return dispatch(removeReview(reviewId));
     });
@@ -111,8 +109,7 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
 };
 var createReview = function createReview(review) {
   return function (dispatch) {
-    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review) // update conditions PAUSE
-    .then(function (data) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
       return dispatch(receiveReview(data));
     });
   };
@@ -130,11 +127,13 @@ var createReview = function createReview(review) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "REMOVE_REVIEW_CONDITION": () => (/* binding */ REMOVE_REVIEW_CONDITION),
 /* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition)
 /* harmony export */ });
 /* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION';
 
 var updateConditions = function updateConditions(review) {
   return {
@@ -902,6 +901,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
+/* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -939,6 +939,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Review = /*#__PURE__*/function (_React$Component) {
   _inherits(Review, _React$Component);
 
@@ -951,7 +952,8 @@ var Review = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      reviews: _this.props.reviews
+      reviews: _this.props.reviews,
+      currUserId: _this.props.currUserId
     };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
@@ -975,9 +977,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(e) {
-      if (this.props.currUserId === e.target.getAttribute('data-value')) {
-        this.props.deleteReview(e.target.value);
-      }
+      this.props.deleteReview(e.target.value);
     }
   }, {
     key: "displayConditions",
@@ -1054,7 +1054,11 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
-        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null));
+        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, _this2.props.currUserId === parseInt(rev.user_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: _this2.handleDelete,
+          value: rev.id,
+          "data-value": rev.user_id
+        }, "Delete") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)));
       }));
     }
   }, {
@@ -1091,7 +1095,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    trails: state.entities.trails // trailId: ownProps.trailId
+    trails: state.entities.trails,
+    currUserId: state.session.currUserId // trailId: ownProps.trailId
 
   };
 };
@@ -1291,17 +1296,19 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      debugger;
-      this.props.createReview(this.state.review);
-      debugger;
-      this.props.postReviewCondition(this.state.conditions);
+      var _this2 = this;
+
+      // must wait for review to be created so review_id is accessible in ReviewConditionsController
+      this.props.createReview(this.state.review).then(function () {
+        return _this2.props.postReviewCondition(_this2.state.conditions);
+      });
       this.props.closeModal();
     } // onChange
 
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
 
@@ -1326,9 +1333,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           src: window.grey_star,
           key: num,
           id: num,
-          onClick: _this2.clickStar,
-          onMouseOver: _this2.toggleStar,
-          onMouseOut: _this2.toggleStar
+          onClick: _this3.clickStar,
+          onMouseOver: _this3.toggleStar,
+          onMouseOut: _this3.toggleStar
         });
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
@@ -1376,7 +1383,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "rev-conditions-container"
       }, conditions.map(function (condition, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: _this2.toggleCondition,
+          onClick: _this3.toggleCondition,
           key: idx,
           className: "condition-unselected",
           value: condition.name
@@ -3165,7 +3172,6 @@ var reviewsReducer = function reviewsReducer() {
       return {};
 
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
-      debugger;
       var newState = Object.assign({}, state);
       delete newState[action.reviewId];
       return newState;

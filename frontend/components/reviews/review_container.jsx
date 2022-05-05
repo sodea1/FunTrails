@@ -4,6 +4,7 @@ import Review from "./review";
 
 const mapStateToProps = (state, ownProps) => ({
     trails: state.entities.trails,
+    currUserId: state.session.currUserId
     // trailId: ownProps.trailId
 });
 

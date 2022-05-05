@@ -1,6 +1,8 @@
 import * as ReviewConditionApiUtil from "../util/review_condition_api_util";
 
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+export const REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION';
+
 
 const updateConditions = review => {
     return ({
@@ -16,4 +18,5 @@ export const postReviewCondition = (reviewConditions) => dispatch => {
             .then(review => dispatch(updateConditions(review)))
     )
 }
+
 

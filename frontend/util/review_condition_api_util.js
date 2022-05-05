@@ -1,5 +1,3 @@
-
-
 export const postReviewCondition = reviewConditions => {
     return (
         $.ajax({
