@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchTrailReviews } from "../../actions/review_actions";
-import { fetchTrails, fetchTrail } from "../../actions/trail_actions";
+import { fetchTrails } from "../../actions/trail_actions";
 import Trail from "./trail";
 import { openModal } from "../../actions/modal_actions";
 

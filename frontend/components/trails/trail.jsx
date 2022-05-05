@@ -40,7 +40,7 @@ class Trail extends React.Component {
         const urlString = 'url(' + splash_hiker1 + ')';
         return (
             <div className='flex-center'>
-                <div className='content-width trail-img' style={{ backgroundImage: urlString }} >
+                <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
                     {/* <img src={window.splash_hiker1} className='content-width trail-img'/> */}
                     <ul className='trail-title'>
                         <li className='bold'>{this.props.trail.t_name}</li>

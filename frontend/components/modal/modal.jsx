@@ -17,7 +17,7 @@ function Modal ({ modal, closeModal }) {
             break // don't forget the break! Was hitting all cases
         case 'edit':
             debugger;
-            component = <EditRevContainer review={modal.review} trail_id={modal.trail_id} />
+            component = <EditRevContainer review={modal.review} />
             break
         default:
             break;

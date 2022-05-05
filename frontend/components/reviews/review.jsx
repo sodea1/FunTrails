@@ -32,12 +32,10 @@ class Review extends React.Component {
 
     displayConditions(review) {
         if (review.conditions.length === 0) return <div></div>;
-        debugger
         const count = review.conditions.length;
         return (
             <div className='rev-conditions'>
                 {[...Array(count).keys()].map(num => {
-                    debugger
                     return (
                         <span key={num} className='tag'>{review.conditions[num].name}</span>
                     )

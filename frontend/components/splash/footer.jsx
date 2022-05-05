@@ -14,32 +14,34 @@ class Footer extends React.Component {
                     <div className='footer-explore'>
                         <ul>
                             <li>Explore</li>
-                            <li>Parks</li>
+                            <li></li>
                             <li>Trails</li>
                         </ul>
                     </div>
                     <div className='footer-maps'>
                         <ul>
-                            <li>Maps</li>
+                            {/* <li>Maps</li>
                             <li>My Maps</li>
-                            <li>Create Map</li>
+                            <li>Create Map</li> */}
                         </ul>
                     </div>
                     <div className='footer-company'>
                         <ul>
-                            <li>Company</li>
+                            {/* <li>Company</li>
                             <li>About</li>
                             <li>Jobs</li>
-                            <li>Press</li>
+                            <li>Press</li> */}
                         </ul>
                     </div>
                     <div className='footer-community'>
-                        <ul>
-                            <li>Community</li>
+                        <ul className='flex-center'>
+                            <li>I hope you enjoyed checking out some fun trails</li>
+                            <img className='prof-pic' src={window.git_profile_photo} height="140px" width="140px"/>
+                            {/* <li>Community</li>
                             <li>Support</li>
                             <li>Members</li>
                             <li>Give Pro</li>
-                            <li>AllTrails Gear</li>
+                            <li>AllTrails Gear</li> */}
                         </ul>
                     </div>
                 </div>
