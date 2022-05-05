@@ -5,8 +5,8 @@ import ReviewForm from "./review_form";
 
 const mapStateToProps = (state, ownProps) => ({
     review: ownProps.review,
-    trail: state.entities.trails[ownProps.match.params.id],
-    conditions: [],
+    trail: state.entities.trails[ownProps.trail_id],
+    conditions: ownProps.review.conditions,
     formType: 'edit'
 })
 

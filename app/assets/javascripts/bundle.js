@@ -492,8 +492,10 @@ function Modal(_ref) {
     // don't forget the break! Was hitting all cases
 
     case 'edit':
+      debugger;
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        review: modal.review
+        review: modal.review,
+        trail_id: modal.trail_id
       });
       break;
 
@@ -871,8 +873,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     review: ownProps.review,
-    trail: state.entities.trails[ownProps.match.params.id],
-    conditions: [],
+    trail: state.entities.trails[ownProps.trail_id],
+    conditions: ownProps.review.conditions,
     formType: 'edit'
   };
 };
@@ -1065,7 +1067,8 @@ var Review = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this2.props.openModal({
               formType: 'edit',
-              review: rev
+              review: rev,
+              trail_id: _this2.props.trailId
             });
           },
           className: "edit-rev-button"
