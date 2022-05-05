@@ -1,6 +1,7 @@
 import React from "react";
-import * as Stars from '../stars/stars';
-import Calendar from 'react-calendar'
+import { postReviewCondition } from "../../actions/review_condition_actions";
+import { createReview } from "../../util/reviews_api_util";
+import { fetchTrailReviews } from "../../actions/review_actions";
 
 // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -22,7 +23,7 @@ class ReviewForm extends React.Component {
         this.handleEsc = this.handleEsc.bind(this);
         this.changeDate = this.changeDate.bind(this);
         this.updateActivity = this.updateActivity.bind(this);
-        this.addCondition = this.addCondition.bind(this);
+        this.toggleCondition = this.toggleCondition.bind(this);
         this.todaysDate = this.todaysDate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -47,11 +48,17 @@ class ReviewForm extends React.Component {
         this.setState(newState);
     }
 
-    addCondition(e) {
-        e.target.className = "select-condition";
-        let newState = this.state;
-        newState.conditions.push(e.target.value);
-        this.setState(newState);
+    toggleCondition(e) {
+        const prevClass = e.target.className; // "unselected"
+        e.target.className = (e.target.className === "condition-unselected") ? "condition-selected" : "condition-unselected";
+        let copiedState = this.state;
+        if (prevClass === "condition-unselected") {
+            copiedState.conditions.push({ condition: e.target.textContent })
+            this.setState(copiedState);
+        } else {
+            let reducedState = copiedState.conditions.filter(object => object.condition !== e.target.textContent);
+            this.setState(reducedState);
+        }
     }
 
     changeDate(e) {
@@ -98,12 +105,35 @@ class ReviewForm extends React.Component {
         const today = new Date;
         let dd = today.getDate();
         let mm = today.getMonth() + 1;
-        let yyyy = today.getFullYear(); 
+        let yyyy = today.getFullYear();
         return dd + '-' + mm + '-' + yyyy;
     }
 
+    postReview(postReviewCondition) {
+        debugger
+        // createReview(this.state.review)
+        //     .then(() => postReviewCondition(this.state.review));
+        // createReview(this.state.review)
+        debugger;
+        this.props.postReviewCondition(this.state.review) // create Review
+        debugger
+         // creates ReviewCondition Entries
+        
+        // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
+        //     .then(() => console.log("success"));
+        // create review api - chain .then(make callback) - then dispatch everuthing
+    }
+
     handleSubmit() {
-        this.props.createReview(this.state.review);
+        
+        debugger
+        this.props.createReview(this.state.review)
+        debugger;
+        this.props.postReviewCondition(this.state.conditions)
+        debugger
+        // this.postReview(postReviewCondition);
+        // need to call this once review has been saved
+        // this.updateTrailShow(fetchTrailReviews)
         this.props.closeModal();
     }
 
@@ -120,7 +150,7 @@ class ReviewForm extends React.Component {
                         <a onClick={this.closeModal}><img src={window.x} /></a>
                     </div>
                     <div className="step-body">
-                        <h1 className="bold">{this.state.trail.t_name}</h1>
+                        <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
                         <div>
                             {[1, 2, 3, 4, 5].map((num) =>
@@ -140,7 +170,7 @@ class ReviewForm extends React.Component {
                         <a onClick={this.closeModal}><img src={window.x} /></a>
                     </div>
                     <div className="step-body">
-                        <h1 className="bold">{this.state.trail.t_name}</h1>
+                        <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 2 of 2</span>
                         <div className="rev-date-act">
                             <label htmlFor="activity">
@@ -161,7 +191,7 @@ class ReviewForm extends React.Component {
                         </div>
                         <h2>Trail Conditions</h2>
                         <div className="rev-conditions-container">
-                        {conditions.map((condition, idx) => <button onClick={this.addCondition} key={idx} className="rev-condition-tag" value={condition}>{condition}</button>)}
+                        {conditions.map((condition, idx) => <button onClick={this.toggleCondition} key={idx} className="condition-unselected" value={condition.name}>{condition}</button>)}
                         </div>
                     </div>
                     <div className="review-buttons-container-2">

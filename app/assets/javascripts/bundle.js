@@ -43,8 +43,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CLEAR_REVIEWS": () => (/* binding */ CLEAR_REVIEWS),
 /* harmony export */   "GET_TRAIL_REVIEWS": () => (/* binding */ GET_TRAIL_REVIEWS),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "UPDATE_CONDITIONS": () => (/* binding */ UPDATE_CONDITIONS),
 /* harmony export */   "clearReviews": () => (/* binding */ clearReviews),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "fetchReviewConditions": () => (/* binding */ fetchReviewConditions),
 /* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
@@ -52,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
 var CLEAR_REVIEWS = 'CLEAR_REVIEWS';
+var UPDATE_CONDITIONS = 'UPDATE_CONDITIONS';
 
 var receiveReview = function receiveReview(review) {
   return {
@@ -73,6 +76,13 @@ var getTrailReviews = function getTrailReviews(reviews) {
   };
 };
 
+var fetchReviewConditions = function fetchReviewConditions(reviewId) {
+  return function (dispatch) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviewConditions(reviewId).then(function (review) {
+      return dispatch(updateConditions(review));
+    });
+  };
+};
 var fetchTrailReviews = function fetchTrailReviews(trailId) {
   return function (dispatch) {
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrailReviews(trailId).then(function (reviews) {
@@ -82,15 +92,47 @@ var fetchTrailReviews = function fetchTrailReviews(trailId) {
 };
 var createReview = function createReview(review) {
   return function (dispatch) {
-    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review) // update conditions PAUSE
+    .then(function (data) {
       return dispatch(receiveReview(data));
     });
   };
 }; // test: { review: {id: 20, user_id: 2, trail_id: 4, rating: 1, description: 'TERRIBLE', date_hiked: '2022-11-20', activity: 'hiking', conditions: ['fresh']} }
-// ({
-//     type: RECEIVE_REVIEW,
-//     review
-// })
+
+/***/ }),
+
+/***/ "./frontend/actions/review_condition_actions.js":
+/*!******************************************************!*\
+  !*** ./frontend/actions/review_condition_actions.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition)
+/* harmony export */ });
+/* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
+
+var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+
+var updateConditions = function updateConditions(review) {
+  return {
+    type: RECEIVE_REVIEW,
+    review: review
+  };
+};
+
+var postReviewCondition = function postReviewCondition(reviewConditions) {
+  return function (dispatch) {
+    debugger;
+    return _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__.postReviewCondition(reviewConditions) // update conditions PAUSE
+    .then(function (review) {
+      return dispatch(updateConditions(review));
+    });
+  };
+};
 
 /***/ }),
 
@@ -727,10 +769,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/review_condition_actions */ "./frontend/actions/review_condition_actions.js");
+
 
 
 
@@ -749,6 +793,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
+    trailId: parseInt(ownProps.location.pathname.substring(8)),
     formType: 'create',
     user: state.session.currUserId,
     conditions: [] // going to have to fetch conditions by review_id for EDIT
@@ -766,11 +811,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     createReview: function createReview(review) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__.createReview)(review));
+    },
+    postReviewCondition: function postReviewCondition(reviewConditions) {
+      return dispatch((0,_actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_5__.postReviewCondition)(reviewConditions));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -895,9 +943,18 @@ var Review = /*#__PURE__*/function (_React$Component) {
       this.props.clearReviews();
     }
   }, {
+    key: "fetchConditions",
+    value: function fetchConditions(reviewId) {
+      this.props.fetchReviewConditions(reviewId);
+    }
+  }, {
     key: "displayConditions",
-    value: function displayConditions(review) {
-      // if (!review.conditions.length) return <div></div>;
+    value: function displayConditions(review, idx) {
+      // pass reviewId to fetchReviewConditions from actions
+      // if (idx === 0) {
+      //     debugger;
+      //     this.fetchConditions(review.id);
+      // }
       var count = review.conditions.length;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions"
@@ -944,7 +1001,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           });
         },
         className: "rev-button"
-      }, "Write Review")), reviews.slice().reverse().map(function (rev) {
+      }, "Write Review")), reviews.slice().reverse().map(function (rev, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: rev.id,
           className: "review-block"
@@ -965,7 +1022,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-tags"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "tag"
-        }, rev.activity), rev.conditions && _this.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        }, rev.activity), rev.conditions.length > 0 && _this.displayConditions(rev, idx))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
@@ -1007,7 +1064,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: state.entities.trails,
-    trailId: ownProps.trailId
+    trailId: ownProps.trailId // reviews: state.entities.reviews
+
   };
 };
 
@@ -1018,7 +1076,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     clearReviews: function clearReviews() {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.clearReviews)());
-    }
+    },
+    fetchReviewConditions: function fetchReviewConditions(reviewId) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReviewConditions)(reviewId));
+    } // fetchTrailReviews: (trailId) => dispatch(fetchTrailReviews(trailId))
+
   };
 };
 
@@ -1039,7 +1101,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
+/* harmony import */ var _actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_condition_actions */ "./frontend/actions/review_condition_actions.js");
+/* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1061,6 +1125,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1092,7 +1157,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.handleEsc = _this.handleEsc.bind(_assertThisInitialized(_this));
     _this.changeDate = _this.changeDate.bind(_assertThisInitialized(_this));
     _this.updateActivity = _this.updateActivity.bind(_assertThisInitialized(_this));
-    _this.addCondition = _this.addCondition.bind(_assertThisInitialized(_this));
+    _this.toggleCondition = _this.toggleCondition.bind(_assertThisInitialized(_this));
     _this.todaysDate = _this.todaysDate.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -1123,12 +1188,24 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       this.setState(newState);
     }
   }, {
-    key: "addCondition",
-    value: function addCondition(e) {
-      e.target.className = "select-condition";
-      var newState = this.state;
-      newState.conditions.push(e.target.value);
-      this.setState(newState);
+    key: "toggleCondition",
+    value: function toggleCondition(e) {
+      var prevClass = e.target.className; // "unselected"
+
+      e.target.className = e.target.className === "condition-unselected" ? "condition-selected" : "condition-unselected";
+      var copiedState = this.state;
+
+      if (prevClass === "condition-unselected") {
+        copiedState.conditions.push({
+          condition: e.target.textContent
+        });
+        this.setState(copiedState);
+      } else {
+        var reducedState = copiedState.conditions.filter(function (object) {
+          return object.condition !== e.target.textContent;
+        });
+        this.setState(reducedState);
+      }
     }
   }, {
     key: "changeDate",
@@ -1191,9 +1268,31 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       return dd + '-' + mm + '-' + yyyy;
     }
   }, {
+    key: "postReview",
+    value: function postReview(postReviewCondition) {
+      debugger; // createReview(this.state.review)
+      //     .then(() => postReviewCondition(this.state.review));
+      // createReview(this.state.review)
+
+      debugger;
+      this.props.postReviewCondition(this.state.review); // create Review
+
+      debugger; // creates ReviewCondition Entries
+      // Promise.all([createReview(this.state.review), callback(this.state.conditions)])
+      //     .then(() => console.log("success"));
+      // create review api - chain .then(make callback) - then dispatch everuthing
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit() {
+      debugger;
       this.props.createReview(this.state.review);
+      debugger;
+      this.props.postReviewCondition(this.state.conditions);
+      debugger; // this.postReview(postReviewCondition);
+      // need to call this once review has been saved
+      // this.updateTrailShow(fetchTrailReviews)
+
       this.props.closeModal();
     } // onChange
 
@@ -1216,7 +1315,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-        className: "bold"
+        className: "bold overflow"
       }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
       }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, [1, 2, 3, 4, 5].map(function (num) {
@@ -1252,7 +1351,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-        className: "bold"
+        className: "bold overflow"
       }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
       }, "Step 2 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1275,10 +1374,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "rev-conditions-container"
       }, conditions.map(function (condition, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: _this2.addCondition,
+          onClick: _this2.toggleCondition,
           key: idx,
-          className: "rev-condition-tag",
-          value: condition
+          className: "condition-unselected",
+          value: condition.name
         }, condition);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-buttons-container-2"
@@ -3392,12 +3491,20 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createReview": () => (/* binding */ createReview),
-/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
+/* harmony export */   "fetchReviewConditions": () => (/* binding */ fetchReviewConditions),
+/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews),
+/* harmony export */   "updateReview": () => (/* binding */ updateReview)
 /* harmony export */ });
 var fetchTrailReviews = function fetchTrailReviews(trailId) {
   return $.ajax({
     method: 'GET',
     url: "/api/trails/".concat(trailId, "/reviews/")
+  });
+};
+var fetchReviewConditions = function fetchReviewConditions(reviewId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/trails/:trail_id/reviews/".concat(reviewId)
   });
 };
 var createReview = function createReview(review) {
@@ -3408,7 +3515,17 @@ var createReview = function createReview(review) {
       review: review
     }
   });
-}; // test
+};
+var updateReview = function updateReview(review) {
+  return $.ajax({
+    method: 'PATCH',
+    url: "/api/trails/".concat(review.trail_id, "/reviews/").concat(review.review_id),
+    data: {
+      review: review
+    }
+  });
+}; // {id: 300, user_id: 30, trail_id: 10, photo_id: nil, rating: 5, description: "Love this hike!!"}
+// test
 // $.ajax({ method: 'POST', url: '/api/reviews', data: {review: { id: 50, rating: 4, description: 'love it', date_hiked: '2022-11-11', user_id: 5, trail_id: 3, activity: 'hiking', conditions: ['sick'] }} }).then(review => console.log(review.description));
 
 /***/ }),
@@ -44783,6 +44900,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
+  window.updateReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.updateReview;
   window.postReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
   window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;
   window.createReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.createReview;

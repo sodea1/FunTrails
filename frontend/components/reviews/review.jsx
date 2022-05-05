@@ -14,8 +14,18 @@ class Review extends React.Component {
         this.props.clearReviews();
     }
 
-    displayConditions(review) {
-        // if (!review.conditions.length) return <div></div>;
+    fetchConditions(reviewId) {
+        this.props.fetchReviewConditions(reviewId);
+    }
+
+    displayConditions(review, idx) {
+        // pass reviewId to fetchReviewConditions from actions
+
+        // if (idx === 0) {
+        //     debugger;
+        //     this.fetchConditions(review.id);
+        // }
+
         const count = review.conditions.length;
         return (
             <div className='rev-conditions'>
@@ -62,7 +72,7 @@ class Review extends React.Component {
                     {/*  CREATE REVIEW HERE */}
                     <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
-                {reviews.slice().reverse().map((rev) => {
+                {reviews.slice().reverse().map((rev, idx) => {
                     return (
                         <div key={rev.id} className='review-block'>
                             <section className='review-header'>
@@ -82,7 +92,8 @@ class Review extends React.Component {
 
                                 <div className='rev-tags'>
                                     <span className='tag'>{rev.activity}</span>
-                                    {rev.conditions && this.displayConditions(rev)}
+                                    {/* REMEMBER TO REMOVE CONSTRAINT BELOW */}
+                                    {rev.conditions.length > 0 && this.displayConditions(rev, idx)}
                                     
                                 </div>
 

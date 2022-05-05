@@ -4,7 +4,7 @@ import configureStore from './store/store';
 import Root from './components/root';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchTrails } from './actions/trail_actions';
-import { fetchReview } from './util/reviews_api_util';
+import { fetchReview, updateReview } from './util/reviews_api_util';
 import { fetchTrail } from './util/trails_api_util';
 import { createReview, fetchTrailReviews } from './actions/review_actions';
 import { postReviewCondition } from './util/review_condition_api_util';
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
+  window.updateReview = updateReview;
   window.postReviewCondition = postReviewCondition;
   window.fetchTrailReviews = fetchTrailReviews;
   window.createReview = createReview;

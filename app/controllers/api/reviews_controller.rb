@@ -9,7 +9,6 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save!
-
             render :show
         else
             render json: 'Invalid review', status: 401
@@ -21,13 +20,18 @@ class Api::ReviewsController < ApplicationController
         @review.destroy
     end
 
-    def update 
+    def update
         @review = Review.find_by(id: params[:id])
         if @review.update(review_params)
             render :show
         else
             render json: ['Can\'t update'], status: 401
         end
+    end
+
+    def show
+        @review = Review.find_by(id: params[:id])
+        render :show
     end
 
     private

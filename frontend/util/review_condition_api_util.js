@@ -5,7 +5,7 @@ export const postReviewCondition = reviewConditions => {
         $.ajax({
             method: 'POST',
             url: '/api/review_conditions',
-            data: {reviewConditions}
+            data: { reviewConditions }
         })
     )
 }
