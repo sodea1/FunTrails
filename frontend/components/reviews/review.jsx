@@ -111,7 +111,10 @@ class Review extends React.Component {
                             </section>
                             <section>
                                 {this.props.currUserId === parseInt(rev.user_id) ? 
-                                    <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id}>Delete</button>
+                                    <div>
+                                        <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id} className='delete-rev-button'>Delete</button>
+                                        <button onClick={() => this.props.openModal({ formType: 'edit', review: rev})} className='edit-rev-button'>Edit</button>
+                                    </div>
                                 :
                                     <div></div>
                                 }

@@ -9,21 +9,22 @@ function Modal ({ modal, closeModal }) {
         return null;
     }
 
-    // let component;
+    let component;
 
-    // switch(modal.formType) {
-    //     case 'create':
-    //         component = <CreateRevContainer />
-    //     case 'edit':
-    //         component = <EditRevContainer />
-    //     default:
-    //         break;
-    // }
+    switch(modal.formType) {
+        case 'create':
+            component = <CreateRevContainer />
+            break // don't forget the break! Was hitting all cases
+        case 'edit':
+            component = <EditRevContainer review={modal.review} />
+            break
+        default:
+            break;
+    }
 
-    
     return (
         <div>
-            {<CreateRevContainer />}
+            {component}
         </div>
     )
     

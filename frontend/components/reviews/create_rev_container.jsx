@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => ({
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
     trailId: parseInt(ownProps.location.pathname.substring(8)),
-    formType: 'create',
+    formType: state.ui.modal.formType,
     user: state.session.currUserId,
     conditions: [] // going to have to fetch conditions by review_id for EDIT
 })

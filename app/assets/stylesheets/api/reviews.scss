@@ -143,12 +143,13 @@
 .rev-tags {
     display: flex;
     flex-flow: row wrap;
-    padding-top: 8px;
+    padding-top: 4px;
     padding-bottom: 12px;
 }
 
 .rev-description {
     align-items: flex-start;
+    padding-left: 6px;
 }
 
 .rev-info {
@@ -188,5 +189,26 @@
     right: 4%;
 }
 
+.delete-rev-button {
+    background: none;
+    border: none;
+    color: $brand_green;
+    margin-top: 14px;
+    font-size: 14px;
+    padding-right: 12px;
+}
 
+.delete-rev-button:hover,
+.edit-rev-button:hover {
+    cursor: pointer;
+}
 
+.edit-rev-button {
+    background: none;
+    border: none;
+    color: $brand_green;
+    margin-top: 14px;
+    font-size: 14px;
+    padding: 0px 12px;
+    border-left: 1px solid #414141;
+}

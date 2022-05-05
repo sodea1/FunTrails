@@ -481,18 +481,27 @@ function Modal(_ref) {
 
   if (!modal) {
     return null;
-  } // let component;
-  // switch(modal.formType) {
-  //     case 'create':
-  //         component = <CreateRevContainer />
-  //     case 'edit':
-  //         component = <EditRevContainer />
-  //     default:
-  //         break;
-  // }
+  }
 
+  var component;
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+  switch (modal.formType) {
+    case 'create':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      break;
+    // don't forget the break! Was hitting all cases
+
+    case 'edit':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        review: modal.review
+      });
+      break;
+
+    default:
+      break;
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, component);
 }
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -811,7 +820,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
     trailId: parseInt(ownProps.location.pathname.substring(8)),
-    formType: 'create',
+    formType: state.ui.modal.formType,
     user: state.session.currUserId,
     conditions: [] // going to have to fetch conditions by review_id for EDIT
 
@@ -861,17 +870,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    review: {
-      user_id: null,
-      trail_id: null,
-      rating: 0,
-      description: '',
-      date_hiked: new Date(),
-      activity: 'Hiking'
-    },
+    review: ownProps.review,
     trail: state.entities.trails[ownProps.match.params.id],
     conditions: [],
-    formType: 'Create Review'
+    formType: 'edit'
   };
 };
 
@@ -1054,11 +1056,20 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
-        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, _this2.props.currUserId === parseInt(rev.user_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, _this2.props.currUserId === parseInt(rev.user_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: _this2.handleDelete,
           value: rev.id,
-          "data-value": rev.user_id
-        }, "Delete") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)));
+          "data-value": rev.user_id,
+          className: "delete-rev-button"
+        }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: function onClick() {
+            return _this2.props.openModal({
+              formType: 'edit',
+              review: rev
+            });
+          },
+          className: "edit-rev-button"
+        }, "Edit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)));
       }));
     }
   }, {
@@ -1310,6 +1321,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      debugger;
       var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
 
       var conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy', 'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow'];
