@@ -43,9 +43,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CLEAR_REVIEWS": () => (/* binding */ CLEAR_REVIEWS),
 /* harmony export */   "GET_TRAIL_REVIEWS": () => (/* binding */ GET_TRAIL_REVIEWS),
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
+/* harmony export */   "REMOVE_REVIEW": () => (/* binding */ REMOVE_REVIEW),
 /* harmony export */   "UPDATE_CONDITIONS": () => (/* binding */ UPDATE_CONDITIONS),
 /* harmony export */   "clearReviews": () => (/* binding */ clearReviews),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "deleteReview": () => (/* binding */ deleteReview),
 /* harmony export */   "fetchReviewConditions": () => (/* binding */ fetchReviewConditions),
 /* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
@@ -55,6 +57,7 @@ var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
 var CLEAR_REVIEWS = 'CLEAR_REVIEWS';
 var UPDATE_CONDITIONS = 'UPDATE_CONDITIONS';
+var REMOVE_REVIEW = 'REMOVE_REVIEW';
 
 var receiveReview = function receiveReview(review) {
   return {
@@ -76,6 +79,21 @@ var getTrailReviews = function getTrailReviews(reviews) {
   };
 };
 
+var removeReview = function removeReview(reviewId) {
+  debugger;
+  return {
+    type: REMOVE_REVIEW,
+    reviewId: reviewId
+  };
+};
+
+var deleteReview = function deleteReview(reviewId) {
+  return function (dispatch) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.deleteReview(reviewId).then(function () {
+      return dispatch(removeReview(reviewId));
+    });
+  };
+};
 var fetchReviewConditions = function fetchReviewConditions(reviewId) {
   return function (dispatch) {
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviewConditions(reviewId).then(function (review) {
@@ -927,9 +945,16 @@ var Review = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Review);
 
   function Review(props) {
+    var _this;
+
     _classCallCheck(this, Review);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      reviews: _this.props.reviews
+    };
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Review, [{
@@ -948,13 +973,15 @@ var Review = /*#__PURE__*/function (_React$Component) {
       this.props.fetchReviewConditions(reviewId);
     }
   }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      debugger;
+      this.props.deleteReview(e.target.value);
+    }
+  }, {
     key: "displayConditions",
-    value: function displayConditions(review, idx) {
-      // pass reviewId to fetchReviewConditions from actions
-      // if (idx === 0) {
-      //     debugger;
-      //     this.fetchConditions(review.id);
-      // }
+    value: function displayConditions(review) {
+      if (review.conditions.length === 0) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null);
       var count = review.conditions.length;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions"
@@ -968,7 +995,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reviewContainer",
     value: function reviewContainer() {
-      var _this = this;
+      var _this2 = this;
 
       var reviews = this.props.reviews;
       var sum = 0;
@@ -996,12 +1023,12 @@ var Review = /*#__PURE__*/function (_React$Component) {
         className: "bars-container"
       }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.yellowBars(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg(reviews, avgRating)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
-          return _this.props.openModal({
+          return _this2.props.openModal({
             formType: 'create'
           });
         },
         className: "rev-button"
-      }, "Write Review")), reviews.slice().reverse().map(function (rev, idx) {
+      }, "Write Review")), reviews.slice().reverse().map(function (rev) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: rev.id,
           className: "review-block"
@@ -1022,11 +1049,14 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-tags"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "tag"
-        }, rev.activity), rev.conditions.length > 0 && _this.displayConditions(rev, idx))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        }, rev.activity), rev.conditions.length > 0 && _this2.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
           className: "review-body"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-description"
-        }, rev.description)));
+        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          onClick: _this2.handleDelete,
+          value: rev.id
+        }, "Delete")));
       }));
     }
   }, {
@@ -1063,8 +1093,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    trails: state.entities.trails,
-    trailId: ownProps.trailId // reviews: state.entities.reviews
+    trails: state.entities.trails // trailId: ownProps.trailId
 
   };
 };
@@ -1077,8 +1106,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     clearReviews: function clearReviews() {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.clearReviews)());
     },
-    fetchReviewConditions: function fetchReviewConditions(reviewId) {
-      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.fetchReviewConditions)(reviewId));
+    deleteReview: function deleteReview(reviewId) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.deleteReview)(reviewId));
     } // fetchTrailReviews: (trailId) => dispatch(fetchTrailReviews(trailId))
 
   };
@@ -3162,6 +3191,12 @@ var reviewsReducer = function reviewsReducer() {
     case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.CLEAR_REVIEWS:
       return {};
 
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__.REMOVE_REVIEW:
+      var newState = Object.assign({}, state);
+      debugger;
+      delete newState[action.reviewId];
+      return newState;
+
     default:
       return state;
   }
@@ -3491,6 +3526,7 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "createReview": () => (/* binding */ createReview),
+/* harmony export */   "deleteReview": () => (/* binding */ deleteReview),
 /* harmony export */   "fetchReviewConditions": () => (/* binding */ fetchReviewConditions),
 /* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews),
 /* harmony export */   "updateReview": () => (/* binding */ updateReview)
@@ -3523,6 +3559,13 @@ var updateReview = function updateReview(review) {
     data: {
       review: review
     }
+  });
+};
+var deleteReview = function deleteReview(reviewId) {
+  debugger;
+  return $.ajax({
+    method: 'DELETE',
+    url: "/api/trails/:trailId/reviews/".concat(reviewId)
   });
 }; // {id: 300, user_id: 30, trail_id: 10, photo_id: nil, rating: 5, description: "Love this hike!!"}
 // test
@@ -44900,6 +44943,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
+  window.deleteReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.deleteReview;
   window.updateReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.updateReview;
   window.postReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
   window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;

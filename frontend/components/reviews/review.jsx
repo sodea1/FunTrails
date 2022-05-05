@@ -4,6 +4,11 @@ import * as Stars from '../stars/stars';
 class Review extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            reviews: this.props.reviews
+        }
+
+        this.handleDelete = this.handleDelete.bind(this);
     }
     
     componentDidMount() {
@@ -18,13 +23,13 @@ class Review extends React.Component {
         this.props.fetchReviewConditions(reviewId);
     }
 
-    displayConditions(review, idx) {
-        // pass reviewId to fetchReviewConditions from actions
+    handleDelete(e) {
+        debugger
+        this.props.deleteReview(e.target.value);
+    }
 
-        // if (idx === 0) {
-        //     debugger;
-        //     this.fetchConditions(review.id);
-        // }
+    displayConditions(review) {
+        if (review.conditions.length === 0) return <div></div>;
 
         const count = review.conditions.length;
         return (
@@ -72,7 +77,7 @@ class Review extends React.Component {
                     {/*  CREATE REVIEW HERE */}
                     <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
-                {reviews.slice().reverse().map((rev, idx) => {
+                {reviews.slice().reverse().map((rev) => {
                     return (
                         <div key={rev.id} className='review-block'>
                             <section className='review-header'>
@@ -93,7 +98,7 @@ class Review extends React.Component {
                                 <div className='rev-tags'>
                                     <span className='tag'>{rev.activity}</span>
                                     {/* REMEMBER TO REMOVE CONSTRAINT BELOW */}
-                                    {rev.conditions.length > 0 && this.displayConditions(rev, idx)}
+                                    {rev.conditions.length > 0 && this.displayConditions(rev)}
                                     
                                 </div>
 
@@ -101,6 +106,9 @@ class Review extends React.Component {
 
                             <section className='review-body'>
                                 <span className='rev-description'>{rev.description}</span>
+                            </section>
+                            <section>
+                                <button onClick={this.handleDelete} value={rev.id}>Delete</button>
                             </section>
                         </div>
                     )

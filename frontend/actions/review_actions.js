@@ -4,6 +4,7 @@ export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const GET_TRAIL_REVIEWS = 'GET_TRAIL_REVIEWS';
 export const CLEAR_REVIEWS = 'CLEAR_REVIEWS';
 export const UPDATE_CONDITIONS = 'UPDATE_CONDITIONS';
+export const REMOVE_REVIEW = 'REMOVE_REVIEW';
 
 const receiveReview = review => {
     return ({
@@ -23,6 +24,21 @@ const getTrailReviews = reviews => {
         type: GET_TRAIL_REVIEWS,
         reviews
     })
+}
+
+const removeReview = (reviewId) => {
+    debugger;
+    return ({
+        type: REMOVE_REVIEW,
+        reviewId
+    })
+}
+
+export const deleteReview = reviewId => dispatch => {
+    return (
+        ReviewApiUtil.deleteReview(reviewId)
+            .then(() => dispatch(removeReview(reviewId)))
+    )
 }
 
 export const fetchReviewConditions = (reviewId) => dispatch => {

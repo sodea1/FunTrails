@@ -6,7 +6,7 @@ import { login, logout, signup } from './actions/session_actions';
 import { fetchTrails } from './actions/trail_actions';
 import { fetchReview, updateReview } from './util/reviews_api_util';
 import { fetchTrail } from './util/trails_api_util';
-import { createReview, fetchTrailReviews } from './actions/review_actions';
+import { createReview, deleteReview, fetchTrailReviews } from './actions/review_actions';
 import { postReviewCondition } from './util/review_condition_api_util';
 
 
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
+  window.deleteReview = deleteReview;
   window.updateReview = updateReview;
   window.postReviewCondition = postReviewCondition;
   window.fetchTrailReviews = fetchTrailReviews;

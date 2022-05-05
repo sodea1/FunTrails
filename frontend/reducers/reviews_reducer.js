@@ -1,4 +1,4 @@
-import { GET_TRAIL_REVIEWS, RECEIVE_REVIEW, CLEAR_REVIEWS } from "../actions/review_actions";
+import { GET_TRAIL_REVIEWS, RECEIVE_REVIEW, CLEAR_REVIEWS, REMOVE_REVIEW } from "../actions/review_actions";
 
 
 const reviewsReducer = (state = {}, action) => {
@@ -10,6 +10,11 @@ const reviewsReducer = (state = {}, action) => {
             return Object.assign({}, state, action.reviews);
         case CLEAR_REVIEWS:
             return {};
+        case REMOVE_REVIEW:
+            let newState = Object.assign({}, state);
+            debugger
+            delete newState[action.reviewId];
+            return newState;
         default:
             return state;
     }

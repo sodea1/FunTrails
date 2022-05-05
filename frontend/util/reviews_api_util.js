@@ -37,6 +37,16 @@ export const updateReview = (review) => {
     )
 }
 
+export const deleteReview = (reviewId) => {
+    debugger;
+    return (
+        $.ajax({
+            method: 'DELETE',
+            url: `/api/trails/:trailId/reviews/${reviewId}`
+        })
+    )
+}
+
 // {id: 300, user_id: 30, trail_id: 10, photo_id: nil, rating: 5, description: "Love this hike!!"}
 
 // test
