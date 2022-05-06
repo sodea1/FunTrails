@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import SplashSearch from "./search";
+import SearchContainer from "../search/search";
 import TrailFavorites from "./trail_favorites";
 import Descriptors from "./descriptors";
 import Confidence from "./confidence";
@@ -17,7 +17,7 @@ class Splash extends React.Component {
         return ( 
             <div>
                 <div>
-                    <SplashSearch />
+                    <SearchContainer trails={trails}/> 
                 </div>
                 {trails.length > 0 && <TrailFavorites trails={trails}/>}
                 <div>

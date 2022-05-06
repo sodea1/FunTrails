@@ -15,10 +15,10 @@ const App = () => (
     <Modal />
     <NavContainer />
     <Switch>
-      <Route exact path="/" component={SplashContainer} />
-      <Route path="/trails/:id" component={TrailContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
       <AuthRoute path="/login" component={LoginFormContainer} />
+      <Route path="/trails/:id" component={TrailContainer} />
+      <Route path="/" component={SplashContainer} />
     </Switch>
 
     <Footer />
