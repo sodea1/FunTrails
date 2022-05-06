@@ -46,12 +46,10 @@ class Search extends React.Component {
     }
 
     updateSearch(e) {
-        debugger
         this.setState({search: e.target.value})
     }
 
     routeTrail(trailId) {
-        debugger
         this.props.history.push(`/trails/${trailId}`);
     }
 
@@ -61,7 +59,6 @@ class Search extends React.Component {
     }
 
     render() {
-        // debugger;
         const { images, currImg } = this.state;
         const urlString = `url('${images[currImg]}')`;
         let liveItemsList = [];
@@ -102,7 +99,6 @@ class Search extends React.Component {
 
                             <div className="search-items-list">
                                 {Object.values(this.props.trails).map((trail, idx) => {
-                                    // debugger;
                                     if (trail.t_name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                         liveItemsList.push(trail.t_name)
                                         return (

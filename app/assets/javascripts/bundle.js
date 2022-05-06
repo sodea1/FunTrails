@@ -491,7 +491,6 @@ function Modal(_ref) {
     // don't forget the break! Was hitting all cases
 
     case 'edit':
-      debugger;
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         review: modal.review
       });
@@ -1587,7 +1586,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateSearch",
     value: function updateSearch(e) {
-      debugger;
       this.setState({
         search: e.target.value
       });
@@ -1595,7 +1593,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "routeTrail",
     value: function routeTrail(trailId) {
-      debugger;
       this.props.history.push("/trails/".concat(trailId));
     }
   }, {
@@ -1611,7 +1608,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      // debugger;
       var _this$state2 = this.state,
           images = _this$state2.images,
           currImg = _this$state2.currImg;
@@ -1662,7 +1658,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "All")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Trails")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "search-items-list"
         }, Object.values(this.props.trails).map(function (trail, idx) {
-          // debugger;
           if (trail.t_name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
             liveItemsList.push(trail.t_name);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -2358,21 +2353,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         src: window.google_play,
         width: "118px",
         height: "34px"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Members for the planet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "foot-mid"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.planet,
-        width: "86px",
-        height: "36px"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.leave_no_trace,
-        width: "76px",
-        height: "36px"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.one_tree,
-        width: "155px",
-        height: "36px"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Connect with Sean O'Dea"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Connect with Sean O'Dea"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "foot-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
         href: "https://www.linkedin.com/in/seanodea1/"
@@ -2728,7 +2711,6 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
     key: "handleSlide",
     value: function handleSlide() {
       var newState = this.state.swipe === false ? true : false;
-      debugger;
       this.setState({
         swipe: newState
       });

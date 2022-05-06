@@ -56,11 +56,11 @@ class Footer extends React.Component {
                     </div>
 
                     <div>
-                        <p>Members for the planet</p>
+                        {/* <p>Members for the planet</p> */}
                         <div className='foot-mid'>
-                            <img src={window.planet} width="86px" height="36px" />
+                            {/* <img src={window.planet} width="86px" height="36px" />
                             <img src={window.leave_no_trace} width="76px" height="36px" />
-                            <img src={window.one_tree} width="155px" height="36px" />
+                            <img src={window.one_tree} width="155px" height="36px" /> */}
                         </div>
                     </div>
                     <div>

@@ -13,7 +13,6 @@ class TrailFavorites extends React.Component {
 
     handleSlide() {
         let newState = (this.state.swipe === false) ? true : false;
-        debugger
         this.setState({swipe: newState})
     }
 
@@ -29,7 +28,6 @@ class TrailFavorites extends React.Component {
                         Local Favorites Near San Francisco
                     </div>
                     <div className="tiles-container">
-                        {/* {this.state.swipe === true ? <button onClick={this.handleSlide} className="arrow-button"><img src={window.left_arrow} className="arrow" width="22px" height="22px" /></button> : <div></div>} */}
                         {paneShown.map((trail) => {
                             return (
                                 <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
