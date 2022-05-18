@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_143253) do
+ActiveRecord::Schema.define(version: 2022_05_18_182117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2022_04_30_143253) do
     t.string "activity", null: false
     t.index ["photo_id"], name: "index_reviews_on_photo_id"
     t.index ["trail_id"], name: "index_reviews_on_trail_id"
-    t.index ["user_id", "trail_id"], name: "index_reviews_on_user_id_and_trail_id", unique: true
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 

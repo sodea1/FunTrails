@@ -61,6 +61,12 @@ export const createReview = (review) => dispatch => {
     )
 }
 
+export const updateReview = (review) => dispatch => {
+    return (
+        ReviewApiUtil.updateReview(review)
+            .then(res => dispatch(receiveReview(res)))
+    )
+}
 
 
 // test: { review: {id: 20, user_id: 2, trail_id: 4, rating: 1, description: 'TERRIBLE', date_hiked: '2022-11-20', activity: 'hiking', conditions: ['fresh']} }

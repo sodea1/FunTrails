@@ -31,11 +31,13 @@ export const updateReview = (review) => {
     return (
         $.ajax({
             method: 'PATCH',
-            url: `/api/trails/${review.trail_id}/reviews/${review.review_id}`,
+            url: `/api/trails/${review.trail_id}/reviews/${review.id}`,
             data: { review }
         })
     )
 }
+
+// test: {id: 200, user_id: 30, trail_id: 10, photo_id: nil, rating: 1, description: "Breath of fresh air :)", date_hiked: '2022-11-11', activity: "Running"}
 
 export const deleteReview = (reviewId) => {
     return (

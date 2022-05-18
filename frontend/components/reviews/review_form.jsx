@@ -1,5 +1,4 @@
 import React from "react";
-import * as Stars from "../stars/stars";
 // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
 
@@ -32,7 +31,6 @@ class ReviewForm extends React.Component {
         
         // if review does not exist yet (aka Create form)
         if (!this.props.review.id) {
-            debugger
             let newState = this.state;
             newState.review.date_hiked = this.todaysDate();;
             this.setState(newState);
@@ -143,9 +141,15 @@ class ReviewForm extends React.Component {
     handleSubmit() {
         // ADD TERNARY FOR 'CREATE' VS 'EDIT' *******************************
         // must wait for review to be created so review_id is accessible in ReviewConditionsController
-        this.props.createReview(this.state.review)
-            .then(() => this.props.postReviewCondition(this.state.conditions));
-        this.props.closeModal();
+        if (!this.state.review.id) {
+            this.props.createReview(this.state.review)
+                .then(() => this.props.postReviewCondition(this.state.conditions))
+                .then(this.props.closeModal());
+        } else {
+            this.props.updateReview(this.state.review)
+                .then(() => this.props.updatetReviewCondition(this.state.conditions))
+                .then(this.props.closeModal());
+        }
     }
 
     // onChange

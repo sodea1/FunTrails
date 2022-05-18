@@ -48,7 +48,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "clearReviews": () => (/* binding */ clearReviews),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "deleteReview": () => (/* binding */ deleteReview),
-/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
+/* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews),
+/* harmony export */   "updateReview": () => (/* binding */ updateReview)
 /* harmony export */ });
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
 
@@ -109,6 +110,13 @@ var createReview = function createReview(review) {
   return function (dispatch) {
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.createReview(review).then(function (data) {
       return dispatch(receiveReview(data));
+    });
+  };
+};
+var updateReview = function updateReview(review) {
+  return function (dispatch) {
+    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReview(review).then(function (res) {
+      return dispatch(receiveReview(res));
     });
   };
 }; // test: { review: {id: 20, user_id: 2, trail_id: 4, rating: 1, description: 'TERRIBLE', date_hiked: '2022-11-20', activity: 'hiking', conditions: ['fresh']} }
@@ -866,9 +874,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/review_condition_actions */ "./frontend/actions/review_condition_actions.js");
+
+
 
 
 
@@ -891,11 +903,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     closeModal: function closeModal() {
       return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    },
+    updateReview: function updateReview(review) {
+      return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__.updateReview)(review));
+    },
+    updatetReviewCondition: function updatetReviewCondition(reviewConditions, reviewId) {
+      return dispatch((0,_actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_5__.updateReviewCondition)(reviewConditions, reviewId));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -1155,7 +1173,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1177,7 +1194,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
  // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -1221,7 +1237,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       document.addEventListener("keydown", this.handleEsc, false); // if review does not exist yet (aka Create form)
 
       if (!this.props.review.id) {
-        debugger;
         var newState = this.state;
         newState.review.date_hiked = this.todaysDate();
         ;
@@ -1366,10 +1381,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
 
       // ADD TERNARY FOR 'CREATE' VS 'EDIT' *******************************
       // must wait for review to be created so review_id is accessible in ReviewConditionsController
-      this.props.createReview(this.state.review).then(function () {
-        return _this3.props.postReviewCondition(_this3.state.conditions);
-      });
-      this.props.closeModal();
+      if (!this.state.review.id) {
+        this.props.createReview(this.state.review).then(function () {
+          return _this3.props.postReviewCondition(_this3.state.conditions);
+        }).then(this.props.closeModal());
+      } else {
+        this.props.updateReview(this.state.review).then(function () {
+          return _this3.props.updatetReviewCondition(_this3.state.conditions);
+        }).then(this.props.closeModal());
+      }
     } // onChange
 
   }, {
@@ -3699,12 +3719,13 @@ var createReview = function createReview(review) {
 var updateReview = function updateReview(review) {
   return $.ajax({
     method: 'PATCH',
-    url: "/api/trails/".concat(review.trail_id, "/reviews/").concat(review.review_id),
+    url: "/api/trails/".concat(review.trail_id, "/reviews/").concat(review.id),
     data: {
       review: review
     }
   });
-};
+}; // test: {id: 200, user_id: 30, trail_id: 10, photo_id: nil, rating: 1, description: "Breath of fresh air :)", date_hiked: '2022-11-11', activity: "Running"}
+
 var deleteReview = function deleteReview(reviewId) {
   return $.ajax({
     method: 'DELETE',
