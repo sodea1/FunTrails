@@ -1243,14 +1243,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
 
       if (prevClass === "condition-unselected") {
         copiedState.conditions.push({
-          condition: e.target.textContent
+          name: e.target.textContent
         });
         this.setState(copiedState);
       } else {
-        var reducedState = copiedState.conditions.filter(function (object) {
-          return object.condition !== e.target.textContent;
+        var reducedConditions = copiedState.conditions.filter(function (object) {
+          return object.name !== e.target.textContent;
         });
-        this.setState(reducedState);
+        copiedState.conditions = reducedConditions;
+        this.setState(copiedState);
       }
     }
   }, {
@@ -1342,7 +1343,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }
 
       var maxDate = yyyy + '-' + mm + '-' + dd;
-      debugger;
       return maxDate;
     }
   }, {
@@ -1368,7 +1368,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       var _this$state$review = this.state.review,
           rating = _this$state$review.rating,
           activity = _this$state$review.activity,
-          date_hiked = _this$state$review.date_hiked; // (num <= rating) ? window.star : 
+          date_hiked = _this$state$review.date_hiked;
+      var stateConditions = this.state.review.conditions.map(function (condition) {
+        return condition.name;
+      }); // (num <= rating) ? window.star : 
 
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
@@ -1434,7 +1437,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: _this4.toggleCondition,
           key: idx,
-          className: "condition-unselected",
+          className: stateConditions.includes(condition) ? "condition-selected" : "condition-unselected",
           value: condition.name
         }, condition);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

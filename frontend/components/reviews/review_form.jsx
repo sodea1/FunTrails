@@ -54,11 +54,12 @@ class ReviewForm extends React.Component {
         e.target.className = (e.target.className === "condition-unselected") ? "condition-selected" : "condition-unselected";
         let copiedState = this.state;
         if (prevClass === "condition-unselected") {
-            copiedState.conditions.push({ condition: e.target.textContent })
+            copiedState.conditions.push({ name: e.target.textContent })
             this.setState(copiedState);
         } else {
-            let reducedState = copiedState.conditions.filter(object => object.condition !== e.target.textContent);
-            this.setState(reducedState);
+            let reducedConditions = copiedState.conditions.filter(object => object.name !== e.target.textContent);
+            copiedState.conditions = reducedConditions;
+            this.setState(copiedState);
         }
     }
 
@@ -130,7 +131,6 @@ class ReviewForm extends React.Component {
         }
         
         let maxDate = yyyy + '-' + mm + '-' + dd;
-        debugger;
         return maxDate;
     }
 
@@ -148,6 +148,7 @@ class ReviewForm extends React.Component {
         // consider adding conditions api?
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
         const { rating, activity, date_hiked } = this.state.review;
+        const stateConditions = this.state.review.conditions.map(condition => condition.name)
         // (num <= rating) ? window.star : 
 
         const reviewStep = (this.state.step === 1) ?
@@ -193,7 +194,7 @@ class ReviewForm extends React.Component {
                         </div>
                         <h2>Trail Conditions</h2>
                         <div className="rev-conditions-container">
-                        {conditions.map((condition, idx) => <button onClick={this.toggleCondition} key={idx} className="condition-unselected" value={condition.name}>{condition}</button>)}
+                        {conditions.map((condition, idx) => <button onClick={this.toggleCondition} key={idx} className={(stateConditions.includes(condition)) ? "condition-selected" : "condition-unselected"} value={condition.name}>{condition}</button>)}
                         </div>
                     </div>
                     <div className="review-buttons-container-2">

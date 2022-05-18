@@ -150,26 +150,6 @@
     font-size: 16px;
 }
 
-// .disabled-button {
-//     background: $brand_green;
-//     border: none;
-//     width: 82px;
-//     height: 40px;
-//     margin-right: 22px;
-//     border-radius: 8px;
-//     height: 40px;
-//     color: white;
-//     font-weight: bold;
-//     cursor: pointer;
-//     font-size: 16px;
-//     opacity: 0.5;
-//     pointer-events: none;
-// }
-// {
-//         "review-button"+(this.state.review.rating===0) ? 'disabled-button': ''
-//     }
-
-
 // step2 container 
 
 
@@ -226,10 +206,6 @@
     border: 1px solid $brand_green;
     background-color: rgba(66,138,19,.04);
     color: $brand_green;
-    padding: 5.5px 12px;
-    margin: 5px 2.5px;
-    white-space: nowrap;
-    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -241,4 +217,5 @@
     margin: 5px 2.5px;
     white-space: nowrap;
     border-radius: 8px;
+    cursor: pointer;
 }
