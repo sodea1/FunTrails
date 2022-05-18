@@ -4,7 +4,7 @@ const dipseaPath = require('./dipsea-ele.json');
 
 class Map extends React.Component {
     componentDidMount() {
-        const { latitude, longitude } = this.props.trail;
+        const { latitude, longitude } = this.props.trail[0];
         const mapOptions = {
             center: { lat: latitude, lng: longitude },
             zoom: 13,
@@ -24,26 +24,15 @@ class Map extends React.Component {
 
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.markerMgr = new MarkerManager(this.map);
-        this.markerMgr.updateMarkers(this.props.trails);
+        this.markerMgr.updateMarkers(this.props.trail);
 
         // add trail to map
         path.setMap(this.map);        
 
-
-        // elevation
-        // const elevation = new google.maps.ElevationService();
-
-        // elevation.getElevationAlongPath({
-        //     path: path,
-        //     samples: 200
-        // })
-
-
-
     }
 
     componentDidUpdate() {
-        this.markerMgr.updateMarkers(this.props.trails);
+        this.markerMgr.updateMarkers(this.props.trail);
     }
 
     render() {

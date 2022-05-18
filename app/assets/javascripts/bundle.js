@@ -407,9 +407,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
   _createClass(Map, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this$props$trail = this.props.trail,
-          latitude = _this$props$trail.latitude,
-          longitude = _this$props$trail.longitude;
+      var _this$props$trail$ = this.props.trail[0],
+          latitude = _this$props$trail$.latitude,
+          longitude = _this$props$trail$.longitude;
       var mapOptions = {
         center: {
           lat: latitude,
@@ -430,19 +430,14 @@ var Map = /*#__PURE__*/function (_React$Component) {
       });
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
-      this.markerMgr.updateMarkers(this.props.trails); // add trail to map
+      this.markerMgr.updateMarkers(this.props.trail); // add trail to map
 
-      path.setMap(this.map); // elevation
-      // const elevation = new google.maps.ElevationService();
-      // elevation.getElevationAlongPath({
-      //     path: path,
-      //     samples: 200
-      // })
+      path.setMap(this.map);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.markerMgr.updateMarkers(this.props.trails);
+      this.markerMgr.updateMarkers(this.props.trail);
     }
   }, {
     key: "render",
@@ -3136,7 +3131,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        trail: this.props.trail,
+        trail: [this.props.trail],
         trails: this.props.trails
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "nearby bold"

@@ -98,7 +98,7 @@ class Trail extends React.Component {
 
                 <div className='side-panel border-left-inner'>
 
-                    <Map trail={this.props.trail} trails={this.props.trails} />
+                    <Map trail={[this.props.trail]} trails={this.props.trails} />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
 
