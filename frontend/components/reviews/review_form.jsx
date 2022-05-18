@@ -23,6 +23,9 @@ class ReviewForm extends React.Component {
         this.toggleCondition = this.toggleCondition.bind(this);
         this.todaysDate = this.todaysDate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.generateStars = this.generateStars.bind(this);
+        this.toggleStar = this.toggleStar.bind(this);
     }
 
     componentDidMount() {
@@ -67,7 +70,8 @@ class ReviewForm extends React.Component {
     }
 
     toggleStar(e) {
-        const numStars = e.target.id;
+        const numStars = e.type === 'mouseover' ? e.target.id : this.state.review.rating;
+
         for (let j = parseInt(numStars) + 1; j < 6; j++) {
             
             let star = document.getElementById(j);
@@ -77,13 +81,28 @@ class ReviewForm extends React.Component {
             let currStar = document.getElementById(i);
             currStar.src = window.star;
         }
+        
+    }
+
+
+    generateStars() {
+        const currRating = this.state.review.rating;
+        return (
+            <div className='rev-stars'>
+                {[1, 2, 3, 4, 5].map(num => <img className="review-star" key={num} id={num} data-rating={currRating} src={num <= currRating ? window.star : window.grey_star} onMouseOver={this.toggleStar} onClick={this.clickStar} onMouseOut={this.toggleStar} />)}
+            </div>
+        )
+    }
+
+    handleMouseOut() {
+
     }
 
     clickStar(e) {
         let newState = Object.assign({}, this.state);
         newState.review.rating = e.target.id;
         this.setState(newState);
-        debugger;
+        
         document.getElementById("next-button").className = "review-button";
     }
 
@@ -122,7 +141,9 @@ class ReviewForm extends React.Component {
         const activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']  
         // consider adding conditions api?
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
-        
+        const { rating } = this.state.review;
+        // (num <= rating) ? window.star : 
+
         const reviewStep = (this.state.step === 1) ?
                 <div className="step-container">
                     <div className="x-out">
@@ -131,16 +152,17 @@ class ReviewForm extends React.Component {
                     <div className="step-body">
                         <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
-                        <div>
+                        {this.generateStars()}
+                        {/* <div>
                             {[1, 2, 3, 4, 5].map((num) =>
-                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
+                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.handleMouseOut} />
                             )}
-                        </div>
+                        </div> */}
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
                     <div className="review-button-container">
-                    <button onClick={this.toggleStep} value="next" id="next-button" className="review-button" disabled={!this.state.review.rating}>Next</button>
+                    <button onClick={this.toggleStep} value="next" id="next-button" className="review-button" disabled={!rating}>Next</button>
                     </div>
                 </div>
             :

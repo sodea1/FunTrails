@@ -1205,6 +1205,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.toggleCondition = _this.toggleCondition.bind(_assertThisInitialized(_this));
     _this.todaysDate = _this.todaysDate.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleMouseOut = _this.handleMouseOut.bind(_assertThisInitialized(_this));
+    _this.generateStars = _this.generateStars.bind(_assertThisInitialized(_this));
+    _this.toggleStar = _this.toggleStar.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1262,7 +1265,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleStar",
     value: function toggleStar(e) {
-      var numStars = e.target.id;
+      var numStars = e.type === 'mouseover' ? e.target.id : this.state.review.rating;
 
       for (var j = parseInt(numStars) + 1; j < 6; j++) {
         var star = document.getElementById(j);
@@ -1275,12 +1278,35 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "generateStars",
+    value: function generateStars() {
+      var _this2 = this;
+
+      var currRating = this.state.review.rating;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-stars"
+      }, [1, 2, 3, 4, 5].map(function (num) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          className: "review-star",
+          key: num,
+          id: num,
+          "data-rating": currRating,
+          src: num <= currRating ? window.star : window.grey_star,
+          onMouseOver: _this2.toggleStar,
+          onClick: _this2.clickStar,
+          onMouseOut: _this2.toggleStar
+        });
+      }));
+    }
+  }, {
+    key: "handleMouseOut",
+    value: function handleMouseOut() {}
+  }, {
     key: "clickStar",
     value: function clickStar(e) {
       var newState = Object.assign({}, this.state);
       newState.review.rating = e.target.id;
       this.setState(newState);
-      debugger;
       document.getElementById("next-button").className = "review-button";
     }
   }, {
@@ -1316,11 +1342,11 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
-      var _this2 = this;
+      var _this3 = this;
 
       // must wait for review to be created so review_id is accessible in ReviewConditionsController
       this.props.createReview(this.state.review).then(function () {
-        return _this2.props.postReviewCondition(_this2.state.conditions);
+        return _this3.props.postReviewCondition(_this3.state.conditions);
       });
       this.props.closeModal();
     } // onChange
@@ -1328,11 +1354,13 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
 
       var conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy', 'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow'];
+      var rating = this.state.review.rating; // (num <= rating) ? window.star : 
+
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1347,17 +1375,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "bold overflow"
       }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
-      }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, [1, 2, 3, 4, 5].map(function (num) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-star",
-          src: window.grey_star,
-          key: num,
-          id: num,
-          onClick: _this3.clickStar,
-          onMouseOver: _this3.toggleStar,
-          onMouseOut: _this3.toggleStar
-        });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+      }, "Step 1 of 2"), this.generateStars(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.review.description,
         placeholder: "Give back to the community. Share your thoughts about the trail so others know what to expect."
@@ -1368,7 +1386,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         value: "next",
         id: "next-button",
         className: "review-button",
-        disabled: !this.state.review.rating
+        disabled: !rating
       }, "Next"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1403,7 +1421,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "rev-conditions-container"
       }, conditions.map(function (condition, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: _this3.toggleCondition,
+          onClick: _this4.toggleCondition,
           key: idx,
           className: "condition-unselected",
           value: condition.name
