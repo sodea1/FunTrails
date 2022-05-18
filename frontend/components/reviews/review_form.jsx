@@ -1,5 +1,5 @@
 import React from "react";
-
+import * as Stars from "../stars/stars";
 // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
 
@@ -27,6 +27,8 @@ class ReviewForm extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleEsc, false)
+        // fetchConditions
+        
     }
 
     componentWillUnmount() {
@@ -128,11 +130,7 @@ class ReviewForm extends React.Component {
                     <div className="step-body">
                         <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
-                        <div>
-                            {[1, 2, 3, 4, 5].map((num) =>
-                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
-                            )}
-                        </div>
+                        {Stars.singleReview(this.state.review, "review-star")}
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>

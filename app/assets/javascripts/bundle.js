@@ -868,9 +868,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     review: ownProps.review,
-    trail: state.entities.trails[ownProps.trail_id],
+    trail: state.entities.trails[ownProps.location.pathname.substring(8)],
     conditions: ownProps.review.conditions,
     formType: 'edit'
   };
@@ -880,7 +881,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchTrail: function fetchTrail(trailId) {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrail)(trailId));
-    }
+    },
+    closeModal: function (_closeModal) {
+      function closeModal() {
+        return _closeModal.apply(this, arguments);
+      }
+
+      closeModal.toString = function () {
+        return _closeModal.toString();
+      };
+
+      return closeModal;
+    }(function () {
+      return dispatch(closeModal());
+    })
   };
 };
 
@@ -1045,7 +1059,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-name bold"
-        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "date-hiked"
         }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "rev-tags"
@@ -1144,6 +1158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1165,6 +1180,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
  // post a ReviewCondition to rails each click of a 
 // ReviewCondition api that posts an array of ReviewConditions collected from each click of a condition
@@ -1203,7 +1219,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.addEventListener("keydown", this.handleEsc, false);
+      document.addEventListener("keydown", this.handleEsc, false); // fetchConditions
     }
   }, {
     key: "componentWillUnmount",
@@ -1338,17 +1354,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "bold overflow"
       }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
-      }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, [1, 2, 3, 4, 5].map(function (num) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "review-star",
-          src: window.grey_star,
-          key: num,
-          id: num,
-          onClick: _this3.clickStar,
-          onMouseOver: _this3.toggleStar,
-          onMouseOut: _this3.toggleStar
-        });
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+      }, "Step 1 of 2"), _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(this.state.review, "review-star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.review.description,
         placeholder: "Give back to the community. Share your thoughts about the trail so others know what to expect."
@@ -2804,13 +2810,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var singleReview = function singleReview(review) {
+var singleReview = function singleReview(review, klass) {
   var numYellow = review.rating;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "rev-stars"
   }, [1, 2, 3, 4, 5].map(function (num) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      className: "star",
+      className: klass,
       key: num,
       src: num <= numYellow ? window.star : window.grey_star
     });

@@ -1,11 +1,11 @@
 import React from "react";
 
-export const singleReview = (review) => {
+export const singleReview = (review, klass) => {
     const numYellow = review.rating;
     return (
-        <span className='rev-stars'>
-            {[1, 2, 3, 4, 5].map(num => <img className="star" key={num} src={num <= numYellow ? window.star : window.grey_star} />)}
-        </span>
+        <div className='rev-stars'>
+            {[1, 2, 3, 4, 5].map(num => <img className={klass} key={num} src={num <= numYellow ? window.star : window.grey_star} />)}
+        </div>
     )
 }
 

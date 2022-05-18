@@ -27,7 +27,6 @@ class Review extends React.Component {
 
     handleDelete(e) {
         this.props.deleteReview(e.target.value);
-        
     }
 
     displayConditions(review) {
@@ -88,7 +87,7 @@ class Review extends React.Component {
                                         <div className='rev-info'>
                                             <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
                                             <div>
-                                                {Stars.singleReview(rev)}
+                                                {Stars.singleReview(rev, "star")}
                                                 <span className='date-hiked'>{rev.date_hiked}</span>
                                             </div>
                                         </div>
