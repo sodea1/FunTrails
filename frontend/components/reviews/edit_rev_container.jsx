@@ -5,7 +5,6 @@ import ReviewForm from "./review_form";
 import { closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
     return (
         {
             review: ownProps.review,

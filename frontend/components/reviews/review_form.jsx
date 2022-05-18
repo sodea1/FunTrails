@@ -23,7 +23,6 @@ class ReviewForm extends React.Component {
         this.toggleCondition = this.toggleCondition.bind(this);
         this.todaysDate = this.todaysDate.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
         this.generateStars = this.generateStars.bind(this);
         this.toggleStar = this.toggleStar.bind(this);
     }
@@ -94,10 +93,6 @@ class ReviewForm extends React.Component {
         )
     }
 
-    handleMouseOut() {
-
-    }
-
     clickStar(e) {
         let newState = Object.assign({}, this.state);
         newState.review.rating = e.target.id;
@@ -125,7 +120,18 @@ class ReviewForm extends React.Component {
         let dd = today.getDate();
         let mm = today.getMonth() + 1;
         let yyyy = today.getFullYear();
-        return dd + '-' + mm + '-' + yyyy;
+
+        if (mm < 10) {
+            mm = '0' + mm.toString();
+        }
+
+        if (dd < 10) {
+            dd = '0' + dd.toString();
+        }
+        
+        let maxDate = yyyy + '-' + mm + '-' + dd;
+        debugger;
+        return maxDate;
     }
 
     handleSubmit() {
@@ -141,7 +147,7 @@ class ReviewForm extends React.Component {
         const activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']  
         // consider adding conditions api?
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
-        const { rating } = this.state.review;
+        const { rating, activity, date_hiked } = this.state.review;
         // (num <= rating) ? window.star : 
 
         const reviewStep = (this.state.step === 1) ?
@@ -153,11 +159,6 @@ class ReviewForm extends React.Component {
                         <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
                         {this.generateStars()}
-                        {/* <div>
-                            {[1, 2, 3, 4, 5].map((num) =>
-                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.handleMouseOut} />
-                            )}
-                        </div> */}
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
@@ -176,7 +177,7 @@ class ReviewForm extends React.Component {
                         <div className="rev-date-act">
                             <label htmlFor="activity">
                                 Activity Type
-                                <select id="activity" defaultValue="Hiking" onChange={this.updateActivity}>
+                                <select id="activity" defaultValue={activity} onChange={this.updateActivity}>
                                     {activities.map((act, idx) => {
                                         return (
                                             <option value={act} key={idx}>{act}</option>
@@ -188,7 +189,7 @@ class ReviewForm extends React.Component {
                             </label>
                         {/* <Calendar onChange={this.changeDate} value={this.state.review.date_hiked} className=/> */}
                         
-                        <input type="date" onChange={this.changeDate} />
+                        <input type="date" onChange={this.changeDate} defaultValue={date_hiked} max={this.todaysDate()} />
                         </div>
                         <h2>Trail Conditions</h2>
                         <div className="rev-conditions-container">

@@ -814,7 +814,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       trail_id: parseInt(ownProps.location.pathname.substring(8)),
       rating: 0,
       description: '',
-      date_hiked: new Date().toString().slice(4, 15),
+      date_hiked: '',
       activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
@@ -870,7 +870,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     review: ownProps.review,
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
@@ -1205,7 +1204,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     _this.toggleCondition = _this.toggleCondition.bind(_assertThisInitialized(_this));
     _this.todaysDate = _this.todaysDate.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleMouseOut = _this.handleMouseOut.bind(_assertThisInitialized(_this));
     _this.generateStars = _this.generateStars.bind(_assertThisInitialized(_this));
     _this.toggleStar = _this.toggleStar.bind(_assertThisInitialized(_this));
     return _this;
@@ -1299,9 +1297,6 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
-    key: "handleMouseOut",
-    value: function handleMouseOut() {}
-  }, {
     key: "clickStar",
     value: function clickStar(e) {
       var newState = Object.assign({}, this.state);
@@ -1337,7 +1332,18 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       var dd = today.getDate();
       var mm = today.getMonth() + 1;
       var yyyy = today.getFullYear();
-      return dd + '-' + mm + '-' + yyyy;
+
+      if (mm < 10) {
+        mm = '0' + mm.toString();
+      }
+
+      if (dd < 10) {
+        dd = '0' + dd.toString();
+      }
+
+      var maxDate = yyyy + '-' + mm + '-' + dd;
+      debugger;
+      return maxDate;
     }
   }, {
     key: "handleSubmit",
@@ -1359,7 +1365,10 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       var activities = ['Backpacking', 'Bird watching', 'Bike touring', 'Camping', 'Cross-country skiing', 'Fishing', 'Hiking', 'Horseback riding', 'Mountain biking', 'OVH/Off-road driving', 'Paddle sports', 'Road biking', 'Rock climbing', 'Scenic driving', 'Snowshoeing', 'Skiing', 'Running', 'Via ferrata', 'Walking']; // consider adding conditions api?
 
       var conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy', 'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow'];
-      var rating = this.state.review.rating; // (num <= rating) ? window.star : 
+      var _this$state$review = this.state.review,
+          rating = _this$state$review.rating,
+          activity = _this$state$review.activity,
+          date_hiked = _this$state$review.date_hiked; // (num <= rating) ? window.star : 
 
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
@@ -1407,7 +1416,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "activity"
       }, "Activity Type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
         id: "activity",
-        defaultValue: "Hiking",
+        defaultValue: activity,
         onChange: this.updateActivity
       }, activities.map(function (act, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
@@ -1416,7 +1425,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         }, act);
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "date",
-        onChange: this.changeDate
+        onChange: this.changeDate,
+        defaultValue: date_hiked,
+        max: this.todaysDate()
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Trail Conditions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-conditions-container"
       }, conditions.map(function (condition, idx) {

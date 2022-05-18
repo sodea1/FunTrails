@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
         trail_id: parseInt(ownProps.location.pathname.substring(8)),
         rating: 0,
         description: '',
-        date_hiked: (new Date).toString().slice(4, 15),
+        date_hiked: '',
         activity: 'Hiking'
     },
     trail: state.entities.trails[ownProps.location.pathname.substring(8)],
