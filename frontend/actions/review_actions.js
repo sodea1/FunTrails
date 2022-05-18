@@ -40,12 +40,12 @@ export const deleteReview = reviewId => dispatch => {
     )
 }
 
-export const fetchReviewConditions = (reviewId) => dispatch => {
-    return (
-        ReviewApiUtil.fetchReviewConditions(reviewId)
-            .then((review) => dispatch(updateConditions(review)))
-    )
-}
+// export const fetchReviewConditions = (reviewId) => dispatch => {
+//     return (
+//         ReviewApiUtil.fetchReviewConditions(reviewId)
+//             .then((review) => dispatch(updateConditions(review)))
+//     )
+// }
 
 export const fetchTrailReviews = (trailId) => dispatch => {
     return (

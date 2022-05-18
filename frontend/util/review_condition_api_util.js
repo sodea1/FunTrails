@@ -7,3 +7,13 @@ export const postReviewCondition = reviewConditions => {
         })
     )
 }
+
+export const updateReviewCondition = (reviewConditions, reviewId) => {
+    return (
+        $.ajax({
+            method: 'PATCH',
+            url: '/api/review_conditions',
+            data: { reviewConditions, reviewId }
+        })
+    )
+}

@@ -48,7 +48,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "clearReviews": () => (/* binding */ clearReviews),
 /* harmony export */   "createReview": () => (/* binding */ createReview),
 /* harmony export */   "deleteReview": () => (/* binding */ deleteReview),
-/* harmony export */   "fetchReviewConditions": () => (/* binding */ fetchReviewConditions),
 /* harmony export */   "fetchTrailReviews": () => (/* binding */ fetchTrailReviews)
 /* harmony export */ });
 /* harmony import */ var _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/reviews_api_util */ "./frontend/util/reviews_api_util.js");
@@ -92,14 +91,13 @@ var deleteReview = function deleteReview(reviewId) {
       return dispatch(removeReview(reviewId));
     });
   };
-};
-var fetchReviewConditions = function fetchReviewConditions(reviewId) {
-  return function (dispatch) {
-    return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchReviewConditions(reviewId).then(function (review) {
-      return dispatch(updateConditions(review));
-    });
-  };
-};
+}; // export const fetchReviewConditions = (reviewId) => dispatch => {
+//     return (
+//         ReviewApiUtil.fetchReviewConditions(reviewId)
+//             .then((review) => dispatch(updateConditions(review)))
+//     )
+// }
+
 var fetchTrailReviews = function fetchTrailReviews(trailId) {
   return function (dispatch) {
     return _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrailReviews(trailId).then(function (reviews) {
@@ -128,14 +126,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_REVIEW": () => (/* binding */ RECEIVE_REVIEW),
 /* harmony export */   "REMOVE_REVIEW_CONDITION": () => (/* binding */ REMOVE_REVIEW_CONDITION),
-/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition)
+/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition),
+/* harmony export */   "updateReviewCondition": () => (/* binding */ updateReviewCondition)
 /* harmony export */ });
 /* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 var REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION';
 
-var updateConditions = function updateConditions(review) {
+var receiveReview = function receiveReview(review) {
   return {
     type: RECEIVE_REVIEW,
     review: review
@@ -146,7 +145,14 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
   return function (dispatch) {
     return _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__.postReviewCondition(reviewConditions) // update conditions PAUSE
     .then(function (review) {
-      return dispatch(updateConditions(review));
+      return dispatch(receiveReview(review));
+    });
+  };
+};
+var updateReviewCondition = function updateReviewCondition(reviewConditions, reviewId) {
+  return function (dispatch) {
+    return _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__.updateReviewCondition(reviewConditions, reviewId).then(function (res) {
+      return dispatch(receiveReview(res));
     });
   };
 };
@@ -1212,7 +1218,15 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.addEventListener("keydown", this.handleEsc, false); // fetchConditions
+      document.addEventListener("keydown", this.handleEsc, false); // if review does not exist yet (aka Create form)
+
+      if (!this.props.review.id) {
+        debugger;
+        var newState = this.state;
+        newState.review.date_hiked = this.todaysDate();
+        ;
+        this.setState(newState);
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -1350,6 +1364,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit() {
       var _this3 = this;
 
+      // ADD TERNARY FOR 'CREATE' VS 'EDIT' *******************************
       // must wait for review to be created so review_id is accessible in ReviewConditionsController
       this.props.createReview(this.state.review).then(function () {
         return _this3.props.postReviewCondition(_this3.state.conditions);
@@ -1369,9 +1384,9 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           rating = _this$state$review.rating,
           activity = _this$state$review.activity,
           date_hiked = _this$state$review.date_hiked;
-      var stateConditions = this.state.review.conditions.map(function (condition) {
+      var stateConditions = this.state.review.conditions ? this.state.review.conditions.map(function (condition) {
         return condition.name;
-      }); // (num <= rating) ? window.star : 
+      }) : ''; // (num <= rating) ? window.star : 
 
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
@@ -3620,7 +3635,8 @@ var MarkerManager = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition)
+/* harmony export */   "postReviewCondition": () => (/* binding */ postReviewCondition),
+/* harmony export */   "updateReviewCondition": () => (/* binding */ updateReviewCondition)
 /* harmony export */ });
 var postReviewCondition = function postReviewCondition(reviewConditions) {
   return $.ajax({
@@ -3628,6 +3644,16 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
     url: '/api/review_conditions',
     data: {
       reviewConditions: reviewConditions
+    }
+  });
+};
+var updateReviewCondition = function updateReviewCondition(reviewConditions, reviewId) {
+  return $.ajax({
+    method: 'PATCH',
+    url: '/api/review_conditions',
+    data: {
+      reviewConditions: reviewConditions,
+      reviewId: reviewId
     }
   });
 };

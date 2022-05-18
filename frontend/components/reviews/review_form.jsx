@@ -29,8 +29,14 @@ class ReviewForm extends React.Component {
 
     componentDidMount() {
         document.addEventListener("keydown", this.handleEsc, false)
-        // fetchConditions
         
+        // if review does not exist yet (aka Create form)
+        if (!this.props.review.id) {
+            debugger
+            let newState = this.state;
+            newState.review.date_hiked = this.todaysDate();;
+            this.setState(newState);
+        }
     }
 
     componentWillUnmount() {
@@ -135,6 +141,7 @@ class ReviewForm extends React.Component {
     }
 
     handleSubmit() {
+        // ADD TERNARY FOR 'CREATE' VS 'EDIT' *******************************
         // must wait for review to be created so review_id is accessible in ReviewConditionsController
         this.props.createReview(this.state.review)
             .then(() => this.props.postReviewCondition(this.state.conditions));
@@ -148,7 +155,9 @@ class ReviewForm extends React.Component {
         // consider adding conditions api?
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
         const { rating, activity, date_hiked } = this.state.review;
-        const stateConditions = this.state.review.conditions.map(condition => condition.name)
+        const stateConditions = this.state.review.conditions ? 
+            this.state.review.conditions.map(condition => condition.name) :
+            '';
         // (num <= rating) ? window.star : 
 
         const reviewStep = (this.state.step === 1) ?

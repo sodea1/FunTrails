@@ -6,7 +6,7 @@ class Api::ReviewConditionsController < ApplicationController
         num = 0
         while params[:reviewConditions]["#{num}"] do
 
-            condition_name = params[:reviewConditions]["#{num}"]['condition'] # "Bugs"
+            condition_name = params[:reviewConditions]["#{num}"]['name'] # "Bugs"
 
             condition_id = Condition.find_by(name: condition_name).id
 
@@ -18,8 +18,15 @@ class Api::ReviewConditionsController < ApplicationController
             num += 1
 
         end
+        # returns a review
         render '/api/reviews/show'
 
+    end
+
+    def update
+        # id = Review.where(id: )
+        # ReviewConditions.where(review_id: )
+        render '/api/reviews/show' # requires an @review
     end
 
     def review_condition_params
