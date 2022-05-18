@@ -150,23 +150,28 @@
     font-size: 16px;
 }
 
-.disabled-button {
-    background: $brand_green;
-    border: none;
-    width: 82px;
-    height: 40px;
-    margin-right: 22px;
-    border-radius: 8px;
-    height: 40px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
-    opacity: 0.5;
-    pointer-events: none;
-}
+// .disabled-button {
+//     background: $brand_green;
+//     border: none;
+//     width: 82px;
+//     height: 40px;
+//     margin-right: 22px;
+//     border-radius: 8px;
+//     height: 40px;
+//     color: white;
+//     font-weight: bold;
+//     cursor: pointer;
+//     font-size: 16px;
+//     opacity: 0.5;
+//     pointer-events: none;
+// }
+// {
+//         "review-button"+(this.state.review.rating===0) ? 'disabled-button': ''
+//     }
+
 
 // step2 container 
+
 
 .rev-conditions-container {
     display: inline-block;

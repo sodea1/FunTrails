@@ -83,6 +83,7 @@ class ReviewForm extends React.Component {
         let newState = Object.assign({}, this.state);
         newState.review.rating = e.target.id;
         this.setState(newState);
+        debugger;
         document.getElementById("next-button").className = "review-button";
     }
 
@@ -130,12 +131,16 @@ class ReviewForm extends React.Component {
                     <div className="step-body">
                         <h1 className="bold overflow">{this.state.trail.t_name}</h1>
                         <span className="step">Step 1 of 2</span>
-                        {Stars.singleReview(this.state.review, "review-star")}
+                        <div>
+                            {[1, 2, 3, 4, 5].map((num) =>
+                                <img className="review-star" src={window.grey_star} key={num} id={num} onClick={this.clickStar} onMouseOver={this.toggleStar} onMouseOut={this.toggleStar} />
+                            )}
+                        </div>
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
                         </textarea>
                     </div>
                     <div className="review-button-container">
-                    <button onClick={this.toggleStep} value="next" id="next-button" className={"review-button" + (this.state.review.rating === 0) ? 'disabled-button' : ''} disabled={this.state.review.rating === 0 ? true : false}>Next</button>
+                    <button onClick={this.toggleStep} value="next" id="next-button" className="review-button" disabled={!this.state.review.rating}>Next</button>
                     </div>
                 </div>
             :

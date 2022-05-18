@@ -860,8 +860,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -882,23 +884,13 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchTrail: function fetchTrail(trailId) {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrail)(trailId));
     },
-    closeModal: function (_closeModal) {
-      function closeModal() {
-        return _closeModal.apply(this, arguments);
-      }
-
-      closeModal.toString = function () {
-        return _closeModal.toString();
-      };
-
-      return closeModal;
-    }(function () {
-      return dispatch(closeModal());
-    })
+    closeModal: function closeModal() {
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__.closeModal)());
+    }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -1288,6 +1280,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       var newState = Object.assign({}, this.state);
       newState.review.rating = e.target.id;
       this.setState(newState);
+      debugger;
       document.getElementById("next-button").className = "review-button";
     }
   }, {
@@ -1354,7 +1347,17 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "bold overflow"
       }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
-      }, "Step 1 of 2"), _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(this.state.review, "review-star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
+      }, "Step 1 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, [1, 2, 3, 4, 5].map(function (num) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          className: "review-star",
+          src: window.grey_star,
+          key: num,
+          id: num,
+          onClick: _this3.clickStar,
+          onMouseOver: _this3.toggleStar,
+          onMouseOut: _this3.toggleStar
+        });
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.review.description,
         placeholder: "Give back to the community. Share your thoughts about the trail so others know what to expect."
@@ -1364,8 +1367,8 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         onClick: this.toggleStep,
         value: "next",
         id: "next-button",
-        className: "review-button" + (this.state.review.rating === 0) ? 'disabled-button' : 0,
-        disabled: this.state.review.rating === 0 ? true : false
+        className: "review-button",
+        disabled: !this.state.review.rating
       }, "Next"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2804,7 +2807,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "allReviewsAvg": () => (/* binding */ allReviewsAvg),
 /* harmony export */   "singleReview": () => (/* binding */ singleReview),
-/* harmony export */   "stars": () => (/* binding */ stars),
 /* harmony export */   "yellowBars": () => (/* binding */ yellowBars)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -2895,16 +2897,14 @@ var yellowBars = function yellowBars(reviews) {
       style: width
     })));
   })));
-};
-var stars = function stars(color) {
-  var source = color === 'grey' ? window.grey_star : window.star;
-  return [1, 2, 3, 4, 5].map(function (num) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-      src: source,
-      key: num
-    });
-  });
-};
+}; // export const stars = (color) => {
+//     const source = color === 'grey' ? window.grey_star : window.star;
+//     return (
+//         [1, 2, 3, 4, 5].map((num) =>
+//             <img src={source} key={num} />
+//         )
+//     )
+// }
 
 /***/ }),
 
