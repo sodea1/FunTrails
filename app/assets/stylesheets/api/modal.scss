@@ -218,17 +218,18 @@
 }
 
 .condition-unselected:hover {
-    border: 2px solid $brand_green;
+    border: 1px solid $brand_green;
     background-color: rgba(66,138,19,.04);
     color: $brand_green;
     padding: 5.5px 12px;
     margin: 5px 2.5px;
     white-space: nowrap;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .condition-selected {
-    border: 2px solid $brand_green;
+    border: 1px solid $brand_green;
     background-color: rgba(66,138,19,.04);
     color: $brand_green;
     padding: 5.5px 12px;
