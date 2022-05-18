@@ -3,7 +3,7 @@ import * as ReviewConditionApiUtil from "../util/review_condition_api_util";
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 export const REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION';
 
-
+// send back a review now that joins table is updated so that reviews associations access current conditions
 const receiveReview = review => {
     return ({
         type: RECEIVE_REVIEW,

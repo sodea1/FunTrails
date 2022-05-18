@@ -12,7 +12,7 @@ export const updateReviewCondition = (reviewConditions, reviewId) => {
     return (
         $.ajax({
             method: 'PATCH',
-            url: '/api/review_conditions',
+            url: `/api/review_conditions/${reviewId}`,
             data: { reviewConditions, reviewId }
         })
     )

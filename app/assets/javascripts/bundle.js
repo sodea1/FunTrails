@@ -140,7 +140,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 
 var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
-var REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION';
+var REMOVE_REVIEW_CONDITION = 'REMOVE_REVIEW_CONDITION'; // send back a review now that joins table is updated so that reviews associations access current conditions
 
 var receiveReview = function receiveReview(review) {
   return {
@@ -907,7 +907,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     updateReview: function updateReview(review) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_4__.updateReview)(review));
     },
-    updatetReviewCondition: function updatetReviewCondition(reviewConditions, reviewId) {
+    updateReviewCondition: function updateReviewCondition(reviewConditions, reviewId) {
       return dispatch((0,_actions_review_condition_actions__WEBPACK_IMPORTED_MODULE_5__.updateReviewCondition)(reviewConditions, reviewId));
     }
   };
@@ -1387,7 +1387,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         }).then(this.props.closeModal());
       } else {
         this.props.updateReview(this.state.review).then(function () {
-          return _this3.props.updatetReviewCondition(_this3.state.conditions);
+          return _this3.props.updateReviewCondition(_this3.state.conditions, _this3.state.review.id);
         }).then(this.props.closeModal());
       }
     } // onChange
@@ -3670,7 +3670,7 @@ var postReviewCondition = function postReviewCondition(reviewConditions) {
 var updateReviewCondition = function updateReviewCondition(reviewConditions, reviewId) {
   return $.ajax({
     method: 'PATCH',
-    url: '/api/review_conditions',
+    url: "/api/review_conditions/".concat(reviewId),
     data: {
       reviewConditions: reviewConditions,
       reviewId: reviewId
@@ -45088,6 +45088,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
   var store;
 
@@ -45108,6 +45109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   window.deleteReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.deleteReview;
+  window.updateReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.updateReviewCondition;
   window.updateReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.updateReview;
   window.postReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.postReviewCondition;
   window.fetchTrailReviews = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.fetchTrailReviews;

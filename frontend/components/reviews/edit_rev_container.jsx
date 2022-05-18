@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => ({
     fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
     closeModal: () => dispatch(closeModal()),
     updateReview: (review) => dispatch(updateReview(review)),
-    updatetReviewCondition: (reviewConditions, reviewId) => dispatch(updateReviewCondition(reviewConditions, reviewId))
+    updateReviewCondition: (reviewConditions, reviewId) => dispatch(updateReviewCondition(reviewConditions, reviewId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewForm));

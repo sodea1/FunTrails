@@ -147,7 +147,7 @@ class ReviewForm extends React.Component {
                 .then(this.props.closeModal());
         } else {
             this.props.updateReview(this.state.review)
-                .then(() => this.props.updatetReviewCondition(this.state.conditions))
+                .then(() => this.props.updateReviewCondition(this.state.conditions, this.state.review.id))
                 .then(this.props.closeModal());
         }
     }
