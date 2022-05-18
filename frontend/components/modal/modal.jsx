@@ -27,7 +27,6 @@ function Modal ({ modal, closeModal }) {
             {component}
         </div>
     )
-    
 }
 
 const mapStateToProps = state => ({
