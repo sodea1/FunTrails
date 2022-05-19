@@ -61,6 +61,9 @@
     height: 312px;
     display: flex;
     position: relative;
+    background-size: cover;
+    background-position-y: center;
+    background-repeat: no-repeat;
 }
 
 .trail-title {

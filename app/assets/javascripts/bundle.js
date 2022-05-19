@@ -3004,7 +3004,7 @@ var Tile = /*#__PURE__*/function (_React$Component) {
         key: trail.id
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "tile-image",
-        src: window.dipsea
+        src: trail.photoUrl
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tile-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -3122,7 +3122,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "trailTitle",
     value: function trailTitle() {
       // const { trail } = this.props.trail;
-      var urlString = 'url(' + splash_hiker1 + ')';
+      var urlString = 'url(' + this.props.trail.photoUrl + ')';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3149,6 +3149,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailBody",
     value: function trailBody() {
+      var _this2 = this;
+
       var _this$props = this.props,
           trail = _this$props.trail,
           trails = _this$props.trails;
@@ -3189,10 +3191,11 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "nearby bold"
       }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-tiles-wrapper"
-      }, trails.map(function (trail) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          trail: trail
-        });
+      }, trails.map(function (trail, i) {
+        return trail.id !== _this2.props.trail.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          trail: trail,
+          key: i
+        }) : '';
       }))));
     }
   }, {

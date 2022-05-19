@@ -9,7 +9,7 @@ class Tile extends React.Component {
 
         return (
             <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
-                <img className="tile-image" src={window.dipsea}></img>
+                <img className="tile-image" src={trail.photoUrl}></img>
 
                 <div className="tile-content">
                     <span className="tile-title bold overflow">{trail.t_name}</span>

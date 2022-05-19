@@ -11,6 +11,11 @@
             sum += review.rating
         end
 
+        if trail.photos.attached?
+            trail.photos.map { |photo| json.photoUrl url_for(photo) }
+            # json.photoUrl url_for(trail.photos)
+        end
+
         totalReviews = trail.reviews.length
         avgFloat = sum.to_f / trail.reviews.length
         avgRating = avgFloat.round(1)
@@ -18,3 +23,4 @@
         json.reviews totalReviews
     end
 end
+

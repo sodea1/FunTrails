@@ -39,7 +39,7 @@ class Trail extends React.Component {
 
     trailTitle() {
         // const { trail } = this.props.trail;
-        const urlString = 'url(' + splash_hiker1 + ')';
+        const urlString = 'url(' + this.props.trail.photoUrl + ')';
         return (
             <div className='flex-center'>
                 <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
@@ -100,9 +100,9 @@ class Trail extends React.Component {
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
                     <div className='trail-tiles-wrapper'>
-                        {trails.map((trail) => <Tile trail={trail} />)}
+                        {trails.map((trail, i) => trail.id !== this.props.trail.id ? <Tile trail={trail} key={i} /> : '')}
                     </div>
-                </div>
+                </div>  
             </div>
         )
     }
