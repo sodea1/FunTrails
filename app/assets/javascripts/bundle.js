@@ -2415,7 +2415,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "footer-community"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
         className: "flex-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, "I hope you enjoyed checking out some fun trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "prof-pic",
         src: window.git_profile_photo,
         height: "140px",

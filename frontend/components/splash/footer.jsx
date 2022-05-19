@@ -35,7 +35,6 @@ class Footer extends React.Component {
                     </div>
                     <div className='footer-community'>
                         <ul className='flex-center'>
-                            <li>I hope you enjoyed checking out some fun trails</li>
                             <img className='prof-pic' src={window.git_profile_photo} height="140px" width="140px"/>
                             {/* <li>Community</li>
                             <li>Support</li>

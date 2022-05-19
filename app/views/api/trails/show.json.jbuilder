@@ -8,5 +8,4 @@ sum = 0
 end
 
 avgRating = sum / @trail.reviews.length
-debugger
 json.rating avgRating

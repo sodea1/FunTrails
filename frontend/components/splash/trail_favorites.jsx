@@ -21,6 +21,7 @@ class TrailFavorites extends React.Component {
         const pane_1 = this.props.trails.slice(0, 4)
         const pane_2 = this.props.trails.slice(4, 8)
         const paneShown = (this.state.swipe === false) ? pane_1 : pane_2;
+
         return (
             <div className="splash-trails">
                 
@@ -29,8 +30,6 @@ class TrailFavorites extends React.Component {
                         Local Favorites Near San Francisco
                     </div>
                     <div className="tiles-container">
-
-                       {/* GIVE TILE COMPONENT AN ARRAY */}
                         {paneShown.map((trail) => {
                             return <Tile trail={trail} />
                         })}
