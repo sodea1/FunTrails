@@ -1047,7 +1047,13 @@ var Review = /*#__PURE__*/function (_React$Component) {
         className: "avg-rating"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "bars-container"
-      }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.yellowBars(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg(reviews, avgRating)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+      }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.yellowBars(reviews)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "avg"
+      }, avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "stars-wrapper-reviews"
+      }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg(avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-total"
+      }, reviews.length, " Reviews"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: function onClick() {
           return _this2.props.openModal({
             formType: 'create'
@@ -2734,7 +2740,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2756,6 +2762,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2801,44 +2808,27 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
       }, "Local Favorites Near San Francisco"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tiles-container"
       }, paneShown.map(function (trail) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          to: "/trails/".concat(trail.id),
-          className: "tile",
-          key: trail.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "tile-image",
-          src: window.dipsea
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "tile-content"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "tile-title bold overflow"
-        }, trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "detail"
-        }, "Park Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "flex"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "descriptor"
-        }, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: "1",
-          src: window.star
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: "2",
-          src: window.star
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: "3",
-          src: window.star
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: "4",
-          src: window.star
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: "star",
-          key: "5",
-          src: window.star
-        })))));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          trail: trail
+        }); // return (
+        //     <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
+        //         <img className="tile-image" src={window.dipsea}></img>
+        //         <div className="tile-content">
+        //             <span className="tile-title bold overflow">{trail.t_name}</span>
+        //             <span className="detail">Park Name</span>
+        //             <div className="flex">
+        //                 <span className="descriptor">{trail.difficulty_level}</span>
+        //                 <div>
+        //                     <img className="star" key='1' src={window.star} />
+        //                     <img className="star" key='2' src={window.star} />
+        //                     <img className="star" key='3' src={window.star} />
+        //                     <img className="star" key='4' src={window.star} />
+        //                     <img className="star" key='5' src={window.star} />
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </Link>
+        // )
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSlide,
         className: "arrow-button-right"
@@ -2885,14 +2875,11 @@ var singleReview = function singleReview(review, klass) {
       src: num <= numYellow ? window.star : window.grey_star
     });
   }));
-};
-var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
-  var rounded = Math.floor(avgRating);
-  var rating = parseFloat(avgRating); // 4.4 ; 
+}; // intended for review stars & avg for a single trail using all reviews in state
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "avg"
-  }, avgRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
+var allReviewsAvg = function allReviewsAvg(avgRating) {
+  var rating = parseFloat(avgRating);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
     var klass = 'star';
 
     if (rating >= num) {
@@ -2914,9 +2901,7 @@ var allReviewsAvg = function allReviewsAvg(reviews, avgRating) {
         key: num
       });
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "rev-total"
-  }, reviews.length, " Reviews"));
+  }));
 };
 var yellowBars = function yellowBars(reviews) {
   var total = reviews.length;
@@ -3027,14 +3012,6 @@ var Tile = /*#__PURE__*/function (_React$Component) {
     value: // componentDidMount
     function render() {
       var trail = this.props.trail;
-      var sum = 0;
-
-      for (var i = 0; i < trail.reviews.length; i++) {
-        sum += trail.reviews[i].rating;
-      }
-
-      var avgRating = (sum / trail.reviews.length).toFixed(1);
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/trails/".concat(trail.id),
         className: "tile",
@@ -3052,7 +3029,11 @@ var Tile = /*#__PURE__*/function (_React$Component) {
         className: "flex"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "descriptor"
-      }, trail.difficulty_level), (0,_stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg)(trail.reviews, avgRating))));
+      }, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "stars-wrapper"
+      }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg)(trail.rating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "rev-total"
+      }, "(".concat(trail.reviews, ")"))))));
     }
   }]);
 
@@ -3194,7 +3175,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailBody",
     value: function trailBody() {
-      var trail = this.props.trail;
+      var _this$props = this.props,
+          trail = _this$props.trail,
+          trails = _this$props.trails;
       var trailId = parseInt(this.props.match.params.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
@@ -3230,9 +3213,13 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         trails: this.props.trails
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "nearby bold"
-      }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        trails: this.props.trails
-      })));
+      }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "trail-tiles-wrapper"
+      }, trails.map(function (trail) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          trail: trail
+        });
+      }))));
     }
   }, {
     key: "render",

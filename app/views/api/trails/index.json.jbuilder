@@ -11,8 +11,10 @@
             sum += review.rating
         end
 
+        totalReviews = trail.reviews.length
         avgFloat = sum.to_f / trail.reviews.length
         avgRating = avgFloat.round(1)
         json.rating avgRating
+        json.reviews totalReviews
     end
 end

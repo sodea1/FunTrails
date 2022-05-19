@@ -68,7 +68,11 @@ class Review extends React.Component {
                             </div>
 
                             <div>
-                                {Stars.allReviewsAvg(reviews, avgRating)}
+                                <div className='avg'>{avgRating}</div>
+                                <div className="stars-wrapper-reviews">
+                                    {Stars.allReviewsAvg(avgRating)}
+                                    <div className='rev-total'>{reviews.length} Reviews</div>
+                                </div>
                             </div>
 
                         </div>

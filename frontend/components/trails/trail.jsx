@@ -63,7 +63,7 @@ class Trail extends React.Component {
     }
 
     trailBody() {
-        const { trail } = this.props;
+        const { trail, trails } = this.props;
         const trailId = parseInt(this.props.match.params.id);
         return (
             <div className='content-width flex border-outer'>
@@ -102,8 +102,9 @@ class Trail extends React.Component {
                     <Map trail={[this.props.trail]} trails={this.props.trails} />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
-                    
-                    <Tile trails={this.props.trails}  />
+                    <div className='trail-tiles-wrapper'>
+                        {trails.map((trail) => <Tile trail={trail} />)}
+                    </div>
                 </div>
             </div>
         )

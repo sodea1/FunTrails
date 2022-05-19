@@ -9,32 +9,28 @@ export const singleReview = (review, klass) => {
     )
 }
 
-export const allReviewsAvg =(reviews, avgRating) => {
-    let rounded = Math.floor(avgRating);
-    const rating = parseFloat(avgRating); // 4.4 ; 
+// intended for review stars & avg for a single trail using all reviews in state
+export const allReviewsAvg =(avgRating) => {
+    const rating = parseFloat(avgRating);
     return (
-        <div>
-            <div className='avg'>{avgRating}</div>
-            <span>
-                {[1, 2, 3, 4, 5].map(num => {
-                    let klass = 'star';
-                    if (rating >= num) {
-                        return (
-                            <img src={window.star} className={klass} key={num} />
-                        )
-                    } else if (num - rating < 1) {
-                        return (
-                            <img src={window.half_star} className={klass} key={num} />
-                        )
-                    } else if (num - rating >= 1) {
-                        return (
-                            <img src={window.grey_star} className={klass} key={num} />
-                        )
-                    }
-                })}
-            </span>
-            <div className='rev-total'>{reviews.length} Reviews</div>
-        </div>
+        <span>
+            {[1, 2, 3, 4, 5].map(num => {
+                let klass = 'star';
+                if (rating >= num) {
+                    return (
+                        <img src={window.star} className={klass} key={num} />
+                    )
+                } else if (num - rating < 1) {
+                    return (
+                        <img src={window.half_star} className={klass} key={num} />
+                    )
+                } else if (num - rating >= 1) {
+                    return (
+                        <img src={window.grey_star} className={klass} key={num} />
+                    )
+                }
+            })}
+        </span>
     )
 };
 
