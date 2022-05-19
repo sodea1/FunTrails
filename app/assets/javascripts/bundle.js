@@ -1075,8 +1075,10 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "rev-info"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "rev-name bold"
-        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "date-hiked"
+        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "flex"
+        }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "date-hiked detail"
         }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "rev-tags"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -2810,25 +2812,7 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
       }, paneShown.map(function (trail) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_1__["default"], {
           trail: trail
-        }); // return (
-        //     <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
-        //         <img className="tile-image" src={window.dipsea}></img>
-        //         <div className="tile-content">
-        //             <span className="tile-title bold overflow">{trail.t_name}</span>
-        //             <span className="detail">Park Name</span>
-        //             <div className="flex">
-        //                 <span className="descriptor">{trail.difficulty_level}</span>
-        //                 <div>
-        //                     <img className="star" key='1' src={window.star} />
-        //                     <img className="star" key='2' src={window.star} />
-        //                     <img className="star" key='3' src={window.star} />
-        //                     <img className="star" key='4' src={window.star} />
-        //                     <img className="star" key='5' src={window.star} />
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </Link>
-        // )
+        });
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onClick: this.handleSlide,
         className: "arrow-button-right"
@@ -2879,7 +2863,9 @@ var singleReview = function singleReview(review, klass) {
 
 var allReviewsAvg = function allReviewsAvg(avgRating) {
   var rating = parseFloat(avgRating);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, [1, 2, 3, 4, 5].map(function (num) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "rev-stars"
+  }, [1, 2, 3, 4, 5].map(function (num) {
     var klass = 'star';
 
     if (rating >= num) {
@@ -3026,14 +3012,18 @@ var Tile = /*#__PURE__*/function (_React$Component) {
       }, trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "detail"
       }, "Park Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "flex"
+        className: "tile-mid-detail"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "descriptor"
       }, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "stars-wrapper"
       }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_1__.allReviewsAvg)(trail.rating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "rev-total"
-      }, "(".concat(trail.reviews, ")"))))));
+        className: "rev-total detail"
+      }, "(".concat(trail.reviews, ")")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "detail"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "tile-length"
+      }, "Length: ", trail.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.estimated_time))));
     }
   }]);
 
@@ -3059,7 +3049,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
 /* harmony import */ var _reviews_review_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/review_container */ "./frontend/components/reviews/review_container.jsx");
-/* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
+/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
+/* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3081,6 +3072,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3129,7 +3121,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailTitle",
     value: function trailTitle() {
-      var trail = this.props.trail.trail;
+      // const { trail } = this.props.trail;
       var urlString = 'url(' + splash_hiker1 + ')';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "flex-center"
@@ -3143,34 +3135,16 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "bold"
       }, this.props.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-        className: "flex"
+        className: "trail-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "descriptor-blue"
       }, this.props.trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "flex trail-stars"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "star",
-        key: "1",
-        src: window.star
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "star",
-        key: "2",
-        src: window.star
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "star",
-        key: "3",
-        src: window.star
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "star",
-        key: "4",
-        src: window.star
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        className: "star",
-        key: "5",
-        src: window.star
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "trail-stars"
+      }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(this.props.trail.rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "reviews-agg"
-      }, "(# Reviews)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", null, this.props.trail.park_id, " (Park Name)"))));
+      }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+        className: "trail-loc"
+      }, this.props.trail.state + ", " + this.props.trail.country))));
     }
   }, {
     key: "trailBody",
@@ -3216,7 +3190,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-tiles-wrapper"
       }, trails.map(function (trail) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_4__["default"], {
           trail: trail
         });
       }))));

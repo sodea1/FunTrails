@@ -13,7 +13,7 @@ export const singleReview = (review, klass) => {
 export const allReviewsAvg =(avgRating) => {
     const rating = parseFloat(avgRating);
     return (
-        <span>
+        <span className="rev-stars">
             {[1, 2, 3, 4, 5].map(num => {
                 let klass = 'star';
                 if (rating >= num) {

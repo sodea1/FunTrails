@@ -20,7 +20,7 @@ ActiveRecord::Base.connection.tables.each do |t|
 end
 
 # sample user DON'T FORGET ID OTHERWISE 'undefined' keys under entities > users
-demo = User.create(first_name: 'Steph', last_name: 'Curry', email: 'chefcurry@demo.com', password: 'godubs', bio: 'I am the demo user!')
+demo = User.create(first_name: 'Demo', last_name: 'Curry', email: 'chefcurry@demo.com', password: 'godubs', bio: 'I am the demo user!')
 fake_user_1 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I love long walks')
 fake_user_2 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'I run like the wind')
 fake_user_3 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: 'My dog loves hiking with me!!')

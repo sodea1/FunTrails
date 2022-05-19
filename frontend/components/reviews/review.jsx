@@ -90,9 +90,9 @@ class Review extends React.Component {
                                         <img src={window.user_default}  className='default-image'/>
                                         <div className='rev-info'>
                                             <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
-                                            <div>
+                                            <div className='flex'>
                                                 {Stars.singleReview(rev, "star")}
-                                                <span className='date-hiked'>{rev.date_hiked}</span>
+                                                <span className='date-hiked detail'>{rev.date_hiked}</span>
                                             </div>
                                         </div>
                                     </div>

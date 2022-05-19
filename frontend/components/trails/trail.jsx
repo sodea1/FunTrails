@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from '../map/map';
 import ReviewContainer from '../reviews/review_container';
+import { allReviewsAvg } from '../stars/stars';
 import Tile from '../tiles/tile';
 
 class Trail extends React.Component {
@@ -37,25 +38,21 @@ class Trail extends React.Component {
     }
 
     trailTitle() {
-        const { trail } = this.props.trail;
+        // const { trail } = this.props.trail;
         const urlString = 'url(' + splash_hiker1 + ')';
         return (
             <div className='flex-center'>
                 <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
                     <ul className='trail-title'>
                         <li className='bold'>{this.props.trail.t_name}</li>
-                        <li className='flex'>
+                        <li className='trail-info'>
                             <span className='descriptor-blue'>{this.props.trail.difficulty_level}</span>
-                            <div className='flex trail-stars'>
-                                <img className="star" key='1' src={window.star} />
-                                <img className="star" key='2' src={window.star} />
-                                <img className="star" key='3' src={window.star} />
-                                <img className="star" key='4' src={window.star} />
-                                <img className="star" key='5' src={window.star} />
+                            <div className='trail-stars'>
+                                {allReviewsAvg(this.props.trail.rating)}
                             </div>
-                            <span className='reviews-agg'>(# Reviews)</span>
+                            <span className='reviews-agg'>{`(${this.props.trail.reviews})`}</span>
                         </li>
-                        <li>{this.props.trail.park_id} (Park Name)</li>
+                        <li className='trail-loc'>{this.props.trail.state + ", " + this.props.trail.country}</li>
                     </ul>
                 </div>
             </div>

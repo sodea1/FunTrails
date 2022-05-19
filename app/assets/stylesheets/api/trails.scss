@@ -70,6 +70,15 @@
     color: #FFFFFF;
 }
 
+.trail-info {
+    display: flex;
+    align-items: center;
+}
+
+.trail-loc {
+    pointer-events: none;
+}
+
 .trail-title li:first-child {
     margin: 0px 0px 6px;
     font-size: 30px;
@@ -99,10 +108,9 @@
 
 // body 
 
-
 .reviews-agg {
     margin-left: 8px;
-
+    font-size: 14px;
 }
 
 .green-bar {
@@ -184,6 +192,7 @@
 
 .stars-wrapper {
     display: flex;
+    align-items: center;
 }
 
 .stars-wrapper-reviews {
