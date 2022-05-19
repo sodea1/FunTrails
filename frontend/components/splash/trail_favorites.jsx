@@ -28,6 +28,8 @@ class TrailFavorites extends React.Component {
                         Local Favorites Near San Francisco
                     </div>
                     <div className="tiles-container">
+
+                       {/* GIVE TILE COMPONENT AN ARRAY */}
                         {paneShown.map((trail) => {
                             return (
                                 <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>

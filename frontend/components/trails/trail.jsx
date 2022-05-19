@@ -1,6 +1,7 @@
 import React from 'react';
 import Map from '../map/map';
 import ReviewContainer from '../reviews/review_container';
+import Tile from '../tiles/tile';
 
 class Trail extends React.Component {
     constructor(props) {
@@ -101,7 +102,8 @@ class Trail extends React.Component {
                     <Map trail={[this.props.trail]} trails={this.props.trails} />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
-
+                    
+                    <Tile trails={this.props.trails}  />
                 </div>
             </div>
         )
