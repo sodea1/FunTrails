@@ -131,7 +131,7 @@ class Trail extends React.Component {
                 </header>
 
                 {this.props.trail && this.trailTitle()}
-                <div className='green-bar content-width'></div>
+                <div className='green-bar'></div>
 
                 {this.props.trail && this.trailBody()}
              

@@ -119,6 +119,8 @@
 .green-bar {
     height: 55px;
     background-color: $brand_green;
+    width: 1024px;
+    margin: auto;
 }
 
 // trail body and side nav
@@ -176,7 +178,7 @@
     width: 37%;
     height: 100%;
     position: relative;
-    background-color: #fff;
+    // background-color: #fff;
 }
 
 .nearby {

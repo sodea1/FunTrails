@@ -498,12 +498,11 @@ function Modal(_ref) {
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
     // don't forget the break! Was hitting all cases
-
-    case 'edit':
-      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        review: modal.review
-      });
-      break;
+    // case 'edit':
+    //     component = <EditRevContainer review={modal.review} />
+    //     break
+    // case 'thanks':
+    //     component = <Thanks />
 
     default:
       break;
@@ -3222,7 +3221,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         width: "16px",
         height: "16px"
       }))))), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "green-bar content-width"
+        className: "green-bar"
       }), this.props.trail && this.trailBody());
     }
   }]);

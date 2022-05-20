@@ -218,3 +218,5 @@ nums.each do |num|
   end
 
 end
+
+dipsea.photos.attach(io: open('/Users/seanodea/Desktop/fun_trails_photos/dipsea.jpeg'), filename: 'dipsea.jpeg')
