@@ -5,17 +5,9 @@ class Search extends React.Component {
     constructor(props) {
         super(props);
 
-        const images = [
-            '/splash_hiker.jpg',
-            '/splash_hiker2-min.jpg',
-            '/splash_hiker3-min.jpg',
-            '/splash_hiker4-min.jpg'
-        ];
-
         this.state = {
             search: '',
-            images,
-            currImg: 0,
+            currImg: 1,
             hidden: true
         }
 
@@ -39,9 +31,8 @@ class Search extends React.Component {
     }
 
     changeImage() {
-        const { images, currImg } = this.state;
-        let nextImg = currImg + 1;
-        if (nextImg === images.length) nextImg = 0;
+        let nextImg = this.state.currImg + 1;
+        if (nextImg === 5) nextImg = 1;
         this.setState({currImg: nextImg});
     }
 
@@ -59,14 +50,20 @@ class Search extends React.Component {
     }
 
     render() {
-        const { images, currImg } = this.state;
-        const urlString = `url('${images[currImg]}')`;
         let liveItemsList = [];
 
         return(
             // repeating images styling
             <div onClick={this.toggleHidden}>
-                <div className="background-image" style={{ backgroundImage: urlString }}>
+                <img className={this.state.currImg === 1 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker2-min.jpg" />
+                <img className={this.state.currImg === 2 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker.jpg" />
+                <img className={this.state.currImg === 3 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker3-min.jpg" />
+                <img className={this.state.currImg === 4 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker4-min.jpg" />
+                
+                <div className="search-wrapper">
+                    {/* <div className="bar-wrapper">
+                        <progress className="progress-bar" max='100' value='20'></progress>
+                    </div> */}
                     <h1 className="welcome">Find your next trail</h1>
 
                     <div className="search-container">
@@ -126,9 +123,11 @@ class Search extends React.Component {
                             </div>
                         </div>
                     </div>
+
+                </div>
                 
                                 
-                </div>
+                {/* </div> */}
             </div>
         )
     }

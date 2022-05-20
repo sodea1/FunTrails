@@ -1,6 +1,20 @@
 import React from 'react';
 import MarkerManager from '../../util/marker_manager';
-const dipseaPath = require('./dipsea-ele.json');
+const dipseaPath = require('../../../app/assets/geojson/dipsea-ele.json');
+const stinsonPath = require('../../../app/assets/geojson/stinsonPath.json');
+
+const geoData = {
+    1: dipseaPath,
+    2: stinsonPath,
+    3: muirWoodsPath,
+    4: tenValleyPath,
+    5: rodeoPath,
+    6: mistPath,
+    7: halfDomePath,
+    8: panumPath,
+    9: angelsPath,
+    10: watchmanPath
+}
 
 class Map extends React.Component {
     componentDidMount() {
