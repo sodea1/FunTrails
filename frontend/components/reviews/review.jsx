@@ -17,6 +17,12 @@ class Review extends React.Component {
         this.props.fetchTrailReviews(this.props.trailId);
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.fetchTrailReviews(this.props.trailId)
+        }
+    }
+
     componentWillUnmount() {
         this.props.clearReviews();
     }
@@ -43,15 +49,14 @@ class Review extends React.Component {
         )
     }
 
-    reviewContainer() {
+    reviewList() {
         const { reviews } = this.props;
-
+        
         let sum = 0;
         for (let i = 0; i < reviews.length; i++) {
             sum += reviews[i].rating
         }
         let avgRating = (sum / reviews.length).toFixed(1);
-
         return (
             <div className='review-container'>
                 <div className='rev-banner bold'>
@@ -131,7 +136,7 @@ class Review extends React.Component {
 
     render() {
         return (
-            this.props.reviews.length > 0 && this.reviewContainer()
+            this.props.reviews.length > 0 && this.reviewList()
         )
     }
 }

@@ -167,6 +167,9 @@ tag124 = TrailTag.create!(tag_id: 8, trail_id: 4)
 descriptions = ['Love this hike!!', 'This trail was so gorgeous!', 'Went with my dog and had a great time', 'Great for someone looking for adventure', 'Go off the path!', 'The weather was a bit overcast but this hike was still so beautiful. The views!!', 'I missed the warriors game to take a walk on this trail with my wife and while I would have rather watched the game, I was shocked by the beauty on display.', 'My favorite trail in the area', 'Breath of fresh air :)', 'Check out the off-trail path about halfway...you\'re in for a surprise!', 'Definitely recommend taking a stroll in the mornings when it\'s a little less muggy. It can get quite hot midday.', 'Excellent trail for mountain biking. I saw plenty of bikers', 'love this trail!!!!', 'Don\'t forget to bring sunscreen. Don\'t forget like I did...:(', 'If I could live on the top of the viewpoint in a little shack I would', 'Viewpoint is to die for', 'I went on a recommendation from a friend and man I do not regret it', 'A wise man once said, get a breath of fresh air', 'This hike is top 1', 'Unreal views.', 'That satisfying mometn when you finish this monster trail. Tough but rewarding!', 'Took my mom and dad on this trail (they\'re old) and they loved it. Not too bad on the knees', 'My legs hurt so good', 'I might take my bike back here', 'Saw some gorgeous wildlife', 'Do yourself a favor and block off your Saturday morning', 'Best time to go is before 9am. Otherwise, you might get a crowd', 'Beat the crowd and go early!', 'Sunset hike, woot woot!', 'Fresh air, long walks on the beach, and good vibes all day', 'Not easy, but not too hard', 'Really enjoyed this trail', 'I\'ll be back for sure', 'Highly recommend for bikers and/or runners']
 activity = ['Hiking', 'Running']
 
+year = [2019, 2018, 2020, 2021]
+month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+day = (1..28).to_a
 
 (1..10).each do |trail_id|
   (1..30).each do |user_id|
@@ -175,7 +178,7 @@ activity = ['Hiking', 'Running']
     else
       rating = [4, 5]
     end
-    Review.create!(user_id: user_id, trail_id: trail_id, photo_id: nil, activity: activity.sample, rating: rating.sample, description: descriptions.sample, date_hiked: '2022-11-11')
+    Review.create!(user_id: user_id, trail_id: trail_id, photo_id: nil, activity: activity.sample, rating: rating.sample, description: descriptions.sample, date_hiked: "#{year.sample}-#{month.sample}-#{day.sample}")
   end
 end
 

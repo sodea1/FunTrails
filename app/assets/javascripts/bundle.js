@@ -395,18 +395,15 @@ var dipseaPath = __webpack_require__(/*! ../../../app/assets/geojson/dipsea-ele.
 
 var stinsonPath = __webpack_require__(/*! ../../../app/assets/geojson/stinsonPath.json */ "./app/assets/geojson/stinsonPath.json");
 
-var geoData = {
-  1: dipseaPath,
-  2: stinsonPath,
-  3: muirWoodsPath,
-  4: tenValleyPath,
-  5: rodeoPath,
-  6: mistPath,
-  7: halfDomePath,
-  8: panumPath,
-  9: angelsPath,
-  10: watchmanPath
-};
+var geoData = [dipseaPath, stinsonPath // 3: muirWoodsPath,
+// 4: tenValleyPath,
+// 5: rodeoPath,
+// 6: mistPath,
+// 7: halfDomePath,
+// 8: panumPath,
+// 9: angelsPath,
+// 10: watchmanPath
+];
 
 var Map = /*#__PURE__*/function (_React$Component) {
   _inherits(Map, _React$Component);
@@ -430,14 +427,15 @@ var Map = /*#__PURE__*/function (_React$Component) {
           lat: latitude,
           lng: longitude
         },
-        zoom: 13,
+        zoom: 12,
         mapTypeId: 'terrain',
         disableDefaultUI: true,
         zoomControl: true
       }; // create path referencing json coords
 
+      debugger;
       var path = new google.maps.Polyline({
-        path: dipseaPath,
+        path: geoData[this.props.trail[0].id - 1],
         geodesic: true,
         strokeColor: "#FF0000",
         strokeOpacity: 1.0,
@@ -1004,6 +1002,13 @@ var Review = /*#__PURE__*/function (_React$Component) {
       this.props.fetchTrailReviews(this.props.trailId);
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.match.params.id !== this.props.match.params.id) {
+        this.props.fetchTrailReviews(this.props.trailId);
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.clearReviews();
@@ -1033,8 +1038,8 @@ var Review = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
-    key: "reviewContainer",
-    value: function reviewContainer() {
+    key: "reviewList",
+    value: function reviewList() {
       var _this2 = this;
 
       var reviews = this.props.reviews;
@@ -1121,7 +1126,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return this.props.reviews.length > 0 && this.reviewContainer();
+      return this.props.reviews.length > 0 && this.reviewList();
     }
   }]);
 
@@ -1146,6 +1151,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
 /* harmony import */ var _review__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review */ "./frontend/components/reviews/review.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+
 
 
 
@@ -1153,7 +1160,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: state.entities.trails,
-    currUserId: state.session.currUserId // trailId: ownProps.trailId
+    currUserId: state.session.currUserId,
+    history: ownProps.history // trailId: ownProps.trailId
 
   };
 };
@@ -1173,7 +1181,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_review__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -3112,7 +3120,16 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
-      this.props.fetchTrails();
+      this.props.fetchTrails(); // this.props.fetchTrailReviews(this.props.trailId);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      // debugger
+      // if (this.props.trailId === prevProps.trailId) {
+      //     this.props.fetchTrailReviews(this.props.trailId)
+      // }
+      console.log(prevProps);
     }
   }, {
     key: "openModal",
@@ -3175,7 +3192,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "trail-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "trail-description"
-      }, this.props.trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+      }, trail.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "characteristics"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Length"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "bold"
@@ -3191,7 +3208,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           key: idx
         }, tag.description);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        currUserId: this.props.currUserId,
         openModal: this.openModal,
         reviews: this.props.reviews,
         fetchTrailReviews: this.props.fetchTrailReviews,
@@ -3276,7 +3292,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id],
     reviews: Object.values(state.entities.reviews),
-    currUserId: state.session.currUserId
+    currUserId: state.session.currUserId,
+    trailId: ownProps.match.params.id
   };
 };
 

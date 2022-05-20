@@ -13,6 +13,15 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
+        // this.props.fetchTrailReviews(this.props.trailId);
+    }
+
+    componentDidUpdate(prevProps) {
+        // debugger
+        // if (this.props.trailId === prevProps.trailId) {
+        //     this.props.fetchTrailReviews(this.props.trailId)
+        // }
+        console.log(prevProps)
     }
 
     openModal(formType) {
@@ -65,7 +74,7 @@ class Trail extends React.Component {
         return (
             <div className='content-width flex border-outer'>
                 <div className='trail-body'>
-                    <span className='trail-description'>{this.props.trail.description}</span>
+                    <span className='trail-description'>{trail.description}</span>
 
                     <section className='characteristics'>
                         <div>
@@ -90,12 +99,12 @@ class Trail extends React.Component {
                         })}
                     </section>
 
-                    <ReviewContainer currUserId={this.props.currUserId} openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
+                    <ReviewContainer openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
 
                 </div>
 
                 <div className='side-panel border-left-inner'>
-
+                    
                     <Map trail={[this.props.trail]} trails={this.props.trails} />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
