@@ -433,7 +433,6 @@ var Map = /*#__PURE__*/function (_React$Component) {
         zoomControl: true
       }; // create path referencing json coords
 
-      debugger;
       var path = new google.maps.Polyline({
         path: geoData[this.props.trail[0].id - 1],
         geodesic: true,
@@ -449,7 +448,39 @@ var Map = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
+    value: function componentDidUpdate(prevProps) {
+      console.log(prevProps);
+
+      if (prevProps.match.params.id !== this.props.match.params.id) {
+        var _this$props$trail$2 = this.props.trail[0],
+            latitude = _this$props$trail$2.latitude,
+            longitude = _this$props$trail$2.longitude;
+        var mapOptions = {
+          center: {
+            lat: latitude,
+            lng: longitude
+          },
+          zoom: 12,
+          mapTypeId: 'terrain',
+          disableDefaultUI: true,
+          zoomControl: true
+        }; // create path referencing json coords
+
+        debugger;
+        var path = new google.maps.Polyline({
+          path: geoData[this.props.trail[0].id - 1],
+          geodesic: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+        this.map = new google.maps.Map(this.mapNode, mapOptions);
+        this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
+        this.markerMgr.updateMarkers(this.props.trail); // add trail to map
+
+        path.setMap(this.map);
+      }
+
       this.markerMgr.updateMarkers(this.props.trail);
     }
   }, {
@@ -3120,7 +3151,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
-      this.props.fetchTrails(); // this.props.fetchTrailReviews(this.props.trailId);
+      this.props.fetchTrails();
+      console.log(this.props); // this.props.fetchTrailReviews(this.props.trailId);
     }
   }, {
     key: "componentDidUpdate",
@@ -3216,7 +3248,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "side-panel border-left-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
         trail: [this.props.trail],
-        trails: this.props.trails
+        trails: this.props.trails,
+        match: this.props.match
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {
         className: "nearby bold"
       }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

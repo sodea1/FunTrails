@@ -13,6 +13,7 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
+        console.log(this.props)
         // this.props.fetchTrailReviews(this.props.trailId);
     }
 
@@ -105,7 +106,7 @@ class Trail extends React.Component {
 
                 <div className='side-panel border-left-inner'>
                     
-                    <Map trail={[this.props.trail]} trails={this.props.trails} />
+                    <Map trail={[this.props.trail]} trails={this.props.trails} match={this.props.match}  />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
                     <div className='trail-tiles-wrapper'>

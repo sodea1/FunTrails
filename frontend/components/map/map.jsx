@@ -29,7 +29,6 @@ class Map extends React.Component {
         };
 
         // create path referencing json coords
-        debugger
         const path = new google.maps.Polyline({
             path: geoData[this.props.trail[0].id - 1],
             geodesic: true,
@@ -47,7 +46,37 @@ class Map extends React.Component {
 
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        console.log(prevProps)
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            const { latitude, longitude } = this.props.trail[0];
+            const mapOptions = {
+                center: { lat: latitude, lng: longitude },
+                zoom: 12,
+                mapTypeId: 'terrain',
+                disableDefaultUI: true,
+                zoomControl: true
+            };
+
+            // create path referencing json coords
+            debugger
+            const path = new google.maps.Polyline({
+                path: geoData[this.props.trail[0].id - 1],
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 3
+            });
+
+            this.map = new google.maps.Map(this.mapNode, mapOptions);
+            this.markerMgr = new MarkerManager(this.map);
+            this.markerMgr.updateMarkers(this.props.trail);
+
+            // add trail to map
+            path.setMap(this.map);  
+        }
+
+
         this.markerMgr.updateMarkers(this.props.trail);
     }
 
