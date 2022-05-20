@@ -219,4 +219,13 @@ nums.each do |num|
 
 end
 
-dipsea.photos.attach(io: open('/Users/seanodea/Desktop/fun_trails_photos/dipsea.jpeg'), filename: 'dipsea.jpeg')
+dipsea.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/dipsea.jpeg'), filename: 'dipsea.jpeg')
+stinson.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/stinson.jpg'), filename: 'stinson.jpg')
+muir_woods.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/muirwoods.jpg'), filename: 'muirwoods.jpg')
+ten_valley.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/tenn_beach.jpg'), filename: 'tenn_beach.jpg')
+rodeo_beach.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/rodeo_beach.jpg'), filename: 'rodeo_beach.jpg')
+mist_trail.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/mist_trail.jpg'), filename: 'mist_trail.jpg')
+half_dome.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/half_dome.jpg'), filename: 'half_dome.jpg')
+panum_crater.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/panum_crater.jpg'), filename: 'panum_crater.jpg')
+angels_landing.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/angel.jpg'), filename: 'angel.jpg')
+watchman_trail.photos.attach(io: open('https://funtrails-seeds.s3.amazonaws.com/watchman.jpg'), filename: 'watchman.jpg')
