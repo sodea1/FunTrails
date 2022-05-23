@@ -466,7 +466,6 @@ var Map = /*#__PURE__*/function (_React$Component) {
           zoomControl: true
         }; // create path referencing json coords
 
-        debugger;
         var path = new google.maps.Polyline({
           path: geoData[this.props.trail[0].id - 1],
           geodesic: true,
@@ -969,7 +968,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
-/* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -1003,7 +1001,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -1111,47 +1108,49 @@ var Review = /*#__PURE__*/function (_React$Component) {
         },
         className: "rev-button"
       }, "Write Review")), reviews.slice().reverse().map(function (rev) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          key: rev.id,
-          className: "review-block"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-          className: "review-header"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "flex"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: window.user_default,
-          className: "default-image"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "rev-info"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "rev-name bold"
-        }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "flex"
-        }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "date-hiked detail"
-        }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "rev-tags"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "tag"
-        }, rev.activity), rev.conditions.length > 0 && _this2.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
-          className: "review-body"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-          className: "rev-description"
-        }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, _this2.props.currUserId === parseInt(rev.user_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: _this2.handleDelete,
-          value: rev.id,
-          "data-value": rev.user_id,
-          className: "delete-rev-button"
-        }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onClick: function onClick() {
-            return _this2.props.openModal({
-              formType: 'edit',
-              review: rev,
-              trail_id: _this2.props.trailId
-            });
-          },
-          className: "edit-rev-button"
-        }, "Edit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)));
+        if (rev.trail_id === _this2.props.trailId) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            key: rev.id,
+            className: "review-block"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+            className: "review-header"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "flex"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+            src: window.user_default,
+            className: "default-image"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "rev-info"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+            className: "rev-name bold"
+          }, rev.user.first_name, " ", rev.user.last_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "flex"
+          }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+            className: "date-hiked detail"
+          }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "rev-tags"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+            className: "tag"
+          }, rev.activity), rev.conditions.length > 0 && _this2.displayConditions(rev))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+            className: "review-body"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+            className: "rev-description"
+          }, rev.description)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", null, _this2.props.currUserId === parseInt(rev.user_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            onClick: _this2.handleDelete,
+            value: rev.id,
+            "data-value": rev.user_id,
+            className: "delete-rev-button"
+          }, "Delete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            onClick: function onClick() {
+              return _this2.props.openModal({
+                formType: 'edit',
+                review: rev,
+                trail_id: _this2.props.trailId
+              });
+            },
+            className: "edit-rev-button"
+          }, "Edit")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)));
+        }
       }));
     }
   }, {
@@ -1192,8 +1191,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: state.entities.trails,
     currUserId: state.session.currUserId,
-    history: ownProps.history // trailId: ownProps.trailId
-
+    history: ownProps.history,
+    trailId: ownProps.trailId
   };
 };
 
@@ -1207,8 +1206,20 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     deleteReview: function deleteReview(reviewId) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.deleteReview)(reviewId));
-    } // fetchTrailReviews: (trailId) => dispatch(fetchTrailReviews(trailId))
+    },
+    fetchTrailReviews: function (_fetchTrailReviews) {
+      function fetchTrailReviews(_x) {
+        return _fetchTrailReviews.apply(this, arguments);
+      }
 
+      fetchTrailReviews.toString = function () {
+        return _fetchTrailReviews.toString();
+      };
+
+      return fetchTrailReviews;
+    }(function (trailId) {
+      return dispatch(fetchTrailReviews(trailId));
+    })
   };
 };
 

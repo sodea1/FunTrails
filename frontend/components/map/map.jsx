@@ -59,7 +59,6 @@ class Map extends React.Component {
             };
 
             // create path referencing json coords
-            debugger
             const path = new google.maps.Polyline({
                 path: geoData[this.props.trail[0].id - 1],
                 geodesic: true,

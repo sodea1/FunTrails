@@ -1,6 +1,5 @@
 import React from 'react';
 import * as Stars from '../stars/stars';
-import { deleteReviewCondition } from '../../util/review_condition_api_util';
 
 class Review extends React.Component {
     constructor(props) {
@@ -87,47 +86,49 @@ class Review extends React.Component {
                     <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
                 {reviews.slice().reverse().map((rev) => {
-                    return (
-                        <div key={rev.id} className='review-block'>
-                            <section className='review-header'>
-                                <div>
-                                    <div className='flex'>
-                                        <img src={window.user_default}  className='default-image'/>
-                                        <div className='rev-info'>
-                                            <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
-                                            <div className='flex'>
-                                                {Stars.singleReview(rev, "star")}
-                                                <span className='date-hiked detail'>{rev.date_hiked}</span>
+                    if (rev.trail_id === this.props.trailId) {
+                        return (
+                            <div key={rev.id} className='review-block'>
+                                <section className='review-header'>
+                                    <div>
+                                        <div className='flex'>
+                                            <img src={window.user_default}  className='default-image'/>
+                                            <div className='rev-info'>
+                                                <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
+                                                <div className='flex'>
+                                                    {Stars.singleReview(rev, "star")}
+                                                    <span className='date-hiked detail'>{rev.date_hiked}</span>
+                                                </div>
                                             </div>
                                         </div>
+                                       
                                     </div>
-                                   
-                                </div>
-
-                                <div className='rev-tags'>
-                                    <span className='tag'>{rev.activity}</span>
-                                    {/* REMEMBER TO REMOVE CONSTRAINT BELOW */}
-                                    {rev.conditions.length > 0 && this.displayConditions(rev)}
-                                    
-                                </div>
-
-                            </section>
-
-                            <section className='review-body'>
-                                <span className='rev-description'>{rev.description}</span>
-                            </section>
-                            <section>
-                                {this.props.currUserId === parseInt(rev.user_id) ? 
-                                    <div>
-                                        <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id} className='delete-rev-button'>Delete</button>
-                                        <button onClick={() => this.props.openModal({ formType: 'edit', review: rev, trail_id: this.props.trailId })} className='edit-rev-button'>Edit</button>
+    
+                                    <div className='rev-tags'>
+                                        <span className='tag'>{rev.activity}</span>
+                                        {/* REMEMBER TO REMOVE CONSTRAINT BELOW */}
+                                        {rev.conditions.length > 0 && this.displayConditions(rev)}
+                                        
                                     </div>
-                                :
-                                    <div></div>
-                                }
-                            </section>
-                        </div>
-                    )
+    
+                                </section>
+    
+                                <section className='review-body'>
+                                    <span className='rev-description'>{rev.description}</span>
+                                </section>
+                                <section>
+                                    {this.props.currUserId === parseInt(rev.user_id) ? 
+                                        <div>
+                                            <button onClick={this.handleDelete} value={rev.id} data-value={rev.user_id} className='delete-rev-button'>Delete</button>
+                                            <button onClick={() => this.props.openModal({ formType: 'edit', review: rev, trail_id: this.props.trailId })} className='edit-rev-button'>Edit</button>
+                                        </div>
+                                    :
+                                        <div></div>
+                                    }
+                                </section>
+                            </div>
+                        )
+                    }
                 })}
 
             </div>
