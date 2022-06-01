@@ -1,19 +1,27 @@
 import React from 'react';
 import MarkerManager from '../../util/marker_manager';
-const dipseaPath = require('../../../app/assets/geojson/dipsea-ele.json');
-const stinsonPath = require('../../../app/assets/geojson/stinsonPath.json');
+const dipseaPath = require('../../../app/assets/pathJSON/dipsea-ele.json');
+const stinsonPath = require('../../../app/assets/pathJSON/stinsonPath.json');
+const muirWoodsPath = require('../../../app/assets/pathJSON/muirWoodsPath.json');
+const tenValleyPath = require('../../../app/assets/pathJSON/tenValleyPath.json');
+const rodeoPath = require('../../../app/assets/pathJSON/rodeoPath.json');
+const mistPath = require('../../../app/assets/pathJSON/mistPath.json');
+const halfDomePath = require('../../../app/assets/pathJSON/halfDomePath.json');
+const panumPath = require('../../../app/assets/pathJSON/panumPath.json');
+const angelsPath = require('../../../app/assets/pathJSON/angelsPath.json');
+const watchmanPath = require('../../../app/assets/pathJSON/watchmanPath.json');
 
 const geoData = [
     dipseaPath,
-    stinsonPath
-    // 3: muirWoodsPath,
-    // 4: tenValleyPath,
-    // 5: rodeoPath,
-    // 6: mistPath,
-    // 7: halfDomePath,
-    // 8: panumPath,
-    // 9: angelsPath,
-    // 10: watchmanPath
+    stinsonPath,
+    muirWoodsPath,
+    tenValleyPath,
+    rodeoPath,
+    mistPath,
+    halfDomePath,
+    panumPath,
+    angelsPath,
+    watchmanPath
 ]
 
 class Map extends React.Component {
