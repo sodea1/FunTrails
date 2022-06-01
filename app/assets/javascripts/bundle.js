@@ -3171,17 +3171,14 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
-      console.log(this.props); // this.props.fetchTrailReviews(this.props.trailId);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      // debugger
-      // if (this.props.trailId === prevProps.trailId) {
-      //     this.props.fetchTrailReviews(this.props.trailId)
-      // }
-      console.log(prevProps);
-    }
+    } // componentDidUpdate(prevProps) {
+    // debugger
+    // if (this.props.trailId === prevProps.trailId) {
+    //     this.props.fetchTrailReviews(this.props.trailId)
+    // }
+    // console.log(prevProps)
+    // }
+
   }, {
     key: "openModal",
     value: function openModal(formType) {

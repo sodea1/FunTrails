@@ -13,17 +13,15 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
-        console.log(this.props)
-        // this.props.fetchTrailReviews(this.props.trailId);
     }
 
-    componentDidUpdate(prevProps) {
+    // componentDidUpdate(prevProps) {
         // debugger
         // if (this.props.trailId === prevProps.trailId) {
         //     this.props.fetchTrailReviews(this.props.trailId)
         // }
-        console.log(prevProps)
-    }
+        // console.log(prevProps)
+    // }
 
     openModal(formType) {
         if (this.props.currUserId) {
