@@ -122,7 +122,7 @@ class Trail extends React.Component {
             <div className='grey'>
 
                 <header className='trail-head'>
-                    <div className='flex-between'>
+                    <div className='header-wrapper'>
                         {this.props.trail && this.header()}
                         <form className="show-search">
                             
