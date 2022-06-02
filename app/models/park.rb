@@ -7,9 +7,14 @@ class Park < ApplicationRecord
         foreign_key: :park_id,
         class_name: :Park
 
-    has_many :reviews,
-        through: :trails,
-        source: :reviews
-
     has_many_attached :photos, dependent: :purge_later
+
+    def self.total_reviews(parkId)
+        count = 0
+        trails = Trail.where(`park_id = #{parkId}`)
+        trails.each do |trail|
+            count += trail.reviews.length
+        end
+        return count
+    end
 end

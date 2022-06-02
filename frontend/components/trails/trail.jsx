@@ -16,14 +16,6 @@ class Trail extends React.Component {
         this.props.fetchTrails();
     }
 
-    // componentDidUpdate(prevProps) {
-        // debugger
-        // if (this.props.trailId === prevProps.trailId) {
-        //     this.props.fetchTrailReviews(this.props.trailId)
-        // }
-        // console.log(prevProps)
-    // }
-
     openModal(formType) {
         if (this.props.currUserId) {
             this.props.openModal(formType)
@@ -32,22 +24,7 @@ class Trail extends React.Component {
         }
     }
 
-    // header() {
-    //     return (
-    //             <ul className='head-loc'>
-    //                 <span>{this.props.trail.country}</span>
-    //                 <span>›</span>
-    //                 <span>{this.props.trail.state}</span>
-    //                 <span>›</span>
-    //                 <span>{(this.props.trail.park_id) ? this.props.trail.park_id : null}</span>
-    //                 <span>›</span>
-    //                 <span className='overflow'>{this.props.trail.t_name}</span>
-    //             </ul>
-    //     )
-    // }
-
     trailTitle() {
-        // const { trail } = this.props.trail;
         const urlString = 'url(' + this.props.trail.photoUrl + ')';
         return (
             <div className='flex-center'>

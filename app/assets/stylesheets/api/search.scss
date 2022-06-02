@@ -1,6 +1,12 @@
 @import '../base/font.scss';
 @import '../base/colors.scss';
 
+.search-outer-div {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
 .welcome {
     font-size: 64px;
     color: $background_color;

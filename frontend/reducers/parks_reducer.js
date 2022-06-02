@@ -6,10 +6,10 @@ const parksReducer = (state = [], action) => {
 
     switch(action.type) {
         case RECEIVE_ALL_PARKS:
-            debugger
             return Object.assign(newState, action.parks);
         case RECEIVE_PARK:
-            return Object.assign(newState, action);
+            debugger
+            return Object.assign(newState, action.park);
         default:
             return state;
     }

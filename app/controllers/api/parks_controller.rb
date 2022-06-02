@@ -5,7 +5,8 @@ class Api::ParksController < ApplicationController
     end
 
     def show
-        @park = Park.find(id: params[:id])
-        render :show
+        @park = Park.find_by(id: params[:id])
+        @count = Park.total_reviews(@park.id)
+        render 'api/parks/show'
     end
 end
