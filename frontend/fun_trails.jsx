@@ -9,6 +9,7 @@ import { fetchTrail } from './util/trails_api_util';
 import { createReview, deleteReview, fetchTrailReviews } from './actions/review_actions';
 import { postReviewCondition } from './util/review_condition_api_util';
 import { updateReviewCondition } from './util/review_condition_api_util';
+import { fetchPark } from './util/parks_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
+  window.fetchPark = fetchPark;
   window.deleteReview = deleteReview;
   window.updateReviewCondition = updateReviewCondition;
   window.updateReview = updateReview;

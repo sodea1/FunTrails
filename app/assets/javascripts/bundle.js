@@ -1011,7 +1011,7 @@ var Park = /*#__PURE__*/function (_React$Component) {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-inner-div"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name))));
+      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews")))));
     }
   }]);
 
@@ -45568,7 +45568,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_trails_api_util__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/trails_api_util */ "./frontend/util/trails_api_util.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./actions/review_actions */ "./frontend/actions/review_actions.js");
 /* harmony import */ var _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./util/review_condition_api_util */ "./frontend/util/review_condition_api_util.js");
+/* harmony import */ var _util_parks_api_util__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./util/parks_api_util */ "./frontend/util/parks_api_util.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -45600,6 +45602,7 @@ document.addEventListener("DOMContentLoaded", function () {
   } // testing 
 
 
+  window.fetchPark = _util_parks_api_util__WEBPACK_IMPORTED_MODULE_10__.fetchPark;
   window.deleteReview = _actions_review_actions__WEBPACK_IMPORTED_MODULE_8__.deleteReview;
   window.updateReviewCondition = _util_review_condition_api_util__WEBPACK_IMPORTED_MODULE_9__.updateReviewCondition;
   window.updateReview = _util_reviews_api_util__WEBPACK_IMPORTED_MODULE_6__.updateReview;

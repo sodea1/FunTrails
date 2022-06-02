@@ -7,7 +7,6 @@ class Trail < ApplicationRecord
         foreign_key: :park_id,
         class_name: :Park
 
-
     has_many :trail_tags
 
     has_many :tags,

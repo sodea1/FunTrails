@@ -17,6 +17,10 @@ class Park extends React.Component {
                     {PageHeader(park)} 
                     <div>
                         <h1>Best Trails in {park.p_name}</h1>
+                        <div>
+                            <span>Stars</span>
+                            <span>{park.totalReviews} Reviews</span>
+                        </div>
                     </div>
                 </div>
             </div>
