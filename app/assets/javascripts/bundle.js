@@ -352,6 +352,33 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./frontend/components/headers/page_header.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/headers/page_header.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var PageHeader = function PageHeader(trail) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+    className: "head-loc"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.park_id ? trail.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "overflow"
+  }, trail.t_name));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageHeader);
+
+/***/ }),
+
 /***/ "./frontend/components/map/map.jsx":
 /*!*****************************************!*\
   !*** ./frontend/components/map/map.jsx ***!
@@ -3119,10 +3146,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
-/* harmony import */ var _reviews_review_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../reviews/review_container */ "./frontend/components/reviews/review_container.jsx");
-/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
-/* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
+/* harmony import */ var _headers_page_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../headers/page_header */ "./frontend/components/headers/page_header.jsx");
+/* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
+/* harmony import */ var _reviews_review_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reviews/review_container */ "./frontend/components/reviews/review_container.jsx");
+/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
+/* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3144,6 +3172,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3187,16 +3216,20 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       } else {
         this.props.history.push('/login');
       }
-    }
-  }, {
-    key: "header",
-    value: function header() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-        className: "head-loc"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, this.props.trail.park_id ? this.props.trail.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-        className: "overflow"
-      }, this.props.trail.t_name));
-    }
+    } // header() {
+    //     return (
+    //             <ul className='head-loc'>
+    //                 <span>{this.props.trail.country}</span>
+    //                 <span>›</span>
+    //                 <span>{this.props.trail.state}</span>
+    //                 <span>›</span>
+    //                 <span>{(this.props.trail.park_id) ? this.props.trail.park_id : null}</span>
+    //                 <span>›</span>
+    //                 <span className='overflow'>{this.props.trail.t_name}</span>
+    //             </ul>
+    //     )
+    // }
+
   }, {
     key: "trailTitle",
     value: function trailTitle() {
@@ -3219,7 +3252,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "descriptor-blue"
       }, this.props.trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-stars"
-      }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(this.props.trail.rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_4__.allReviewsAvg)(this.props.trail.rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "reviews-agg"
       }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "trail-loc"
@@ -3255,14 +3288,14 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         openModal: this.openModal,
         reviews: this.props.reviews,
         fetchTrailReviews: this.props.fetchTrailReviews,
         trailId: trailId
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
         trail: [this.props.trail],
         trails: this.props.trails,
         match: this.props.match
@@ -3271,7 +3304,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-tiles-wrapper"
       }, trails.map(function (trail, i) {
-        return trail.id !== _this2.props.trail.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        return trail.id !== _this2.props.trail.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_5__["default"], {
           trail: trail,
           key: i
         }) : '';
@@ -3288,7 +3321,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "trail-head"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "header-wrapper"
-      }, this.props.trail && this.header(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      }, this.props.trail && (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(this.props.trail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         type: "text",

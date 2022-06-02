@@ -1,6 +1,12 @@
 @import './font.scss';
 @import './colors.scss';
 
+@media only screen {
+    body {
+        min-width: 1028px;
+    }
+}
+
 #container {
     // display: flex;
     // flex-direction: column;

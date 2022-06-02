@@ -1,4 +1,5 @@
 import React from 'react';
+import PageHeader from '../headers/page_header';
 import Map from '../map/map';
 import ReviewContainer from '../reviews/review_container';
 import { allReviewsAvg } from '../stars/stars';
@@ -31,19 +32,19 @@ class Trail extends React.Component {
         }
     }
 
-    header() {
-        return (
-                <ul className='head-loc'>
-                    <span>{this.props.trail.country}</span>
-                    <span>›</span>
-                    <span>{this.props.trail.state}</span>
-                    <span>›</span>
-                    <span>{(this.props.trail.park_id) ? this.props.trail.park_id : null}</span>
-                    <span>›</span>
-                    <span className='overflow'>{this.props.trail.t_name}</span>
-                </ul>
-        )
-    }
+    // header() {
+    //     return (
+    //             <ul className='head-loc'>
+    //                 <span>{this.props.trail.country}</span>
+    //                 <span>›</span>
+    //                 <span>{this.props.trail.state}</span>
+    //                 <span>›</span>
+    //                 <span>{(this.props.trail.park_id) ? this.props.trail.park_id : null}</span>
+    //                 <span>›</span>
+    //                 <span className='overflow'>{this.props.trail.t_name}</span>
+    //             </ul>
+    //     )
+    // }
 
     trailTitle() {
         // const { trail } = this.props.trail;
@@ -123,7 +124,7 @@ class Trail extends React.Component {
 
                 <header className='trail-head'>
                     <div className='header-wrapper'>
-                        {this.props.trail && this.header()}
+                        {this.props.trail && PageHeader(this.props.trail)}
                         <form className="show-search">
                             
                             <input
