@@ -27,6 +27,35 @@ class Park extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="park-information">
+                    <div>
+                        <h2>Park Information</h2>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <h3>Acreage:</h3>
+                                <span>{park.acreage}</span>
+                            </div>
+                            <div>
+                                <h3>Park Hours</h3>
+                                <table>
+                                    {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(day => {
+                                        return <tr>
+                                            <td>{day}</td>
+                                            <td>All Day</td>
+                                        </tr>
+                                    })}
+                                </table>
+                            </div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
