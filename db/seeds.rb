@@ -74,6 +74,8 @@ watchman_trail = Trail.create!(t_name: 'Watchman Trail', longitude: -112.98652, 
 
 # park 1 = Mount Tamalpais
 # park 2 = marin headlands
+# park 3 = Yosemite National Park
+# park 4 = Zion National Park
 
 dogs = Tag.create!(description: 'Dogs on leash')
 wheelchair = Tag.create!(description: 'Wheelchair friendly')

@@ -1,6 +1,8 @@
 import React from 'react';
 
 const PageHeader = (trail) => {
+
+    // will need conditional (if trail or park return this or that)
     return (
         <ul className='head-loc'>
             <span>{trail.country}</span>

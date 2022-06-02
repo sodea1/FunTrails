@@ -117,8 +117,6 @@ class Trail extends React.Component {
     }
  
     render() {
-        // 1. trails null first render
-        // 3. this.props now contains all trails which can be decomposed
         return (
             <div className='grey'>
 
