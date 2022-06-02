@@ -8,6 +8,7 @@
 require 'faker'
 
 User.destroy_all
+Park.destroy_all
 Trail.destroy_all
 Tag.destroy_all
 TrailTag.destroy_all
@@ -53,6 +54,21 @@ fake_user_29 = User.create!(first_name: Faker::Name.first_name, last_name: Faker
 fake_user_30 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
 fake_user_31 = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'godubs', bio: '')
 
+# park 1 = Mount Tamalpais
+mount_tam = Park.create!(p_name: 'Mount Tamalpais State Park', longitude: -122.6108, latitude: 37.8890, acreage: 6300, contact: "415-388-2070", description: "Want to find the best trails in Mount Tamalpais State Park for an adventurous hike or a family trip? AllTrails has 76 great hiking trails, biking trails, running trails and more. Enjoy hand-curated trail maps, along with reviews and photos from nature lovers like you. Ready for your next hike or bike ride? Explore one of 8 easy hiking trails in Mount Tamalpais State Park that are great for the whole family. Looking for a more strenuous hike? We've got you covered, with trails ranging from 39 to 10,570 feet in elevation gain. Whatever you have planned for the day, you can find the perfect trail for your next trip to Mount Tamalpais State Park.", country: "United States of America", state: "California")
+
+# park 2 = marin headlands
+marin_headlands = Park.create!(p_name: "Marin Headlands", longitude: -122.4997, latitude: 37.8262, acreage: "", contact: "", description: "Want to find the best trails in Marin Headlands for an adventurous hike or a family trip? AllTrails has 22 great hiking trails, biking trails, running trails and more. Enjoy hand-curated trail maps, along with reviews and photos from nature lovers like you. Ready for your next hike or bike ride? Explore one of 5 easy hiking trails in Marin Headlands that are great for the whole family. Looking for a more strenuous hike? We've got you covered, with trails ranging from 39 to 9,452 feet in elevation gain. Whatever you have planned for the day, you can find the perfect trail for your next trip to Marin Headlands.", country: "United States of America", state: "California")
+
+# park 3 = Yosemite National Park
+yosemite = Park.create!(p_name: 'Yosemite National Park', longitude: -119.5383, latitude: 37.8651, acreage: 759620, contact: "209-372-0200", description: "Want to find the best trails in Yosemite National Park for an adventurous hike or a family trip? AllTrails has 282 great hiking trails, biking trails, running trails and more. Enjoy hand-curated trail maps, along with reviews and photos from nature lovers like you. Ready for your next hike or bike ride? Explore one of 36 easy hiking trails in Yosemite National Park that are great for the whole family. Looking for a more strenuous hike? We've got you covered, with trails ranging from 3 to 46,030 feet in elevation gain. Whatever you have planned for the day, you can find the perfect trail for your next trip to Yosemite National Park.", country: "United States of America", state: "California")
+
+# park 4 = Zion National Park
+zion = Park.create!(p_name: "Zion National Park", longitude: -113.0263, latitude: 37.2982, acreage: 146597, contact: "435-772-3256", description: "Want to find the best trails in Zion National Park for an adventurous hike or a family trip? AllTrails has 112 great hiking trails, biking trails, running trails and more. Enjoy hand-curated trail maps, along with reviews and photos from nature lovers like you. Ready for your next hike or bike ride? Explore one of 24 easy hiking trails in Zion National Park that are great for the whole family. Looking for a more strenuous hike? We've got you covered, with trails ranging from 0 to 8,467 feet in elevation gain. Whatever you have planned for the day, you can find the perfect trail for your next trip to Zion National Park.", country: "United States of America", state: "Utah")
+
+
+
+################# TRAILS #########################
 # mount tamalpais
 dipsea = Trail.create!(t_name: 'Dipsea Trail, Steep Ravine Trail, and Matt Davis Loop', longitude: -122.63602, latitude: 37.89665, length: "7.5 mi", difficulty_level: 'moderate', elevation_gain: "1,689 ft", route_type: 'Loop', estimated_time: 'Est. 3h 40m', description: 'Discover this 7.5-mile loop trail near Mill Valley, California. Generally considered a moderately challenging route, it takes an average of 3 h 40 min to complete. This is a very popular area for hiking and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
 stinson = Trail.create!(t_name: 'Stinson Beach to Mount Tamalpais via Matt Davis Trail', longitude: -122.63742, latitude: 37.89978, length: "15.2 mi", difficulty_level: 'hard', elevation_gain: "3,513 ft", route_type: 'Loop', estimated_time: 'Est. 7h 28m', description: 'Experience this 15.2-mile loop trail near Stinson Beach, California. Generally considered a challenging route, it takes an average of 7 h 28 min to complete. This is a very popular area for backpacking, birding, and camping, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'California', country: 'United States of America', park_id: 1)
@@ -71,11 +87,8 @@ panum_crater = Trail.create!(t_name: 'Panum Crater Trail', longitude: -119.04874
 angels_landing = Trail.create!(t_name: 'Angels Landing Trail', longitude: -112.95122, latitude: 37.25909, length: "4.4 mi", difficulty_level: 'hard', elevation_gain: "1,604 ft", route_type: 'Out & back', estimated_time: 'Est. 2h 33m', description: 'Get to know this 4.4-mile out-and-back trail near Springdale, Utah. Generally considered a challenging route, it takes an average of 2 h 33 min to complete. This is a very popular area for hiking, so you\'ll likely encounter other people while exploring. The best times to visit this trail are February through October.', state: 'Utah', country: 'United States of America', park_id: 4)
 watchman_trail = Trail.create!(t_name: 'Watchman Trail', longitude: -112.98652, latitude: 37.20134, length: "3.1 mi", difficulty_level: 'moderate', elevation_gain: "636 ft", route_type: 'Out & back', estimated_time: 'Est. 1h 28m', description: 'Try this 3.1-mile out-and-back trail near Springdale, Utah. Generally considered a moderately challenging route, it takes an average of 1 h 28 min to complete. This is a very popular area for camping, hiking, and trail running, so you\'ll likely encounter other people while exploring. The trail is open year-round and is beautiful to visit anytime.', state: 'Utah', country: 'United States of America', park_id: 4)
 
+################# PARKS #############################
 
-# park 1 = Mount Tamalpais
-# park 2 = marin headlands
-# park 3 = Yosemite National Park
-# park 4 = Zion National Park
 
 dogs = Tag.create!(description: 'Dogs on leash')
 wheelchair = Tag.create!(description: 'Wheelchair friendly')
@@ -174,7 +187,11 @@ month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 day = (1..28).to_a
 
 (1..10).each do |trail_id|
-  (1..30).each do |user_id|
+  # sample_range = *(15..30)
+  # random_num = sample_range.sample(1)
+  # arr = *(1..random_num[0])
+  arr = *(1..30)
+  arr.each do |user_id|
     if [5, 8, 25].include?(user_id)
       rating = [3]
     else

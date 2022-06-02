@@ -5,9 +5,12 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :trails, only: [:index]
+    
     resources :trails, only: [:show] do
       resources :reviews, only: [:create, :destroy, :update, :index, :show]
     end
+    resources :parks, only: [:show, :index]
+
     resources :review_conditions, only: [:create, :update]
   end
 end
