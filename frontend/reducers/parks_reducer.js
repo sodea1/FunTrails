@@ -1,6 +1,6 @@
 import { RECEIVE_ALL_PARKS, RECEIVE_PARK } from "../actions/park_actions";
 
-const parksReducer = (state = [], action) => {
+const parksReducer = (state = {}, action) => {
     Object.freeze(state);
     let newState = Object.assign({}, state);
 
@@ -8,7 +8,6 @@ const parksReducer = (state = [], action) => {
         case RECEIVE_ALL_PARKS:
             return Object.assign(newState, action.parks);
         case RECEIVE_PARK:
-            debugger
             return Object.assign(newState, action.park);
         default:
             return state;

@@ -16,17 +16,17 @@
     height: 600px;
 }
 
-.show-search {
+.show-search-trail {
     display: flex;
     align-items: center;
     border-radius: 10px;
     height: 36px;
     width: 326px;
     background-color: $background_color;
-    z-index: 1; 
+    z-index: 1;
 }
 
-.show-input {
+.show-input-trail {
     border-radius: inherit;
     width: 90%;
     height: 93%;

@@ -96,23 +96,7 @@ class Trail extends React.Component {
     render() {
         return (
             <div className='grey'>
-
-                <header className='trail-head'>
-                    <div className='header-wrapper'>
-                        {this.props.trail && PageHeader(this.props.trail)}
-                        <form className="show-search">
-                            
-                            <input
-                                type="text"
-                                className='show-input'
-                                placeholder="Search by park or trail name"
-                            />
-                            <div className='green-search'>  
-                                <img src={window.search} width="16px" height="16px" />
-                            </div>
-                        </form>
-                    </div>
-                </header>
+                {this.props.trail && PageHeader(this.props.trail)}
 
                 {this.props.trail && this.trailTitle()}
                 <div className='green-bar'></div>

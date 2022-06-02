@@ -425,13 +425,29 @@ __webpack_require__.r(__webpack_exports__);
 var PageHeader = function PageHeader(entity) {
   var parkName = entity.park_id;
   var name = entity.t_name ? entity.t_name : entity.p_name;
-  debugger; // will need conditional (if trail or park return this or that)
+  var klass = entity.t_name ? "-trail" : "-park"; // will need conditional (if trail or park return this or that)
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
+    className: "trail-head"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "header-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
     className: "head-loc"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.park_id ? entity.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.park_id ? entity.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "overflow"
-  }, name));
+  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    className: "show-search" + klass
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    className: 'show-input' + klass,
+    placeholder: "Search by park or trail name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "green-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: window.search,
+    width: "16px",
+    height: "16px"
+  })))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageHeader);
@@ -979,15 +995,23 @@ var Park = /*#__PURE__*/function (_React$Component) {
   _createClass(Park, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPark(this.props.match.params.id);
+      this.props.fetchAllParks();
     }
   }, {
     key: "render",
     value: function render() {
-      // const { park } = this.props;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, this.props.park && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        entity: this.props.park
-      }));
+      var park = this.props.park;
+
+      if (typeof park === 'undefined') {
+        return;
+      }
+
+      ;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "park-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "park-inner-div"
+      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name))));
     }
   }]);
 
@@ -1024,8 +1048,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchPark: function fetchPark(parkId) {
-      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchPark)(parkId));
+    fetchAllParks: function fetchAllParks() {
+      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchAllParks)());
     }
   };
 };
@@ -3467,23 +3491,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
-        className: "trail-head"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "header-wrapper"
-      }, this.props.trail && (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(this.props.trail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        className: "show-search"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-        type: "text",
-        className: "show-input",
-        placeholder: "Search by park or trail name"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "green-search"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-        src: window.search,
-        width: "16px",
-        height: "16px"
-      }))))), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, this.props.trail && (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(this.props.trail), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar"
       }), this.props.trail && this.trailBody());
     }
@@ -3651,7 +3659,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var parksReducer = function parksReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
   var newState = Object.assign({}, state);
@@ -3661,7 +3669,6 @@ var parksReducer = function parksReducer() {
       return Object.assign(newState, action.parks);
 
     case _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PARK:
-      debugger;
       return Object.assign(newState, action.park);
 
     default:
