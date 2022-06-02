@@ -38,7 +38,7 @@ class Trail extends React.Component {
                             </div>
                             <span className='reviews-agg'>{`(${this.props.trail.reviews})`}</span>
                         </li>
-                        <li className='trail-loc'>{this.props.trail.state + ", " + this.props.trail.country}</li>
+                        <li className='trail-loc'><Link>{this.props.trail.p}</Link>{this.props.trail.state + ", " + this.props.trail.country}</li>
                     </ul>
                 </div>
             </div>
@@ -82,7 +82,7 @@ class Trail extends React.Component {
 
                 <div className='side-panel border-left-inner'>
                     
-                    <Map trail={[this.props.trail]} trails={this.props.trails} match={this.props.match}  />
+                    <Map entity={[this.props.trail]} trails={this.props.trails} match={this.props.match}  />
 
                     <h3 className='nearby bold'>Nearby Trails</h3>
                     <div className='trail-tiles-wrapper'>

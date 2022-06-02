@@ -513,7 +513,7 @@ var angelsPath = __webpack_require__(/*! ../../../app/assets/pathJSON/angelsPath
 
 var watchmanPath = __webpack_require__(/*! ../../../app/assets/pathJSON/watchmanPath.json */ "./app/assets/pathJSON/watchmanPath.json");
 
-var geoData = [dipseaPath, stinsonPath, muirWoodsPath, tenValleyPath, rodeoPath, mistPath, halfDomePath, panumPath, angelsPath, watchmanPath];
+var geoData = [dipseaPath, stinsonPath, muirWoodsPath, tenValleyPath, rodeoPath, mistPath, halfDomePath, panumPath, angelsPath, watchmanPath]; // need to accomodate parks
 
 var Map = /*#__PURE__*/function (_React$Component) {
   _inherits(Map, _React$Component);
@@ -529,9 +529,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
   _createClass(Map, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this$props$trail$ = this.props.trail[0],
-          latitude = _this$props$trail$.latitude,
-          longitude = _this$props$trail$.longitude;
+      var _this$props$entity$ = this.props.entity[0],
+          latitude = _this$props$entity$.latitude,
+          longitude = _this$props$entity$.longitude;
       var mapOptions = {
         center: {
           lat: latitude,
@@ -544,7 +544,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
       }; // create path referencing json coords
 
       var path = new google.maps.Polyline({
-        path: geoData[this.props.trail[0].id - 1],
+        path: geoData[this.props.entity[0].id - 1],
         geodesic: true,
         strokeColor: "#FF0000",
         strokeOpacity: 1.0,
@@ -552,9 +552,11 @@ var Map = /*#__PURE__*/function (_React$Component) {
       });
       this.map = new google.maps.Map(this.mapNode, mapOptions);
       this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
-      this.markerMgr.updateMarkers(this.props.trail); // add trail to map
+      this.markerMgr.updateMarkers(this.props.entity);
 
-      path.setMap(this.map);
+      if (this.props.entity[0].t_name) {
+        path.setMap(this.map);
+      }
     }
   }, {
     key: "componentDidUpdate",
@@ -562,9 +564,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
       console.log(prevProps);
 
       if (prevProps.match.params.id !== this.props.match.params.id) {
-        var _this$props$trail$2 = this.props.trail[0],
-            latitude = _this$props$trail$2.latitude,
-            longitude = _this$props$trail$2.longitude;
+        var _this$props$entity$2 = this.props.entity[0],
+            latitude = _this$props$entity$2.latitude,
+            longitude = _this$props$entity$2.longitude;
         var mapOptions = {
           center: {
             lat: latitude,
@@ -577,7 +579,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
         }; // create path referencing json coords
 
         var path = new google.maps.Polyline({
-          path: geoData[this.props.trail[0].id - 1],
+          path: geoData[this.props.entity[0].id - 1],
           geodesic: true,
           strokeColor: "#FF0000",
           strokeOpacity: 1.0,
@@ -585,12 +587,12 @@ var Map = /*#__PURE__*/function (_React$Component) {
         });
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
-        this.markerMgr.updateMarkers(this.props.trail); // add trail to map
+        this.markerMgr.updateMarkers(this.props.entity); // add entity to map
 
         path.setMap(this.map);
       }
 
-      this.markerMgr.updateMarkers(this.props.trail);
+      this.markerMgr.updateMarkers(this.props.entity);
     }
   }, {
     key: "render",
@@ -956,6 +958,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _headers_page_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../headers/page_header */ "./frontend/components/headers/page_header.jsx");
+/* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -977,6 +980,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -1011,7 +1015,9 @@ var Park = /*#__PURE__*/function (_React$Component) {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-inner-div"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews")))));
+      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        entity: [park]
+      })))));
     }
   }]);
 
@@ -3432,7 +3438,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "reviews-agg"
       }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "trail-loc"
-      }, this.props.trail.state + ", " + this.props.trail.country))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Link, null, this.props.trail.p), this.props.trail.state + ", " + this.props.trail.country))));
     }
   }, {
     key: "trailBody",
@@ -3472,7 +3478,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "side-panel border-left-inner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        trail: [this.props.trail],
+        entity: [this.props.trail],
         trails: this.props.trails,
         match: this.props.match
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", {

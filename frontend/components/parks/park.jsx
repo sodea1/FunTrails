@@ -1,5 +1,6 @@
 import React from "react";
 import PageHeader from "../headers/page_header";
+import Map from "../map/map";
 
 class Park extends React.Component {
     componentDidMount() {
@@ -20,6 +21,9 @@ class Park extends React.Component {
                         <div>
                             <span>Stars</span>
                             <span>{park.totalReviews} Reviews</span>
+                            <p>{park.description}</p>
+                            <div>Show More</div>
+                            <Map entity={[park]} />
                         </div>
                     </div>
                 </div>

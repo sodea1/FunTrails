@@ -24,10 +24,12 @@ const geoData = [
     watchmanPath
 ]
 
+// need to accomodate parks
+
 class Map extends React.Component {
     
     componentDidMount() {
-        const { latitude, longitude } = this.props.trail[0];
+        const { latitude, longitude } = this.props.entity[0];
         const mapOptions = {
             center: { lat: latitude, lng: longitude },
             zoom: 12,
@@ -38,7 +40,7 @@ class Map extends React.Component {
 
         // create path referencing json coords
         const path = new google.maps.Polyline({
-            path: geoData[this.props.trail[0].id - 1],
+            path: geoData[this.props.entity[0].id - 1],
             geodesic: true,
             strokeColor: "#FF0000",
             strokeOpacity: 1.0,
@@ -47,17 +49,17 @@ class Map extends React.Component {
 
         this.map = new google.maps.Map(this.mapNode, mapOptions);
         this.markerMgr = new MarkerManager(this.map);
-        this.markerMgr.updateMarkers(this.props.trail);
+        this.markerMgr.updateMarkers(this.props.entity);
 
-        // add trail to map
-        path.setMap(this.map);        
-
+        if (this.props.entity[0].t_name) {
+            path.setMap(this.map);
+        }
     }
 
     componentDidUpdate(prevProps) {
         console.log(prevProps)
         if (prevProps.match.params.id !== this.props.match.params.id) {
-            const { latitude, longitude } = this.props.trail[0];
+            const { latitude, longitude } = this.props.entity[0];
             const mapOptions = {
                 center: { lat: latitude, lng: longitude },
                 zoom: 12,
@@ -68,7 +70,7 @@ class Map extends React.Component {
 
             // create path referencing json coords
             const path = new google.maps.Polyline({
-                path: geoData[this.props.trail[0].id - 1],
+                path: geoData[this.props.entity[0].id - 1],
                 geodesic: true,
                 strokeColor: "#FF0000",
                 strokeOpacity: 1.0,
@@ -77,14 +79,14 @@ class Map extends React.Component {
 
             this.map = new google.maps.Map(this.mapNode, mapOptions);
             this.markerMgr = new MarkerManager(this.map);
-            this.markerMgr.updateMarkers(this.props.trail);
+            this.markerMgr.updateMarkers(this.props.entity);
 
-            // add trail to map
+            // add entity to map
             path.setMap(this.map);  
         }
 
 
-        this.markerMgr.updateMarkers(this.props.trail);
+        this.markerMgr.updateMarkers(this.props.entity);
     }
 
     render() {
