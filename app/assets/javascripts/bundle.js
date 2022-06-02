@@ -31,6 +31,56 @@ var openModal = function openModal(modal) {
 
 /***/ }),
 
+/***/ "./frontend/actions/park_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/park_actions.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "RECEIVE_ALL_PARKS": () => (/* binding */ RECEIVE_ALL_PARKS),
+/* harmony export */   "RECEIVE_PARK": () => (/* binding */ RECEIVE_PARK),
+/* harmony export */   "fetchAllParks": () => (/* binding */ fetchAllParks),
+/* harmony export */   "fetchPark": () => (/* binding */ fetchPark)
+/* harmony export */ });
+/* harmony import */ var _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/parks_api_util */ "./frontend/util/parks_api_util.js");
+
+var RECEIVE_ALL_PARKS = 'RECEIVE_ALL_PARKS';
+var RECEIVE_PARK = 'RECEIVE_PARK';
+
+var receiveParks = function receiveParks(parks) {
+  return {
+    type: RECEIVE_ALL_PARKS,
+    parks: parks
+  };
+};
+
+var receivePark = function receivePark(park) {
+  return {
+    type: RECEIVE_PARK,
+    park: park
+  };
+};
+
+var fetchAllParks = function fetchAllParks() {
+  return function (dispatch) {
+    return _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchAllParks().then(function (res) {
+      return dispatch(receiveParks(res));
+    });
+  };
+};
+var fetchPark = function fetchPark(parkId) {
+  return function (dispatch) {
+    return _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchPark(parkId).then(function (res) {
+      return dispatch(receivePark(res));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/review_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
@@ -2702,6 +2752,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrails();
+      this.props.fetchAllParks();
     }
   }, {
     key: "render",
@@ -2735,7 +2786,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash/splash.jsx");
+/* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/park_actions */ "./frontend/actions/park_actions.js");
+/* harmony import */ var _splash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash */ "./frontend/components/splash/splash.jsx");
+
 
 
 
@@ -2750,11 +2803,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrails)());
+    },
+    fetchAllParks: function fetchAllParks() {
+      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_2__.fetchAllParks)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_splash__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_splash__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -3408,16 +3464,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _trails_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./trails_reducer */ "./frontend/reducers/trails_reducer.js");
 /* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
+/* harmony import */ var _parks_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parks_reducer */ "./frontend/reducers/parks_reducer.js");
 
 
 
 
-var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+
+var entitiesReducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_0__["default"],
+  parks: _parks_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   trails: _trails_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
@@ -3479,6 +3538,43 @@ var modalReducer = function modalReducer() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modalReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/parks_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/parks_reducer.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/park_actions */ "./frontend/actions/park_actions.js");
+
+
+var parksReducer = function parksReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_ALL_PARKS:
+      debugger;
+      return Object.assign(newState, action.parks);
+
+    case _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PARK:
+      return Object.assign(newState, action);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (parksReducer);
 
 /***/ }),
 
@@ -3811,6 +3907,33 @@ var MarkerManager = /*#__PURE__*/function () {
 }();
 
 
+
+/***/ }),
+
+/***/ "./frontend/util/parks_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/parks_api_util.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchAllParks": () => (/* binding */ fetchAllParks),
+/* harmony export */   "fetchPark": () => (/* binding */ fetchPark)
+/* harmony export */ });
+var fetchAllParks = function fetchAllParks() {
+  return $.ajax({
+    method: 'GET',
+    url: '/api/parks'
+  });
+};
+var fetchPark = function fetchPark(parkId) {
+  return $.ajax({
+    method: 'GET',
+    url: "/api/parks/".concat(parkId)
+  });
+};
 
 /***/ }),
 

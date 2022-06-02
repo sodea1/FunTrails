@@ -10,6 +10,7 @@ import Stats from "./stats";
 class Splash extends React.Component {
     componentDidMount() {
         this.props.fetchTrails();
+        this.props.fetchAllParks();
     }
 
     render() {

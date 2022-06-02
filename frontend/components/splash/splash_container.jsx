@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { fetchTrails } from "../../actions/trail_actions";
+import { fetchAllParks } from "../../actions/park_actions";
 import Splash from './splash';
 
 const mapStateToProps = state => {
@@ -9,7 +10,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    fetchTrails: () => dispatch(fetchTrails())
+    fetchTrails: () => dispatch(fetchTrails()),
+    fetchAllParks: () => dispatch(fetchAllParks())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);

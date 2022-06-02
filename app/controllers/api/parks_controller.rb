@@ -1,7 +1,7 @@
 class Api::ParksController < ApplicationController
-    def index 
-        @parks = Parks.all
-        render :index
+    def index
+        @parks = Park.all
+        render 'api/parks/index'
     end
 
     def show

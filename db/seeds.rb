@@ -187,10 +187,10 @@ month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 day = (1..28).to_a
 
 (1..10).each do |trail_id|
-  # sample_range = *(15..30)
-  # random_num = sample_range.sample(1)
-  # arr = *(1..random_num[0])
-  arr = *(1..30)
+  sample_range = *(15..30)
+  random_num = sample_range.sample(1)
+  arr = *(1..random_num[0])
+  # arr = *(1..30)
   arr.each do |user_id|
     if [5, 8, 25].include?(user_id)
       rating = [3]
@@ -224,7 +224,8 @@ rand_conditions_x = [1, 3]
 rand_conditions_2 = [11, 12]
 rand_conditions_3 = [4, 14]
 
-nums = (1..300).to_a
+# change 300 to Review.all.length
+nums = (1..Review.all.length).to_a
 nums.each do |num|
   num_conditions = [1, 2, 3].sample
 
