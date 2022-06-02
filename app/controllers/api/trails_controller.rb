@@ -2,7 +2,7 @@ class Api::TrailsController < ApplicationController
     def show
         @trail = Trail.find_by(id: params[:id])
         if @trail
-            render :show
+            render "/api/trails/show"
         else
             render json: ['Trail does not exist'], status: 404
         end
@@ -11,7 +11,7 @@ class Api::TrailsController < ApplicationController
     def index
         # include associations with .includes
         @trails = Trail.all.includes(:tags)
-        render :index
+        render "/api/trails/index"
     end
 
     def trail_params

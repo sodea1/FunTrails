@@ -8,9 +8,11 @@ export const fetchTrail = trailId => {
     );
 };
 
-export const fetchTrails = () => (
-    $.ajax({
-        method: 'GET',
-        url: '/api/trails'
-    })
-);
+export const fetchTrails = () => {
+    return (
+        $.ajax({
+            method: 'GET',
+            url: '/api/trails'
+        })
+    ) 
+}

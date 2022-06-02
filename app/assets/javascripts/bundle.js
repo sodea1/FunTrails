@@ -339,6 +339,7 @@ var fetchTrail = function fetchTrail(trailId) {
 };
 var fetchTrails = function fetchTrails() {
   return function (dispatch) {
+    debugger;
     return _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrails().then(function (trails) {
       return dispatch(receiveTrails(trails));
     });
@@ -960,6 +961,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _headers_page_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../headers/page_header */ "./frontend/components/headers/page_header.jsx");
 /* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
+/* harmony import */ var _tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tiles/long_tile */ "./frontend/components/tiles/long_tile.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -986,44 +988,58 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Park = /*#__PURE__*/function (_React$Component) {
   _inherits(Park, _React$Component);
 
   var _super = _createSuper(Park);
 
-  function Park() {
+  function Park(props) {
+    var _this;
+
     _classCallCheck(this, Park);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.displayPage = _this.displayPage.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Park, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchAllParks();
+      debugger;
+      this.props.fetchAllParks().then(this.props.fetchTrails());
     }
   }, {
-    key: "render",
-    value: function render() {
-      var park = this.props.park;
-
-      if (typeof park === 'undefined') {
-        return;
-      }
-
-      ;
+    key: "displayPage",
+    value: function displayPage(park, trails, match) {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-inner-div"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        park: park
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
         entity: [park],
-        match: this.props.match
+        match: match
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-information"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Park Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Acreage:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.acreage)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Park Hours"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", null, ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(function (day) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, day), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", null, "All Day"));
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Park Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Acreage:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.acreage)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Park Hours"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(function (day, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, day), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "All Day"));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.contact)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Top Trails"), (0,_tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__["default"])(trails)));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var _this$props = this.props,
+          trails = _this$props.trails,
+          park = _this$props.park,
+          match = _this$props.match;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Object.keys(this.props.trails).length !== 0 && this.displayPage(trails, park, match));
     }
   }]);
 
@@ -1047,14 +1063,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/park_actions */ "./frontend/actions/park_actions.js");
-/* harmony import */ var _park__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./park */ "./frontend/components/parks/park.jsx");
+/* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
+/* harmony import */ var _park__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./park */ "./frontend/components/parks/park.jsx");
+
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    park: state.entities.parks[ownProps.match.params.id]
+    park: state.entities.parks[ownProps.match.params.id],
+    trails: state.entities.trails
   };
 };
 
@@ -1062,11 +1081,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchAllParks: function fetchAllParks() {
       return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchAllParks)());
+    },
+    fetchTrails: function fetchTrails() {
+      return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_park__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_park__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -3249,6 +3271,36 @@ var yellowBars = function yellowBars(reviews) {
 
 /***/ }),
 
+/***/ "./frontend/components/tiles/long_tile.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/tiles/long_tile.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var LongTile = function LongTile(trails) {
+  // PICK UP HERE
+  debugger;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+    to: "/trails/".concat(trail.id),
+    key: trail.id
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, '#' + trail.id + ' - ' + trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LongTile);
+
+/***/ }),
+
 /***/ "./frontend/components/tiles/tile.jsx":
 /*!********************************************!*\
   !*** ./frontend/components/tiles/tile.jsx ***!
@@ -3874,6 +3926,7 @@ var trailsReducer = function trailsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.trail.id, action.trail));
 
     case _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TRAILS:
+      debugger;
       return Object.assign({}, state, action.trails);
 
     default:
