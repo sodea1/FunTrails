@@ -23,7 +23,7 @@ class Park extends React.Component {
                             <span>{park.totalReviews} Reviews</span>
                             <p>{park.description}</p>
                             <div>Show More</div>
-                            <Map entity={[park]} />
+                            <Map entity={[park]} match={this.props.match} />
                         </div>
                     </div>
                 </div>

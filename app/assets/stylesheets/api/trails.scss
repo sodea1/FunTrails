@@ -79,25 +79,24 @@
     align-items: center;
 }
 
-.trail-loc {
-    pointer-events: none;
-}
+.trail-title {
+    li:first-child {
+        margin: 0px 0px 6px;
+        font-size: 30px;
+        color: #FFFFFF;
+    }
 
-.trail-title li:first-child {
-    margin: 0px 0px 6px;
-    font-size: 30px;
-    color: #FFFFFF; 
-}
+    li:last-child {
+        margin: 6px 0px 0px;
+        font-size: 14px;
+        color: #FFFFFF;
+    }
 
-.trail-title li:last-child {
-    margin: 6px 0px 0px;
-    font-size: 14px;
-    color: #FFFFFF;
-}
-
-.trail-title li:last-child:hover {
-    opacity: 0.5;
-    cursor: pointer;
+    li:last-child:hover {
+        opacity: 0.8;
+        cursor: pointer;
+        color: #fff;
+    }
 }
 
 .header-wrapper {
@@ -105,8 +104,6 @@
     justify-content: space-between;
     align-items: center;
 }
-
-
 
 // body 
 

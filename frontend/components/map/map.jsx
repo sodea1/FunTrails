@@ -65,7 +65,7 @@ class Map extends React.Component {
                 zoom: 12,
                 mapTypeId: 'terrain',
                 disableDefaultUI: true,
-                zoomControl: true
+                zoomControl: true,
             };
 
             // create path referencing json coords
@@ -82,7 +82,7 @@ class Map extends React.Component {
             this.markerMgr.updateMarkers(this.props.entity);
 
             // add entity to map
-            path.setMap(this.map);  
+            path.setMap(this.map);
         }
 
 
@@ -90,10 +90,10 @@ class Map extends React.Component {
     }
 
     render() {
+        const iD = (this.props.entity[0].t_name) ? "map-container-trail" : "map-container-park";
         
         return(
-            <div id='map-container' ref={map => this.mapNode = map}> 
-                
+            <div id={iD} ref={map => this.mapNode = map}>           
             </div>
        )
     }

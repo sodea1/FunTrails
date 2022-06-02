@@ -4,6 +4,8 @@ import Map from '../map/map';
 import ReviewContainer from '../reviews/review_container';
 import { allReviewsAvg } from '../stars/stars';
 import Tile from '../tiles/tile';
+import { Link } from 'react-router-dom';
+
 
 class Trail extends React.Component {
     constructor(props) {
@@ -38,7 +40,7 @@ class Trail extends React.Component {
                             </div>
                             <span className='reviews-agg'>{`(${this.props.trail.reviews})`}</span>
                         </li>
-                        <li className='trail-loc'><Link>{this.props.trail.p}</Link>{this.props.trail.state + ", " + this.props.trail.country}</li>
+                        <li className='trail-loc'><Link to={`/parks/${this.props.trail.park_id}`}>{this.props.trail.parkName}</Link></li>
                     </ul>
                 </div>
             </div>

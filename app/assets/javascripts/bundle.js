@@ -599,8 +599,9 @@ var Map = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      var iD = this.props.entity[0].t_name ? "map-container-trail" : "map-container-park";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        id: "map-container",
+        id: iD,
         ref: function ref(map) {
           return _this.mapNode = map;
         }
@@ -1016,7 +1017,8 @@ var Park = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-inner-div"
       }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        entity: [park]
+        entity: [park],
+        match: this.props.match
       })))));
     }
   }]);
@@ -3354,6 +3356,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reviews_review_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../reviews/review_container */ "./frontend/components/reviews/review_container.jsx");
 /* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
 /* harmony import */ var _tiles_tile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tiles/tile */ "./frontend/components/tiles/tile.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3375,6 +3378,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3438,7 +3442,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "reviews-agg"
       }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "trail-loc"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Link, null, this.props.trail.p), this.props.trail.state + ", " + this.props.trail.country))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+        to: "/parks/".concat(this.props.trail.park_id)
+      }, this.props.trail.parkName)))));
     }
   }, {
     key: "trailBody",

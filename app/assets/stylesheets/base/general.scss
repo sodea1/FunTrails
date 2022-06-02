@@ -1,12 +1,12 @@
 @import './font.scss';
 @import './colors.scss';
 
-@media only screen {
-    body {
-        min-width: 1028px;
-        overflow-x: scroll;
-    }
-}
+// @media only screen {
+//     body {
+//         min-width: 1028px;
+//         overflow-x: scroll;
+//     }
+// }
 
 html {
     overflow-x: scroll;
@@ -37,6 +37,7 @@ button {
 
 a {
     text-decoration: none;
+    color: #fff;
 }
 
 .bold {

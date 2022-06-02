@@ -21,6 +21,7 @@
         avgRating = avgFloat.round(1)
         json.rating avgRating
         json.reviews totalReviews
+        json.parkName trail.park.p_name
     end
 end
 
