@@ -423,17 +423,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PageHeader = function PageHeader(entity) {
-  var parkName = entity.park_id;
   var name = entity.t_name ? entity.t_name : entity.p_name;
   var klass = entity.t_name ? "-trail" : "-park";
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
     className: "trail-head"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "header-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
     className: "head-loc"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.park_id ? entity.park_id : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), entity.t_name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.parkName ? entity.parkName : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "overflow"
   }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "show-search" + klass
@@ -962,7 +960,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _headers_page_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../headers/page_header */ "./frontend/components/headers/page_header.jsx");
 /* harmony import */ var _map_map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../map/map */ "./frontend/components/map/map.jsx");
-/* harmony import */ var _tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../tiles/long_tile */ "./frontend/components/tiles/long_tile.jsx");
+/* harmony import */ var _stars_stars__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../stars/stars */ "./frontend/components/stars/stars.jsx");
+/* harmony import */ var _tiles_long_tile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../tiles/long_tile */ "./frontend/components/tiles/long_tile.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -990,6 +989,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Park = /*#__PURE__*/function (_React$Component) {
   _inherits(Park, _React$Component);
 
@@ -1011,19 +1011,34 @@ var Park = /*#__PURE__*/function (_React$Component) {
       this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.match.params.id !== prevProps.match.params.id) this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+    }
+  }, {
     key: "displayPage",
     value: function displayPage(park, trails, match) {
       var trailsArr = Object.values(trails);
       var parkTrails = trailsArr.filter(function (trail) {
         return trail.park_id === park.id;
       });
+      var trailRatings = parkTrails.map(function (trail) {
+        return trail.rating;
+      });
+      var parkRating = (trailRatings.reduce(function (initial, currVal) {
+        return initial + currVal;
+      }, 0) / trailRatings.length).toFixed(1);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-width"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-header-div"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+        className: "park-title"
+      }, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(parkRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "park-reviews"
+      }, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
         entity: [park],
         match: match
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1035,7 +1050,7 @@ var Park = /*#__PURE__*/function (_React$Component) {
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.contact)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-trails"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Top Trails"), parkTrails.map(function (trail) {
-        return (0,_tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__["default"])(trail);
+        return (0,_tiles_long_tile__WEBPACK_IMPORTED_MODULE_4__["default"])(trail);
       }))));
     }
   }, {
@@ -2933,7 +2948,7 @@ var Splash = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTrails();
-      this.props.fetchAllParks();
+      this.props.fetchParks();
     }
   }, {
     key: "render",
@@ -2985,8 +3000,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrails)());
     },
-    fetchAllParks: function fetchAllParks() {
-      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_2__.fetchAllParks)());
+    fetchParks: function fetchParks() {
+      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_2__.fetchParks)());
     }
   };
 };
@@ -3474,7 +3489,10 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
-    }
+    } // redirectPark() {
+    //     this.props.history.push(`/parks/${parkId}`)
+    // }
+
   }, {
     key: "openModal",
     value: function openModal(formType) {

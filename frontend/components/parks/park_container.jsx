@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchPark, fetchParks } from "../../actions/park_actions";
+import { fetchPark } from "../../actions/park_actions";
 import { fetchTrails } from "../../actions/trail_actions";
 import Park from "./park";
 

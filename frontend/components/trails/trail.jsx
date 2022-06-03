@@ -18,6 +18,10 @@ class Trail extends React.Component {
         this.props.fetchTrails();
     }
 
+    // redirectPark() {
+    //     this.props.history.push(`/parks/${parkId}`)
+    // }
+
     openModal(formType) {
         if (this.props.currUserId) {
             this.props.openModal(formType)

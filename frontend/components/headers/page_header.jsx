@@ -1,11 +1,9 @@
 import React from 'react';
 
 const PageHeader = (entity) => {
-    const parkName = entity.park_id;
     const name = entity.t_name ? entity.t_name : entity.p_name;
     const klass = entity.t_name ? "-trail" : "-park";
     
-    debugger
     return (
          <header className='trail-head'>
             <div className='header-wrapper'>
@@ -15,7 +13,7 @@ const PageHeader = (entity) => {
                     <span>›</span>
                     <span>{entity.state}</span>
                     {entity.t_name && <span>›</span>}
-                    {entity.t_name && <span>{(entity.park_id) ? entity.park_id : null}</span>}
+                    {entity.t_name && <span>{(entity.parkName) ? entity.parkName : null}</span>}
                     <span>›</span>
                     <span className='overflow'>{name}</span>
                 </ul>

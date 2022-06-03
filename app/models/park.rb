@@ -11,7 +11,6 @@ class Park < ApplicationRecord
         through: :trails,
         source: :reviews
 
-
     has_many_attached :photos, dependent: :purge_later
 
     # def self.total_reviews(parkId)

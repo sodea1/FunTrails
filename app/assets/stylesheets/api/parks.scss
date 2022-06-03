@@ -26,6 +26,16 @@
 .park-header-div {
     width: 100%;
     margin: auto;
+    color: $text;
+
+    .park-title {
+        font-family: "Proxima-Nova-Bold";
+        font-size: 32px;
+    }
+
+    .park-reviews {
+        color: $lightgrey;
+    }
 }
 
 .show-search-park {

@@ -1,6 +1,7 @@
 import React from "react";
 import PageHeader from "../headers/page_header";
 import Map from "../map/map";
+import { allReviewsAvg } from "../stars/stars";
 import LongTile from "../tiles/long_tile";
 
 class Park extends React.Component {
@@ -13,19 +14,26 @@ class Park extends React.Component {
         this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id)
+        this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+    }
+
     displayPage(park, trails, match) {
         const trailsArr = Object.values(trails);
         const parkTrails = trailsArr.filter(trail => trail.park_id === park.id)
+        const trailRatings = parkTrails.map(trail => trail.rating);
+        const parkRating = (trailRatings.reduce((initial, currVal) => initial + currVal, 0) / trailRatings.length).toFixed(1);
         return (
             <div className="park-wrapper">
                 <div className="park-width">
                     <div className="park-header-div">
                         {PageHeader(park)}
                         <div>
-                            <h1>Best Trails in {park.p_name}</h1>
+                            <h1 className="park-title">Best Trails in {park.p_name}</h1>
                             <div>
-                                <span>Stars</span>
-                                <span>{park.totalReviews} Reviews</span>
+                                {allReviewsAvg(parkRating)}
+                                <span className="park-reviews">{park.totalReviews} Reviews</span>
                                 <p>{park.description}</p>
                                 <div>Show More</div>
                                 <Map entity={[park]} match={match} />
