@@ -57,7 +57,6 @@ class Map extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log(prevProps)
         if (prevProps.match.params.id !== this.props.match.params.id) {
             const { latitude, longitude } = this.props.entity[0];
             const mapOptions = {
@@ -83,15 +82,17 @@ class Map extends React.Component {
 
             // add entity to map
             path.setMap(this.map);
-        }
 
+            if (this.props.entity[0].t_name) {
+                path.setMap(this.map);
+            }
+        }
 
         this.markerMgr.updateMarkers(this.props.entity);
     }
 
     render() {
         const iD = (this.props.entity[0].t_name) ? "map-container-trail" : "map-container-park";
-        
         return(
             <div id={iD} ref={map => this.mapNode = map}>           
             </div>

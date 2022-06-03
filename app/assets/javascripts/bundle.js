@@ -42,8 +42,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "RECEIVE_ALL_PARKS": () => (/* binding */ RECEIVE_ALL_PARKS),
 /* harmony export */   "RECEIVE_PARK": () => (/* binding */ RECEIVE_PARK),
-/* harmony export */   "fetchAllParks": () => (/* binding */ fetchAllParks),
-/* harmony export */   "fetchPark": () => (/* binding */ fetchPark)
+/* harmony export */   "fetchPark": () => (/* binding */ fetchPark),
+/* harmony export */   "fetchParks": () => (/* binding */ fetchParks)
 /* harmony export */ });
 /* harmony import */ var _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/parks_api_util */ "./frontend/util/parks_api_util.js");
 
@@ -64,9 +64,9 @@ var receivePark = function receivePark(park) {
   };
 };
 
-var fetchAllParks = function fetchAllParks() {
+var fetchParks = function fetchParks() {
   return function (dispatch) {
-    return _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchAllParks().then(function (res) {
+    return _util_parks_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchParks().then(function (res) {
       return dispatch(receiveParks(res));
     });
   };
@@ -339,7 +339,6 @@ var fetchTrail = function fetchTrail(trailId) {
 };
 var fetchTrails = function fetchTrails() {
   return function (dispatch) {
-    debugger;
     return _util_trails_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchTrails().then(function (trails) {
       return dispatch(receiveTrails(trails));
     });
@@ -562,8 +561,6 @@ var Map = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      console.log(prevProps);
-
       if (prevProps.match.params.id !== this.props.match.params.id) {
         var _this$props$entity$2 = this.props.entity[0],
             latitude = _this$props$entity$2.latitude,
@@ -591,6 +588,10 @@ var Map = /*#__PURE__*/function (_React$Component) {
         this.markerMgr.updateMarkers(this.props.entity); // add entity to map
 
         path.setMap(this.map);
+
+        if (this.props.entity[0].t_name) {
+          path.setMap(this.map);
+        }
       }
 
       this.markerMgr.updateMarkers(this.props.entity);
@@ -1007,13 +1008,15 @@ var Park = /*#__PURE__*/function (_React$Component) {
   _createClass(Park, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-      this.props.fetchAllParks().then(this.props.fetchTrails());
+      this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
     }
   }, {
     key: "displayPage",
     value: function displayPage(park, trails, match) {
-      debugger;
+      var trailsArr = Object.values(trails);
+      var parkTrails = trailsArr.filter(function (trail) {
+        return trail.park_id === park.id;
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1029,17 +1032,18 @@ var Park = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           key: idx
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, day), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "All Day"));
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.contact)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Top Trails"), (0,_tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__["default"])(trails)));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Contact"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.contact)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Top Trails"), parkTrails.map(function (trail) {
+        return (0,_tiles_long_tile__WEBPACK_IMPORTED_MODULE_3__["default"])(trail);
+      })));
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$props = this.props,
           trails = _this$props.trails,
           park = _this$props.park,
           match = _this$props.match;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Object.keys(this.props.trails).length !== 0 && this.displayPage(trails, park, match));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, Object.keys(this.props.trails).length > 1 && this.displayPage(park, trails, match));
     }
   }]);
 
@@ -1079,8 +1083,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAllParks: function fetchAllParks() {
-      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchAllParks)());
+    // fetchParks: () => dispatch(fetchParks()),
+    fetchPark: function fetchPark(parkId) {
+      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchPark)(parkId));
     },
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
@@ -3288,14 +3293,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var LongTile = function LongTile(trails) {
-  // PICK UP HERE
-  debugger;
+function LongTile(trail) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     to: "/trails/".concat(trail.id),
-    key: trail.id
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, '#' + trail.id + ' - ' + trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null));
-};
+    key: trail.id,
+    className: "long-tile-link"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "long-tile-div"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, '#' + trail.id + ' - ' + trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.parkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.difficulty_level), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.rating, " stars"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "(".concat(trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Length: ", trail.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u2022"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.estimated_time)))));
+}
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LongTile);
 
@@ -3724,6 +3730,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/park_actions */ "./frontend/actions/park_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var parksReducer = function parksReducer() {
@@ -3737,7 +3745,7 @@ var parksReducer = function parksReducer() {
       return Object.assign(newState, action.parks);
 
     case _actions_park_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_PARK:
-      return Object.assign(newState, action.park);
+      return Object.assign(newState, _defineProperty({}, action.park.id, action.park));
 
     default:
       return state;
@@ -3926,7 +3934,6 @@ var trailsReducer = function trailsReducer() {
       return Object.assign({}, state, _defineProperty({}, action.trail.id, action.trail));
 
     case _actions_trail_actions__WEBPACK_IMPORTED_MODULE_0__.RECEIVE_TRAILS:
-      debugger;
       return Object.assign({}, state, action.trails);
 
     default:
@@ -4090,10 +4097,10 @@ var MarkerManager = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fetchAllParks": () => (/* binding */ fetchAllParks),
-/* harmony export */   "fetchPark": () => (/* binding */ fetchPark)
+/* harmony export */   "fetchPark": () => (/* binding */ fetchPark),
+/* harmony export */   "fetchParks": () => (/* binding */ fetchParks)
 /* harmony export */ });
-var fetchAllParks = function fetchAllParks() {
+var fetchParks = function fetchParks() {
   return $.ajax({
     method: 'GET',
     url: '/api/parks'

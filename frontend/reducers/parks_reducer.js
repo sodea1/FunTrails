@@ -8,7 +8,7 @@ const parksReducer = (state = {}, action) => {
         case RECEIVE_ALL_PARKS:
             return Object.assign(newState, action.parks);
         case RECEIVE_PARK:
-            return Object.assign(newState, action.park);
+            return Object.assign(newState, {[action.park.id]: action.park});
         default:
             return state;
     }

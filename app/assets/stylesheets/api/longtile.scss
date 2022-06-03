@@ -1,0 +1,18 @@
+@import '../base/font.scss';
+@import '../base/colors.scss';
+
+.long-tile-link {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 16px;
+}
+
+.long-tile-div {
+    display: flex;
+    width: 1024px;
+    height: 224px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px 4px rgb(240,240,240);
+    color: black;
+    margin: auto;
+}

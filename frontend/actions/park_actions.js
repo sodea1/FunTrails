@@ -14,8 +14,8 @@ const receivePark = park => ({
 });
 
 
-export const fetchAllParks = () => dispatch => {
-    return ParkApiUtil.fetchAllParks()
+export const fetchParks = () => dispatch => {
+    return ParkApiUtil.fetchParks()
         .then(res => dispatch(receiveParks(res)))
 }
 

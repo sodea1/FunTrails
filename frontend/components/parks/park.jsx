@@ -10,12 +10,12 @@ class Park extends React.Component {
     }
 
     componentDidMount() {
-        debugger
-        this.props.fetchAllParks().then(this.props.fetchTrails());
+        this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
     }
 
     displayPage(park, trails, match) {
-        debugger
+        const trailsArr = Object.values(trails);
+        const parkTrails = trailsArr.filter(trail => trail.park_id === park.id)
         return (
             <div className="park-wrapper">
                 <div className="park-inner-div">
@@ -64,18 +64,17 @@ class Park extends React.Component {
 
                 <div>
                     <h2>Top Trails</h2>
-                    {LongTile(trails)}
+                    {parkTrails.map((trail) => LongTile(trail))}
                 </div>
             </div>
         )
     }
 
     render() {
-        debugger
         const { trails, park, match } = this.props;
         return (
             <div>
-                {Object.keys(this.props.trails).length !== 0 && this.displayPage(trails, park, match)}
+                {Object.keys(this.props.trails).length > 1 && this.displayPage(park, trails, match)}
             </div>
         )
     }

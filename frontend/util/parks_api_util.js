@@ -1,4 +1,4 @@
-export const fetchAllParks = () => {
+export const fetchParks = () => {
     return (
         $.ajax({
             method: 'GET',

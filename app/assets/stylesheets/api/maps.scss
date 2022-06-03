@@ -1,8 +1,8 @@
 
 
 #map-container-trail {
-    max-height: 243px;
-    max-width: 291px;
+    height: 243px;
+    width: 291px;
     border-radius: 10px;
     margin: auto;
     margin-top: 40px;
@@ -10,9 +10,7 @@
 
 #map-container-park {
     height: 240px;
-    max-width: 763px;
-    min-height: 193px;
-    min-width: 328px;
+    width: 763px;
     border-radius: 10px;
     margin: auto;
 }

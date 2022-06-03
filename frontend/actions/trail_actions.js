@@ -21,7 +21,6 @@ export const fetchTrail = trailId => dispatch => {
 };
 
 export const fetchTrails = () => dispatch => {
-    debugger
     return (
         TrailApiUtil.fetchTrails()
             .then(trails => dispatch(receiveTrails(trails)))
