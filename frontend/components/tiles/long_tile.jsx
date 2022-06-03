@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 function LongTile(trail) {
     return (
         <Link to={`/trails/${trail.id}`} key={trail.id} className="long-tile-link">
-            <div className='long-tile-div'>
+            <div className='longtile-div'>
                 <div>
-                    Photo
+                    <img src={trail.photoUrl} className="longtile-photo" />
                 </div>
     
                 <div>

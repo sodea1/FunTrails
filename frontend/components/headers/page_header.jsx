@@ -4,7 +4,8 @@ const PageHeader = (entity) => {
     const parkName = entity.park_id;
     const name = entity.t_name ? entity.t_name : entity.p_name;
     const klass = entity.t_name ? "-trail" : "-park";
-    // will need conditional (if trail or park return this or that)
+    
+    debugger
     return (
          <header className='trail-head'>
             <div className='header-wrapper'>
