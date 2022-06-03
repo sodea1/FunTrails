@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { allReviewsAvg } from '../stars/stars';
 
 function LongTile(trail) {
     return (
@@ -9,15 +10,15 @@ function LongTile(trail) {
                     <img src={trail.photoUrl} className="longtile-photo" />
                 </div>
     
-                <div>
+                <div className='park-tile-details'>
                     <span>{'#' + trail.id + ' - ' + trail.t_name}</span>
                     <span>{trail.parkName}</span>
-                    <div>
-                        <span>{trail.difficulty_level}</span>
-                        <span>{trail.rating} stars</span>
+                    <div className='longtile-reviews'>
+                        <span className='descriptor-blue'>{trail.difficulty_level}</span>
+                        <span>{allReviewsAvg(trail.rating)}</span>
                         <span>{`(${trail.reviews})`}</span>
                     </div>
-                    <div>
+                    <div className='longtile-length-time'>
                         <span>Length: {trail.length}</span>
                         <span>•</span>
                         <span>{trail.estimated_time}</span>

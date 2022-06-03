@@ -3,24 +3,66 @@
 
 .long-tile-link {
     width: 100%;
-    margin-bottom: 24px;
-    padding: 16px;
+    height: 224px;
+    margin-bottom: 22px;
 }
 
 .longtile-div {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 224px;
     border-radius: 8px;
-    box-shadow: 0 0 4px 4px rgb(240,240,240);
+    box-shadow: 0 0 8px 4px rgb(240,240,240);
     color: black;
-    margin: auto;
+    margin-bottom: 16px;
+    padding: 16px 16px;
+
+    > div:first-child {
+        margin-right: 22px;
+    }
 }
 
 .longtile-photo {
     height: 192px; 
     width: 288px;
     border-radius: 8px;
+}
+
+.park-tile-details {
+    color: $lightgrey;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    > * {
+        margin-bottom: 8px;
+    }
+
+    > span:first-child {
+        font-family: "Proxima-Nova-Bold";
+        font-size: 18px;
+        color: $text;
+    }
+
+    > span:nth-child(2) {
+        font-size: 14px;
+    }
+}
+
+.longtile-reviews {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    > * {
+        margin-right: 10px;
+    }
+}
+
+.longtile-length-time {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    > * {
+        margin-right: 10px;
+    }
 }

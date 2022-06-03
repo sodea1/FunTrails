@@ -11,9 +11,23 @@
     text-overflow: ellipsis;
 
 
-    span {
+    span, .header-link-trail {
         display: inline-block;
         white-space: nowrap;
         margin-right: 20px;
+        color: #5a5a5a;
+        pointer-events: none;
+    }
+
+    .header-link {
+        display: inline-block;
+        color: #5a5a5a;
+        white-space: nowrap;
+        margin-right: 20px;
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 }

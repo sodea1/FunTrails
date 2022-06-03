@@ -14,23 +14,46 @@
 .park-width {
     width: 1024px;
     margin: auto;
+    padding-bottom: 32px;
 }
 
-.park-information {
-    width: 100%;
-}
+.park-photos-div {
+    display: flex;
+    width: 1048px;
+    padding-bottom: 16px;
 
-.park-trails {
-    width: 100%;
+    > div {
+        width: 330px;
+        height: 220px;
+        margin-right: 24px;
+
+        img {
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            
+        }
+    }
 }
 
 .park-title {
     font-family: "Proxima-Nova-Bold";
     font-size: 32px;
+    margin: 10px 0;
 }
 
 .park-reviews {
+    display: flex;
+    align-items: center;
     color: $lightgrey;
+    padding-left: 6px;
+    text-align: center;
+}
+
+.park-rating-div {
+    display: flex;
+    align-items: center;
+    margin: 14px 0;
 }
 
 .park-name-div {
@@ -45,6 +68,7 @@
     color: $lightgrey;
     line-height: 1.44;
     height: 80px;
+    width: 763px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -66,11 +90,6 @@
     }
 }
 
-.park-rating-div {
-    display: flex;
-    padding-bottom: 8px;
-}
-
 .show-search-park {
     display: flex;
     align-items: center;
@@ -87,4 +106,62 @@
     width: 90%;
     height: 93%;
     padding: 0px 8px;
+}
+
+.park-information {
+    width: 100%;
+    color: $lightgrey;
+    font-size: 16px;
+
+    h2, h3 {
+        font-family: "Proxima-Nova-Bold";
+        font-size: 22px;
+        color: $text;
+    }
+
+    h2 {
+        margin-bottom: 16px;
+    }
+
+    h3 {
+        font-size: 18px;
+        line-height: 1.38;
+    }
+
+    .park-details-div {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid $border;
+        margin-bottom: 28px;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+        }
+    }
+
+    .park-hours-div {
+        margin-bottom: 28px;
+    }
+
+    .park-hours {
+        display: flex;
+        justify-content: space-between;
+        margin: 3px 0;
+    }
+
+    .acreage {
+        margin-bottom: 10px;
+    }
+}
+
+.top-trails {
+    font-size: 26px;
+    font-family: "Proxima-Nova-Bold";
+    margin-bottom: 28px;
+}
+
+.park-trails {
+    width: 100%;
 }

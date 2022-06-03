@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchPark } from "../../actions/park_actions";
+import { fetchPark, fetchParks } from "../../actions/park_actions";
 import { fetchTrails } from "../../actions/trail_actions";
 import Park from "./park";
 
@@ -9,8 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    // fetchParks: () => dispatch(fetchParks()),
-    fetchPark: (parkId) => dispatch(fetchPark(parkId)),
+    fetchParks: () => dispatch(fetchParks()),
+    // fetchPark: (parkId) => dispatch(fetchPark(parkId)),
     fetchTrails: () => dispatch(fetchTrails())
 });
 

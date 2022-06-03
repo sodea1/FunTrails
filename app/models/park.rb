@@ -11,14 +11,7 @@ class Park < ApplicationRecord
         through: :trails,
         source: :reviews
 
-    has_many_attached :photos, dependent: :purge_later
-
-    # def self.total_reviews(parkId)
-    #     count = 0
-    #     trails = Trail.where(`park_id = #{parkId}`)
-    #     trails.each do |trail|
-    #         count += trail.reviews.length
-    #     end
-    #     return count
-    # end
+    has_many :photos,
+        through: :trails,
+        source: :photos
 end

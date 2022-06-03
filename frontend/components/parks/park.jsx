@@ -12,7 +12,7 @@ class Park extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+        this.props.fetchParks().then(this.props.fetchTrails());
     }
 
     componentDidUpdate(prevProps) {
@@ -36,6 +36,16 @@ class Park extends React.Component {
             <div className="park-wrapper">
                 <div className="park-width">
                     {PageHeader(park)}
+                    <div className="park-photos-div">
+                        {parkTrails.map((trail) => {
+                            return (
+                                <div>
+                                    <img src={trail.photoUrl} />
+                                </div>
+                            )
+                            
+                        })}
+                    </div>
                     <div className="park-name-div">
                         <h1 className="park-title">Best Trails in {park.p_name}</h1>
                         <div>
@@ -54,19 +64,19 @@ class Park extends React.Component {
                         <div>
                             <h2>Park Information</h2>
                         </div>
-                        <div>
+                        <div className="park-details-div">
                             <div>
-                                <div>
+                                <div className="acreage">
                                     <h3>Acreage:</h3>
-                                    <span>{park.acreage}</span>
+                                    <span>{park.acreage && park.acreage.toLocaleString()}</span>
                                 </div>
-                                <div>
+                                <div className="park-hours-div">
                                     <h3>Park Hours</h3>
                                     <div>
                                         {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, idx) => {
-                                            return <div key={idx}>
+                                            return <div key={idx} className="park-hours">
                                                 <span>{day}</span>
-                                                <span>All Day</span>
+                                                <span>7:00 am - Dusk</span>
                                             </div>
                                         })}
                                     </div>
@@ -74,14 +84,14 @@ class Park extends React.Component {
                             </div>
 
                             <div>
-                                <div>Contact</div>
-                                <span>{park.contact}</span>
+                                <h3>Contact</h3>
+                                <span>{park.contact && park.contact}</span>
                             </div>
                         </div>
                     </div>
 
+                    <h2 className="top-trails">{`Top Trails ${'(' + parkTrails.length + ')'}`}</h2>
                     <div className="park-trails">
-                        <h2>Top Trails</h2>
                         {parkTrails.map((trail) => LongTile(trail))}
                     </div>
                 </div>
