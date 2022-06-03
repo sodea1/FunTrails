@@ -1002,6 +1002,7 @@ var Park = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.displayPage = _this.displayPage.bind(_assertThisInitialized(_this));
+    _this.showToggle = _this.showToggle.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1014,6 +1015,14 @@ var Park = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (this.props.match.params.id !== prevProps.match.params.id) this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+    }
+  }, {
+    key: "showToggle",
+    value: function showToggle(e) {
+      var action = e.target.innerText;
+      var ele = document.getElementsByClassName(action === "Show More" ? "park-description" : "show-overflow")[0];
+      ele.className = action === "Show More" ? "show-overflow" : "park-description";
+      e.target.innerText = action === "Show More" ? "Show Less" : "Show More";
     }
   }, {
     key: "displayPage",
@@ -1032,16 +1041,23 @@ var Park = /*#__PURE__*/function (_React$Component) {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-width"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "park-header-div"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "park-name-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "park-title"
-      }, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(parkRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      }, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "park-rating-div"
+      }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(parkRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "park-reviews"
-      }, park.totalReviews, " Reviews"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Show More"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, park.totalReviews, " Reviews")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "park-description"
+      }, park.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "show-more",
+        onClick: this.showToggle
+      }, "Show More"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_map_map__WEBPACK_IMPORTED_MODULE_2__["default"], {
         entity: [park],
         match: match
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-information"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h2", null, "Park Information")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Acreage:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, park.acreage)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h3", null, "Park Hours"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map(function (day, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

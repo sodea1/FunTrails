@@ -8,6 +8,7 @@
     min-height: 100vh;
     width: 100vw;
     background-color: #fff;
+    border-top: 1px solid lightgrey;
 }
 
 .park-width {
@@ -23,19 +24,51 @@
     width: 100%;
 }
 
-.park-header-div {
-    width: 100%;
-    margin: auto;
+.park-title {
+    font-family: "Proxima-Nova-Bold";
+    font-size: 32px;
+}
+
+.park-reviews {
+    color: $lightgrey;
+}
+
+.park-name-div {
+    max-width: 763px;
     color: $text;
+}
 
-    .park-title {
-        font-family: "Proxima-Nova-Bold";
-        font-size: 32px;
-    }
+.park-description {
+    margin-bottom: 18px;
+    white-space: pre-wrap;
+    font-size: 18px;
+    color: $lightgrey;
+    line-height: 1.44;
+    height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    .park-reviews {
-        color: $lightgrey;
+.show-overflow {
+    overflow: visible;
+    font-size: 18px;
+    color: $lightgrey;
+    line-height: 1.44;
+    padding-bottom: 18px;
+}
+
+.show-more {
+    color: $brand_green;
+
+    &:hover {
+        opacity: 0.8;
+        cursor: pointer;
     }
+}
+
+.park-rating-div {
+    display: flex;
+    padding-bottom: 8px;
 }
 
 .show-search-park {
@@ -46,7 +79,7 @@
     width: 326px;
     background-color: $background_color;
     z-index: 1;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
 }
 
 .show-input-park {

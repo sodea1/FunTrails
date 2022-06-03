@@ -8,6 +8,7 @@ class Park extends React.Component {
     constructor(props) {
         super(props)
         this.displayPage = this.displayPage.bind(this);
+        this.showToggle = this.showToggle.bind(this);
     }
 
     componentDidMount() {
@@ -19,6 +20,13 @@ class Park extends React.Component {
         this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
     }
 
+    showToggle(e) {
+        const action = e.target.innerText;
+        const ele = document.getElementsByClassName(action === "Show More" ? "park-description" : "show-overflow")[0]
+        ele.className = (action === "Show More") ? "show-overflow" : "park-description";
+        e.target.innerText = (action === "Show More") ? "Show Less" : "Show More";
+    }
+
     displayPage(park, trails, match) {
         const trailsArr = Object.values(trails);
         const parkTrails = trailsArr.filter(trail => trail.park_id === park.id)
@@ -27,19 +35,20 @@ class Park extends React.Component {
         return (
             <div className="park-wrapper">
                 <div className="park-width">
-                    <div className="park-header-div">
-                        {PageHeader(park)}
+                    {PageHeader(park)}
+                    <div className="park-name-div">
+                        <h1 className="park-title">Best Trails in {park.p_name}</h1>
                         <div>
-                            <h1 className="park-title">Best Trails in {park.p_name}</h1>
-                            <div>
+                            <div className="park-rating-div">
                                 {allReviewsAvg(parkRating)}
                                 <span className="park-reviews">{park.totalReviews} Reviews</span>
-                                <p>{park.description}</p>
-                                <div>Show More</div>
-                                <Map entity={[park]} match={match} />
                             </div>
+                            <div className="park-description">{park.description}</div>
+                            <span className="show-more" onClick={this.showToggle}>Show More</span>
                         </div>
                     </div>
+
+                    <Map entity={[park]} match={match} />
 
                     <div className="park-information">
                         <div>
