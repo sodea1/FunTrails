@@ -10,7 +10,6 @@ class Review extends React.Component {
         }
 
         this.handleDelete = this.handleDelete.bind(this);
-        this.formatDate = this.formatDate.bind(this);
     }
     
     componentDidMount() {
@@ -49,9 +48,54 @@ class Review extends React.Component {
         )
     }
 
-    convertDate(date) {
-        // "2022-"
-        // ["2022", "11", "19"]
+    numCompare(str1, str2) {
+        // str1 = 2019-10-19
+        // str2 = 2019-11-20
+        const arr1 = str1.split('-');
+        const arr2 = str2.split('-');
+
+        let year1 = parseInt(arr1[0]);
+        let month1 = parseInt(arr1[1]);
+        let day1 = parseInt(arr1[2]);
+
+        let year2 = parseInt(arr2[0]);
+        let month2 = parseInt(arr2[1]);
+        let day2 = parseInt(arr2[2]);
+
+        if (year1 > year2) {
+            return 1;
+        } else if (year1 < year2) {
+            return -1;
+        }
+
+        if (month1 > month2) {
+                return 1;
+        } else if (month1 === month2) {
+            return day1 > day2 ? 1 : -1;
+        } else {
+            return -1;
+        }
+    }
+
+    sortReviews(reviews) {
+        if (reviews.length < 2) {
+            return reviews;
+        }
+        
+        const pivot = reviews[0];
+        let left = [];
+        let right = [];
+        
+        for (let i = 1; i < reviews.length; i++) {
+            let nextReview = reviews[i];
+            if (this.numCompare(nextReview.date_hiked, pivot.date_hiked) === -1) {
+                right.push(nextReview);
+            } else {
+                left.push(nextReview);
+            }
+        }
+
+        return this.sortReviews(left).concat([pivot]).concat(this.sortReviews(right));
     }
 
     formatDate(revDate) {
@@ -63,7 +107,7 @@ class Review extends React.Component {
             day = dateString[2][1];
         }
 
-        if (dateString[1] === '0') {
+        if (dateString[1][0] === '0') {
             month = dateString[1][1];
         }
 
@@ -74,18 +118,19 @@ class Review extends React.Component {
         const formattedDate = date.toLocaleString('en-US', {
             month: 'long'
         });
-
+        
         return formattedDate + " " + day + ", " + dateString[0];
     }
 
     reviewList() {
-        const { reviews } = this.props;
-        
+        const { reviews } = this.props;        
         let sum = 0;
         for (let i = 0; i < reviews.length; i++) {
             sum += reviews[i].rating
         }
         let avgRating = (sum / reviews.length).toFixed(1);
+        
+        const datesArr = reviews.slice().map(review => review.date_hiked);
         return (
             <div className='review-container'>
                 <div className='rev-banner bold'>
@@ -115,7 +160,8 @@ class Review extends React.Component {
                     {/*  CREATE REVIEW HERE */}
                     <button onClick={() => this.props.openModal({formType: 'create'})} className='rev-button'>Write Review</button>
                 </div>
-                {reviews.slice().reverse().map((rev) => {
+                {/* sortReviews(reviews.slice()) */}
+                {this.sortReviews(reviews.slice()).map((rev) => {
                     if (rev.trail_id === this.props.trailId) {
                         return (
                             <div key={rev.id} className='review-block'>

@@ -1345,7 +1345,6 @@ var Review = /*#__PURE__*/function (_React$Component) {
       currUserId: _this.props.currUserId
     };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
-    _this.formatDate = _this.formatDate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1391,9 +1390,55 @@ var Review = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
-    key: "convertDate",
-    value: function convertDate(date) {// "2022-"
-      // ["2022", "11", "19"]
+    key: "numCompare",
+    value: function numCompare(str1, str2) {
+      // str1 = 2019-10-19
+      // str2 = 2019-11-20
+      var arr1 = str1.split('-');
+      var arr2 = str2.split('-');
+      var year1 = parseInt(arr1[0]);
+      var month1 = parseInt(arr1[1]);
+      var day1 = parseInt(arr1[2]);
+      var year2 = parseInt(arr2[0]);
+      var month2 = parseInt(arr2[1]);
+      var day2 = parseInt(arr2[2]);
+
+      if (year1 > year2) {
+        return 1;
+      } else if (year1 < year2) {
+        return -1;
+      }
+
+      if (month1 > month2) {
+        return 1;
+      } else if (month1 === month2) {
+        return day1 > day2 ? 1 : -1;
+      } else {
+        return -1;
+      }
+    }
+  }, {
+    key: "sortReviews",
+    value: function sortReviews(reviews) {
+      if (reviews.length < 2) {
+        return reviews;
+      }
+
+      var pivot = reviews[0];
+      var left = [];
+      var right = [];
+
+      for (var i = 1; i < reviews.length; i++) {
+        var nextReview = reviews[i];
+
+        if (this.numCompare(nextReview.date_hiked, pivot.date_hiked) === -1) {
+          right.push(nextReview);
+        } else {
+          left.push(nextReview);
+        }
+      }
+
+      return this.sortReviews(left).concat([pivot]).concat(this.sortReviews(right));
     }
   }, {
     key: "formatDate",
@@ -1406,7 +1451,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
         day = dateString[2][1];
       }
 
-      if (dateString[1] === '0') {
+      if (dateString[1][0] === '0') {
         month = dateString[1][1];
       }
 
@@ -1431,6 +1476,9 @@ var Review = /*#__PURE__*/function (_React$Component) {
       }
 
       var avgRating = (sum / reviews.length).toFixed(1);
+      var datesArr = reviews.slice().map(function (review) {
+        return review.date_hiked;
+      });
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -1460,7 +1508,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
           });
         },
         className: "rev-button"
-      }, "Write Review")), reviews.slice().reverse().map(function (rev) {
+      }, "Write Review")), this.sortReviews(reviews.slice()).map(function (rev) {
         if (rev.trail_id === _this2.props.trailId) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
             key: rev.id,
