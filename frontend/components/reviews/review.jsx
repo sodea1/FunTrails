@@ -10,6 +10,7 @@ class Review extends React.Component {
         }
 
         this.handleDelete = this.handleDelete.bind(this);
+        this.formatDate = this.formatDate.bind(this);
     }
     
     componentDidMount() {
@@ -46,6 +47,35 @@ class Review extends React.Component {
                 })}
             </div>
         )
+    }
+
+    convertDate(date) {
+        // "2022-"
+        // ["2022", "11", "19"]
+    }
+
+    formatDate(revDate) {
+        let dateString = revDate.split("-");
+        let month = dateString[1];
+        let day = dateString[2];
+
+        if (dateString[2][0] === '0') {
+            day = dateString[2][1];
+        }
+
+        if (dateString[1] === '0') {
+            month = dateString[1][1];
+        }
+
+        const monthNum = parseInt(dateString[1]);
+        const date = new Date();
+        date.setMonth(monthNum - 1);
+
+        const formattedDate = date.toLocaleString('en-US', {
+            month: 'long'
+        });
+
+        return formattedDate + " " + day + ", " + dateString[0];
     }
 
     reviewList() {
@@ -97,7 +127,7 @@ class Review extends React.Component {
                                                 <span className='rev-name bold'>{rev.user.first_name} {rev.user.last_name}</span>
                                                 <div className='flex'>
                                                     {Stars.singleReview(rev, "star")}
-                                                    <span className='date-hiked detail'>{rev.date_hiked}</span>
+                                                    <span className='date-hiked detail'>{this.formatDate(rev.date_hiked)}</span>
                                                 </div>
                                             </div>
                                         </div>

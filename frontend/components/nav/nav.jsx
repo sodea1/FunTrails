@@ -32,7 +32,7 @@ class Nav extends React.Component {
             <div className='navbar'>
                 {leftNavBar}
                 <div className='mid-nav'>
-                    <Link to="/">
+                    <Link to="/" className='nav-center-links'>
                         <img src={window.logo} width="82px" height="82px" className='logo'/>
                         <span className="nav-title">FunTrails</span>
                     </Link>

@@ -783,7 +783,8 @@ var Nav = /*#__PURE__*/function (_React$Component) {
       }, leftNavBar, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "mid-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
-        to: "/"
+        to: "/",
+        className: "nav-center-links"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: window.logo,
         width: "82px",
@@ -1344,6 +1345,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
       currUserId: _this.props.currUserId
     };
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.formatDate = _this.formatDate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1387,6 +1389,34 @@ var Review = /*#__PURE__*/function (_React$Component) {
           className: "tag"
         }, review.conditions[num].name);
       }));
+    }
+  }, {
+    key: "convertDate",
+    value: function convertDate(date) {// "2022-"
+      // ["2022", "11", "19"]
+    }
+  }, {
+    key: "formatDate",
+    value: function formatDate(revDate) {
+      var dateString = revDate.split("-");
+      var month = dateString[1];
+      var day = dateString[2];
+
+      if (dateString[2][0] === '0') {
+        day = dateString[2][1];
+      }
+
+      if (dateString[1] === '0') {
+        month = dateString[1][1];
+      }
+
+      var monthNum = parseInt(dateString[1]);
+      var date = new Date();
+      date.setMonth(monthNum - 1);
+      var formattedDate = date.toLocaleString('en-US', {
+        month: 'long'
+      });
+      return formattedDate + " " + day + ", " + dateString[0];
     }
   }, {
     key: "reviewList",
@@ -1450,7 +1480,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
             className: "flex"
           }, _stars_stars__WEBPACK_IMPORTED_MODULE_1__.singleReview(rev, "star"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "date-hiked detail"
-          }, rev.date_hiked))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          }, _this2.formatDate(rev.date_hiked)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
             className: "rev-tags"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
             className: "tag"
@@ -3540,10 +3570,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
-    } // redirectPark() {
-    //     this.props.history.push(`/parks/${parkId}`)
-    // }
-
+    }
   }, {
     key: "openModal",
     value: function openModal(formType) {
