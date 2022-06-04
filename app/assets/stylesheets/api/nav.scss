@@ -85,6 +85,11 @@ header {
     letter-spacing: -1.5px;
 }
 
+.nav-center-links {
+    display: flex;
+    align-items: center;
+}
+
 .nav-title:hover {
     opacity: 100%;
 }

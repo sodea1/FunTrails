@@ -32,8 +32,10 @@ class Nav extends React.Component {
             <div className='navbar'>
                 {leftNavBar}
                 <div className='mid-nav'>
-                    <img src={window.logo} width="82px" height="82px" className='logo'/>
-                    <Link to='/' className="nav-title">FunTrails</Link>
+                    <Link to="/">
+                        <img src={window.logo} width="82px" height="82px" className='logo'/>
+                        <span className="nav-title">FunTrails</span>
+                    </Link>
                 </div>
                 <div className='right-nav'>
                     {/* ADD LOGOUT ICON */}
@@ -45,8 +47,10 @@ class Nav extends React.Component {
             <div className='navbar'>
                 {leftNavBar}
                 <div className='mid-nav'>
-                        <img src={window.logo} width="100px" height="100px" className='logo'/>
-                    <Link to='/' className="nav-title">FunTrails</Link>
+                        <Link to="/" className='nav-center-links'>
+                            <img src={window.logo} width="82px" height="82px" className='logo' />
+                            <span className="nav-title">FunTrails</span>
+                        </Link>
                 </div>
                 <div className='right-nav'>
                     <Link to='/signup' className='signup-button'>Sign Up</Link>
