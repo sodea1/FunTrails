@@ -40,7 +40,7 @@ class Trail extends React.Component {
                             </div>
                             <span className='reviews-agg'>{`(${this.props.trail.reviews})`}</span>
                         </li>
-                        <li className='trail-loc'><Link to={`/parks/${this.props.trail.park_id}`}>{this.props.trail.parkName}</Link></li>
+                        <Link to={`/parks/${this.props.trail.park_id}`}>{this.props.trail.parkName}</Link>
                     </ul>
                 </div>
             </div>

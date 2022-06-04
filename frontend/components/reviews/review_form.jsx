@@ -160,9 +160,7 @@ class ReviewForm extends React.Component {
         const conditions = ['Great!', 'Blowdown', 'Bridge out', 'Bugs', 'Closed', 'Fee', 'Flooded', 'Icy', 'Muddy',  'No shade', 'Off trail', 'Overgrown', 'Private property', 'Rocky', 'Scramble', 'Washed out', 'Snow']
         const { rating, activity, date_hiked } = this.state.review;
         const stateConditions = this.state.review.conditions ? 
-            this.state.review.conditions.map(condition => condition.name) :
-            '';
-        // (num <= rating) ? window.star : 
+            this.state.review.conditions.map(condition => condition.name) : '';
 
         const reviewStep = (this.state.step === 1) ?
                 <div className="step-container">
@@ -201,7 +199,6 @@ class ReviewForm extends React.Component {
                                     )}
                                 </select>
                             </label>
-                        {/* <Calendar onChange={this.changeDate} value={this.state.review.date_hiked} className=/> */}
                         
                         <input type="date" onChange={this.changeDate} defaultValue={date_hiked} max={this.todaysDate()} />
                         </div>

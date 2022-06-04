@@ -14,12 +14,7 @@ function Modal ({ modal, closeModal }) {
     switch(modal.formType) {
         case 'create':
             component = <CreateRevContainer />
-            break // don't forget the break! Was hitting all cases
-        // case 'edit':
-        //     component = <EditRevContainer review={modal.review} />
-        //     break
-        // case 'thanks':
-        //     component = <Thanks />
+            break;
         default:
             break;
     }

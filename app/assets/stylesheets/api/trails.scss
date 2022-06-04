@@ -68,35 +68,26 @@
     box-shadow: inset 0px -70px 200px 0px black;
 }
 
+.trail-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
 .trail-title {
     margin: 0px 24px;
     bottom: 32px;
     position: absolute;
     color: #FFFFFF;
-}
 
-.trail-info {
-    display: flex;
-    align-items: center;
-}
-
-.trail-title {
     li:first-child {
         margin: 0px 0px 6px;
         font-size: 30px;
         color: #FFFFFF;
     }
 
-    li:last-child {
-        margin: 6px 0px 0px;
+    a:last-child {
         font-size: 14px;
-        color: #FFFFFF;
-    }
-
-    li:last-child:hover {
-        opacity: 0.8;
-        cursor: pointer;
-        color: #fff;
     }
 }
 

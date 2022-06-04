@@ -660,12 +660,6 @@ function Modal(_ref) {
     case 'create':
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
-    // don't forget the break! Was hitting all cases
-    // case 'edit':
-    //     component = <EditRevContainer review={modal.review} />
-    //     break
-    // case 'thanks':
-    //     component = <Thanks />
 
     default:
       break;
@@ -1874,8 +1868,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
           date_hiked = _this$state$review.date_hiked;
       var stateConditions = this.state.review.conditions ? this.state.review.conditions.map(function (condition) {
         return condition.name;
-      }) : ''; // (num <= rating) ? window.star : 
-
+      }) : '';
       var reviewStep = this.state.step === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "step-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3651,11 +3644,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "trail-stars"
       }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_4__.allReviewsAvg)(this.props.trail.rating)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "reviews-agg"
-      }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
-        className: "trail-loc"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+      }, "(".concat(this.props.trail.reviews, ")"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
         to: "/parks/".concat(this.props.trail.park_id)
-      }, this.props.trail.parkName)))));
+      }, this.props.trail.parkName))));
     }
   }, {
     key: "trailBody",
