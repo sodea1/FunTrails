@@ -61,9 +61,6 @@ class Search extends React.Component {
                 <img className={this.state.currImg === 4 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker4-min.jpg" />
                 
                 <div className="search-wrapper">
-                    {/* <div className="bar-wrapper">
-                        <progress className="progress-bar" max='100' value='20'></progress>
-                    </div> */}
                     <h1 className="welcome">Find your next trail</h1>
 
                     <div className="search-container">
