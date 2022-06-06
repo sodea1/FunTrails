@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { fetchTrailReviews } from "../../actions/review_actions";
 import { fetchTrails } from "../../actions/trail_actions";
+import { fetchParks } from "../../actions/park_actions";
 import Trail from "./trail";
 import { openModal } from "../../actions/modal_actions";
 
@@ -9,12 +10,13 @@ const mapStateToProps = (state, ownProps) => ({
     trail: state.entities.trails[ownProps.match.params.id],
     reviews: Object.values(state.entities.reviews),
     currUserId: state.session.currUserId,
-    trailId: ownProps.match.params.id
+    trailId: ownProps.match.params.id,
+    parks: state.entities.parks
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchTrails: () => dispatch(fetchTrails()),
-    // fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
+    fetchParks: () => dispatch(fetchParks()),
     fetchTrailReviews: (trailId) => dispatch(fetchTrailReviews(trailId)),
     openModal: formType => dispatch(openModal(formType))
 });

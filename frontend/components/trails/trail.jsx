@@ -16,6 +16,7 @@ class Trail extends React.Component {
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchTrails();
+        this.props.fetchParks();
     }
 
     openModal(formType) {
@@ -106,9 +107,11 @@ class Trail extends React.Component {
     }
  
     render() {
+        const entity = this.props.trail;
+        const { parks, trails } = this.props;
         return (
             <div className='grey'>
-                {this.props.trail && PageHeader(this.props.trail)}
+                {this.props.trails.length > 1 && <PageHeader entity={this.props.trail} trails={trails} parks={parks} />}
 
                 {this.props.trail && this.trailTitle()}
                 <div className='green-bar'></div>

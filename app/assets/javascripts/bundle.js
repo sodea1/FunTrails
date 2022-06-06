@@ -420,39 +420,86 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _search_small_search__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../search/small_search */ "./frontend/components/search/small_search.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
-var PageHeader = function PageHeader(entity) {
-  var parkName = entity.parkName;
-  var klass = entity.name ? "-trail" : "-park";
-  var linkClass = typeof parkName === "undefined" ? "header-link-trail" : "header-link";
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
-    className: "trail-head"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "header-wrapper"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
-    className: "head-loc"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-    className: linkClass,
-    to: "/parks/".concat(typeof parkName === "undefined" ? entity.id : entity.park_id)
-  }, parkName ? parkName : entity.name), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "overflow"
-  }, entity.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-    className: "show-search" + klass
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-    type: "text",
-    className: 'show-input' + klass,
-    placeholder: "Search by park or trail name"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "green-search"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-    src: window.search,
-    width: "16px",
-    height: "16px"
-  })))));
-};
+
+
+var PageHeader = /*#__PURE__*/function (_React$Component) {
+  _inherits(PageHeader, _React$Component);
+
+  var _super = _createSuper(PageHeader);
+
+  function PageHeader() {
+    _classCallCheck(this, PageHeader);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(PageHeader, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+
+      if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
+        this.props.fetchParks();
+        this.props.fetchTrails();
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      debugger;
+      var _this$props = this.props,
+          entity = _this$props.entity,
+          parks = _this$props.parks,
+          trails = _this$props.trails;
+      var parkName = entity.parkName;
+      var linkClass = typeof parkName === "undefined" ? "header-link-trail" : "header-link";
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
+        className: "trail-head"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "header-wrapper"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+        className: "head-loc"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: linkClass,
+        to: "/parks/".concat(typeof parkName === "undefined" ? entity.id : entity.park_id)
+      }, parkName ? parkName : entity.name), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "overflow"
+      }, entity.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_small_search__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        entity: entity,
+        parks: parks,
+        trails: trails
+      })));
+    }
+  }]);
+
+  return PageHeader;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PageHeader);
 
@@ -1033,7 +1080,11 @@ var Park = /*#__PURE__*/function (_React$Component) {
         className: "park-wrapper"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-width"
-      }, (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(park), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        entity: park,
+        parks: this.props.parks,
+        trails: trails
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-photos-div"
       }, parkTrails.map(function (trail) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -1117,6 +1168,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     park: state.entities.parks[ownProps.match.params.id],
+    parks: state.entities.parks,
     trails: state.entities.trails
   };
 };
@@ -2125,7 +2177,6 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "updateSearch",
     value: function updateSearch(e) {
-      debugger;
       this.setState({
         search: e.target.value
       });
@@ -2271,6 +2322,103 @@ var Search = /*#__PURE__*/function (_React$Component) {
 }((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
+
+/***/ }),
+
+/***/ "./frontend/components/search/small_search.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/search/small_search.jsx ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var SmallSearch = /*#__PURE__*/function (_React$Component) {
+  _inherits(SmallSearch, _React$Component);
+
+  var _super = _createSuper(SmallSearch);
+
+  function SmallSearch(props) {
+    var _this;
+
+    _classCallCheck(this, SmallSearch);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      search: ''
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SmallSearch, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      e.preventDefault();
+      this.setState({
+        search: e.target.value
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          entity = _this$props.entity,
+          parks = _this$props.parks,
+          trails = _this$props.trails;
+      var parkName = entity.parkName;
+      var klass = typeof parkName === "undefined" ? "-park" : "-trail";
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+        className: "show-search" + klass
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+        onChange: this.handleChange,
+        type: "text",
+        className: 'show-input' + klass,
+        placeholder: "Search by park or trail name"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "green-search"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        src: window.search,
+        width: "16px",
+        height: "16px"
+      }))));
+    }
+  }]);
+
+  return SmallSearch;
+}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SmallSearch);
 
 /***/ }),
 
@@ -3665,6 +3813,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchTrails();
+      this.props.fetchParks();
     }
   }, {
     key: "openModal",
@@ -3767,9 +3916,17 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var entity = this.props.trail;
+      var _this$props2 = this.props,
+          parks = _this$props2.parks,
+          trails = _this$props2.trails;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
-      }, this.props.trail && (0,_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"])(this.props.trail), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, this.props.trails.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        entity: this.props.trail,
+        trails: trails,
+        parks: parks
+      }), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar"
       }), this.props.trail && this.trailBody());
     }
@@ -3797,8 +3954,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
-/* harmony import */ var _trail__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./trail */ "./frontend/components/trails/trail.jsx");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/park_actions */ "./frontend/actions/park_actions.js");
+/* harmony import */ var _trail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./trail */ "./frontend/components/trails/trail.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -3811,7 +3970,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     trail: state.entities.trails[ownProps.match.params.id],
     reviews: Object.values(state.entities.reviews),
     currUserId: state.session.currUserId,
-    trailId: ownProps.match.params.id
+    trailId: ownProps.match.params.id,
+    parks: state.entities.parks
   };
 };
 
@@ -3820,17 +3980,19 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
     },
-    // fetchTrail: (trailId) => dispatch(fetchTrail(trailId)),
+    fetchParks: function fetchParks() {
+      return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_3__.fetchParks)());
+    },
     fetchTrailReviews: function fetchTrailReviews(trailId) {
       return dispatch((0,_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__.fetchTrailReviews)(trailId));
     },
     openModal: function openModal(formType) {
-      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__.openModal)(formType));
+      return dispatch((0,_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__.openModal)(formType));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 

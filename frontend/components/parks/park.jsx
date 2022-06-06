@@ -35,7 +35,7 @@ class Park extends React.Component {
         return (
             <div className="park-wrapper">
                 <div className="park-width">
-                    {PageHeader(park)}
+                    <PageHeader entity={park} parks={this.props.parks} trails={trails} />
                     <div className="park-photos-div">
                         {parkTrails.map((trail) => {
                             return (

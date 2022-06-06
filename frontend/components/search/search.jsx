@@ -46,7 +46,6 @@ class Search extends React.Component {
     }
 
     updateSearch(e) {
-        debugger
         this.setState({search: e.target.value})
     }
 
