@@ -135,14 +135,12 @@ class Search extends React.Component {
 
                                 <div className="search-items-list">
                                     {Object.values(searchHash[this.state.filterBy]).map((entity, idx) => {
-                                        if (entity.name ? entity.name : entity.p_name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
-                                            // debugger
-                                            {let title = (entity.name) ? entity.name : entity.name }
-                                            liveItemsList.push((entity.name) ? entity.name : entity.name)
+                                        if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
+                                            liveItemsList.push(entity.name);
                                             return (
                                                 <Link to={`/trails/${entity.id}`} className="search-item" key={idx}>
                                                     <div className="loc-icon-div">
-                                                        {(entity.name) ? <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> : <BsTree className="park-icon" height="40px" width="40px" />}
+                                                        {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon" height="40px" width="40px" /> : <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> }
                                                     </div>
                                                     <div>
                                                         <h1>{(entity.name) ? entity.name : entity.name }</h1>

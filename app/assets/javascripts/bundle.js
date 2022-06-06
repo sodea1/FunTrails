@@ -2244,27 +2244,23 @@ var Search = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Parks"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "search-items-list"
         }, Object.values(searchHash[this.state.filterBy]).map(function (entity, idx) {
-          if (entity.name ? entity.name : entity.p_name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
-            // debugger
-            {
-              var title = entity.name ? entity.name : entity.name;
-            }
-            liveItemsList.push(entity.name ? entity.name : entity.name);
+          if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
+            liveItemsList.push(entity.name);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
               to: "/trails/".concat(entity.id),
               className: "search-item",
               key: idx
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
               className: "loc-icon-div"
-            }, entity.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+            }, typeof entity.parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_2__.BsTree, {
+              className: "park-icon",
+              height: "40px",
+              width: "40px"
+            }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
               className: "loc-icon",
               src: window.green_loc,
               width: "16px",
               height: "22px"
-            }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_2__.BsTree, {
-              className: "park-icon",
-              height: "40px",
-              width: "40px"
             })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
           }
         }), liveItemsList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
