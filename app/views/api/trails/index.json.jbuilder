@@ -2,7 +2,7 @@
     # set key to trail's id
     json.set! trail.id do
         # display inner POJO with all info
-        json.extract! trail, :id, :t_name, :longitude, :latitude, :difficulty_level, :route_type, :estimated_time, :description, :state, :park_id, :country, :elevation_gain, :length
+        json.extract! trail, :id, :name, :longitude, :latitude, :difficulty_level, :route_type, :estimated_time, :description, :state, :park_id, :country, :elevation_gain, :length
         # nest tag descriptions under trail
         json.tags trail.tags, :description
         
@@ -21,7 +21,7 @@
         avgRating = avgFloat.round(1)
         json.rating avgRating
         json.reviews totalReviews
-        json.parkName trail.park.p_name
+        json.parkName trail.park.name
     end
 end
 

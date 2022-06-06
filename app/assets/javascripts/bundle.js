@@ -426,9 +426,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var PageHeader = function PageHeader(entity) {
   var parkName = entity.parkName;
-  var name = entity.t_name ? entity.t_name : null;
-  var klass = entity.t_name ? "-trail" : "-park";
-  var linkClass = entity.t_name ? "header-link" : "header-link-trail";
+  var name = entity.name ? entity.name : null;
+  var klass = entity.name ? "-trail" : "-park";
+  var linkClass = entity.name ? "header-link" : "header-link-trail";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
     className: "trail-head"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -437,8 +437,8 @@ var PageHeader = function PageHeader(entity) {
     className: "head-loc"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: linkClass,
-    to: "/parks/".concat(entity.t_name ? entity.park_id : entity.id)
-  }, parkName ? parkName : entity.p_name), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    to: "/parks/".concat(entity.name ? entity.park_id : entity.id)
+  }, parkName ? parkName : entity.name), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "overflow"
   }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "show-search" + klass
@@ -559,7 +559,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
       this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
       this.markerMgr.updateMarkers(this.props.entity);
 
-      if (this.props.entity[0].t_name) {
+      if (this.props.entity[0].name) {
         path.setMap(this.map);
       }
     }
@@ -594,7 +594,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
 
         path.setMap(this.map);
 
-        if (this.props.entity[0].t_name) {
+        if (this.props.entity[0].name) {
           path.setMap(this.map);
         }
       }
@@ -606,7 +606,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var iD = this.props.entity[0].t_name ? "map-container-trail" : "map-container-park";
+      var iD = this.props.entity[0].name ? "map-container-trail" : "map-container-park";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         id: iD,
         ref: function ref(map) {
@@ -1046,7 +1046,7 @@ var Park = /*#__PURE__*/function (_React$Component) {
         className: "park-name-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "park-title"
-      }, "Best Trails in ", park.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, "Best Trails in ", park.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-rating-div"
       }, (0,_stars_stars__WEBPACK_IMPORTED_MODULE_3__.allReviewsAvg)(parkRating), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "park-reviews"
@@ -1880,7 +1880,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "step-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "bold overflow"
-      }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      }, this.state.trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
       }, "Step 1 of 2"), this.generateStars(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("textarea", {
         onChange: this.handleChange,
@@ -1906,7 +1906,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         className: "step-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
         className: "bold overflow"
-      }, this.state.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      }, this.state.trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "step"
       }, "Step 2 of 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "rev-date-act"
@@ -2244,19 +2244,19 @@ var Search = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Parks"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "search-items-list"
         }, Object.values(searchHash[this.state.filterBy]).map(function (entity, idx) {
-          if (entity.t_name ? entity.t_name : entity.p_name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
+          if (entity.name ? entity.name : entity.p_name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
             // debugger
             {
-              var title = entity.t_name ? entity.t_name : entity.p_name;
+              var title = entity.name ? entity.name : entity.name;
             }
-            liveItemsList.push(entity.t_name ? entity.t_name : entity.p_name);
+            liveItemsList.push(entity.name ? entity.name : entity.name);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
               to: "/trails/".concat(entity.id),
               className: "search-item",
               key: idx
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
               className: "loc-icon-div"
-            }, entity.t_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+            }, entity.name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
               className: "loc-icon",
               src: window.green_loc,
               width: "16px",
@@ -2265,7 +2265,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
               className: "park-icon",
               height: "40px",
               width: "40px"
-            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.t_name ? entity.t_name : entity.p_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
+            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
           }
         }), liveItemsList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "no-results"
@@ -3487,7 +3487,7 @@ function LongTile(trail) {
     className: "longtile-photo"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "park-tile-details"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, '#' + trail.id + ' - ' + trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.parkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, '#' + trail.id + ' - ' + trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, trail.parkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "longtile-reviews"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "descriptor-mod"
@@ -3578,7 +3578,7 @@ var Tile = /*#__PURE__*/function (_React$Component) {
         className: "tile-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "tile-title bold overflow"
-      }, trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      }, trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "detail"
       }, "Park Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tile-mid-detail"
@@ -3707,7 +3707,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         className: "trail-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "bold"
-      }, this.props.trail.t_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
+      }, this.props.trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
         className: "trail-info"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: tagKlass

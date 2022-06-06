@@ -1,7 +1,7 @@
 class CreateTrails < ActiveRecord::Migration[5.2]
   def change
     create_table :trails do |t|
-      t.string :t_name, null: false
+      t.string :name, null: false
       t.float :longitude, null: false
       t.float :latitude, null: false
       t.integer :length, null: false
@@ -16,7 +16,7 @@ class CreateTrails < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :trails, :t_name, unique: true
+    add_index :trails, :name, unique: true
     add_index :trails, :park_id, unique: true
   end
 end

@@ -168,7 +168,7 @@ class ReviewForm extends React.Component {
                         <a onClick={this.closeModal}><img src={window.x} /></a>
                     </div>
                     <div className="step-body">
-                        <h1 className="bold overflow">{this.state.trail.t_name}</h1>
+                        <h1 className="bold overflow">{this.state.trail.name}</h1>
                         <span className="step">Step 1 of 2</span>
                         {this.generateStars()}
                         <textarea onChange={this.handleChange} value={this.state.review.description} placeholder="Give back to the community. Share your thoughts about the trail so others know what to expect.">
@@ -184,7 +184,7 @@ class ReviewForm extends React.Component {
                         <a onClick={this.closeModal}><img src={window.x} /></a>
                     </div>
                     <div className="step-body">
-                        <h1 className="bold overflow">{this.state.trail.t_name}</h1>
+                        <h1 className="bold overflow">{this.state.trail.name}</h1>
                         <span className="step">Step 2 of 2</span>
                         <div className="rev-date-act">
                             <label htmlFor="activity">

@@ -1,5 +1,5 @@
 class Park < ApplicationRecord
-    validates :p_name, presence: true, uniqueness: true
+    validates :name, presence: true, uniqueness: true
     validates :longitude, :latitude, :description, :country, presence: true
 
     has_many :trails,

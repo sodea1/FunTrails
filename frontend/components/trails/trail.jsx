@@ -42,7 +42,7 @@ class Trail extends React.Component {
             <div className='flex-center'>
                 <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
                     <ul className='trail-title'>
-                        <li className='bold'>{this.props.trail.t_name}</li>
+                        <li className='bold'>{this.props.trail.name}</li>
                         <li className='trail-info'>
                             <span className={tagKlass}>{this.props.trail.difficulty_level}</span>
                             <div className='trail-stars'>

@@ -15,6 +15,6 @@ class Api::TrailsController < ApplicationController
     end
 
     def trail_params
-        params.require(:trail).permit(:t_name, :longitude, :latitude, :difficulty_level, :route_type, :estimated_time, :description, :state, :park_id, :country, :elevation_gain, :length, photos: [])
+        params.require(:trail).permit(:name, :longitude, :latitude, :difficulty_level, :route_type, :estimated_time, :description, :state, :park_id, :country, :elevation_gain, :length, photos: [])
     end
 end

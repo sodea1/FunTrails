@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_151917) do
   end
 
   create_table "parks", force: :cascade do |t|
-    t.string "p_name", null: false
+    t.string "name", null: false
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.integer "acreage"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_151917) do
     t.string "state", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["p_name"], name: "index_parks_on_p_name", unique: true
+    t.index ["name"], name: "index_parks_on_name", unique: true
   end
 
   create_table "review_conditions", force: :cascade do |t|
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_151917) do
   end
 
   create_table "trails", force: :cascade do |t|
-    t.string "t_name", null: false
+    t.string "name", null: false
     t.float "longitude", null: false
     t.float "latitude", null: false
     t.string "difficulty_level", null: false
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_151917) do
     t.string "elevation_gain", null: false
     t.string "length", null: false
     t.index ["park_id"], name: "index_trails_on_park_id"
-    t.index ["t_name"], name: "index_trails_on_t_name", unique: true
+    t.index ["name"], name: "index_trails_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

@@ -11,7 +11,7 @@ function LongTile(trail) {
                 </div>
     
                 <div className='park-tile-details'>
-                    <span>{'#' + trail.id + ' - ' + trail.t_name}</span>
+                    <span>{'#' + trail.id + ' - ' + trail.name}</span>
                     <span>{trail.parkName}</span>
                     <div className='longtile-reviews'>
                         <span className='descriptor-mod'>{trail.difficulty_level}</span>

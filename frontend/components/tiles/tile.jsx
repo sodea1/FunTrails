@@ -20,7 +20,7 @@ class Tile extends React.Component {
                 <img className="tile-image" src={trail.photoUrl}></img>
 
                 <div className="tile-content">
-                    <span className="tile-title bold overflow">{trail.t_name}</span>
+                    <span className="tile-title bold overflow">{trail.name}</span>
                     <span className="detail">Park Name</span>
                     <div className="tile-mid-detail">
                         <span className={tagKlass}>{trail.difficulty_level}</span>

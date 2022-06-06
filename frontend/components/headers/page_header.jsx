@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const PageHeader = (entity) => {
     const parkName = entity.parkName;
-    const name = entity.t_name ? entity.t_name : null;
-    const klass = entity.t_name ? "-trail" : "-park";
-    const linkClass = (entity.t_name) ? "header-link" : "header-link-trail";
+    const name = entity.name ? entity.name : null;
+    const klass = entity.name ? "-trail" : "-park";
+    const linkClass = (entity.name) ? "header-link" : "header-link-trail";
 
     return (
          <header className='trail-head'>
@@ -16,7 +16,7 @@ const PageHeader = (entity) => {
                     <span>›</span>
                     <span>{entity.state}</span>
                     <span>›</span>
-                    <Link className={linkClass} to={`/parks/${(entity.t_name) ? entity.park_id : entity.id}`}>{(parkName) ? parkName : entity.p_name}</Link> 
+                    <Link className={linkClass} to={`/parks/${(entity.name) ? entity.park_id : entity.id}`}>{(parkName) ? parkName : entity.name}</Link> 
                     {name && <span>›</span>}
                     {name && <span className='overflow'>{name}</span>}
                 </ul>

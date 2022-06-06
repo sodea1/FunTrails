@@ -47,7 +47,7 @@ class Park extends React.Component {
                         })}
                     </div>
                     <div className="park-name-div">
-                        <h1 className="park-title">Best Trails in {park.p_name}</h1>
+                        <h1 className="park-title">Best Trails in {park.name}</h1>
                         <div>
                             <div className="park-rating-div">
                                 {allReviewsAvg(parkRating)}

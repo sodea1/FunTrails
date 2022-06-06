@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  t_name: MyString
+  name: MyString
   longitude: 1.5
   latitude: 1.5
   length: 1
@@ -15,7 +15,7 @@ one:
   park_id: 1
 
 two:
-  t_name: MyString
+  name: MyString
   longitude: 1.5
   latitude: 1.5
   length: 1
