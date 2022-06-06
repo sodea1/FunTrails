@@ -51,7 +51,7 @@ class Map extends React.Component {
         this.markerMgr = new MarkerManager(this.map);
         this.markerMgr.updateMarkers(this.props.entity);
 
-        if (this.props.entity[0].name) {
+        if (typeof this.props.entity[0].parkName !== "undefined") {
             path.setMap(this.map);
         }
     }
@@ -81,9 +81,7 @@ class Map extends React.Component {
             this.markerMgr.updateMarkers(this.props.entity);
 
             // add entity to map
-            path.setMap(this.map);
-
-            if (this.props.entity[0].name) {
+            if (typeof this.props.entity[0].parkName !== "undefined") {
                 path.setMap(this.map);
             }
         }
@@ -92,7 +90,7 @@ class Map extends React.Component {
     }
 
     render() {
-        const iD = (this.props.entity[0].name) ? "map-container-trail" : "map-container-park";
+        const iD = (typeof this.props.entity[0].parkName === "undefined") ? "map-container-park" : "map-container-trail";
         return(
             <div id={iD} ref={map => this.mapNode = map}>           
             </div>

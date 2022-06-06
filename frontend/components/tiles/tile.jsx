@@ -21,7 +21,7 @@ class Tile extends React.Component {
 
                 <div className="tile-content">
                     <span className="tile-title bold overflow">{trail.name}</span>
-                    <span className="detail">Park Name</span>
+                    <span className="detail">{trail.parkName}</span>
                     <div className="tile-mid-detail">
                         <span className={tagKlass}>{trail.difficulty_level}</span>
                         <div className="stars-wrapper">

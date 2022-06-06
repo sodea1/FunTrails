@@ -426,9 +426,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var PageHeader = function PageHeader(entity) {
   var parkName = entity.parkName;
-  var name = entity.name ? entity.name : null;
   var klass = entity.name ? "-trail" : "-park";
-  var linkClass = entity.name ? "header-link" : "header-link-trail";
+  var linkClass = typeof parkName === "undefined" ? "header-link-trail" : "header-link";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
     className: "trail-head"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -437,10 +436,10 @@ var PageHeader = function PageHeader(entity) {
     className: "head-loc"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.country), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
     className: linkClass,
-    to: "/parks/".concat(entity.name ? entity.park_id : entity.id)
-  }, parkName ? parkName : entity.name), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    to: "/parks/".concat(typeof parkName === "undefined" ? entity.id : entity.park_id)
+  }, parkName ? parkName : entity.name), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "\u203A"), typeof parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
     className: "overflow"
-  }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+  }, entity.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
     className: "show-search" + klass
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
     type: "text",
@@ -559,7 +558,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
       this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
       this.markerMgr.updateMarkers(this.props.entity);
 
-      if (this.props.entity[0].name) {
+      if (typeof this.props.entity[0].parkName !== "undefined") {
         path.setMap(this.map);
       }
     }
@@ -592,9 +591,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
         this.markerMgr = new _util_marker_manager__WEBPACK_IMPORTED_MODULE_1__["default"](this.map);
         this.markerMgr.updateMarkers(this.props.entity); // add entity to map
 
-        path.setMap(this.map);
-
-        if (this.props.entity[0].name) {
+        if (typeof this.props.entity[0].parkName !== "undefined") {
           path.setMap(this.map);
         }
       }
@@ -606,7 +603,7 @@ var Map = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this = this;
 
-      var iD = this.props.entity[0].name ? "map-container-trail" : "map-container-park";
+      var iD = typeof this.props.entity[0].parkName === "undefined" ? "map-container-park" : "map-container-trail";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         id: iD,
         ref: function ref(map) {
@@ -3576,7 +3573,7 @@ var Tile = /*#__PURE__*/function (_React$Component) {
         className: "tile-title bold overflow"
       }, trail.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: "detail"
-      }, "Park Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, trail.parkName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tile-mid-detail"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
         className: tagKlass

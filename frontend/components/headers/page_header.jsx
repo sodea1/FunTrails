@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 const PageHeader = (entity) => {
     const parkName = entity.parkName;
-    const name = entity.name ? entity.name : null;
     const klass = entity.name ? "-trail" : "-park";
-    const linkClass = (entity.name) ? "header-link" : "header-link-trail";
+    const linkClass = (typeof parkName === "undefined") ? "header-link-trail" : "header-link";
 
     return (
          <header className='trail-head'>
@@ -16,9 +15,9 @@ const PageHeader = (entity) => {
                     <span>›</span>
                     <span>{entity.state}</span>
                     <span>›</span>
-                    <Link className={linkClass} to={`/parks/${(entity.name) ? entity.park_id : entity.id}`}>{(parkName) ? parkName : entity.name}</Link> 
-                    {name && <span>›</span>}
-                    {name && <span className='overflow'>{name}</span>}
+                    <Link className={linkClass} to={`/parks/${typeof parkName === "undefined" ? entity.id : entity.park_id}`}>{(parkName) ? parkName : entity.name}</Link> 
+                    {typeof parkName === "undefined" ? <span></span> : <span>›</span>}
+                    {typeof parkName === "undefined" ? <span></span> : <span className='overflow'>{entity.name}</span>}
                 </ul>
 
                 <form className={"show-search" + klass}>
