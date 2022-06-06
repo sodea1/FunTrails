@@ -462,8 +462,6 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
   _createClass(PageHeader, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-
       if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
         this.props.fetchParks();
         this.props.fetchTrails();
@@ -472,7 +470,6 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      debugger;
       var _this$props = this.props,
           entity = _this$props.entity,
           parks = _this$props.parks,
@@ -1178,7 +1175,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchParks: function fetchParks() {
       return dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_1__.fetchParks)());
     },
-    // fetchPark: (parkId) => dispatch(fetchPark(parkId)),
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
     }
@@ -2397,10 +2393,15 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           trails = _this$props.trails;
       var parkName = entity.parkName;
       var klass = typeof parkName === "undefined" ? "-park" : "-trail";
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search" + klass
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "small-dropdown-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "small-search-tabs"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "small-search-content"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         onChange: this.handleChange,
         type: "text",
         className: 'show-input' + klass,

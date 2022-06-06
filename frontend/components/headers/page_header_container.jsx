@@ -10,7 +10,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchParks: () => dispatch(fetchParks()),
-    // fetchPark: (parkId) => dispatch(fetchPark(parkId)),
     fetchTrails: () => dispatch(fetchTrails())
 });
 

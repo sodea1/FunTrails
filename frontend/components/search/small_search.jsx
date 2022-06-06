@@ -20,10 +20,19 @@ class SmallSearch extends React.Component {
         const { entity, parks, trails } = this.props;
         const parkName = entity.parkName;
         const klass = typeof parkName === "undefined" ? "-park" : "-trail";
-        debugger
+        
         return (
             <div>
                 <form className={"show-search" + klass}>
+                    <div className='small-dropdown-container'>
+                        <div className='small-search-tabs'>
+
+                        </div>
+
+                        <div className='small-search-content'>
+                            
+                        </div>
+                    </div>
                     <input
                         onChange={this.handleChange}
                         type="text"

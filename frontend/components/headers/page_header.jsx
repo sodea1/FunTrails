@@ -4,7 +4,6 @@ import SmallSearch from '../search/small_search';
 
 class PageHeader extends React.Component {
     componentDidMount() {
-        debugger
         if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
             this.props.fetchParks();
             this.props.fetchTrails();
@@ -12,7 +11,6 @@ class PageHeader extends React.Component {
     }
 
     render() {
-        debugger
         const { entity, parks, trails } = this.props;
         const parkName = entity.parkName;
         const linkClass = (typeof parkName === "undefined") ? "header-link-trail" : "header-link";
