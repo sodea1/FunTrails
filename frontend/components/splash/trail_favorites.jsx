@@ -27,11 +27,11 @@ class TrailFavorites extends React.Component {
                 
                 <div className="tiles-outer-container">
                     <div className="splash-favorites bold">
-                        Local Favorites Near San Francisco
+                        Trail Favorites
                     </div>
                     <div className="tiles-container">
-                        {paneShown.map((trail) => {
-                            return <Tile trail={trail} />
+                        {paneShown.map((trail, idx) => {
+                            return <Tile trail={trail} key={idx} />
                         })}
                         <button onClick={this.handleSlide} className="arrow-button-right"><img src={window.right_arrow} className="arrow" width="22px" height="22px" /></button>
                         

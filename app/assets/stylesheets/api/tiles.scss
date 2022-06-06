@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 236px;
-    width: 298px;
+    width: 292px;
     margin: 12px 12px;
     border-radius: 20px;
     transition: 0.3s;
@@ -46,6 +46,7 @@
     margin: 0px auto;
     max-width: 1312px;
     position: relative;
+    overflow-x: hidden;
 }
 
 .tile-content {
@@ -120,4 +121,5 @@
 .arrow-button-right:hover, .arrow-button-left:hover {
     transform: scale(1.2);
     transition: 0.2s;
+    cursor: pointer;
 }

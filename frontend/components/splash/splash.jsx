@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import SearchContainer from "../search/search";
 import TrailFavorites from "./trail_favorites";
 import Descriptors from "./descriptors";
@@ -14,11 +13,11 @@ class Splash extends React.Component {
     }
 
     render() {
-        const { trails } = this.props;
+        const { trails, parks } = this.props;
         return ( 
             <div>
                 <div>
-                    <SearchContainer trails={trails}/> 
+                    <SearchContainer trails={trails} parks={parks}/> 
                 </div>
                 {trails.length > 0 && <TrailFavorites trails={trails}/>}
                 <div>

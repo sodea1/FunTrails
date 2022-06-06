@@ -6,6 +6,14 @@ class Tile extends React.Component {
     // componentDidMount
     render() {
         const { trail } = this.props;
+        let tagKlass;
+        if (trail.difficulty_level === "easy") {
+            tagKlass = "descriptor";
+        } else if (trail.difficulty_level === "moderate") {
+            tagKlass = "descriptor-mod";
+        } else {
+            tagKlass = "descriptor-hard"
+        }
 
         return (
             <Link to={`/trails/${trail.id}`} className="tile" key={trail.id}>
@@ -15,7 +23,7 @@ class Tile extends React.Component {
                     <span className="tile-title bold overflow">{trail.t_name}</span>
                     <span className="detail">Park Name</span>
                     <div className="tile-mid-detail">
-                        <span className="descriptor">{trail.difficulty_level}</span>
+                        <span className={tagKlass}>{trail.difficulty_level}</span>
                         <div className="stars-wrapper">
                             {allReviewsAvg(trail.rating)}
                             <div className='rev-total detail'>{`(${trail.reviews})`}</div>

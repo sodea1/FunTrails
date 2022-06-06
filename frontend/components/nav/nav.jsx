@@ -19,12 +19,12 @@ class Nav extends React.Component {
             <div className='left-nav bold'>
                 <Link to='/' className='explore-link'>Explore</Link>
                 <div>
-                    <span className='nav-dropdown'>Save</span>
-                    <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' />
+                    <span className='nav-dropdown'></span>
+                    {/* <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' /> */}
                 </div>
                 <div>
-                    <span className='nav-dropdown'>Shop</span>
-                    <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' />
+                    <span className='nav-dropdown'></span>
+                    {/* <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' /> */}
                 </div>
             </div>
 

@@ -170,6 +170,15 @@
     
 }
 
+.park-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $brand_green;
+    height: 22px;
+    width: 22px;
+}
 
 .loc-icon-div {
     width: 34px;
@@ -182,8 +191,9 @@
 
 .loc-icon {
     position: absolute;
-    left: 26%;
-    top: 18%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .no-results {

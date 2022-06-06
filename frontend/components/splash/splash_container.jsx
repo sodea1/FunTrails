@@ -5,7 +5,8 @@ import Splash from './splash';
 
 const mapStateToProps = state => {
     return {
-        trails: Object.values(state.entities.trails)
+        trails: Object.values(state.entities.trails),
+        parks: Object.values(state.entities.parks)
     }
 };
 

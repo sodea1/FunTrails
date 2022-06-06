@@ -28,13 +28,23 @@ class Trail extends React.Component {
 
     trailTitle() {
         const urlString = 'url(' + this.props.trail.photoUrl + ')';
+
+        let tagKlass;
+        if (this.props.trail.difficulty_level === "easy") {
+            tagKlass = "descriptor";
+        } else if (this.props.trail.difficulty_level === "moderate") {
+            tagKlass = "descriptor-mod";
+        } else {
+            tagKlass = "descriptor-hard"
+        }
+
         return (
             <div className='flex-center'>
                 <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
                     <ul className='trail-title'>
                         <li className='bold'>{this.props.trail.t_name}</li>
                         <li className='trail-info'>
-                            <span className='descriptor-blue'>{this.props.trail.difficulty_level}</span>
+                            <span className={tagKlass}>{this.props.trail.difficulty_level}</span>
                             <div className='trail-stars'>
                                 {allReviewsAvg(this.props.trail.rating)}
                             </div>

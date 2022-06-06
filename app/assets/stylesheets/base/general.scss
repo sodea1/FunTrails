@@ -71,8 +71,23 @@ input {
     padding-top: 2px;
 }
 
-.descriptor-blue {
+.descriptor-mod {
     background-color: #4BAFE1;
+    color: #f1f1f1;
+    width: 72px;
+    height: 16px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    line-height: 1.42;
+    margin-right: 10px;
+}
+
+.descriptor-hard {
+    background-color: $text;
     color: #f1f1f1;
     width: 72px;
     height: 16px;

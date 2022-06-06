@@ -14,7 +14,7 @@ function LongTile(trail) {
                     <span>{'#' + trail.id + ' - ' + trail.t_name}</span>
                     <span>{trail.parkName}</span>
                     <div className='longtile-reviews'>
-                        <span className='descriptor-blue'>{trail.difficulty_level}</span>
+                        <span className='descriptor-mod'>{trail.difficulty_level}</span>
                         <span>{allReviewsAvg(trail.rating)}</span>
                         <span>{`(${trail.reviews})`}</span>
                     </div>
