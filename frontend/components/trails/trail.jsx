@@ -11,6 +11,7 @@ class Trail extends React.Component {
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
+        this.hideDropdown = this.hideDropdown.bind(this);
     }
 
     componentDidMount() {
@@ -27,6 +28,13 @@ class Trail extends React.Component {
         }
     }
 
+    hideDropdown(e) {
+        debugger
+        e.preventDefault();
+        const dropdown = document.getElementsByClassName("small-dropdown-container");
+        dropdown[0].classList.add("hidden")
+    }
+
     trailTitle() {
         const urlString = 'url(' + this.props.trail.photoUrl + ')';
 
@@ -40,7 +48,7 @@ class Trail extends React.Component {
         }
 
         return (
-            <div className='flex-center'>
+            <div className='flex-center' onClick={this.hideDropdown}>
                 <div className='content-width trail-img' style={{ backgroundImage: urlString }}>
                     <ul className='trail-title'>
                         <li className='bold'>{this.props.trail.name}</li>
@@ -62,7 +70,7 @@ class Trail extends React.Component {
         const { trail, trails } = this.props;
         const trailId = parseInt(this.props.match.params.id);
         return (
-            <div className='content-width flex border-outer'>
+            <div className='content-width flex border-outer' onClick={this.hideDropdown} >
                 <div className='trail-body'>
                     <span className='trail-description'>{trail.description}</span>
 
@@ -109,12 +117,14 @@ class Trail extends React.Component {
     render() {
         const entity = this.props.trail;
         const { parks, trails } = this.props;
+        // const hide = 
+
         return (
             <div className='grey'>
-                {this.props.trails.length > 1 && <PageHeader entity={this.props.trail} trails={trails} parks={parks} />}
+                {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={this.props.trail} trails={trails} parks={parks} />}
 
                 {this.props.trail && this.trailTitle()}
-                <div className='green-bar'></div>
+                <div className='green-bar' onClick={this.hideDropdown}></div>
 
                 {this.props.trail && this.trailBody()}
              

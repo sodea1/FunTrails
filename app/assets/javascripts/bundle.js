@@ -462,10 +462,20 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
   _createClass(PageHeader, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this = this;
+
       if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
         this.props.fetchParks();
         this.props.fetchTrails();
       }
+
+      document.addEventListener("keydown", function (target) {
+        if (target.key === "Escape") {
+          _this.setState({
+            hidden: true
+          });
+        }
+      });
     }
   }, {
     key: "render",
@@ -473,7 +483,8 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           entity = _this$props.entity,
           parks = _this$props.parks,
-          trails = _this$props.trails;
+          trails = _this$props.trails,
+          history = _this$props.history;
       var parkName = entity.parkName;
       var linkClass = typeof parkName === "undefined" ? "header-link-trail" : "header-link";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
@@ -490,7 +501,8 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
       }, entity.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_small_search__WEBPACK_IMPORTED_MODULE_1__["default"], {
         entity: entity,
         parks: parks,
-        trails: trails
+        trails: trails,
+        history: history
       })));
     }
   }]);
@@ -1080,7 +1092,8 @@ var Park = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
         entity: park,
         parks: this.props.parks,
-        trails: trails
+        trails: trails,
+        history: this.props.history
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-photos-div"
       }, parkTrails.map(function (trail) {
@@ -1166,7 +1179,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     park: state.entities.parks[ownProps.match.params.id],
     parks: state.entities.parks,
-    trails: state.entities.trails
+    trails: state.entities.trails,
+    history: ownProps.history
   };
 };
 
@@ -2334,6 +2348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/bs */ "./node_modules/react-icons/bs/index.esm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2358,6 +2373,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var SmallSearch = /*#__PURE__*/function (_React$Component) {
   _inherits(SmallSearch, _React$Component);
 
@@ -2370,13 +2387,43 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      search: ''
+      search: '',
+      filterBy: "all",
+      hidden: _this.props.hidden
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
+    _this.toggleHidden = _this.toggleHidden.bind(_assertThisInitialized(_this));
+    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
+    _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(SmallSearch, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      document.addEventListener("keydown", function (target) {
+        if (target.key === "Escape") {
+          _this2.setState({
+            hidden: true
+          });
+        }
+      });
+    }
+  }, {
+    key: "handleRedirect",
+    value: function handleRedirect(entity, e) {
+      this.toggleHidden(e, entity);
+    }
+  }, {
+    key: "redirect",
+    value: function redirect(entity) {
+      debugger;
+      entity.parkName ? this.props.history.push("/trails/".concat(entity.id)) : this.props.history.push("/parks/".concat(entity.id));
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(e) {
       e.preventDefault();
@@ -2385,24 +2432,97 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "toggleHidden",
+    value: function toggleHidden(e, entity) {
+      // e.preventDefault() - was unable to use with Link because it would prevent redirect
+      if (e.type === "click") {
+        var clearSearch = '';
+        this.setState({
+          search: clearSearch
+        }, function () {
+          this.redirect(entity);
+        });
+      }
+
+      var dropdown = document.getElementsByClassName("small-dropdown-container");
+
+      if (dropdown[0].classList.contains("hidden")) {
+        dropdown[0].classList.remove("hidden");
+      } else {
+        dropdown[0].classList.add("hidden");
+      }
+    }
+  }, {
+    key: "changeFilter",
+    value: function changeFilter(e) {
+      this.setState({
+        filterBy: e.target.innerText
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          entity = _this$props.entity,
-          parks = _this$props.parks,
-          trails = _this$props.trails;
+      var _this3 = this;
+
+      var liveItemsList = [];
+      var entity = this.props.entity;
+      var trails = Object.values(this.props.trails);
+      var parks = Object.values(this.props.parks);
+      var allResults = trails.concat(parks);
       var parkName = entity.parkName;
       var klass = typeof parkName === "undefined" ? "-park" : "-trail";
+      var searchHash = {
+        "all": allResults,
+        "trails": trails,
+        "parks": parks
+      }; // const hiddenKlass = this.state.hidden ? "hidden " : "";
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-        className: "show-search" + klass
+        className: "show-search" + klass,
+        id: "parent-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "small-dropdown-container"
+        className: "small-dropdown-container hidden"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-tabs"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.changeFilter
+      }, "all"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.changeFilter
+      }, "trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onClick: this.changeFilter
+      }, "parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-content"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+      }, Object.values(searchHash[this.state.filterBy]).map(function (entity, idx) {
+        if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
+          liveItemsList.push(entity.name);
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+            onClick: function onClick(e) {
+              return _this3.handleRedirect(entity, e);
+            },
+            className: "small-search-item",
+            key: idx
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "circle"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "loc-icon-small"
+          }, typeof entity.parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_1__.BsTree, {
+            className: "park-icon",
+            height: "40px",
+            width: "40px"
+          }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+            className: "loc-icon-show",
+            src: window.green_loc,
+            width: "16px",
+            height: "22px"
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            className: "small-search-details"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
+        }
+      }), liveItemsList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: ""
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "No Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "We couldn't find anything matching \"", this.state.search, "\"")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         onChange: this.handleChange,
+        onFocus: this.toggleHidden,
         type: "text",
         className: 'show-input' + klass,
         placeholder: "Search by park or trail name"
@@ -3806,6 +3926,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.openModal = _this.openModal.bind(_assertThisInitialized(_this));
+    _this.hideDropdown = _this.hideDropdown.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3826,6 +3947,14 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "hideDropdown",
+    value: function hideDropdown(e) {
+      debugger;
+      e.preventDefault();
+      var dropdown = document.getElementsByClassName("small-dropdown-container");
+      dropdown[0].classList.add("hidden");
+    }
+  }, {
     key: "trailTitle",
     value: function trailTitle() {
       var urlString = 'url(' + this.props.trail.photoUrl + ')';
@@ -3840,7 +3969,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "flex-center"
+        className: "flex-center",
+        onClick: this.hideDropdown
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width trail-img",
         style: {
@@ -3872,7 +4002,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           trails = _this$props.trails;
       var trailId = parseInt(this.props.match.params.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "content-width flex border-outer"
+        className: "content-width flex border-outer",
+        onClick: this.hideDropdown
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -3920,15 +4051,18 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       var entity = this.props.trail;
       var _this$props2 = this.props,
           parks = _this$props2.parks,
-          trails = _this$props2.trails;
+          trails = _this$props2.trails; // const hide = 
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, this.props.trails.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        history: this.props.history,
         entity: this.props.trail,
         trails: trails,
         parks: parks
       }), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "green-bar"
+        className: "green-bar",
+        onClick: this.hideDropdown
       }), this.props.trail && this.trailBody());
     }
   }]);
@@ -3972,7 +4106,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     reviews: Object.values(state.entities.reviews),
     currUserId: state.session.currUserId,
     trailId: ownProps.match.params.id,
-    parks: state.entities.parks
+    parks: state.entities.parks,
+    history: ownProps.history
   };
 };
 

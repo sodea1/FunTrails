@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SmallSearch from '../search/small_search';
+import SmallSearchContainer from '../search/small_search';
 
 class PageHeader extends React.Component {
     componentDidMount() {
@@ -8,10 +8,16 @@ class PageHeader extends React.Component {
             this.props.fetchParks();
             this.props.fetchTrails();
         }
+
+        document.addEventListener("keydown", (target) => {
+            if (target.key === "Escape") {
+                this.setState({ hidden: true })
+            }
+        })
     }
 
     render() {
-        const { entity, parks, trails } = this.props;
+        const { entity, parks, trails, history } = this.props;
         const parkName = entity.parkName;
         const linkClass = (typeof parkName === "undefined") ? "header-link-trail" : "header-link";
         
@@ -29,7 +35,7 @@ class PageHeader extends React.Component {
                         {typeof parkName === "undefined" ? <span></span> : <span className='overflow'>{entity.name}</span>}
                     </ul>
 
-                    <SmallSearch entity={entity} parks={parks} trails={trails} />
+                    <SmallSearchContainer entity={entity} parks={parks} trails={trails} history={history} />
                 </div>
             </header>
         )

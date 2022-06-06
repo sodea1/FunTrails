@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
     reviews: Object.values(state.entities.reviews),
     currUserId: state.session.currUserId,
     trailId: ownProps.match.params.id,
-    parks: state.entities.parks
+    parks: state.entities.parks,
+    history: ownProps.history
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -5,22 +5,106 @@
     position: absolute;
     top: 100%;
     left: 0;
-    height: 525px;
+    height: 460px;
     width: 324px;
 }
 
 .small-search-tabs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     background-color: #f2f2f2;
-    min-height: 10px;
+    height: 8%;
     border: solid #cccccc 1px;
     width: 100%;
+
+    button {
+        margin-right: 20px;
+        background: none;
+        color: $text;
+        font-family: "Proxima-Nova";
+        border: none;
+        outline: none;
+    }
+
+    button:first-child {
+        margin-left: 20px;
+    }
 }
 
 .small-search-content {
     position: absolute;
     background-color: #fff;
-    color: $text;
+    color: black;
     border: 1px #c8c8c8 solid;
-    height: 90%;
+    height: 92%;
     width: 100%;
+    overflow-y: scroll;
+
+    .small-search-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        color: $text;        
+
+        p {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            overflow-x: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis
+        }
+
+        span {
+            font-size: 12px;
+        }
+
+        .small-search-details {
+            margin-left: 50px;
+            width: 80%;
+        }
+
+        &:hover {
+            background-color: $brand_green;
+            color: #fff;
+            transition: 0.05s;
+
+            .circle {
+                background-color: #fff;
+            }
+            
+        }
+    }
+}
+
+.circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    position: absolute;
+    margin-left: 6px;
+}
+
+.loc-icon-small {
+    display: flex;
+    align-items: center;
+}
+
+.loc-icon-show {
+    position: absolute;
+    left: 5%;
+    width: 14px;
+    height: 18px;
+}
+
+.park-icon {
+    position: absolute;
+    left: 7%;
+    width: 18px;
+    height: 18px;
 }

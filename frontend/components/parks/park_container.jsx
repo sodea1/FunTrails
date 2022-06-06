@@ -6,7 +6,8 @@ import Park from "./park";
 const mapStateToProps = (state, ownProps) => ({
     park: state.entities.parks[ownProps.match.params.id],
     parks: state.entities.parks,
-    trails: state.entities.trails
+    trails: state.entities.trails,
+    history: ownProps.history
 });
 
 const mapDispatchToProps = dispatch => ({
