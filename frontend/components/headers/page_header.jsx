@@ -4,13 +4,10 @@ import SmallSearch from '../search/small_search';
 
 class PageHeader extends React.Component {
     componentDidMount() {
-        debugger
         if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-            debugger
             this.props.fetchParks();
             this.props.fetchTrails();
         }
-        debugger
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
                 this.setState({ hidden: true })

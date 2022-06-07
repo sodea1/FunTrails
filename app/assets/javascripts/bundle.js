@@ -464,15 +464,11 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this = this;
 
-      debugger;
-
       if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-        debugger;
         this.props.fetchParks();
         this.props.fetchTrails();
       }
 
-      debugger;
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           _this.setState({
