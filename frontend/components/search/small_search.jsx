@@ -55,6 +55,7 @@ class SmallSearch extends React.Component {
     }
 
     changeFilter(e) {
+        debugger
         this.setState({ filterBy: e.target.innerText });
     }
 

@@ -2453,6 +2453,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "changeFilter",
     value: function changeFilter(e) {
+      debugger;
       this.setState({
         filterBy: e.target.innerText
       });

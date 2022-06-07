@@ -78,15 +78,18 @@
 }
 
 .splash-favorites {
+    display: flex;
+    justify-content: flex-start;
     font-size: 24px;
     color: #414141;
+    margin: 0 auto;
     max-width: 1240px;
     margin-bottom: 12px;
     font-family: 'Proxima-Nova-Bold';
 
     h1 {
         text-decoration: underline;
-        margin-left: 320px;
+        // margin-left: 320px;
     }
 }
 
