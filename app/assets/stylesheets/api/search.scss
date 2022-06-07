@@ -39,27 +39,6 @@
     z-index: 1;
 }
 
-// .bar-wrapper {
-//     height: 3px;
-//     width: 40px;
-//     position: absolute;
-//     bottom: 10%;
-//     right: 10%;
-// }
-
-// .progress {
-//     background: lightgray;
-//     z-index: 1;
-//     border-radius: 6px;
-//     animation: mymove 4s;
-//     animation-fill-mode: forwards;
-// }
-
-// @keyframes mymove {
-//     from {top: 0px}
-//     to {top: 100%; background-color: #fff;}
-// }
-
 .splash-search {
     display: flex;
     border-radius: 40px;
@@ -112,7 +91,6 @@
         width: 100px;
     }
 
-    
     button {
         border: none;
         background-color: inherit;
@@ -121,11 +99,14 @@
         padding-top: 10px 0 0;
         cursor: pointer;
     }
+
+    .tab-underline {
+        border-bottom: 1px solid $brand_green;
+    }
     
     button:first-child {
         margin-left: 16px;
-        border-bottom: 1px solid $brand_green;
-
+        // border-bottom: 1px solid $brand_green;
     }
 }
 

@@ -81,9 +81,13 @@
     font-size: 24px;
     color: #414141;
     max-width: 1240px;
-    margin: 0 auto;
     margin-bottom: 12px;
     font-family: 'Proxima-Nova-Bold';
+
+    h1 {
+        text-decoration: underline;
+        margin-left: 320px;
+    }
 }
 
 .arrow {

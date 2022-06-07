@@ -1,5 +1,5 @@
 {
-  "name": "FunTrails",
+  "name": "funtrails",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.17.9",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { BsTree } from 'react-icons/bs'
+import { BsTree } from 'react-icons/bs';
 
 class Search extends React.Component {
     constructor(props) {
@@ -71,23 +71,23 @@ class Search extends React.Component {
     }
 
     changeFilter(e) {
+        const prevTab = document.getElementsByClassName('tab-underline');
+        prevTab ? prevTab[0].classList.remove('tab-underline') : "";
+        e.target.classList.add('tab-underline');
         this.setState({ filterBy: e.target.innerText });
+    }
+
+    sortObjects(objs) {
+        let sorted = objs.slice();
+        return sorted.sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+        })
     }
 
     render() {
         let liveItemsList = [];
         const { trails, parks } = this.props;
         const allResults = trails.concat(parks)
-
-        // allResults.sort((a, b) => {
-        //     debugger
-        //     const aName = (a.t_name) ? a.t_name : a.p_name;
-        //     const bName = (b.p_name) ? b.p_name : b.t_name;
-
-        //     a.aName.localeCompare(b.bName)
-        // });
-
-        // const sortedAll = allResults.map((allResults))
 
         const searchHash = {
             "All": allResults,
@@ -127,13 +127,13 @@ class Search extends React.Component {
                             <div className="spacer"></div>
                             <div className="inner-dropdown-container">
                                 <div className="search-tabs">
-                                    <button onClick={this.changeFilter} aria-selected><span>All</span></button>
-                                    <button onClick={this.changeFilter}><span>Trails</span></button>
-                                    <button onClick={this.changeFilter}><span>Parks</span></button>
+                                    <button className="tab-underline" onClick={this.changeFilter} aria-selected>All</button>
+                                    <button onClick={this.changeFilter}>Trails</button>
+                                    <button onClick={this.changeFilter}>Parks</button>
                                 </div>
 
                                 <div className="search-items-list">
-                                    {Object.values(searchHash[this.state.filterBy]).map((entity, idx) => {
+                                    {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
                                         if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                             liveItemsList.push(entity.name);
                                             return (

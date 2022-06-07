@@ -15,10 +15,10 @@ class Park extends React.Component {
         this.props.fetchParks().then(this.props.fetchTrails());
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.match.params.id !== prevProps.match.params.id)
-        this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.match.params.id !== prevProps.match.params.id)
+    //     this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+    // }
 
     showToggle(e) {
         const action = e.target.innerText;
@@ -37,9 +37,9 @@ class Park extends React.Component {
                 <div className="park-width">
                     <PageHeader entity={park} parks={this.props.parks} trails={trails} history={this.props.history} />
                     <div className="park-photos-div">
-                        {parkTrails.map((trail) => {
+                        {parkTrails.map((trail, idx) => {
                             return (
-                                <div>
+                                <div key={idx}>
                                     <img src={trail.photoUrl} />
                                 </div>
                             )

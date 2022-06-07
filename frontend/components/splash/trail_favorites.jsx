@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Tile from "../tiles/tile";
 
 class TrailFavorites extends React.Component {
@@ -18,8 +17,8 @@ class TrailFavorites extends React.Component {
     }
 
     render() {
-        const pane_1 = this.props.trails.slice(0, 4)
-        const pane_2 = this.props.trails.slice(4, 8)
+        const pane_1 = this.props.trails.slice(0, 4);
+        const pane_2 = this.props.trails.slice(4, 8);
         const paneShown = (this.state.swipe === false) ? pane_1 : pane_2;
 
         return (
@@ -27,7 +26,7 @@ class TrailFavorites extends React.Component {
                 
                 <div className="tiles-outer-container">
                     <div className="splash-favorites bold">
-                        Trail Favorites
+                        <h1>Trail Favorites</h1>
                     </div>
                     <div className="tiles-container">
                         {paneShown.map((trail, idx) => {

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BsTree } from 'react-icons/bs'
+import { BsTree } from 'react-icons/bs';
 
 class SmallSearch extends React.Component {
     constructor(props) {
@@ -32,7 +31,6 @@ class SmallSearch extends React.Component {
     }
 
     redirect(entity) {
-        debugger
         (entity.parkName) ? this.props.history.push(`/trails/${entity.id}`) : this.props.history.push(`/parks/${entity.id}`) 
     }
 
@@ -62,6 +60,13 @@ class SmallSearch extends React.Component {
         this.setState({ filterBy: e.target.innerText });
     }
 
+    sortObjects(objs) {
+        let sorted = objs.slice();
+        return sorted.sort(function (a, b) {
+            return a.name.localeCompare(b.name);
+        })
+    }
+
     render() {
         let liveItemsList = [];
         const { entity } = this.props;
@@ -77,8 +82,6 @@ class SmallSearch extends React.Component {
             "parks": parks
         }
 
-        // const hiddenKlass = this.state.hidden ? "hidden " : "";
-
         return (
             <div>
                 <form className={"show-search" + klass} id="parent-dropdown">
@@ -90,14 +93,17 @@ class SmallSearch extends React.Component {
                         </div>
 
                         <div className="small-search-content">
-                            {Object.values(searchHash[this.state.filterBy]).map((entity, idx) => {
+                            {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
+                                if (this.props.entity.id === entity.id) {
+                                    return;
+                                }
                                 if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                     liveItemsList.push(entity.name);
                                     return (
                                         <button onClick={(e) => this.handleRedirect(entity, e)} className="small-search-item" key={idx}>
                                                 <div className='circle'></div>
                                                 <div className="loc-icon-small">
-                                                    {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
+                                                    {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon-small" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
                                                 </div>
                                             <div className='small-search-details'>
                                                 <p>{(entity.name) ? entity.name : entity.name}</p>

@@ -1058,12 +1058,11 @@ var Park = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchParks().then(this.props.fetchTrails());
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (this.props.match.params.id !== prevProps.match.params.id) this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
-    }
+    } // componentDidUpdate(prevProps) {
+    //     if (this.props.match.params.id !== prevProps.match.params.id)
+    //     this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
+    // }
+
   }, {
     key: "showToggle",
     value: function showToggle(e) {
@@ -1096,8 +1095,10 @@ var Park = /*#__PURE__*/function (_React$Component) {
         history: this.props.history
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "park-photos-div"
-      }, parkTrails.map(function (trail) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+      }, parkTrails.map(function (trail, idx) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          key: idx
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
           src: trail.photoUrl
         }));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -2218,8 +2219,19 @@ var Search = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "changeFilter",
     value: function changeFilter(e) {
+      var prevTab = document.getElementsByClassName('tab-underline');
+      prevTab ? prevTab[0].classList.remove('tab-underline') : "";
+      e.target.classList.add('tab-underline');
       this.setState({
         filterBy: e.target.innerText
+      });
+    }
+  }, {
+    key: "sortObjects",
+    value: function sortObjects(objs) {
+      var sorted = objs.slice();
+      return sorted.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
       });
     }
   }, {
@@ -2231,14 +2243,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           trails = _this$props.trails,
           parks = _this$props.parks;
-      var allResults = trails.concat(parks); // allResults.sort((a, b) => {
-      //     debugger
-      //     const aName = (a.t_name) ? a.t_name : a.p_name;
-      //     const bName = (b.p_name) ? b.p_name : b.t_name;
-      //     a.aName.localeCompare(b.bName)
-      // });
-      // const sortedAll = allResults.map((allResults))
-
+      var allResults = trails.concat(parks);
       var searchHash = {
         "All": allResults,
         "Trails": trails,
@@ -2293,15 +2298,16 @@ var Search = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "search-tabs"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          className: "tab-underline",
           onClick: this.changeFilter,
           "aria-selected": true
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "All")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: this.changeFilter
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Trails")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        }, "Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           onClick: this.changeFilter
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, "Parks"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        }, "Parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "search-items-list"
-        }, Object.values(searchHash[this.state.filterBy]).map(function (entity, idx) {
+        }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
           if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
             liveItemsList.push(entity.name);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -2374,7 +2380,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var SmallSearch = /*#__PURE__*/function (_React$Component) {
   _inherits(SmallSearch, _React$Component);
 
@@ -2420,7 +2425,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "redirect",
     value: function redirect(entity) {
-      debugger;
       entity.parkName ? this.props.history.push("/trails/".concat(entity.id)) : this.props.history.push("/parks/".concat(entity.id));
     }
   }, {
@@ -2460,6 +2464,14 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "sortObjects",
+    value: function sortObjects(objs) {
+      var sorted = objs.slice();
+      return sorted.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -2475,8 +2487,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         "all": allResults,
         "trails": trails,
         "parks": parks
-      }; // const hiddenKlass = this.state.hidden ? "hidden " : "";
-
+      };
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search" + klass,
         id: "parent-dropdown"
@@ -2492,7 +2503,11 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         onClick: this.changeFilter
       }, "parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-content"
-      }, Object.values(searchHash[this.state.filterBy]).map(function (entity, idx) {
+      }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
+        if (_this3.props.entity.id === entity.id) {
+          return;
+        }
+
         if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
           liveItemsList.push(entity.name);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -2506,7 +2521,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
             className: "loc-icon-small"
           }, typeof entity.parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_1__.BsTree, {
-            className: "park-icon",
+            className: "park-icon-small",
             height: "40px",
             width: "40px"
           }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
@@ -3544,7 +3559,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var TrailFavorites = /*#__PURE__*/function (_React$Component) {
   _inherits(TrailFavorites, _React$Component);
 
@@ -3583,7 +3597,7 @@ var TrailFavorites = /*#__PURE__*/function (_React$Component) {
         className: "tiles-outer-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "splash-favorites bold"
-      }, "Trail Favorites"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Trail Favorites")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tiles-container"
       }, paneShown.map(function (trail, idx) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3949,7 +3963,6 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "hideDropdown",
     value: function hideDropdown(e) {
-      debugger;
       e.preventDefault();
       var dropdown = document.getElementsByClassName("small-dropdown-container");
       dropdown[0].classList.add("hidden");
@@ -4051,8 +4064,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       var entity = this.props.trail;
       var _this$props2 = this.props,
           parks = _this$props2.parks,
-          trails = _this$props2.trails; // const hide = 
-
+          trails = _this$props2.trails;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, this.props.trails.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {

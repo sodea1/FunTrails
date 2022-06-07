@@ -29,7 +29,6 @@ class Trail extends React.Component {
     }
 
     hideDropdown(e) {
-        debugger
         e.preventDefault();
         const dropdown = document.getElementsByClassName("small-dropdown-container");
         dropdown[0].classList.add("hidden")
@@ -117,7 +116,6 @@ class Trail extends React.Component {
     render() {
         const entity = this.props.trail;
         const { parks, trails } = this.props;
-        // const hide = 
 
         return (
             <div className='grey'>
