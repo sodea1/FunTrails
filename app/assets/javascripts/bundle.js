@@ -464,11 +464,15 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this = this;
 
+      debugger;
+
       if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
+        debugger;
         this.props.fetchParks();
         this.props.fetchTrails();
       }
 
+      debugger;
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           _this.setState({
@@ -2389,8 +2393,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       search: '',
-      filterBy: "all",
-      hidden: _this.props.hidden
+      filterBy: "all"
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
@@ -2453,9 +2456,10 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "changeFilter",
     value: function changeFilter(e) {
-      debugger;
+      e.preventDefault();
+      var newState = e.target.innerText;
       this.setState({
-        filterBy: e.target.innerText
+        filterBy: newState
       });
     }
   }, {
@@ -2483,6 +2487,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         "trails": trails,
         "parks": parks
       };
+      var filteredResults = searchHash[this.state.filterBy];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
         className: "show-search" + klass,
         id: "parent-dropdown"
@@ -2498,7 +2503,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         onClick: this.changeFilter
       }, "parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-content"
-      }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
+      }, this.sortObjects(Object.values(filteredResults)).map(function (entity, idx) {
         if (_this3.props.entity.id === entity.id) {
           return;
         }

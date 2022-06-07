@@ -7,8 +7,7 @@ class SmallSearch extends React.Component {
 
         this.state = {
             search: '',
-            filterBy: "all",
-            hidden: this.props.hidden
+            filterBy: "all"
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -50,13 +49,13 @@ class SmallSearch extends React.Component {
         const dropdown = document.getElementsByClassName("small-dropdown-container");
         if (dropdown[0].classList.contains("hidden")) {
             dropdown[0].classList.remove("hidden");
-
         } 
     }
 
     changeFilter(e) {
-        debugger
-        this.setState({ filterBy: e.target.innerText });
+        e.preventDefault();
+        let newState = e.target.innerText;
+        this.setState({ filterBy: newState });
     }
 
     sortObjects(objs) {
@@ -71,7 +70,7 @@ class SmallSearch extends React.Component {
         const { entity } = this.props;
         const trails = Object.values(this.props.trails);
         const parks = Object.values(this.props.parks);
-        const allResults = trails.concat(parks)
+        const allResults = trails.concat(parks);
         const parkName = entity.parkName;
         const klass = typeof parkName === "undefined" ? "-park" : "-trail";
 
@@ -81,6 +80,8 @@ class SmallSearch extends React.Component {
             "parks": parks
         }
 
+        const filteredResults = searchHash[this.state.filterBy];
+        
         return (
             <div>
                 <form className={"show-search" + klass} id="parent-dropdown">
@@ -92,7 +93,7 @@ class SmallSearch extends React.Component {
                         </div>
 
                         <div className="small-search-content">
-                            {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
+                            {this.sortObjects(Object.values(filteredResults)).map((entity, idx) => {
                                 if (this.props.entity.id === entity.id) {
                                     return;
                                 }

@@ -116,7 +116,6 @@ class Trail extends React.Component {
     render() {
         const entity = this.props.trail;
         const { parks, trails } = this.props;
-
         return (
             <div className='grey'>
                 {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={this.props.trail} trails={trails} parks={parks} />}
