@@ -2394,7 +2394,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
     _this.toggleHidden = _this.toggleHidden.bind(_assertThisInitialized(_this));
-    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
     _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2411,11 +2410,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           }
         }
       });
-    }
-  }, {
-    key: "handleRedirect",
-    value: function handleRedirect(entity, e) {
-      this.toggleHidden(e, entity);
     }
   }, {
     key: "redirect",
@@ -2508,7 +2502,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           liveItemsList.push(entity.name);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             onClick: function onClick(e) {
-              return _this2.handleRedirect(entity, e);
+              return _this2.toggleHidden(e, entity);
             },
             className: "small-search-item",
             key: idx

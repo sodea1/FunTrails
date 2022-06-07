@@ -13,7 +13,6 @@ class SmallSearch extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
         this.toggleHidden = this.toggleHidden.bind(this);
-        this.handleRedirect = this.handleRedirect.bind(this);
         this.redirect = this.redirect.bind(this);
     }
 
@@ -26,10 +25,6 @@ class SmallSearch extends React.Component {
                 } 
             }
         })
-    }
-
-    handleRedirect(entity, e) {
-        this.toggleHidden(e, entity);
     }
 
     redirect(entity) {
@@ -46,6 +41,7 @@ class SmallSearch extends React.Component {
         if (e.type === "click") {
             let clearSearch = '';
             this.setState({ search: clearSearch }, function() {
+
                 this.redirect(entity);
             })
         }
@@ -103,7 +99,7 @@ class SmallSearch extends React.Component {
                                 if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                     liveItemsList.push(entity.name);
                                     return (
-                                        <button onClick={(e) => this.handleRedirect(entity, e)} className="small-search-item" key={idx}>
+                                        <button onClick={(e) => this.toggleHidden(e, entity)} className="small-search-item" key={idx}>
                                                 <div className='circle'></div>
                                                 <div className="loc-icon-small">
                                                     {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon-small" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
