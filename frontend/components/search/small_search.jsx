@@ -7,7 +7,7 @@ class SmallSearch extends React.Component {
 
         this.state = {
             search: '',
-            filterBy: "all"
+            filterBy: "all",
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,9 +18,12 @@ class SmallSearch extends React.Component {
     }
 
     componentDidMount() {
-        document.addEventListener("keydown", (target) => {
+        window.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
-                this.setState({ hidden: true })
+                const dropdown = document.getElementsByClassName("small-dropdown-container");
+                if (dropdown[0].classList.contains("hidden")) {
+                    dropdown[0].classList.remove("hidden");
+                } 
             }
         })
     }

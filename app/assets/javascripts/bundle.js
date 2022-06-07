@@ -2402,13 +2402,13 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   _createClass(SmallSearch, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      document.addEventListener("keydown", function (target) {
+      window.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
-          _this2.setState({
-            hidden: true
-          });
+          var dropdown = document.getElementsByClassName("small-dropdown-container");
+
+          if (dropdown[0].classList.contains("hidden")) {
+            dropdown[0].classList.remove("hidden");
+          }
         }
       });
     }
@@ -2469,7 +2469,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var liveItemsList = [];
       var entity = this.props.entity;
@@ -2500,15 +2500,15 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       }, "parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-content"
       }, this.sortObjects(Object.values(filteredResults)).map(function (entity, idx) {
-        if (_this3.props.entity.id === entity.id) {
+        if (_this2.props.entity.id === entity.id) {
           return;
         }
 
-        if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
+        if (entity.name.toLowerCase().startsWith(_this2.state.search.toLowerCase())) {
           liveItemsList.push(entity.name);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             onClick: function onClick(e) {
-              return _this3.handleRedirect(entity, e);
+              return _this2.handleRedirect(entity, e);
             },
             className: "small-search-item",
             key: idx
