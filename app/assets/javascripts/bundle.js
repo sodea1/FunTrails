@@ -2393,8 +2393,9 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
-    _this.toggleHidden = _this.toggleHidden.bind(_assertThisInitialized(_this));
+    _this.reveal = _this.reveal.bind(_assertThisInitialized(_this));
     _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
+    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2414,6 +2415,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "redirect",
     value: function redirect(entity) {
+      debugger;
       entity.parkName ? this.props.history.push("/trails/".concat(entity.id)) : this.props.history.push("/parks/".concat(entity.id));
     }
   }, {
@@ -2425,18 +2427,27 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "toggleHidden",
-    value: function toggleHidden(e, entity) {
-      // e.preventDefault() - was unable to use with Link because it would prevent redirect
-      if (e.type === "click") {
-        var clearSearch = '';
-        this.setState({
-          search: clearSearch
-        }, function () {
-          this.redirect(entity);
-        });
-      }
-
+    key: "handleRedirect",
+    value: function handleRedirect(e, entity) {
+      e.preventDefault();
+      debugger;
+      var clearSearch = '';
+      this.setState({
+        search: clearSearch
+      }, function () {
+        debugger;
+        this.redirect(entity);
+      });
+      var input = document.getElementById("search-input");
+      debugger;
+      input.value = "";
+      var dropdown = document.getElementsByClassName("small-dropdown-container");
+      dropdown[0].classList.add("hidden");
+    }
+  }, {
+    key: "reveal",
+    value: function reveal(e) {
+      e.preventDefault();
       var dropdown = document.getElementsByClassName("small-dropdown-container");
 
       if (dropdown[0].classList.contains("hidden")) {
@@ -2502,7 +2513,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           liveItemsList.push(entity.name);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             onClick: function onClick(e) {
-              return _this2.toggleHidden(e, entity);
+              return _this2.handleRedirect(e, entity);
             },
             className: "small-search-item",
             key: idx
@@ -2527,8 +2538,9 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         className: "small-no-results"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "No Results")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
         onChange: this.handleChange,
-        onFocus: this.toggleHidden,
+        onFocus: this.reveal,
         type: "text",
+        id: "search-input",
         className: 'show-input' + klass,
         placeholder: "Search by park or trail name"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {

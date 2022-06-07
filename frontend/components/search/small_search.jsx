@@ -12,8 +12,9 @@ class SmallSearch extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
-        this.toggleHidden = this.toggleHidden.bind(this);
+        this.reveal = this.reveal.bind(this);
         this.redirect = this.redirect.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +29,7 @@ class SmallSearch extends React.Component {
     }
 
     redirect(entity) {
+        debugger
         (entity.parkName) ? this.props.history.push(`/trails/${entity.id}`) : this.props.history.push(`/parks/${entity.id}`) 
     }
 
@@ -36,16 +38,25 @@ class SmallSearch extends React.Component {
         this.setState({ search: e.target.value });
     }
 
-    toggleHidden(e, entity) {
-        // e.preventDefault() - was unable to use with Link because it would prevent redirect
-        if (e.type === "click") {
-            let clearSearch = '';
-            this.setState({ search: clearSearch }, function() {
-
-                this.redirect(entity);
-            })
-        }
+    handleRedirect(e, entity) {
+        e.preventDefault();
+        debugger
+        let clearSearch = '';
+        this.setState({ search: clearSearch }, function () {
+            debugger
+            this.redirect(entity);
+        })
+        const input = document.getElementById("search-input")
+        debugger
+        input.value = "";
         const dropdown = document.getElementsByClassName("small-dropdown-container");
+        dropdown[0].classList.add("hidden");
+    }
+
+    reveal(e) {
+        e.preventDefault();
+        const dropdown = document.getElementsByClassName("small-dropdown-container");
+        
         if (dropdown[0].classList.contains("hidden")) {
             dropdown[0].classList.remove("hidden");
         } 
@@ -99,7 +110,7 @@ class SmallSearch extends React.Component {
                                 if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                     liveItemsList.push(entity.name);
                                     return (
-                                        <button onClick={(e) => this.toggleHidden(e, entity)} className="small-search-item" key={idx}>
+                                        <button onClick={(e) => this.handleRedirect(e, entity)} className="small-search-item" key={idx}>
                                                 <div className='circle'></div>
                                                 <div className="loc-icon-small">
                                                     {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon-small" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
@@ -124,8 +135,9 @@ class SmallSearch extends React.Component {
                     </div>
                     <input
                         onChange={this.handleChange}
-                        onFocus={this.toggleHidden}
+                        onFocus={this.reveal}
                         type="text"
+                        id='search-input'
                         className={'show-input' + klass}
                         placeholder="Search by park or trail name"
                     />
