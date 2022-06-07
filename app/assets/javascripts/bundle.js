@@ -2306,8 +2306,9 @@ var Search = /*#__PURE__*/function (_React$Component) {
         }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
           if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
             liveItemsList.push(entity.name);
+            var destination = entity.parkName ? "trails" : "parks";
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              to: "/trails/".concat(entity.id),
+              to: "/".concat(destination, "/").concat(entity.id),
               className: "search-item",
               key: idx
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
