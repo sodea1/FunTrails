@@ -28,7 +28,7 @@
         outline: none;
 
         &:hover {
-            opacity: 0.8;
+            opacity: 0.6;
             cursor: pointer;
         }
     }
@@ -119,4 +119,13 @@
     left: 5%;
     width: 18px;
     height: 18px;
+}
+
+.small-no-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: $lightgrey;
 }

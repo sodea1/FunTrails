@@ -51,9 +51,7 @@ class SmallSearch extends React.Component {
         if (dropdown[0].classList.contains("hidden")) {
             dropdown[0].classList.remove("hidden");
 
-        } else {
-            dropdown[0].classList.add("hidden");
-        }
+        } 
     }
 
     changeFilter(e) {
@@ -115,9 +113,8 @@ class SmallSearch extends React.Component {
                             })}
 
                             {(liveItemsList.length === 0) ?
-                                <div className="">
+                                <div className="small-no-results">
                                     <p>No Results</p>
-                                    <p>We couldn't find anything matching "{this.state.search}"</p>
                                 </div>
                                 :
                                 <div></div>
