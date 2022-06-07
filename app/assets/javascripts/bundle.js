@@ -1058,11 +1058,7 @@ var Park = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchParks().then(this.props.fetchTrails());
-    } // componentDidUpdate(prevProps) {
-    //     if (this.props.match.params.id !== prevProps.match.params.id)
-    //     this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
-    // }
-
+    }
   }, {
     key: "showToggle",
     value: function showToggle(e) {

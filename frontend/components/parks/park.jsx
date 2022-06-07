@@ -15,11 +15,6 @@ class Park extends React.Component {
         this.props.fetchParks().then(this.props.fetchTrails());
     }
 
-    // componentDidUpdate(prevProps) {
-    //     if (this.props.match.params.id !== prevProps.match.params.id)
-    //     this.props.fetchPark(this.props.match.params.id).then(this.props.fetchTrails());
-    // }
-
     showToggle(e) {
         const action = e.target.innerText;
         const ele = document.getElementsByClassName(action === "Show More" ? "park-description" : "show-overflow")[0]
