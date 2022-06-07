@@ -20,8 +20,11 @@ class SmallSearch extends React.Component {
     componentDidMount() {
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
-                const dropdown = document.getElementsByClassName("small-dropdown-container");
+                const dropdown = document.getElementsByClassName("small-dropdown-container");   
+                const input = document.getElementById("search-input")
+                
                 if (!dropdown[0].classList.contains("hidden")) {
+                    input.blur();
                     dropdown[0].classList.add("hidden");
                 } 
             }

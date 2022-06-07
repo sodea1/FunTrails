@@ -2406,8 +2406,10 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           var dropdown = document.getElementsByClassName("small-dropdown-container");
+          var input = document.getElementById("search-input");
 
           if (!dropdown[0].classList.contains("hidden")) {
+            input.blur();
             dropdown[0].classList.add("hidden");
           }
         }
