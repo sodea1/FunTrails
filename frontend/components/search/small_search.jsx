@@ -18,11 +18,11 @@ class SmallSearch extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener("keydown", (target) => {
+        document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
                 const dropdown = document.getElementsByClassName("small-dropdown-container");
-                if (dropdown[0].classList.contains("hidden")) {
-                    dropdown[0].classList.remove("hidden");
+                if (!dropdown[0].classList.contains("hidden")) {
+                    dropdown[0].classList.add("hidden");
                 } 
             }
         })

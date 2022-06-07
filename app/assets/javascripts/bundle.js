@@ -2403,12 +2403,12 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   _createClass(SmallSearch, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      window.addEventListener("keydown", function (target) {
+      document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           var dropdown = document.getElementsByClassName("small-dropdown-container");
 
-          if (dropdown[0].classList.contains("hidden")) {
-            dropdown[0].classList.remove("hidden");
+          if (!dropdown[0].classList.contains("hidden")) {
+            dropdown[0].classList.add("hidden");
           }
         }
       });
