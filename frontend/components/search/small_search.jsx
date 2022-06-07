@@ -29,7 +29,6 @@ class SmallSearch extends React.Component {
     }
 
     redirect(entity) {
-        debugger
         (entity.parkName) ? this.props.history.push(`/trails/${entity.id}`) : this.props.history.push(`/parks/${entity.id}`) 
     }
 
@@ -40,14 +39,11 @@ class SmallSearch extends React.Component {
 
     handleRedirect(e, entity) {
         e.preventDefault();
-        debugger
         let clearSearch = '';
         this.setState({ search: clearSearch }, function () {
-            debugger
             this.redirect(entity);
         })
         const input = document.getElementById("search-input")
-        debugger
         input.value = "";
         const dropdown = document.getElementsByClassName("small-dropdown-container");
         dropdown[0].classList.add("hidden");

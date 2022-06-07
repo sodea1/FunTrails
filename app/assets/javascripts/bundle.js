@@ -2415,7 +2415,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "redirect",
     value: function redirect(entity) {
-      debugger;
       entity.parkName ? this.props.history.push("/trails/".concat(entity.id)) : this.props.history.push("/parks/".concat(entity.id));
     }
   }, {
@@ -2430,16 +2429,13 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     key: "handleRedirect",
     value: function handleRedirect(e, entity) {
       e.preventDefault();
-      debugger;
       var clearSearch = '';
       this.setState({
         search: clearSearch
       }, function () {
-        debugger;
         this.redirect(entity);
       });
       var input = document.getElementById("search-input");
-      debugger;
       input.value = "";
       var dropdown = document.getElementsByClassName("small-dropdown-container");
       dropdown[0].classList.add("hidden");
