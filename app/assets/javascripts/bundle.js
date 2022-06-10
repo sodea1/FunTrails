@@ -714,6 +714,11 @@ function Modal(_ref) {
       component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_create_rev_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
+    case 'edit':
+      component = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_edit_rev_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        review: modal.review
+      });
+
     default:
       break;
   }

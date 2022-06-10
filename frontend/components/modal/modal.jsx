@@ -15,6 +15,8 @@ function Modal ({ modal, closeModal }) {
         case 'create':
             component = <CreateRevContainer />
             break;
+        case 'edit':
+            component = <EditRevContainer review={modal.review} />
         default:
             break;
     }
