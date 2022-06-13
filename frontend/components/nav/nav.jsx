@@ -53,8 +53,8 @@ class Nav extends React.Component {
                         </Link>
                 </div>
                 <div className='right-nav'>
-                    <Link to='/signup' className='signup-button'>Sign Up</Link>
-                    <Link to='/login' className='login-button'>Login</Link>
+                    <Link to='/signup' className='signup-button' onClick={this.props.clearSessionErrors}>Sign Up</Link>
+                    <Link to='/login' className='login-button' onClick={this.props.clearSessionErrors}>Login</Link>
                 </div>
             </div>
         )

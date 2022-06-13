@@ -856,10 +856,12 @@ var Nav = /*#__PURE__*/function (_React$Component) {
         className: "right-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/signup",
-        className: "signup-button"
+        className: "signup-button",
+        onClick: this.props.clearSessionErrors
       }, "Sign Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/login",
-        className: "login-button"
+        className: "login-button",
+        onClick: this.props.clearSessionErrors
       }, "Login")));
       return navBar;
     }
@@ -886,6 +888,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nav */ "./frontend/components/nav/nav.jsx");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
 
 
 
@@ -915,6 +919,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     // MUST FIGURE OUT HOW TO POPULATE STATE SO I HAVE ACCESS
     fetchTrails: function fetchTrails() {
       return dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_2__.fetchTrails)());
+    },
+    clearSessionErrors: function clearSessionErrors() {
+      return dispatch((0,_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__.clearSessionErrors)());
     }
   };
 };
