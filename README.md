@@ -23,45 +23,46 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 
 ### Reviews CRUD
 ![reviews](https://user-images.githubusercontent.com/40174573/173405520-3902e991-b569-4080-8911-87b7d6a44b9c.gif)
-``` <div className={this.state.hidden === true ? "hidden search-dropdown-container" : "search-dropdown-container"}>
-      <div className="spacer"></div>
-      <div className="inner-dropdown-container">
-          <div className="search-tabs">
-              <button className="tab-underline" onMouseDown={this.changeFilter} aria-selected>All</button>
-              <button onMouseDown={this.changeFilter}>Trails</button>
-              <button onMouseDown={this.changeFilter}>Parks</button>
-          </div>
+``` 
+<div className={this.state.hidden === true ? "hidden search-dropdown-container" : "search-dropdown-container"}>
+   <div className="spacer"></div>
+   <div className="inner-dropdown-container">
+       <div className="search-tabs">
+           <button className="tab-underline" onMouseDown={this.changeFilter} aria-selected>All</button>
+           <button onMouseDown={this.changeFilter}>Trails</button>
+           <button onMouseDown={this.changeFilter}>Parks</button>
+       </div>
 
-          <div className="search-items-list">
-              {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
-                  if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
-                      liveItemsList.push(entity.name);
+       <div className="search-items-list">
+           {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
+               if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
+                   liveItemsList.push(entity.name);
 
-                      return (
-                          <button onMouseDown={(e) => this.handleRedirect(e, entity)}  className="search-item" key={idx}>
-                              <div className="loc-icon-div">
-                                  {(typeof entity.parkName === "undefined") ? 
-                                      <BsTree className="park-icon" height="40px" width="40px" /> : 
-                                      <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> };
-                              </div>
-                              <div className="search-details">
-                                  <h1>{(entity.name) ? entity.name : entity.name }</h1>
-                                  <span>{entity.state + ", " + entity.country}</span>
-                              </div>
-                          </button>
-                      )
-                  } 
-              })}
+                   return (
+                       <button onMouseDown={(e) => this.handleRedirect(e, entity)}  className="search-item" key={idx}>
+                           <div className="loc-icon-div">
+                               {(typeof entity.parkName === "undefined") ? 
+                                   <BsTree className="park-icon" height="40px" width="40px" /> : 
+                                   <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> };
+                           </div>
+                           <div className="search-details">
+                               <h1>{(entity.name) ? entity.name : entity.name }</h1>
+                               <span>{entity.state + ", " + entity.country}</span>
+                           </div>
+                       </button>
+                   )
+               } 
+           })}
 
-              {(liveItemsList.length === 0) ? 
-                  <div className="no-results">
-                      <p>No Results</p>
-                      <p>We couldn't find anything matching "{this.state.search}"</p>
-                  </div>
-                  :
-                  <div></div>
-              }
-          </div>
-      </div>
-    </div>
+           {(liveItemsList.length === 0) ? 
+               <div className="no-results">
+                   <p>No Results</p>
+                   <p>We couldn't find anything matching "{this.state.search}"</p>
+               </div>
+               :
+               <div></div>
+           }
+       </div>
+   </div>
+</div>
 ```
