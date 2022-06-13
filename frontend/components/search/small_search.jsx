@@ -56,7 +56,6 @@ class SmallSearch extends React.Component {
 
     toggleReveal(e) {
         e.preventDefault();
-        debugger
         let newState = false;
         this.setState({ hidden: newState });
     }
@@ -64,13 +63,11 @@ class SmallSearch extends React.Component {
     toggleHide(e) {
         e.preventDefault();
         e.stopPropogation();
-        debugger
         let newState = true;
         this.setState({hidden: newState});
     }
 
     changeFilter(e) {
-        debugger
         e.preventDefault();
         let newState = e.target.innerText;
         this.setState({ filterBy: newState });

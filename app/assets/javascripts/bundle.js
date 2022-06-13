@@ -2476,7 +2476,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     key: "toggleReveal",
     value: function toggleReveal(e) {
       e.preventDefault();
-      debugger;
       var newState = false;
       this.setState({
         hidden: newState
@@ -2487,7 +2486,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     value: function toggleHide(e) {
       e.preventDefault();
       e.stopPropogation();
-      debugger;
       var newState = true;
       this.setState({
         hidden: newState
@@ -2496,7 +2494,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "changeFilter",
     value: function changeFilter(e) {
-      debugger;
       e.preventDefault();
       var newState = e.target.innerText;
       this.setState({
