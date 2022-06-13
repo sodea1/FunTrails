@@ -68,9 +68,15 @@
     margin-top: 24px;
 }
 
-.foot-right > a {
-    margin-right: 24px;
-    margin-top: 24px;
+
+.foot-right {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    a {
+        margin-right: 24px;
+        margin-top: 24px;
+    }
 }
 
 .prof-pic {

@@ -65,8 +65,9 @@ class Footer extends React.Component {
                     <div>
                         <p>Connect with Sean O'Dea</p>
                         <div className='foot-right'>
-                            <a href='https://www.linkedin.com/in/seanodea1/'><img src={window.linkedin} width="42px" height="38px" /></a>
-                            <a href='https://github.com/sodea1'><img src={window.github} width="42px" height="42px" /></a>
+                            <a href='https://www.linkedin.com/in/seanodea1/' target="_blank"><img src={window.linkedin} width="42px" height="38px" /></a>
+                            <a href='https://github.com/sodea1' target="_blank"><img src={window.github} width="42px" height="42px" /></a>
+                            <a href='https://https://angel.co/u/sean-o-dea-4' target="_blank"><img src={window.angellist} width="32px" height="42px" /></a>
                         </div>
                     </div>
                 </div>
