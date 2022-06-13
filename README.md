@@ -23,7 +23,7 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 
 ### Reviews CRUD
 ![reviews](https://user-images.githubusercontent.com/40174573/173405520-3902e991-b569-4080-8911-87b7d6a44b9c.gif)
-``` 
+```jsx
 <div className={this.state.hidden === true ? "hidden search-dropdown-container" : "search-dropdown-container"}>
    <div className="spacer"></div>
    <div className="inner-dropdown-container">
