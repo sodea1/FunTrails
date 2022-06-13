@@ -2304,8 +2304,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
           className: "search-icon"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
           onChange: this.updateSearch,
-          onFocus: this.show // onBlur={this.hide}
-          ,
+          onFocus: this.show,
+          onBlur: this.hide,
           type: "text",
           className: "search-bar",
           placeholder: "Search by park or trail name"
@@ -2331,8 +2331,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           className: "search-items-list"
         }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
           if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
-            liveItemsList.push(entity.name); // let destination = entity.parkName ? "trails" : "parks";
-
+            liveItemsList.push(entity.name);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
               onMouseDown: function onMouseDown(e) {
                 return _this3.handleRedirect(e, entity);

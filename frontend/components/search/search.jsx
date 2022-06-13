@@ -120,7 +120,7 @@ class Search extends React.Component {
                                 <input
                                     onChange={this.updateSearch}
                                     onFocus={this.show}
-                                    // onBlur={this.hide}
+                                    onBlur={this.hide}
                                     type="text"
                                     className="search-bar"
                                     placeholder="Search by park or trail name"
@@ -145,7 +145,7 @@ class Search extends React.Component {
                                     {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
                                         if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                             liveItemsList.push(entity.name);
-                                            // let destination = entity.parkName ? "trails" : "parks";
+                                            
                                             return (
                                                 <button onMouseDown={(e) => this.handleRedirect(e, entity)}  className="search-item" key={idx}>
                                                     <div className="loc-icon-div">
