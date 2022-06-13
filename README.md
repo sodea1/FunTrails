@@ -20,4 +20,4 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 
 ### Splash Page
 
-![Splash Search](file:///Users/seanodea/Desktop/SplashSearch.png)
+![SplashSearch](https://user-images.githubusercontent.com/40174573/173401720-0b3240e1-7306-4e11-8079-166929073969.png)
