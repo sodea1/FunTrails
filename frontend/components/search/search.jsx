@@ -16,8 +16,10 @@ class Search extends React.Component {
         this.changeImage = this.changeImage.bind(this);
         this.updateSearch = this.updateSearch.bind(this);
         this.routeTrail = this.routeTrail.bind(this);
-        this.toggleHidden = this.toggleHidden.bind(this);
+        this.show = this.show.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
+        this.hide = this.hide.bind(this);
+        this.handleRedirect = this.handleRedirect.bind(this);
     }
 
     // async
@@ -57,20 +59,27 @@ class Search extends React.Component {
         this.props.history.push(`/parks/${parkId}`);
     }
 
-    toggleHidden(e) {
-        let newState;
-        const parent = document.getElementById("parent-node");
-
-        if (e.target !== parent && !parent.contains(e.target)) {
-            newState = true;
-        } else (
-            newState = false
-        )
-
+    show(e) {
+        e.preventDefault();
+        let newState = false;
         this.setState({hidden: newState})
     }
 
+    hide(e) {
+        e.preventDefault();
+        if (this.state.hidden === false) {
+            let newState = true;
+            this.setState({hidden: newState})
+        }
+    }
+
+    handleRedirect(e, entity) {
+        e.preventDefault();
+        (entity.parkName) ? this.props.history.push(`/trails/${entity.id}`) : this.props.history.push(`/parks/${entity.id}`) 
+    }
+
     changeFilter(e) {
+        e.preventDefault();
         const prevTab = document.getElementsByClassName('tab-underline');
         prevTab ? prevTab[0].classList.remove('tab-underline') : "";
         e.target.classList.add('tab-underline');
@@ -88,7 +97,6 @@ class Search extends React.Component {
         let liveItemsList = [];
         const { trails, parks } = this.props;
         const allResults = trails.concat(parks)
-
         const searchHash = {
             "All": allResults,
             "Trails": trails,
@@ -97,7 +105,7 @@ class Search extends React.Component {
 
         return(
             // repeating images styling
-            <div onClick={this.toggleHidden}>
+            <div>
                 <img className={this.state.currImg === 1 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker2-min.jpg" />
                 <img className={this.state.currImg === 2 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker.jpg" />
                 <img className={this.state.currImg === 3 ? "background-image" : "background-image hidden"} src="https://funtrails-seeds.s3.amazonaws.com/splash_hiker3-min.jpg" />
@@ -111,7 +119,8 @@ class Search extends React.Component {
                                 <img src={window.search} width="16px" height="16px" className='search-icon' />
                                 <input
                                     onChange={this.updateSearch}
-                                    onClick={this.toggleHidden}
+                                    onFocus={this.show}
+                                    // onBlur={this.hide}
                                     type="text"
                                     className="search-bar"
                                     placeholder="Search by park or trail name"
@@ -127,26 +136,26 @@ class Search extends React.Component {
                             <div className="spacer"></div>
                             <div className="inner-dropdown-container">
                                 <div className="search-tabs">
-                                    <button className="tab-underline" onClick={this.changeFilter} aria-selected>All</button>
-                                    <button onClick={this.changeFilter}>Trails</button>
-                                    <button onClick={this.changeFilter}>Parks</button>
+                                    <button className="tab-underline" onMouseDown={this.changeFilter} aria-selected>All</button>
+                                    <button onMouseDown={this.changeFilter}>Trails</button>
+                                    <button onMouseDown={this.changeFilter}>Parks</button>
                                 </div>
 
                                 <div className="search-items-list">
                                     {this.sortObjects(Object.values(searchHash[this.state.filterBy])).map((entity, idx) => {
                                         if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                             liveItemsList.push(entity.name);
-                                            let destination = entity.parkName ? "trails" : "parks";
+                                            // let destination = entity.parkName ? "trails" : "parks";
                                             return (
-                                                <Link to={`/${destination}/${entity.id}`} className="search-item" key={idx}>
+                                                <button onMouseDown={(e) => this.handleRedirect(e, entity)}  className="search-item" key={idx}>
                                                     <div className="loc-icon-div">
                                                         {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon" height="40px" width="40px" /> : <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> }
                                                     </div>
-                                                    <div>
+                                                    <div className="search-details">
                                                         <h1>{(entity.name) ? entity.name : entity.name }</h1>
                                                         <span>{entity.state + ", " + entity.country}</span>
                                                     </div>
-                                                </Link>
+                                                </button>
                                             )
                                         } 
                                     })}

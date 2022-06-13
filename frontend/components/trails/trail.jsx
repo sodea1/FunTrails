@@ -11,7 +11,7 @@ class Trail extends React.Component {
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
-        this.hideDropdown = this.hideDropdown.bind(this);
+        // this.hideDropdown = this.hideDropdown.bind(this);
     }
 
     componentDidMount() {
@@ -28,11 +28,11 @@ class Trail extends React.Component {
         }
     }
 
-    hideDropdown(e) {
-        e.preventDefault();
-        const dropdown = document.getElementsByClassName("small-dropdown-container");
-        dropdown[0].classList.add("hidden")
-    }
+    // hideDropdown(e) {
+    //     e.preventDefault();
+    //     const dropdown = document.getElementsByClassName("small-dropdown-container");
+    //     dropdown[0].classList.add("hidden")
+    // }
 
     trailTitle() {
         const urlString = 'url(' + this.props.trail.photoUrl + ')';
@@ -121,7 +121,8 @@ class Trail extends React.Component {
                 {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={this.props.trail} trails={trails} parks={parks} />}
 
                 {this.props.trail && this.trailTitle()}
-                <div className='green-bar' onClick={this.hideDropdown}></div>
+                <div className='green-bar' ></div> 
+                {/* onClick={this.hideDropdown} */}
 
                 {this.props.trail && this.trailBody()}
              

@@ -1,10 +1,10 @@
 import React from "react";
-import SearchContainer from "../search/search";
 import TrailFavorites from "./trail_favorites";
 import Descriptors from "./descriptors";
 import Confidence from "./confidence";
 import MobileDemo from "./mobile";
 import Stats from "./stats";
+import Search from "../search/search";
 
 class Splash extends React.Component {
     componentDidMount() {
@@ -13,11 +13,11 @@ class Splash extends React.Component {
     }
 
     render() {
-        const { trails, parks } = this.props;
+        const { trails, parks, history } = this.props;
         return ( 
             <div>
                 <div>
-                    <SearchContainer trails={trails} parks={parks}/> 
+                    <Search trails={trails} parks={parks} history={history} /> 
                 </div>
                 {trails.length > 0 && <TrailFavorites trails={trails}/>}
                 <div>

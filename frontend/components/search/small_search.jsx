@@ -12,15 +12,16 @@ class SmallSearch extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
-        this.reveal = this.reveal.bind(this);
+        this.toggleReveal = this.toggleReveal.bind(this);
         this.redirect = this.redirect.bind(this);
         this.handleRedirect = this.handleRedirect.bind(this);
+        this.toggleHide = this.toggleHide.bind(this);
     }
 
     componentDidMount() {
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
-                const dropdown = document.getElementsByClassName("small-dropdown-container");   
+                const dropdown = document.getElementsByClassName("small-dropdown-container"); 
                 const input = document.getElementById("search-input")
                 
                 if (!dropdown[0].classList.contains("hidden")) {
@@ -52,13 +53,20 @@ class SmallSearch extends React.Component {
         dropdown[0].classList.add("hidden");
     }
 
-    reveal(e) {
+    toggleReveal(e) {
         e.preventDefault();
         const dropdown = document.getElementsByClassName("small-dropdown-container");
         
         if (dropdown[0].classList.contains("hidden")) {
             dropdown[0].classList.remove("hidden");
-        } 
+        }
+    }
+
+    toggleHide(e) {
+        e.preventDefault();
+        const dropdown = document.getElementsByClassName("small-dropdown-container");
+
+        dropdown[0].classList.add("hidden");
     }
 
     changeFilter(e) {
@@ -96,9 +104,9 @@ class SmallSearch extends React.Component {
                 <form className={"show-search" + klass} id="parent-dropdown">
                     <div className="small-dropdown-container hidden">
                         <div className='small-search-tabs'>
-                            <button onClick={this.changeFilter}>all</button>
-                            <button onClick={this.changeFilter}>trails</button>
-                            <button onClick={this.changeFilter}>parks</button>
+                            <button onMouseDown={this.changeFilter}>all</button>
+                            <button onMouseDown={this.changeFilter}>trails</button>
+                            <button onMouseDown={this.changeFilter}>parks</button>
                         </div>
 
                         <div className="small-search-content">
@@ -109,7 +117,7 @@ class SmallSearch extends React.Component {
                                 if (entity.name.toLowerCase().startsWith(this.state.search.toLowerCase())) {
                                     liveItemsList.push(entity.name);
                                     return (
-                                        <button onClick={(e) => this.handleRedirect(e, entity)} className="small-search-item" key={idx}>
+                                        <button onMouseDown={(e) => this.handleRedirect(e, entity)} className="small-search-item" key={idx}>
                                                 <div className='circle'></div>
                                                 <div className="loc-icon-small">
                                                     {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon-small" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
@@ -134,7 +142,8 @@ class SmallSearch extends React.Component {
                     </div>
                     <input
                         onChange={this.handleChange}
-                        onFocus={this.reveal}
+                        onFocus={this.toggleReveal}
+                        onBlur={this.toggleHide}
                         type="text"
                         id='search-input'
                         className={'show-input' + klass}

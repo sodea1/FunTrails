@@ -129,9 +129,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    background: none;
+    border: none;
     border-bottom: 1px solid #e6e6e6;
     font-size: 12px;
     padding: 16px 0;
+    width: 100%;
+
     h1 {
         font-size: 18px;
         font-weight: 500;
@@ -147,6 +151,12 @@
         .loc-icon-div {
             background-color: #fff;
         }
+    }
+
+    .search-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
     
 }

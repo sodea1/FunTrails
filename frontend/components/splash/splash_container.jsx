@@ -3,10 +3,11 @@ import { fetchTrails } from "../../actions/trail_actions";
 import { fetchParks } from "../../actions/park_actions";
 import Splash from './splash';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
         trails: Object.values(state.entities.trails),
-        parks: Object.values(state.entities.parks)
+        parks: Object.values(state.entities.parks),
+        history: ownProps.history
     }
 };
 
