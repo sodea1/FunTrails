@@ -20,7 +20,7 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 
 ### Splash Page
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/40174573/173404436-1876e1a9-2164-4dfc-b3b6-268e9038cb70.gif)
-Splash page search bar utilizing local state variables "hidden" (boolean) and "filterBy" (string) to conditionally display dropdown search menu with tabs to filter results by Parks and Trails.
+Splash page search bar utilizing local state variables "hidden" (boolean) and "filterBy" (string) to conditionally display dropdown search menu with tabs to filter results by Parks and Trails. Tab filter use onMouseDown event in place of onClick to prevent event listener priority conflict with onBlur assigned to search input to hide dropdown menu.
 ```jsx
 <div className={this.state.hidden === true ? "hidden search-dropdown-container" : "search-dropdown-container"}>
    <div className="spacer"></div>
@@ -67,7 +67,8 @@ Splash page search bar utilizing local state variables "hidden" (boolean) and "f
 
 ### Reviews CRUD
 ![reviews](https://user-images.githubusercontent.com/40174573/173405520-3902e991-b569-4080-8911-87b7d6a44b9c.gif)
-Recursive quicksort method to sort reviews by most recent date:
+
+Recursive quicksort method sorts reviews by most recent date:
 ```jsx 
 sortReviews(reviews) {
     if (reviews.length < 2) {
