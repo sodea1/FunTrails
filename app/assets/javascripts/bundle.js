@@ -1444,8 +1444,6 @@ var Review = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "numCompare",
     value: function numCompare(str1, str2) {
-      // str1 = 2019-10-19
-      // str2 = 2019-11-20
       var arr1 = str1.split('-');
       var arr2 = str2.split('-');
       var year1 = parseInt(arr1[0]);
@@ -2349,7 +2347,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
               src: window.green_loc,
               width: "16px",
               height: "22px"
-            })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+            }), ";"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
               className: "search-details"
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
           }
@@ -2419,7 +2417,8 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       search: '',
-      filterBy: "all"
+      filterBy: "all",
+      hidden: true
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
@@ -2477,22 +2476,27 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     key: "toggleReveal",
     value: function toggleReveal(e) {
       e.preventDefault();
-      var dropdown = document.getElementsByClassName("small-dropdown-container");
-
-      if (dropdown[0].classList.contains("hidden")) {
-        dropdown[0].classList.remove("hidden");
-      }
+      debugger;
+      var newState = false;
+      this.setState({
+        hidden: newState
+      });
     }
   }, {
     key: "toggleHide",
     value: function toggleHide(e) {
       e.preventDefault();
-      var dropdown = document.getElementsByClassName("small-dropdown-container");
-      dropdown[0].classList.add("hidden");
+      e.stopPropogation();
+      debugger;
+      var newState = true;
+      this.setState({
+        hidden: newState
+      });
     }
   }, {
     key: "changeFilter",
     value: function changeFilter(e) {
+      debugger;
       e.preventDefault();
       var newState = e.target.innerText;
       this.setState({
@@ -2529,7 +2533,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         className: "show-search" + klass,
         id: "parent-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "small-dropdown-container hidden"
+        className: this.state.hidden === true ? "hidden small-dropdown-container" : "small-dropdown-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-tabs"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {

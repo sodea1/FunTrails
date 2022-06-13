@@ -149,7 +149,9 @@ class Search extends React.Component {
                                             return (
                                                 <button onMouseDown={(e) => this.handleRedirect(e, entity)}  className="search-item" key={idx}>
                                                     <div className="loc-icon-div">
-                                                        {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon" height="40px" width="40px" /> : <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> }
+                                                        {(typeof entity.parkName === "undefined") ? 
+                                                            <BsTree className="park-icon" height="40px" width="40px" /> : 
+                                                            <img className="loc-icon" src={window.green_loc} width="16px" height="22px" /> };
                                                     </div>
                                                     <div className="search-details">
                                                         <h1>{(entity.name) ? entity.name : entity.name }</h1>

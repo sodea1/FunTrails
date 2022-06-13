@@ -49,8 +49,6 @@ class Review extends React.Component {
     }
 
     numCompare(str1, str2) {
-        // str1 = 2019-10-19
-        // str2 = 2019-11-20
         const arr1 = str1.split('-');
         const arr2 = str2.split('-');
 

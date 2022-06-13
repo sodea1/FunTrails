@@ -8,6 +8,7 @@ class SmallSearch extends React.Component {
         this.state = {
             search: '',
             filterBy: "all",
+            hidden: true
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -55,21 +56,21 @@ class SmallSearch extends React.Component {
 
     toggleReveal(e) {
         e.preventDefault();
-        const dropdown = document.getElementsByClassName("small-dropdown-container");
-        
-        if (dropdown[0].classList.contains("hidden")) {
-            dropdown[0].classList.remove("hidden");
-        }
+        debugger
+        let newState = false;
+        this.setState({ hidden: newState });
     }
 
     toggleHide(e) {
         e.preventDefault();
-        const dropdown = document.getElementsByClassName("small-dropdown-container");
-
-        dropdown[0].classList.add("hidden");
+        e.stopPropogation();
+        debugger
+        let newState = true;
+        this.setState({hidden: newState});
     }
 
     changeFilter(e) {
+        debugger
         e.preventDefault();
         let newState = e.target.innerText;
         this.setState({ filterBy: newState });
@@ -90,7 +91,6 @@ class SmallSearch extends React.Component {
         const allResults = trails.concat(parks);
         const parkName = entity.parkName;
         const klass = typeof parkName === "undefined" ? "-park" : "-trail";
-
         const searchHash = {
             "all": allResults,
             "trails": trails,
@@ -102,7 +102,7 @@ class SmallSearch extends React.Component {
         return (
             <div>
                 <form className={"show-search" + klass} id="parent-dropdown">
-                    <div className="small-dropdown-container hidden">
+                    <div className={this.state.hidden === true ? "hidden small-dropdown-container" : "small-dropdown-container"}>
                         <div className='small-search-tabs'>
                             <button onMouseDown={this.changeFilter}>all</button>
                             <button onMouseDown={this.changeFilter}>trails</button>
@@ -120,7 +120,9 @@ class SmallSearch extends React.Component {
                                         <button onMouseDown={(e) => this.handleRedirect(e, entity)} className="small-search-item" key={idx}>
                                                 <div className='circle'></div>
                                                 <div className="loc-icon-small">
-                                                    {(typeof entity.parkName === "undefined") ? <BsTree className="park-icon-small" height="40px" width="40px" /> : <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
+                                                    {(typeof entity.parkName === "undefined") ? 
+                                                        <BsTree className="park-icon-small" height="40px" width="40px" /> : 
+                                                        <img className="loc-icon-show" src={window.green_loc} width="16px" height="22px" />}
                                                 </div>
                                             <div className='small-search-details'>
                                                 <p>{(entity.name) ? entity.name : entity.name}</p>
