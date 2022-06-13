@@ -19,8 +19,8 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
   * Search: Find trails and parks easily via searchbar in splash and trail/park pages. Filter results by "trails", "parks", or "all" tabs.
 
 ### Splash Page
-![splash](https://user-images.githubusercontent.com/40174573/173403599-e421752a-9846-4417-b1ac-7b70330c0ed6.gif)
-![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/40174573/173403980-0848e6e4-2576-412c-83ac-870fa21e2a57.gif)
+![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/40174573/173404436-1876e1a9-2164-4dfc-b3b6-268e9038cb70.gif)
+
 
 ### Trails
 ![trails](https://user-images.githubusercontent.com/40174573/173401885-c62df671-1cb4-4fea-85e3-46fdadf8e8f4.png)
