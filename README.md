@@ -21,6 +21,8 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 ### Splash Page
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/40174573/173404436-1876e1a9-2164-4dfc-b3b6-268e9038cb70.gif)
 
+### Reviews
+![reviews](https://user-images.githubusercontent.com/40174573/173405520-3902e991-b569-4080-8911-87b7d6a44b9c.gif)
 
 ### Trails
 ![trails](https://user-images.githubusercontent.com/40174573/173401885-c62df671-1cb4-4fea-85e3-46fdadf8e8f4.png)
