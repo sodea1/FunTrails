@@ -67,3 +67,25 @@ Are you ready for your next outdoor adventure? FunTrails has you covered. [FunTr
 ### Reviews CRUD
 ![reviews](https://user-images.githubusercontent.com/40174573/173405520-3902e991-b569-4080-8911-87b7d6a44b9c.gif)
 
+```jsx 
+sortReviews(reviews) {
+    if (reviews.length < 2) {
+        return reviews;
+    }
+
+    const pivot = reviews[0];
+    let left = [];
+    let right = [];
+
+    for (let i = 1; i < reviews.length; i++) {
+        let nextReview = reviews[i];
+        if (this.numCompare(nextReview.date_hiked, pivot.date_hiked) === -1) {
+            right.push(nextReview);
+        } else {
+            left.push(nextReview);
+        }
+    }
+
+    return this.sortReviews(left).concat([pivot]).concat(this.sortReviews(right));
+}
+```
