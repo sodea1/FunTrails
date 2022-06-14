@@ -2432,15 +2432,13 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   _createClass(SmallSearch, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
-          var dropdown = document.getElementsByClassName("small-dropdown-container");
-          var input = document.getElementById("search-input");
-
-          if (!dropdown[0].classList.contains("hidden")) {
-            input.blur();
-            dropdown[0].classList.add("hidden");
-          }
+          _this2.setState({
+            hidden: true
+          });
         }
       });
     }
@@ -2469,8 +2467,9 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       });
       var input = document.getElementById("search-input");
       input.value = "";
-      var dropdown = document.getElementsByClassName("small-dropdown-container");
-      dropdown[0].classList.add("hidden");
+      this.setState({
+        hidden: true
+      });
     }
   }, {
     key: "toggleReveal",
@@ -2510,7 +2509,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var liveItemsList = [];
       var entity = this.props.entity;
@@ -2541,15 +2540,15 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       }, "parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "small-search-content"
       }, this.sortObjects(Object.values(filteredResults)).map(function (entity, idx) {
-        if (_this2.props.entity.id === entity.id) {
+        if (_this3.props.entity.id === entity.id) {
           return;
         }
 
-        if (entity.name.toLowerCase().startsWith(_this2.state.search.toLowerCase())) {
+        if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
           liveItemsList.push(entity.name);
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
             onMouseDown: function onMouseDown(e) {
-              return _this2.handleRedirect(e, entity);
+              return _this3.handleRedirect(e, entity);
             },
             className: "small-search-item",
             key: idx

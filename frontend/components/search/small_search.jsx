@@ -22,13 +22,7 @@ class SmallSearch extends React.Component {
     componentDidMount() {
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
-                const dropdown = document.getElementsByClassName("small-dropdown-container"); 
-                const input = document.getElementById("search-input")
-                
-                if (!dropdown[0].classList.contains("hidden")) {
-                    input.blur();
-                    dropdown[0].classList.add("hidden");
-                } 
+                this.setState({ hidden: true });
             }
         })
     }
@@ -50,8 +44,7 @@ class SmallSearch extends React.Component {
         })
         const input = document.getElementById("search-input")
         input.value = "";
-        const dropdown = document.getElementsByClassName("small-dropdown-container");
-        dropdown[0].classList.add("hidden");
+        this.setState({ hidden: true });
     }
 
     toggleReveal(e) {
