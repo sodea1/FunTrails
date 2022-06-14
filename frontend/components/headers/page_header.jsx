@@ -3,18 +3,6 @@ import { Link } from 'react-router-dom';
 import SmallSearch from '../search/small_search';
 
 class PageHeader extends React.Component {
-    componentDidMount() {
-        if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-            this.props.fetchParks();
-            this.props.fetchTrails();
-        }
-        document.addEventListener("keydown", (target) => {
-            if (target.key === "Escape") {
-                this.setState({ hidden: true })
-            }
-        })
-    }
-
     render() {
         const { entity, parks, trails, history } = this.props;
         const parkName = entity.parkName;

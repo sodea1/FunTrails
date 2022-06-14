@@ -23,7 +23,11 @@ class SmallSearch extends React.Component {
     componentDidMount() {
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
-                this.setState({ hidden: true });
+                this.setState({ hidden: true, search: '' }, () => {
+                    const searchBar = document.getElementById("search-input");
+                    searchBar.blur();
+                    searchBar.value = '';
+                })
             }
         })
     }

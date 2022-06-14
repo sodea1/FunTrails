@@ -460,24 +460,6 @@ var PageHeader = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(PageHeader, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this = this;
-
-      if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-        this.props.fetchParks();
-        this.props.fetchTrails();
-      }
-
-      document.addEventListener("keydown", function (target) {
-        if (target.key === "Escape") {
-          _this.setState({
-            hidden: true
-          });
-        }
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -2169,7 +2151,12 @@ var Search = /*#__PURE__*/function (_React$Component) {
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           _this2.setState({
-            hidden: true
+            hidden: true,
+            search: ''
+          }, function () {
+            var searchBar = document.getElementsByClassName("search-bar")[0];
+            searchBar.blur();
+            searchBar.value = '';
           });
         }
       });
@@ -2437,7 +2424,12 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       document.addEventListener("keydown", function (target) {
         if (target.key === "Escape") {
           _this2.setState({
-            hidden: true
+            hidden: true,
+            search: ''
+          }, function () {
+            var searchBar = document.getElementById("search-input");
+            searchBar.blur();
+            searchBar.value = '';
           });
         }
       });
@@ -4008,10 +4000,8 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
-      if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-        this.props.fetchParks();
-        this.props.fetchTrails();
-      }
+      this.props.fetchParks();
+      this.props.fetchTrails();
     }
   }, {
     key: "openModal",

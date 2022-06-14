@@ -15,10 +15,8 @@ class Trail extends React.Component {
 
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
-        if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
-            this.props.fetchParks();
-            this.props.fetchTrails();
-        }
+        this.props.fetchParks();
+        this.props.fetchTrails();
     }
 
     openModal(formType) {
