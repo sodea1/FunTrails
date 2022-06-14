@@ -2485,7 +2485,6 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     key: "toggleHide",
     value: function toggleHide(e) {
       e.preventDefault();
-      e.stopPropogation();
       var newState = true;
       this.setState({
         hidden: newState

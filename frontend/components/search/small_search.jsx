@@ -62,7 +62,6 @@ class SmallSearch extends React.Component {
 
     toggleHide(e) {
         e.preventDefault();
-        e.stopPropogation();
         let newState = true;
         this.setState({hidden: newState});
     }
