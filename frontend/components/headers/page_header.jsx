@@ -19,7 +19,6 @@ class PageHeader extends React.Component {
         const { entity, parks, trails, history } = this.props;
         const parkName = entity.parkName;
         const linkClass = (typeof parkName === "undefined") ? "header-link-trail" : "header-link";
-        
         return (
             <header className='trail-head'>
                 <div className='header-wrapper'>

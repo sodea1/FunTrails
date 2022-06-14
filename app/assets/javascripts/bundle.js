@@ -2129,7 +2129,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Search = /*#__PURE__*/function (_React$Component) {
   _inherits(Search, _React$Component);
 
@@ -2426,6 +2425,7 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     _this.redirect = _this.redirect.bind(_assertThisInitialized(_this));
     _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
     _this.toggleHide = _this.toggleHide.bind(_assertThisInitialized(_this));
+    _this.preventBlur = _this.preventBlur.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2441,6 +2441,11 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
           });
         }
       });
+    }
+  }, {
+    key: "preventBlur",
+    value: function preventBlur(e) {
+      e.preventDefault();
     }
   }, {
     key: "redirect",
@@ -2469,6 +2474,8 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
       input.value = "";
       this.setState({
         hidden: true
+      }, function () {
+        document.getElementById("search-input").blur();
       });
     }
   }, {
@@ -2484,10 +2491,13 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
     key: "toggleHide",
     value: function toggleHide(e) {
       e.preventDefault();
-      var newState = true;
-      this.setState({
-        hidden: newState
-      });
+
+      if (this.state.hidden === false) {
+        var newState = true;
+        this.setState({
+          hidden: newState
+        });
+      }
     }
   }, {
     key: "changeFilter",
@@ -2524,13 +2534,14 @@ var SmallSearch = /*#__PURE__*/function (_React$Component) {
         "parks": parks
       };
       var filteredResults = searchHash[this.state.filterBy];
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "show-search" + klass,
         id: "parent-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: this.state.hidden === true ? "hidden small-dropdown-container" : "small-dropdown-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "small-search-tabs"
+        className: "small-search-tabs",
+        onMouseDown: this.preventBlur
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
         onMouseDown: this.changeFilter
       }, "all"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
@@ -3989,8 +4000,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Trail);
 
     _this = _super.call(this, props);
-    _this.openModal = _this.openModal.bind(_assertThisInitialized(_this)); // this.hideDropdown = this.hideDropdown.bind(this);
-
+    _this.openModal = _this.openModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3998,8 +4008,10 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
-      this.props.fetchTrails();
-      this.props.fetchParks();
+      if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
+        this.props.fetchParks();
+        this.props.fetchTrails();
+      }
     }
   }, {
     key: "openModal",
@@ -4009,12 +4021,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       } else {
         this.props.history.push('/login');
       }
-    } // hideDropdown(e) {
-    //     e.preventDefault();
-    //     const dropdown = document.getElementsByClassName("small-dropdown-container");
-    //     dropdown[0].classList.add("hidden")
-    // }
-
+    }
   }, {
     key: "trailTitle",
     value: function trailTitle() {
@@ -4063,8 +4070,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           trails = _this$props.trails;
       var trailId = parseInt(this.props.match.params.id);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "content-width flex border-outer",
-        onClick: this.hideDropdown
+        className: "content-width flex border-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -4109,15 +4115,15 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var entity = this.props.trail;
       var _this$props2 = this.props,
           parks = _this$props2.parks,
-          trails = _this$props2.trails;
+          trails = _this$props2.trails,
+          entity = _this$props2.entity;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "grey"
       }, this.props.trails.length > 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_headers_page_header__WEBPACK_IMPORTED_MODULE_1__["default"], {
         history: this.props.history,
-        entity: this.props.trail,
+        entity: entity,
         trails: trails,
         parks: parks
       }), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -4162,6 +4168,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     trails: Object.values(state.entities.trails),
     trail: state.entities.trails[ownProps.match.params.id],
+    entity: state.entities.trails[ownProps.match.params.id],
     reviews: Object.values(state.entities.reviews),
     currUserId: state.session.currUserId,
     trailId: ownProps.match.params.id,

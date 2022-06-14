@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import { BsTree } from 'react-icons/bs';
 
 class Search extends React.Component {

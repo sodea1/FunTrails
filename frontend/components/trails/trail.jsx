@@ -11,13 +11,14 @@ class Trail extends React.Component {
     constructor(props) {
         super(props);
         this.openModal = this.openModal.bind(this);
-        // this.hideDropdown = this.hideDropdown.bind(this);
     }
 
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
-        this.props.fetchTrails();
-        this.props.fetchParks();
+        if (typeof this.props.parks === "undefined" || typeof this.props.trails === "undefined") {
+            this.props.fetchParks();
+            this.props.fetchTrails();
+        }
     }
 
     openModal(formType) {
@@ -27,12 +28,6 @@ class Trail extends React.Component {
             this.props.history.push('/login')
         }
     }
-
-    // hideDropdown(e) {
-    //     e.preventDefault();
-    //     const dropdown = document.getElementsByClassName("small-dropdown-container");
-    //     dropdown[0].classList.add("hidden")
-    // }
 
     trailTitle() {
         const urlString = 'url(' + this.props.trail.photoUrl + ')';
@@ -69,7 +64,7 @@ class Trail extends React.Component {
         const { trail, trails } = this.props;
         const trailId = parseInt(this.props.match.params.id);
         return (
-            <div className='content-width flex border-outer' onClick={this.hideDropdown} >
+            <div className='content-width flex border-outer' >
                 <div className='trail-body'>
                     <span className='trail-description'>{trail.description}</span>
 
@@ -114,15 +109,13 @@ class Trail extends React.Component {
     }
  
     render() {
-        const entity = this.props.trail;
-        const { parks, trails } = this.props;
+        const { parks, trails, entity } = this.props;
         return (
             <div className='grey'>
-                {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={this.props.trail} trails={trails} parks={parks} />}
+                {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={entity} trails={trails} parks={parks} />}
 
                 {this.props.trail && this.trailTitle()}
                 <div className='green-bar' ></div> 
-                {/* onClick={this.hideDropdown} */}
 
                 {this.props.trail && this.trailBody()}
              

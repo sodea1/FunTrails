@@ -17,6 +17,7 @@ class SmallSearch extends React.Component {
         this.redirect = this.redirect.bind(this);
         this.handleRedirect = this.handleRedirect.bind(this);
         this.toggleHide = this.toggleHide.bind(this);
+        this.preventBlur = this.preventBlur.bind(this);
     }
 
     componentDidMount() {
@@ -25,6 +26,10 @@ class SmallSearch extends React.Component {
                 this.setState({ hidden: true });
             }
         })
+    }
+
+    preventBlur(e) {
+        e.preventDefault();
     }
 
     redirect(entity) {
@@ -44,19 +49,23 @@ class SmallSearch extends React.Component {
         })
         const input = document.getElementById("search-input")
         input.value = "";
-        this.setState({ hidden: true });
+        this.setState({ hidden: true }, () => {
+            document.getElementById("search-input").blur();
+        });
     }
 
     toggleReveal(e) {
         e.preventDefault();
         let newState = false;
-        this.setState({ hidden: newState });
+        this.setState({ hidden: newState })
     }
 
     toggleHide(e) {
         e.preventDefault();
-        let newState = true;
-        this.setState({hidden: newState});
+        if (this.state.hidden === false) {
+            let newState = true;
+            this.setState({ hidden: newState })
+        }
     }
 
     changeFilter(e) {
@@ -90,9 +99,9 @@ class SmallSearch extends React.Component {
         
         return (
             <div>
-                <form className={"show-search" + klass} id="parent-dropdown">
+                <div className={"show-search" + klass} id="parent-dropdown">
                     <div className={this.state.hidden === true ? "hidden small-dropdown-container" : "small-dropdown-container"}>
-                        <div className='small-search-tabs'>
+                        <div className='small-search-tabs' onMouseDown={this.preventBlur}>
                             <button onMouseDown={this.changeFilter}>all</button>
                             <button onMouseDown={this.changeFilter}>trails</button>
                             <button onMouseDown={this.changeFilter}>parks</button>
@@ -143,7 +152,7 @@ class SmallSearch extends React.Component {
                     <div className='green-search'>
                         <img src={window.search} width="16px" height="16px" />
                     </div>
-                </form>
+                </div>
             </div>
         )
     }
