@@ -1,5 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+  <meta 
+    property=”og:title”
+    content=”Example Title” 
+  />
+  <meta 
+    name=”image” 
+    property=”og:image” 
+    content=”%PUBLIC_URL%/funtrails.png” 
+  />
+  <meta 
+    name=”author” 
+    content=”Example Author” 
+  />
+  <meta 
+    property=”og:description” 
+    content=”Example Description“
+  />
+  <meta 
+    property=”og:url”
+    content=”https://example.com"
+  />
+
   <head>
     <title>FunTrails</title>
     <%= csrf_meta_tags %>
@@ -52,9 +74,7 @@
       window.linkedin = "<%= image_url('linkedin.png') %>";
       window.github = "<%= image_url('github.png') %>";
 
-    </script>
-
-    
+    </script>   
 
   </head>
 

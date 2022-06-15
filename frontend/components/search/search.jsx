@@ -29,7 +29,7 @@ class Search extends React.Component {
         document.addEventListener("keydown", (target) => {
             if (target.key === "Escape") {
                 this.setState({ hidden: true, search: '' }, () => {
-                    const searchBar = document.getElementsByClassName("search-bar")[0]
+                    const searchBar = document.getElementsByClassName("search-bar")[0];
                     searchBar.blur();
                     searchBar.value = '';
                 })
