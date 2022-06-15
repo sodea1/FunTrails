@@ -1,24 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
-  <meta 
-    property=”og:title”
-    content="FunTrails"
-  />
-  <meta name="image" property="og:image" content="%PUBLIC_URL%/funtrails.png">
-  <meta 
-    name=”author” 
-    content="Sean O'Dea"
-  />
-  <meta 
-    name="description"
-    property=”og:description” 
-    content="FunTrails is a full stack clone of AllTrails that curates parks and trails, displays geographic data, and provides a forum for outdoor enthusiasts to share reviews of their experiences."
-  />
-  <meta 
-    property=”og:url”
-    content="https://fun-trails.herokuapp.com/#/"
-  />
-
   <head>
     <title>FunTrails</title>
     <%= csrf_meta_tags %>
@@ -27,6 +8,25 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAPS_API_KEY']}" %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <meta 
+    property=”og:title”
+    content="FunTrails"
+    />
+    <meta name="image" property="og:image" content="%PUBLIC_URL%/funtrails.png">
+    <meta 
+      name=”author” 
+      content="Sean O'Dea"
+    />
+    <meta 
+      name="description"
+      property=”og:description” 
+      content="FunTrails is a full stack clone of AllTrails that curates parks and trails, displays geographic data, and provides a forum for outdoor enthusiasts to share reviews of their experiences."
+    />
+    <meta 
+      property=”og:url”
+      content="https://fun-trails.herokuapp.com/#/"
+    />
 
     <script type="text/javascript">
       window.logo = "<%= image_url('logo.png') %>";
