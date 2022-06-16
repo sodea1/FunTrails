@@ -10,8 +10,15 @@ import { createReview, deleteReview, fetchTrailReviews } from './actions/review_
 import { postReviewCondition } from './util/review_condition_api_util';
 import { updateReviewCondition } from './util/review_condition_api_util';
 import { fetchPark } from './util/parks_api_util';
+import ReactGA from 'react-ga';
+
+function initializeReactGA() {
+  ReactGA.initialize('G-GPY7E97KHK');
+  ReactGA.pageview('/homepage');
+}
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeReactGA();
   let store;
   if (window.currUser) {
     const preloadedState = {
