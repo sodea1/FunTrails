@@ -3240,7 +3240,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "flex-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         className: "prof-pic",
-        src: window.git_profile_photo,
+        src: window.profile_photo,
         height: "140px",
         width: "140px"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -3274,7 +3274,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         width: "42px",
         height: "42px"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", {
-        href: "https://https://angel.co/u/sean-o-dea-4",
+        href: "https://angel.co/u/sean-o-dea-4",
         target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: window.angellist,
