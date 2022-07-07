@@ -6510,7 +6510,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     key: "convertToCelsius",
     value: function convertToCelsius(degrees) {
       var celsius = (degrees - 32) / (9 / 5);
-      return celsius;
+      return Math.floor(celsius);
     }
   }, {
     key: "trailTitle",
@@ -6600,12 +6600,13 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "weather-section"
       }, this.props.forecast.map(function (day, i) {
-        var trueI = currDayI + i;
+        var trueI = (currDayI + i) % 7;
         var img = ["partly", "clear", "rain", "thunder"].forEach(function (cond) {
           if (day.icon.includes(cond)) {
             return cond;
           }
         });
+        console.log(weatherImgs[img]);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "day-container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -6615,7 +6616,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           src: weatherImgs[img]
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "hi-lo-weather"
-        }));
+        }, _this2.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + _this2.convertToCelsius(day.apparentTemperatureLow) + "º C"));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         openModal: this.openModal,
         reviews: this.props.reviews,

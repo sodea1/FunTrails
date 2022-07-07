@@ -30,7 +30,7 @@ class Trail extends React.Component {
 
     convertToCelsius(degrees) {
         let celsius = (degrees - 32) / (9/5);
-        return celsius;
+        return Math.floor(celsius);
     }
 
     trailTitle() {
@@ -115,17 +115,18 @@ class Trail extends React.Component {
             
                     <section className='weather-section'>
                         {this.props.forecast.map((day, i) => {
-                            let trueI = (currDayI + i);
+                            let trueI = (currDayI + i) % 7;
                             let img = ["partly", "clear", "rain", "thunder"].forEach((cond) => {
-                                if (day.icon.includes(cond)) {  
+                                if (day.icon.includes(cond)) {
                                     return cond;
                                 }
                             })
+                            console.log(weatherImgs[img]);
                             return (
                                 <div className='day-container'>
                                     <span className='day'>{days[trueI]}</span>
-                                    <img className='weather-icon' src={weatherImgs[img]}></img>
-                                    <div className='hi-lo-weather'></div>
+                                    <img className='weather-icon' src={weatherImgs[img]} />
+                                    <div className='hi-lo-weather'>{this.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + this.convertToCelsius(day.apparentTemperatureLow) + "º C"}</div>
                                 </div>
                             )
                         })}
