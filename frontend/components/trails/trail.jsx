@@ -90,6 +90,10 @@ class Trail extends React.Component {
                         })}
                     </section>
 
+                    <section className='weather-section'>
+                        
+                    </section>
+
                     <ReviewContainer openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
 
                 </div>

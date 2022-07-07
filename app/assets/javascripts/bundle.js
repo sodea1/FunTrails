@@ -6574,7 +6574,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+        className: "weather-section"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         openModal: this.openModal,
         reviews: this.props.reviews,
         fetchTrailReviews: this.props.fetchTrailReviews,
