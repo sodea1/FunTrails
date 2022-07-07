@@ -13,7 +13,6 @@ const receivePark = park => ({
     park
 });
 
-
 export const fetchParks = () => dispatch => {
     return ParkApiUtil.fetchParks()
         .then(res => dispatch(receiveParks(res)))

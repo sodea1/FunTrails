@@ -11,6 +11,7 @@ import { postReviewCondition } from './util/review_condition_api_util';
 import { updateReviewCondition } from './util/review_condition_api_util';
 import { fetchPark } from './util/parks_api_util';
 import ReactGA from 'react-ga';
+import { fetchWeather } from './actions/weather_actions';
 
 function initializeReactGA() {
   ReactGA.initialize('G-GPY7E97KHK');
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     store = configureStore();
   }
   // testing 
+  window.fetchWeather = fetchWeather;
   window.fetchPark = fetchPark;
   window.deleteReview = deleteReview;
   window.updateReviewCondition = updateReviewCondition;
