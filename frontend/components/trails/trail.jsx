@@ -116,16 +116,18 @@ class Trail extends React.Component {
                     <section className='weather-section'>
                         {this.props.forecast.map((day, i) => {
                             let trueI = (currDayI + i) % 7;
-                            let img = ["partly", "clear", "rain", "thunder"].forEach((cond) => {
+                            const img = ["partly", "clear", "rain", "thunder"].map((cond) => {
                                 if (day.icon.includes(cond)) {
-                                    return cond;
+                                    console.log(cond);
+                                    console.log(weatherImgs[cond]);
+                                    return weatherImgs[cond];
                                 }
                             })
-                            console.log(weatherImgs[img]);
+
                             return (
                                 <div className='day-container'>
                                     <span className='day'>{days[trueI]}</span>
-                                    <img className='weather-icon' src={weatherImgs[img]} />
+                                    <img src={} />
                                     <div className='hi-lo-weather'>{this.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + this.convertToCelsius(day.apparentTemperatureLow) + "º C"}</div>
                                 </div>
                             )
@@ -156,9 +158,10 @@ class Trail extends React.Component {
                 {this.props.trails.length > 1 && <PageHeader history={this.props.history} entity={entity} trails={trails} parks={parks} />}
 
                 {this.props.trail && this.trailTitle()}
-                <div className='green-bar' ></div> 
+                <div className='green-bar'></div> 
 
                 {this.props.trail && this.props.forecast && this.trailBody()}
+                 
              
             </div>
         );
