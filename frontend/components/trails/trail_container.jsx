@@ -16,7 +16,8 @@ const mapStateToProps = (state, ownProps) => ({
     parks: state.entities.parks,
     history: ownProps.history,
     lat: state.entities.trails[ownProps.match.params.latitude],
-    long: state.entities.trails[ownProps.match.params.longitude]
+    long: state.entities.trails[ownProps.match.params.longitude],
+    forecast: state.entities.weather.forecast
 });
 
 const mapDispatchToProps = dispatch => ({

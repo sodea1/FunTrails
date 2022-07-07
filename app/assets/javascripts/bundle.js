@@ -6495,7 +6495,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchParks();
-      this.props.fetchTrails(); // .then(this.props.fetchWeather([this.props.lat, this.props.long]));
+      this.props.fetchTrails().then(this.props.fetchWeather([this.props.lat, this.props["long"]]));
     }
   }, {
     key: "openModal",
@@ -6505,6 +6505,12 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       } else {
         this.props.history.push('/login');
       }
+    }
+  }, {
+    key: "convertToCelsius",
+    value: function convertToCelsius(degrees) {
+      var celsius = (degrees - 32) / (9 / 5);
+      return celsius;
     }
   }, {
     key: "trailTitle",
@@ -6551,8 +6557,25 @@ var Trail = /*#__PURE__*/function (_React$Component) {
 
       var _this$props = this.props,
           trail = _this$props.trail,
-          trails = _this$props.trails;
+          trails = _this$props.trails,
+          forecast = _this$props.forecast;
       var trailId = parseInt(this.props.match.params.id);
+      var weatherImgs = {
+        "partly": window.partly,
+        "clear": window.clear,
+        "thunder": window.thunder,
+        "rain": window.rain
+      };
+      var days = {
+        0: "Sunday",
+        1: "Monday",
+        2: "Tuesday",
+        3: "Wednesday",
+        4: "Thursday",
+        5: "Friday",
+        6: "Saturday"
+      };
+      var currDayI = new Date().getDay();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "content-width flex border-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -6576,7 +6599,24 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         }, tag.description);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "weather-section"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, this.props.forecast.map(function (day, i) {
+        var trueI = currDayI + i;
+        var img = ["partly", "clear", "rain", "thunder"].forEach(function (cond) {
+          if (day.icon.includes(cond)) {
+            return cond;
+          }
+        });
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "day-container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          className: "day"
+        }, days[trueI]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+          className: "weather-icon",
+          src: weatherImgs[img]
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "hi-lo-weather"
+        }));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         openModal: this.openModal,
         reviews: this.props.reviews,
         fetchTrailReviews: this.props.fetchTrailReviews,
@@ -6614,7 +6654,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         parks: parks
       }), this.props.trail && this.trailTitle(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "green-bar"
-      }), this.props.trail && this.trailBody());
+      }), this.props.trail && this.props.forecast && this.trailBody());
     }
   }]);
 
@@ -6663,7 +6703,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     parks: state.entities.parks,
     history: ownProps.history,
     lat: state.entities.trails[ownProps.match.params.latitude],
-    "long": state.entities.trails[ownProps.match.params.longitude]
+    "long": state.entities.trails[ownProps.match.params.longitude],
+    forecast: state.entities.weather.forecast
   };
 };
 
@@ -7086,7 +7127,6 @@ var weatherReducer = function weatherReducer() {
 
   switch (action.type) {
     case _actions_weather_actions__WEBPACK_IMPORTED_MODULE_0__.GET_FORECAST:
-      debugger;
       var newState = {
         "forecast": action.weather.data.daily.data.slice(0, 5)
       };

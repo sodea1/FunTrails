@@ -17,7 +17,7 @@ class Trail extends React.Component {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchParks();
         this.props.fetchTrails()
-            // .then(this.props.fetchWeather([this.props.lat, this.props.long]));
+            .then(this.props.fetchWeather([this.props.lat, this.props.long]));
     }
 
     openModal(formType) {
@@ -26,6 +26,11 @@ class Trail extends React.Component {
         } else {
             this.props.history.push('/login')
         }
+    }
+
+    convertToCelsius(degrees) {
+        let celsius = (degrees - 32) / (9/5);
+        return celsius;
     }
 
     trailTitle() {
@@ -37,7 +42,7 @@ class Trail extends React.Component {
         } else if (this.props.trail.difficulty_level === "moderate") {
             tagKlass = "descriptor-mod";
         } else {
-            tagKlass = "descriptor-hard"
+            tagKlass = "descriptor-hard";
         }
 
         return (
@@ -60,8 +65,26 @@ class Trail extends React.Component {
     }
 
     trailBody() {
-        const { trail, trails } = this.props;
+        const { trail, trails, forecast } = this.props;
         const trailId = parseInt(this.props.match.params.id);
+        const weatherImgs = {
+            "partly": window.partly,
+            "clear": window.clear,
+            "thunder": window.thunder,
+            "rain": window.rain
+        }
+        const days = {
+            0: "Sunday",
+            1: "Monday",
+            2: "Tuesday",
+            3: "Wednesday",
+            4: "Thursday",
+            5: "Friday",
+            6: "Saturday"
+        }
+
+        let currDayI = new Date().getDay();
+
         return (
             <div className='content-width flex border-outer' >
                 <div className='trail-body'>
@@ -89,9 +112,23 @@ class Trail extends React.Component {
                             )
                         })}
                     </section>
-
+            
                     <section className='weather-section'>
-                        
+                        {this.props.forecast.map((day, i) => {
+                            let trueI = (currDayI + i);
+                            let img = ["partly", "clear", "rain", "thunder"].forEach((cond) => {
+                                if (day.icon.includes(cond)) {  
+                                    return cond;
+                                }
+                            })
+                            return (
+                                <div className='day-container'>
+                                    <span className='day'>{days[trueI]}</span>
+                                    <img className='weather-icon' src={weatherImgs[img]}></img>
+                                    <div className='hi-lo-weather'></div>
+                                </div>
+                            )
+                        })}
                     </section>
 
                     <ReviewContainer openModal={this.openModal} reviews={this.props.reviews} fetchTrailReviews={this.props.fetchTrailReviews} trailId={trailId}/>
@@ -120,7 +157,7 @@ class Trail extends React.Component {
                 {this.props.trail && this.trailTitle()}
                 <div className='green-bar' ></div> 
 
-                {this.props.trail && this.trailBody()}
+                {this.props.trail && this.props.forecast && this.trailBody()}
              
             </div>
         );
