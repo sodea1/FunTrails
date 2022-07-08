@@ -2833,7 +2833,6 @@ var getWeather = function getWeather(weather) {
 
 var fetchWeather = function fetchWeather(coords) {
   return function (dispatch) {
-    console.log("fetching weather");
     return _util_weather_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchWeather(coords).then(function (res) {
       return dispatch(getWeather(res));
     });
@@ -4018,7 +4017,7 @@ var Review = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "review-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        className: "rev-banner bold"
+        className: "rev-banner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "tab-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
@@ -6496,7 +6495,22 @@ var Trail = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // 2. called after 1st render; fetchTrails populates the store with trails
       this.props.fetchParks();
-      this.props.fetchTrails().then(this.props.fetchWeather([this.props.lat, this.props["long"]]));
+      this.props.fetchTrails().then(this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]));
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var coords = [this.props.trail.latitude, this.props.trail.longitude];
+      console.log("logging coords...");
+      console.log(coords);
+
+      if (prevProps.match.params.id !== this.props.match.params.id) {
+        console.log("fetching weather on update");
+        console.log(this.props.trail);
+        console.log(this.props.trail.latitude);
+        console.log(this.props.trail.longitude);
+        this.props.fetchWeather(coords);
+      }
     }
   }, {
     key: "openModal",
@@ -6598,15 +6612,19 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", {
+        className: "weather-banner"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "tab-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        className: "weather-tab"
+      }, "Weather"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "weather-section"
       }, forecast.map(function (day, i) {
         var trueI = (currDayI + i) % 7;
         var img;
         ["partly", "clear", "rain", "thunder"].forEach(function (cond) {
           if (day.icon.includes(cond)) {
-            console.log(cond);
-            console.log(weatherImgs[cond]);
             img = weatherImgs[cond];
           }
         });
@@ -6707,8 +6725,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     trailId: ownProps.match.params.id,
     parks: state.entities.parks,
     history: ownProps.history,
-    lat: state.entities.trails[ownProps.match.params.latitude],
-    "long": state.entities.trails[ownProps.match.params.longitude],
+    // lat: state.entities.trails[ownProps.match.params.id],
+    // long: state.entities.trails[ownProps.match.params.id],
     forecast: state.entities.weather.forecast
   };
 };
@@ -7481,11 +7499,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); /
 var fetchWeather = function fetchWeather(coords) {
   return axios.request({
     method: 'GET',
-    url: 'https://dark-sky.p.rapidapi.com/37.8890,-122.6108',
-    params: {
-      latitude: coords[0],
-      longitude: coords[1]
-    },
+    url: "https://dark-sky.p.rapidapi.com/".concat(coords[0], ",").concat(coords[1]),
+    // params: {
+    //     latitude: coords[0],
+    //     longitude: coords[1]
+    // },
     headers: {
       'X-RapidAPI-Key': window.weatherAPIKey,
       'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'

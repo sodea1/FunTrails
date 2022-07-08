@@ -17,7 +17,21 @@ class Trail extends React.Component {
         // 2. called after 1st render; fetchTrails populates the store with trails
         this.props.fetchParks();
         this.props.fetchTrails()
-            .then(this.props.fetchWeather([this.props.lat, this.props.long]));
+            .then(this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]));
+    }
+
+    componentDidUpdate(prevProps) {
+        const coords = [this.props.trail.latitude, this.props.trail.longitude];
+        console.log("logging coords...")
+        console.log(coords);
+
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            console.log("fetching weather on update");
+            console.log(this.props.trail);
+            console.log(this.props.trail.latitude);
+            console.log(this.props.trail.longitude);
+            this.props.fetchWeather(coords);
+        }
     }
 
     openModal(formType) {
@@ -86,7 +100,7 @@ class Trail extends React.Component {
         let currDayI = new Date().getDay();
 
         return (
-            <div className='content-width flex border-outer' >
+            <div className='content-width flex border-outer'>
                 {/* <img src={weatherImgs["partly"]} alt="" /> */}
                 <div className='trail-body'>
                     <span className='trail-description'>{trail.description}</span>
@@ -114,8 +128,10 @@ class Trail extends React.Component {
                         })}
                     </section>
 
-                    <header >
-
+                    <header className='weather-banner'>
+                        <div className='tab-container'>
+                            <span className='weather-tab'>Weather</span>
+                        </div>
                     </header>
             
                     <section className='weather-section'>
@@ -124,8 +140,6 @@ class Trail extends React.Component {
                             let img;
                             ["partly", "clear", "rain", "thunder"].forEach((cond) => {
                                 if (day.icon.includes(cond)) {
-                                    console.log(cond);
-                                    console.log(weatherImgs[cond]);
                                     img = weatherImgs[cond];
                                 }
                             })

@@ -140,7 +140,7 @@ class Review extends React.Component {
         const datesArr = reviews.slice().map(review => review.date_hiked);
         return (
             <div className='review-container'>
-                <div className='rev-banner bold'>
+                <div className='rev-banner'>
                     <div className='tab-container'>
                         <span className='rev-count'>Reviews ({reviews.length})</span>
                     </div>
