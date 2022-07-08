@@ -1,5 +1,4 @@
 const axios = require("axios");
-
 // coords = [lat, long]
 
 export const fetchWeather = (coords) => axios.request({
@@ -10,7 +9,7 @@ export const fetchWeather = (coords) => axios.request({
         longitude: coords[1]
     },
     headers: {
-        'X-RapidAPI-Key': '65ea497c18msh7fb47851fa239e9p1b9359jsna2d0f32ffc3f',
+        'X-RapidAPI-Key': window.weatherAPIKey,
         'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
     }
 })

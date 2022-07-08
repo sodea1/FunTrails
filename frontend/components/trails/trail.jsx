@@ -113,9 +113,13 @@ class Trail extends React.Component {
                             )
                         })}
                     </section>
+
+                    <header >
+
+                    </header>
             
                     <section className='weather-section'>
-                        {this.props.forecast.map((day, i) => {
+                        {forecast.map((day, i) => {
                             let trueI = (currDayI + i) % 7;
                             let img;
                             ["partly", "clear", "rain", "thunder"].forEach((cond) => {
@@ -129,7 +133,7 @@ class Trail extends React.Component {
                             return (
                                 <div className='day-container'>
                                     <span className='day'>{days[trueI]}</span>
-                                    <img src={img} />
+                                    <img src={img} height="42px" width="42px" />
                                     <div className='hi-lo-weather'>{this.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + this.convertToCelsius(day.apparentTemperatureLow) + "º C"}</div>
                                 </div>
                             )

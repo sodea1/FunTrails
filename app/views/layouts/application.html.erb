@@ -25,6 +25,10 @@
     </script>
 
     <script type="text/javascript">
+      window.weatherAPIKey = "<%= Rails.application.credentials[:weather_api_key] %>"
+    </script>
+
+    <script type="text/javascript">
       window.logo = "<%= image_url('logo.png') %>";
 
       window.green_loc = "<%= image_url('green_loc.png') %>";

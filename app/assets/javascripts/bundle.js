@@ -2833,6 +2833,7 @@ var getWeather = function getWeather(weather) {
 
 var fetchWeather = function fetchWeather(coords) {
   return function (dispatch) {
+    console.log("fetching weather");
     return _util_weather_api_util__WEBPACK_IMPORTED_MODULE_0__.fetchWeather(coords).then(function (res) {
       return dispatch(getWeather(res));
     });
@@ -6597,9 +6598,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           className: "tag",
           key: idx
         }, tag.description);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("header", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
         className: "weather-section"
-      }, this.props.forecast.map(function (day, i) {
+      }, forecast.map(function (day, i) {
         var trueI = (currDayI + i) % 7;
         var img;
         ["partly", "clear", "rain", "thunder"].forEach(function (cond) {
@@ -6614,7 +6615,9 @@ var Trail = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           className: "day"
         }, days[trueI]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: img
+          src: img,
+          height: "42px",
+          width: "42px"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "hi-lo-weather"
         }, _this2.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + _this2.convertToCelsius(day.apparentTemperatureLow) + "º C"));
@@ -7484,7 +7487,7 @@ var fetchWeather = function fetchWeather(coords) {
       longitude: coords[1]
     },
     headers: {
-      'X-RapidAPI-Key': '65ea497c18msh7fb47851fa239e9p1b9359jsna2d0f32ffc3f',
+      'X-RapidAPI-Key': window.weatherAPIKey,
       'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
     }
   });

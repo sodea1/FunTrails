@@ -13,6 +13,7 @@ import { fetchPark } from './util/parks_api_util';
 import ReactGA from 'react-ga';
 import { fetchWeather } from './actions/weather_actions';
 
+
 function initializeReactGA() {
   ReactGA.initialize('G-GPY7E97KHK');
   ReactGA.pageview('/homepage');

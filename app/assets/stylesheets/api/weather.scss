@@ -2,12 +2,16 @@
 @import '../base/colors.scss';
 
 .weather-section {
+    width: 90%;
+    margin: 0px 24px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 16px 0px 24px;
 }
 
 .day-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

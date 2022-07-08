@@ -8,6 +8,7 @@ const getWeather = (weather) => ({
 });
 
 export const fetchWeather = (coords) => (dispatch) => {
+    console.log("fetching weather");
     return (
         WeatherApiUtil.fetchWeather(coords)
             .then(res => dispatch(getWeather(res)))
