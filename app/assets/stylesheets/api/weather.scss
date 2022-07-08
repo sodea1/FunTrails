@@ -17,6 +17,10 @@
     color: $text;
     font-size: 14px;
     font-family: "Proxima-Nova";
+
+    img {
+        margin-bottom: 10px;
+    }
 }
 
 .weather-banner {
@@ -36,4 +40,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.day {
+    margin-bottom: 10px;
 }

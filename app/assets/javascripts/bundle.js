@@ -7500,10 +7500,6 @@ var fetchWeather = function fetchWeather(coords) {
   return axios.request({
     method: 'GET',
     url: "https://dark-sky.p.rapidapi.com/".concat(coords[0], ",").concat(coords[1]),
-    // params: {
-    //     latitude: coords[0],
-    //     longitude: coords[1]
-    // },
     headers: {
       'X-RapidAPI-Key': window.weatherAPIKey,
       'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
