@@ -4,7 +4,7 @@ const weatherReducer = (state = {}, action) => {
     Object.freeze(state);
     switch(action.type) {
         case GET_FORECAST:
-            let newState = { "forecast": action.weather.data.daily.data.slice(0, 5) };
+            let newState = { "forecast": action.weather.daily.data.slice(0, 5) };
             return Object.assign({}, state, newState);
         default:
             return state;

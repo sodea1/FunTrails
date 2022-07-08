@@ -15,17 +15,14 @@ class Trail extends React.Component {
 
     componentDidMount() {
         // 2. called after 1st render; fetchTrails populates the store with trails
-        this.props.fetchParks();
         this.props.fetchTrails()
-            .then(this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]));
+            .then(() => this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]))
+        this.props.fetchParks();
     }
 
     componentDidUpdate(prevProps) {
-        const coords = [this.props.trail.latitude, this.props.trail.longitude];
-        console.log("logging coords...")
-        console.log(coords);
-
         if (prevProps.match.params.id !== this.props.match.params.id) {
+            const coords = [this.props.trail.latitude, this.props.trail.longitude];
             console.log("fetching weather on update");
             console.log(this.props.trail);
             console.log(this.props.trail.latitude);

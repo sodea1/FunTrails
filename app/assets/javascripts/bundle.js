@@ -6493,18 +6493,19 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   _createClass(Trail, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       // 2. called after 1st render; fetchTrails populates the store with trails
+      this.props.fetchTrails().then(function () {
+        return _this2.props.fetchWeather([_this2.props.trail.latitude, _this2.props.trail.longitude]);
+      });
       this.props.fetchParks();
-      this.props.fetchTrails().then(this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]));
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var coords = [this.props.trail.latitude, this.props.trail.longitude];
-      console.log("logging coords...");
-      console.log(coords);
-
       if (prevProps.match.params.id !== this.props.match.params.id) {
+        var coords = [this.props.trail.latitude, this.props.trail.longitude];
         console.log("fetching weather on update");
         console.log(this.props.trail);
         console.log(this.props.trail.latitude);
@@ -6568,7 +6569,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "trailBody",
     value: function trailBody() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           trail = _this$props.trail,
@@ -6638,7 +6639,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
           width: "42px"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
           className: "hi-lo-weather"
-        }, _this2.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + _this2.convertToCelsius(day.apparentTemperatureLow) + "º C"));
+        }, _this3.convertToCelsius(day.apparentTemperatureHigh) + "º" + " / " + _this3.convertToCelsius(day.apparentTemperatureLow) + "º C"));
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_reviews_review_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         openModal: this.openModal,
         reviews: this.props.reviews,
@@ -6655,7 +6656,7 @@ var Trail = /*#__PURE__*/function (_React$Component) {
       }, "Nearby Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "trail-tiles-wrapper"
       }, trails.map(function (trail, i) {
-        return trail.id !== _this2.props.trail.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        return trail.id !== _this3.props.trail.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_tiles_tile__WEBPACK_IMPORTED_MODULE_5__["default"], {
           trail: trail,
           key: i
         }) : '';
@@ -6707,6 +6708,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _trail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./trail */ "./frontend/components/trails/trail.jsx");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _actions_weather_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/weather_actions */ "./frontend/actions/weather_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+
 
 
 
@@ -6751,7 +6754,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_0__.connect)(mapStateToProps, mapDispatchToProps)(_trail__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -7151,7 +7154,7 @@ var weatherReducer = function weatherReducer() {
   switch (action.type) {
     case _actions_weather_actions__WEBPACK_IMPORTED_MODULE_0__.GET_FORECAST:
       var newState = {
-        "forecast": action.weather.data.daily.data.slice(0, 5)
+        "forecast": action.weather.daily.data.slice(0, 5)
       };
       return Object.assign({}, state, newState);
 
@@ -7494,10 +7497,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchWeather": () => (/* binding */ fetchWeather)
 /* harmony export */ });
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); // coords = [lat, long]
+// export const fetchWeather = (coords) => axios.request({
+//     method: 'GET',
+//     url: `https://dark-sky.p.rapidapi.com/${coords[0]},${coords[1]}`,
+// headers: {
+//     'X-RapidAPI-Key': window.weatherAPIKey,
+//     'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
+// }
+// })
 
 
 var fetchWeather = function fetchWeather(coords) {
-  return axios.request({
+  return $.ajax({
     method: 'GET',
     url: "https://dark-sky.p.rapidapi.com/".concat(coords[0], ",").concat(coords[1]),
     headers: {

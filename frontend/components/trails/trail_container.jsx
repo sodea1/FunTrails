@@ -5,6 +5,7 @@ import { fetchParks } from "../../actions/park_actions";
 import Trail from "./trail";
 import { openModal } from "../../actions/modal_actions";
 import { fetchWeather } from "../../actions/weather_actions";
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProps) => ({
     trails: Object.values(state.entities.trails),
@@ -28,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
     fetchWeather: (coords) => dispatch(fetchWeather(coords))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Trail);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Trail));
