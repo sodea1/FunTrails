@@ -29,32 +29,36 @@ class Nav extends React.Component {
             </div>
 
         const navBar = this.props.currUser ? (
-            <div className='navbar'>
-                {leftNavBar}
-                <div className='mid-nav'>
-                    <Link to="/" className='nav-center-links'>
-                        <img src={window.logo} width="82px" height="82px" className='logo'/>
-                        <span className="nav-title">FunTrails</span>
-                    </Link>
-                </div>
-                <div className='right-nav'>
-                    {/* ADD LOGOUT ICON */}
-                    <ProfDropdown handleLogout={this.handleLogout} />                    
+            <div className='fixed'>
+                <div className='navbar'>
+                    {leftNavBar}
+                    <div className='mid-nav'>
+                        <Link to="/" className='nav-center-links'>
+                            <img src={window.logo} width="82px" height="82px" className='logo'/>
+                            <span className="nav-title">FunTrails</span>
+                        </Link>
+                    </div>
+                    <div className='right-nav'>
+                        {/* ADD LOGOUT ICON */}
+                        <ProfDropdown handleLogout={this.handleLogout} />                    
+                    </div>
                 </div>
             </div>
         )
         : (
-            <div className='navbar'>
-                {leftNavBar}
-                <div className='mid-nav'>
-                        <Link to="/" className='nav-center-links'>
-                            <img src={window.logo} width="82px" height="82px" className='logo' />
-                            <span className="nav-title">FunTrails</span>
-                        </Link>
-                </div>
-                <div className='right-nav'>
-                    <Link to='/signup' className='signup-button' onClick={this.props.clearSessionErrors}>Sign Up</Link>
-                    <Link to='/login' className='login-button' onClick={this.props.clearSessionErrors}>Login</Link>
+            <div className='fixed'>
+                <div className='navbar'>
+                    {leftNavBar}
+                    <div className='mid-nav'>
+                            <Link to="/" className='nav-center-links'>
+                                <img src={window.logo} width="82px" height="82px" className='logo' />
+                                <span className="nav-title">FunTrails</span>
+                            </Link>
+                    </div>
+                    <div className='right-nav'>
+                        <Link to='/signup' className='signup-button' onClick={this.props.clearSessionErrors}>Sign Up</Link>
+                        <Link to='/login' className='login-button' onClick={this.props.clearSessionErrors}>Login</Link>
+                    </div>
                 </div>
             </div>
         )

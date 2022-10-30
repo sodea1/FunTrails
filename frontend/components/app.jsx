@@ -14,13 +14,15 @@ const App = () => (
   <div id="container">
     <Modal />
     <NavContainer />
-    <Switch>
-      <AuthRoute path="/signup" component={SignupFormContainer} />
-      <AuthRoute path="/login" component={LoginFormContainer} />
-      <Route path="/trails/:id" component={TrailContainer} />
-      <Route path="/parks/:id" component={ParkContainer} />
-      <Route path="/" component={SplashContainer} />
-    </Switch>
+    <div className="margintop">
+      <Switch>
+        <AuthRoute path="/signup" component={SignupFormContainer} />
+        <AuthRoute path="/login" component={LoginFormContainer} />
+        <Route path="/trails/:id" component={TrailContainer} />
+        <Route path="/parks/:id" component={ParkContainer} />
+        <Route path="/" component={SplashContainer} />
+      </Switch>
+    </div>
 
     <Footer />
   </div>
