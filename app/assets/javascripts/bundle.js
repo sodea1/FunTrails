@@ -3280,6 +3280,20 @@ var Nav = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Nav, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.addEventListener("scroll", function (e) {
+        var nav = document.getElementsByClassName("navbar")[0];
+
+        if (window.pageYOffset < 50) {
+          var transparency = (50 - window.pageYOffset) / 50;
+          console.log(transparency);
+          nav.style.backgroundColor = "rgba(255, 0, 0, ".concat(transparency, ")");
+        } else {// nav.style.backroundColor = "transparent";
+        }
+      });
+    }
+  }, {
     key: "handleLogout",
     value: function handleLogout(e) {
       e.preventDefault();

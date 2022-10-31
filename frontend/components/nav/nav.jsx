@@ -9,6 +9,19 @@ class Nav extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
     }
 
+    componentDidMount() {
+        document.addEventListener("scroll", (e) => {
+            let nav = document.getElementsByClassName("navbar")[0];
+            if (window.pageYOffset < 50) {
+                let transparency = (50 - window.pageYOffset) / 50;
+                console.log(transparency)
+                nav.style.backgroundColor = `rgba(255, 0, 0, ${transparency})`;
+            } else {
+                // nav.style.backroundColor = "transparent";
+            }
+        })
+    }
+
     handleLogout(e) {
         e.preventDefault();
         this.props.logout();
