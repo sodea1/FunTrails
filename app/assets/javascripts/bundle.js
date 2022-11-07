@@ -4515,10 +4515,10 @@ function ScrollToTop() {
 
 /***/ }),
 
-/***/ "./frontend/components/search/search.jsx":
-/*!***********************************************!*\
-  !*** ./frontend/components/search/search.jsx ***!
-  \***********************************************/
+/***/ "./frontend/components/search/searchHooks.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/search/searchHooks.jsx ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4529,266 +4529,199 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/bs */ "./node_modules/react-icons/bs/index.esm.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
-var Search = /*#__PURE__*/function (_React$Component) {
-  _inherits(Search, _React$Component);
 
-  var _super = _createSuper(Search);
 
-  function Search(props) {
-    var _this;
+var Search = function Search(_ref) {
+  var trails = _ref.trails,
+      parks = _ref.parks,
+      history = _ref.history;
 
-    _classCallCheck(this, Search);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      search = _useState2[0],
+      setSearch = _useState2[1];
 
-    _this = _super.call(this, props);
-    _this.state = {
-      search: '',
-      currImg: 1,
-      hidden: true,
-      filterBy: "All"
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currImg = _useState4[0],
+      setImg = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      hidden = _useState6[0],
+      setHidden = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("All"),
+      _useState8 = _slicedToArray(_useState7, 2),
+      filterBy = _useState8[0],
+      setFilter = _useState8[1];
+
+  var liveItemsList = [];
+  var allResults = trails.concat(parks);
+  var searchHash = {
+    "All": allResults,
+    "Trails": trails,
+    "Parks": parks
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.addEventListener("keydown", handleEscape);
+    return function cleanup() {
+      window.removeEventListener("keydown", handleEscape);
     };
-    _this.changeImage = _this.changeImage.bind(_assertThisInitialized(_this));
-    _this.updateSearch = _this.updateSearch.bind(_assertThisInitialized(_this));
-    _this.routeTrail = _this.routeTrail.bind(_assertThisInitialized(_this));
-    _this.show = _this.show.bind(_assertThisInitialized(_this));
-    _this.changeFilter = _this.changeFilter.bind(_assertThisInitialized(_this));
-    _this.hide = _this.hide.bind(_assertThisInitialized(_this));
-    _this.handleRedirect = _this.handleRedirect.bind(_assertThisInitialized(_this));
-    return _this;
-  } // async
-
-
-  _createClass(Search, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      // async function to fetch photo
-      this.interval = setInterval(function () {
-        return _this2.changeImage();
-      }, 5000);
-      document.addEventListener("keydown", function (target) {
-        if (target.key === "Escape") {
-          _this2.setState({
-            hidden: true,
-            search: ''
-          }, function () {
-            var searchBar = document.getElementsByClassName("search-bar")[0];
-            searchBar.blur();
-            searchBar.value = '';
-          });
-        }
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var intervalId = setInterval(function () {
+      setImg(function (newImg) {
+        return (newImg + 1) % 4;
       });
+    }, 5000);
+    return function cleanup() {
+      console.log("clearing interval");
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  var handleEscape = function handleEscape(target) {
+    if (target.key === "Escape") {
+      setHidden(true);
+      setSearch("");
+      var searchBar = document.getElementsByClassName("search-bar")[0];
+      searchBar.blur();
+      searchBar.value = '';
     }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      // clear the interval before component removed from DOM
-      if (this.interval) {
-        clearInterval(this.interval);
-      }
-    }
-  }, {
-    key: "changeImage",
-    value: function changeImage() {
-      var nextImg = this.state.currImg + 1;
-      if (nextImg === 5) nextImg = 1;
-      this.setState({
-        currImg: nextImg
-      });
-    }
-  }, {
-    key: "updateSearch",
-    value: function updateSearch(e) {
-      this.setState({
-        search: e.target.value
-      });
-    }
-  }, {
-    key: "routeTrail",
-    value: function routeTrail(trailId) {
-      this.props.history.push("/trails/".concat(trailId));
-    }
-  }, {
-    key: "routePark",
-    value: function routePark(parkId) {
-      this.props.history.push("/parks/".concat(parkId));
-    }
-  }, {
-    key: "show",
-    value: function show(e) {
+  };
+
+  var changeFilter = function changeFilter(e) {
+    e.preventDefault();
+    var prevTab = document.getElementsByClassName('tab-underline');
+    prevTab ? prevTab[0].classList.remove('tab-underline') : "";
+    e.target.classList.add('tab-underline');
+    setFilter(e.target.innerText);
+  };
+
+  var sortObjects = function sortObjects(objs) {
+    var sorted = objs.slice();
+    return sorted.sort(function (a, b) {
+      return a.name.localeCompare(b.name);
+    });
+  };
+
+  var handleRedirect = function handleRedirect(e, entity) {
+    e.preventDefault();
+    entity.parkName ? history.push("/trails/".concat(entity.id)) : history.push("/parks/".concat(entity.id));
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: currImg === 0 ? "background-image" : "background-image hidden",
+    src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker2-min.jpg"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: currImg === 1 ? "background-image" : "background-image hidden",
+    src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker.jpg"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: currImg === 2 ? "background-image" : "background-image hidden",
+    src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker3-min.jpg"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    className: currImg === 3 ? "background-image" : "background-image hidden",
+    src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker4-min.jpg"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    className: "welcome"
+  }, "Find your next trail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    id: "parent-node"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
+    className: "splash-search"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+    src: window.search,
+    width: "16px",
+    height: "16px",
+    className: "search-icon"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    onChange: function onChange(e) {
+      return setSearch(e.target.value);
+    },
+    onFocus: function onFocus(e) {
       e.preventDefault();
-      var newState = false;
-      this.setState({
-        hidden: newState
-      });
-    }
-  }, {
-    key: "hide",
-    value: function hide(e) {
+      setHidden(false);
+    },
+    onBlur: function onBlur(e) {
       e.preventDefault();
-
-      if (this.state.hidden === false) {
-        var newState = true;
-        this.setState({
-          hidden: newState
-        });
-      }
+      if (!hidden) setHidden(true);
+    },
+    type: "text",
+    className: "search-bar",
+    placeholder: "Search by park or trail name"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "green-arrow"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: hidden ? "hidden search-dropdown-container" : "search-dropdown-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "spacer"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "inner-dropdown-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-tabs"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    className: "tab-underline",
+    onMouseDown: function onMouseDown(e) {
+      return changeFilter(e);
+    },
+    "aria-selected": true
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onMouseDown: function onMouseDown(e) {
+      return changeFilter(e);
     }
-  }, {
-    key: "handleRedirect",
-    value: function handleRedirect(e, entity) {
-      e.preventDefault();
-      entity.parkName ? this.props.history.push("/trails/".concat(entity.id)) : this.props.history.push("/parks/".concat(entity.id));
+  }, "Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onMouseDown: function onMouseDown(e) {
+      return changeFilter(e);
     }
-  }, {
-    key: "changeFilter",
-    value: function changeFilter(e) {
-      e.preventDefault();
-      var prevTab = document.getElementsByClassName('tab-underline');
-      prevTab ? prevTab[0].classList.remove('tab-underline') : "";
-      e.target.classList.add('tab-underline');
-      this.setState({
-        filterBy: e.target.innerText
-      });
+  }, "Parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "search-items-list"
+  }, sortObjects(Object.values(searchHash[filterBy])).map(function (entity, idx) {
+    if (entity.name.toLowerCase().startsWith(search.toLowerCase())) {
+      liveItemsList.push(entity.name);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        onMouseDown: function onMouseDown(e) {
+          return handleRedirect(e, entity);
+        },
+        className: "search-item",
+        key: idx
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "loc-icon-div"
+      }, typeof entity.parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_1__.BsTree, {
+        className: "park-icon",
+        height: "40px",
+        width: "40px"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
+        className: "loc-icon",
+        src: window.green_loc,
+        width: "16px",
+        height: "22px"
+      }), ";"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        className: "search-details"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
     }
-  }, {
-    key: "sortObjects",
-    value: function sortObjects(objs) {
-      var sorted = objs.slice();
-      return sorted.sort(function (a, b) {
-        return a.name.localeCompare(b.name);
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this3 = this;
-
-      var liveItemsList = [];
-      var _this$props = this.props,
-          trails = _this$props.trails,
-          parks = _this$props.parks;
-      var allResults = trails.concat(parks);
-      var searchHash = {
-        "All": allResults,
-        "Trails": trails,
-        "Parks": parks
-      };
-      return (
-        /*#__PURE__*/
-        // repeating images styling
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: this.state.currImg === 1 ? "background-image" : "background-image hidden",
-          src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker2-min.jpg"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: this.state.currImg === 2 ? "background-image" : "background-image hidden",
-          src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker.jpg"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: this.state.currImg === 3 ? "background-image" : "background-image hidden",
-          src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker3-min.jpg"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          className: this.state.currImg === 4 ? "background-image" : "background-image hidden",
-          src: "https://funtrails-seeds.s3.amazonaws.com/splash_hiker4-min.jpg"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "search-wrapper"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
-          className: "welcome"
-        }, "Find your next trail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          id: "parent-node"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "search-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("form", {
-          className: "splash-search"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-          src: window.search,
-          width: "16px",
-          height: "16px",
-          className: "search-icon"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-          onChange: this.updateSearch,
-          onFocus: this.show,
-          onBlur: this.hide,
-          type: "text",
-          className: "search-bar",
-          placeholder: "Search by park or trail name"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "green-arrow"
-        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: this.state.hidden === true ? "hidden search-dropdown-container" : "search-dropdown-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "spacer"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "inner-dropdown-container"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "search-tabs"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          className: "tab-underline",
-          onMouseDown: this.changeFilter,
-          "aria-selected": true
-        }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onMouseDown: this.changeFilter
-        }, "Trails"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-          onMouseDown: this.changeFilter
-        }, "Parks")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "search-items-list"
-        }, this.sortObjects(Object.values(searchHash[this.state.filterBy])).map(function (entity, idx) {
-          if (entity.name.toLowerCase().startsWith(_this3.state.search.toLowerCase())) {
-            liveItemsList.push(entity.name);
-            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-              onMouseDown: function onMouseDown(e) {
-                return _this3.handleRedirect(e, entity);
-              },
-              className: "search-item",
-              key: idx
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-              className: "loc-icon-div"
-            }, typeof entity.parkName === "undefined" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_icons_bs__WEBPACK_IMPORTED_MODULE_1__.BsTree, {
-              className: "park-icon",
-              height: "40px",
-              width: "40px"
-            }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
-              className: "loc-icon",
-              src: window.green_loc,
-              width: "16px",
-              height: "22px"
-            }), ";"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-              className: "search-details"
-            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, entity.name ? entity.name : entity.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", null, entity.state + ", " + entity.country)));
-          }
-        }), liveItemsList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-          className: "no-results"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "No Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "We couldn't find anything matching \"", this.state.search, "\"")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)))))))
-      );
-    }
-  }]);
-
-  return Search;
-}((react__WEBPACK_IMPORTED_MODULE_0___default().Component));
+  }), liveItemsList.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "no-results"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "No Results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "We couldn't find anything matching \"", search, "\"")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null)))))));
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
 
@@ -5830,7 +5763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _confidence__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./confidence */ "./frontend/components/splash/confidence.jsx");
 /* harmony import */ var _mobile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./mobile */ "./frontend/components/splash/mobile.jsx");
 /* harmony import */ var _stats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stats */ "./frontend/components/splash/stats.jsx");
-/* harmony import */ var _search_search__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../search/search */ "./frontend/components/search/search.jsx");
+/* harmony import */ var _search_searchHooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../search/searchHooks */ "./frontend/components/search/searchHooks.jsx");
 /* harmony import */ var _actions_trail_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/trail_actions */ "./frontend/actions/trail_actions.js");
 /* harmony import */ var _actions_park_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions/park_actions */ "./frontend/actions/park_actions.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
@@ -5862,7 +5795,7 @@ var Splash = function Splash() {
     dispatch((0,_actions_trail_actions__WEBPACK_IMPORTED_MODULE_7__.fetchTrails)());
     dispatch((0,_actions_park_actions__WEBPACK_IMPORTED_MODULE_8__.fetchParks)());
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_search__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_searchHooks__WEBPACK_IMPORTED_MODULE_6__["default"], {
     trails: trails,
     parks: parks,
     history: history

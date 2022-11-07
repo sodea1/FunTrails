@@ -4,7 +4,7 @@ import Descriptors from "./descriptors";
 import Confidence from "./confidence";
 import MobileDemo from "./mobile";
 import Stats from "./stats";
-import Search from "../search/search";
+import Search from "../search/searchHooks";
 import { useEffect } from "react";
 import { fetchTrails } from '../../actions/trail_actions';
 import { fetchParks } from '../../actions/park_actions';
