@@ -9,7 +9,8 @@ const Search = ({ trails, parks, history }) => {
     const [currImg, setImg] = useState(0);
     const [hidden, setHidden] = useState(true);
     const [filterBy, setFilter] = useState("All");
-    const [delay, setDelay] = useState(5000);
+    const [delay, setDelay] = useState(4000);
+    const [count, setCount] = useState(1);
     const liveItemsList = [];
     const allResults = trails.concat(parks);
     const searchHash = {
@@ -20,8 +21,8 @@ const Search = ({ trails, parks, history }) => {
 
     useInterval(() => {
         setImg((currImg + 1) % 4);
-    }, delay)
-
+    }, delay);
+    
     useEffect(() => {
         document.addEventListener("keydown", handleEscape);
         return function cleanup() {

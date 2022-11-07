@@ -2919,6 +2919,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var useInterval = function useInterval(callback, delay) {
+  // ref provides fresh state variables to setInterval below
+  // each time, callback func updates the count / currImg, which must be shared with setInterval 
+  // otherwise, setInterval will continue to reference the first img (0) + 1 every time
   var savedCallback = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     savedCallback.current = callback;
@@ -4534,10 +4537,15 @@ var Search = function Search(_ref) {
       filterBy = _useState8[0],
       setFilter = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5000),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(4000),
       _useState10 = _slicedToArray(_useState9, 2),
       delay = _useState10[0],
       setDelay = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState12 = _slicedToArray(_useState11, 2),
+      count = _useState12[0],
+      setCount = _useState12[1];
 
   var liveItemsList = [];
   var allResults = trails.concat(parks);
