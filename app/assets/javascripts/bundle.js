@@ -3273,25 +3273,64 @@ var Nav = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Nav);
 
-    _this = _super.call(this, props); // this.state = this.props.currUser;
-
+    _this = _super.call(this, props);
     _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
+    _this.createObserver = _this.createObserver.bind(_assertThisInitialized(_this));
+    _this.scrollEvent = _this.scrollEvent.bind(_assertThisInitialized(_this));
+    _this.myRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createRef(0);
     return _this;
   }
 
   _createClass(Nav, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      document.addEventListener("scroll", function (e) {
+      this.scrollEvent();
+    }
+  }, {
+    key: "scrollEvent",
+    value: function scrollEvent() {
+      var adding = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var self = this;
+      document.addEventListener("scroll", function setTransparency() {
         var nav = document.getElementsByClassName("navbar")[0];
+        var height = nav.offsetHeight;
 
-        if (window.pageYOffset < 50) {
+        if (window.pageYOffset <= height) {
+          // adjust transparency
+          console.log("adding on load");
           var transparency = (50 - window.pageYOffset) / 50;
-          console.log(transparency);
           nav.style.backgroundColor = "rgba(255, 0, 0, ".concat(transparency, ")");
-        } else {// nav.style.backroundColor = "transparent";
+        } else {
+          console.log("firing");
+
+          if (!adding) {
+            console.log("removing");
+            nav.style.backroundColor = "transparent";
+            document.removeEventListener("scroll", setTransparency); // if 
+
+            self.createObserver(self);
+          }
         }
       });
+    }
+  }, {
+    key: "createObserver",
+    value: function createObserver(self) {
+      var options = {
+        threshold: (540 - 56) / 560
+      };
+      var nav;
+
+      function callback() {
+        var adding = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+        // nav = document.getElementsByClassName("navbar")[0];
+        // nav.style.backgroundColor = "blue";
+        self.scrollEvent(adding);
+      }
+
+      var observer = new IntersectionObserver(callback, options);
+      var searchWrapper = document.getElementsByClassName("search-wrapper")[0];
+      observer.observe(searchWrapper);
     }
   }, {
     key: "handleLogout",
@@ -3302,6 +3341,7 @@ var Nav = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log('HELLO');
       var leftNavBar = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         className: "left-nav bold"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {

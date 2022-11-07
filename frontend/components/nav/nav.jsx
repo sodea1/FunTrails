@@ -5,22 +5,56 @@ import ProfDropdown from './prof_dropdown';
 class Nav extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = this.props.currUser;
         this.handleLogout = this.handleLogout.bind(this);
+        this.createObserver = this.createObserver.bind(this);
+        this.scrollEvent = this.scrollEvent.bind(this)
+        this.myRef = React.createRef(0);
     }
 
     componentDidMount() {
-        document.addEventListener("scroll", (e) => {
+        this.scrollEvent();
+    }
+
+    scrollEvent(adding = false) {
+        let self = this;
+        document.addEventListener("scroll", function setTransparency() {
             let nav = document.getElementsByClassName("navbar")[0];
-            if (window.pageYOffset < 50) {
+            let height = nav.offsetHeight;
+            if (window.pageYOffset <= height) {
+                // adjust transparency
+                console.log("adding on load")
                 let transparency = (50 - window.pageYOffset) / 50;
-                console.log(transparency)
                 nav.style.backgroundColor = `rgba(255, 0, 0, ${transparency})`;
             } else {
-                // nav.style.backroundColor = "transparent";
+                console.log("firing");
+                if (!adding) {
+                    console.log("removing")
+                    nav.style.backroundColor = "transparent";
+                    document.removeEventListener("scroll", setTransparency);
+
+                    // if 
+                    self.createObserver(self);
+                }
             }
-        })
+        });
     }
+
+    createObserver(self) {
+        let options = {
+            threshold: ((540 - 56) / 560)
+        }
+
+        let nav;
+        function callback(adding = true) {
+            // nav = document.getElementsByClassName("navbar")[0];
+            // nav.style.backgroundColor = "blue";
+            self.scrollEvent(adding)
+        }
+
+        let observer = new IntersectionObserver(callback, options);
+        let searchWrapper = document.getElementsByClassName("search-wrapper")[0];
+        observer.observe(searchWrapper);
+    };
 
     handleLogout(e) {
         e.preventDefault();
@@ -28,6 +62,7 @@ class Nav extends React.Component {
     }
 
     render() {
+        console.log('HELLO')
         const leftNavBar = 
             <div className='left-nav bold'>
                 <Link to='/' className='explore-link'>Explore</Link>
