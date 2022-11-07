@@ -1,70 +1,64 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ProfDropdown from './prof_dropdown';
+import { clearSessionErrors } from '../../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 
-class Nav extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state = this.props.currUser;
-        this.handleLogout = this.handleLogout.bind(this);
-    }
+const Nav = () => {
+    const currUser = useSelector((state) => state.session.currUserId)
+    const dispatch = useDispatch();
 
-    handleLogout(e) {
+    const handleLogout = (e) => {
         e.preventDefault();
-        this.props.logout();
+        dispatch(logout());
     }
 
-    render() {
-        const leftNavBar = 
+    const leftNavBar =
             <div className='left-nav bold'>
                 <Link to='/' className='explore-link'>Explore</Link>
                 <div>
                     <span className='nav-dropdown'></span>
-                    {/* <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' /> */}
                 </div>
                 <div>
                     <span className='nav-dropdown'></span>
-                    {/* <img src={window.dropdown} width="12px" height="12px" className='nav-dropdown' /> */}
                 </div>
             </div>
 
-        const navBar = this.props.currUser ? (
-            <div className='fixed'>
-                <div className='navbar'>
-                    {leftNavBar}
-                    <div className='mid-nav'>
+    const midNav = <div className='mid-nav'>
                         <Link to="/" className='nav-center-links'>
-                            <img src={window.logo} width="82px" height="82px" className='logo'/>
+                            <img src={window.logo} width="82px" height="82px" className='logo' />
                             <span className="nav-title">FunTrails</span>
                         </Link>
                     </div>
-                    <div className='right-nav'>
-                        {/* ADD LOGOUT ICON */}
-                        <ProfDropdown handleLogout={this.handleLogout} />                    
-                    </div>
+
+    const navBar = currUser ? (
+        <div className='fixed'>
+            <div className='navbar'>
+                {leftNavBar}
+                {midNav}
+                <div className='right-nav'>
+                    <ProfDropdown handleLogout={handleLogout} />
                 </div>
             </div>
-        )
+        </div>
+    )
         : (
             <div className='fixed'>
                 <div className='navbar'>
                     {leftNavBar}
-                    <div className='mid-nav'>
-                            <Link to="/" className='nav-center-links'>
-                                <img src={window.logo} width="82px" height="82px" className='logo' />
-                                <span className="nav-title">FunTrails</span>
-                            </Link>
-                    </div>
+                    {midNav}
                     <div className='right-nav'>
-                        <Link to='/signup' className='signup-button' onClick={this.props.clearSessionErrors}>Sign Up</Link>
-                        <Link to='/login' className='login-button' onClick={this.props.clearSessionErrors}>Login</Link>
+                        <Link to='/signup' className='signup-button' onClick={() => dispatch(clearSessionErrors())}>Sign Up</Link>
+                        <Link to='/login' className='login-button' onClick={() => dispatch(clearSessionErrors())}>Login</Link>
                     </div>
                 </div>
             </div>
         )
 
-        return navBar;
-    }
-}
+    return (
+        navBar
+    );
+};
 
 export default Nav;
