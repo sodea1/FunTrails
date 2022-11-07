@@ -2,12 +2,14 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BsTree } from 'react-icons/bs';
+import useInterval from '../custom_hooks/useInterval';
 
 const Search = ({ trails, parks, history }) => {
     const [search, setSearch] = useState("");
     const [currImg, setImg] = useState(0);
     const [hidden, setHidden] = useState(true);
     const [filterBy, setFilter] = useState("All");
+    const [delay, setDelay] = useState(5000);
     const liveItemsList = [];
     const allResults = trails.concat(parks);
     const searchHash = {
@@ -16,21 +18,14 @@ const Search = ({ trails, parks, history }) => {
         "Parks": parks
     }
 
+    useInterval(() => {
+        setImg((currImg + 1) % 4);
+    }, delay)
+
     useEffect(() => {
         document.addEventListener("keydown", handleEscape);
         return function cleanup() {
             window.removeEventListener("keydown", handleEscape);
-        }
-    }, []);
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setImg(newImg => (newImg + 1) % 4);
-        }, 5000);
-
-        return function cleanup() {
-            console.log("clearing interval")
-            clearInterval(intervalId);
         }
     }, []);
 
