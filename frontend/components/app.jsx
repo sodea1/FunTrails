@@ -1,5 +1,5 @@
 import React from "react";
-import NavContainer from "./nav/nav_container";
+import Nav from "./nav/nav";
 import SplashContainer from "./splash/splash_container"
 import Footer from "./splash/footer";
 import SignupFormContainer from "./session/signup_form_container";
@@ -13,7 +13,7 @@ import { AuthRoute } from "../util/route_util";
 const App = () => ( 
   <div id="container">
     <Modal />
-    <NavContainer />
+    <Nav />
     <div className="margintop">
       <Switch>
         <AuthRoute path="/signup" component={SignupFormContainer} />
