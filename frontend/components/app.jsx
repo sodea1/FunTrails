@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./nav/nav";
-import SplashContainer from "./splash/splash_container"
+import Splash from "./splash/splash"
 import Footer from "./splash/footer";
 import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
@@ -20,7 +20,7 @@ const App = () => (
         <AuthRoute path="/login" component={LoginFormContainer} />
         <Route path="/trails/:id" component={TrailContainer} />
         <Route path="/parks/:id" component={ParkContainer} />
-        <Route path="/" component={SplashContainer} />
+        <Route path="/" component={Splash} />
       </Switch>
     </div>
 

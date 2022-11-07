@@ -5,30 +5,38 @@ import Confidence from "./confidence";
 import MobileDemo from "./mobile";
 import Stats from "./stats";
 import Search from "../search/search";
+import { useEffect } from "react";
+import { fetchTrails } from '../../actions/trail_actions';
+import { fetchParks } from '../../actions/park_actions';
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-class Splash extends React.Component {
-    componentDidMount() {
-        this.props.fetchTrails();
-        this.props.fetchParks();
-    }
+const Splash = () => {
+    const trails = useSelector((state) => Object.values(state.entities.trails));
+    const parks = useSelector((state) => Object.values(state.entities.parks));
+    const history = useHistory();
+    const dispatch = useDispatch();
 
-    render() {
-        const { trails, parks, history } = this.props;
-        return ( 
+    useEffect(() => {
+        console.log("fetching trails and parks")
+        dispatch(fetchTrails());
+        dispatch(fetchParks());
+    }, [])
+
+    return (
+        <div>
             <div>
-                <div>
-                    <Search trails={trails} parks={parks} history={history} /> 
-                </div>
-                {trails.length > 0 && <TrailFavorites trails={trails}/>}
-                <div>
-                    <Descriptors />
-                    <Confidence />
-                    <MobileDemo />
-                    <Stats />
-                </div>
+                <Search trails={trails} parks={parks} history={history} />
             </div>
-        )
-    }
-}
+            {trails.length > 0 && <TrailFavorites trails={trails} />}
+            <div>
+                <Descriptors />
+                <Confidence />
+                <MobileDemo />
+                <Stats />
+            </div>
+        </div>
+    )
+};
 
 export default Splash;
