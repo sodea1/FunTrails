@@ -14,7 +14,7 @@ class Trail extends React.Component {
     }
 
     componentDidMount() {
-        // 2. called after 1st render; fetchTrails populates the store with trails
+        // 2. called after 1st render - fetchTrails populates the store with trails
         this.props.fetchTrails()
             .then(() => this.props.fetchWeather([this.props.trail.latitude, this.props.trail.longitude]))
         this.props.fetchParks();
