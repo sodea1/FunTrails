@@ -80,6 +80,5 @@ test:
 #
 production:
   <<: *default
-  database: FunTrails_production
-  username: FunTrails
-  password: <%= ENV['FUNTRAILS_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
