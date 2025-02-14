@@ -4,7 +4,7 @@ import { closeModal } from "../../actions/modal_actions";
 import CreateRevContainer from '../reviews/create_rev_container';
 import EditRevContainer from '../reviews/edit_rev_container';
 
-function Modal ({ modal, closeModal }) {
+function Modal ({ modal }) {
     if (!modal) {
         return null;
     }
